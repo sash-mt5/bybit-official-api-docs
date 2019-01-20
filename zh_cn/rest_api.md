@@ -612,6 +612,7 @@ https://api.bybit.com/position/list
             'oc_calc_data': '{\'blq\':\'0\',\'bmp\':\'0\',\'slq\':\'0\',\'smp\':\'0\'}',
             'order_margin': 0,      委托预占用保证金
             'wallet_balance': 0,    账户余额
+            'unrealised_pnl': 0,    以标记价格计算的未结盈亏
             'realised_pnl': 0,      今日已结盈亏
             'cum_realised_pnl': 0,  累计已结盈亏
             'cum_commission': 0,    累计佣金
