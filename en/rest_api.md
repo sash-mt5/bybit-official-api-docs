@@ -29,6 +29,8 @@
 * [Funding rate](#lastfundingrate)
  
 * [My funding fee](#userlastfundingfee)
+
+* [Predicted funding](#open-apifundingpredicted-fundingget)
  
 -----------
 ## <span id="open-apiordercreatepost"> Place Active Order </span>
