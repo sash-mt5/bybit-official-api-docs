@@ -32,6 +32,8 @@
 
 * [查询上个周期资金费用结算信息](#open-apifundingprev-fundingget)
 
+* [查询预测资金费率和资金费用](#open-apifundingpredicted-fundingget)
+
 
 
 -----------
@@ -766,9 +768,53 @@ https://api.bybit.com/open-api/funding/prev-funding
         'symbol': 'BTCUSD',
         'side': 'Buy', // 进行结算时仓位的持仓方向
         'size': 10,   // 进行结算时仓位的数量
-        'funding_rate': 0.00375 // 结算时的资金费率
-        'exec_fee': 0.00000116, // 结算资金费用, 为正数时,多仓支付费用，空仓收取费用; 为负数时，多仓收取费用，空仓支付费用
+        'funding_rate': 0.00375 // 结算时的资金费率, 为正数时,多仓支付费用，空仓收取费用; 为负数时，多仓收取费用，空仓支付费用
+        'exec_fee': 0.00000116, // 
         'exec_timestamp': 1539950401, // 结算时间，UTC时间戳
+    },
+    'time_now':'1539778407.210858',    UTC时间戳
+}
+
+```
+
+-----------
+## <span id="open-apifundingpredicted-fundingget">查询预测资金费率和资金费用</span>
+#### 接口功能
+
+> 查询预测资金费率和资金费用
+
+#### URL
+
+```
+// 测试网地址
+https://api-testnet.bybit.com/open-api/funding/predicted-funding
+
+// 主网地址
+https://api.bybit.com/open-api/
+```
+
+#### HTTP请求方式
+
+> get
+
+#### 请求参数
+
+|参数|必选|类型|说明|
+|:----- |:-------|:-----|----- |
+|symbol |true |string |产品 (BTCUSD ETHUSD )    |
+
+
+#### 返回示例
+
+```js
+
+{
+    'ret_code':0   // 返回码(0：成功、-101：参数校验失败)
+    'ret_msg':'ok' // 错误消息,
+    'ext_code':'', // 补充错误码
+    'result': {
+        'predicted_funding_rate': 0.001, // 预测资金费率
+        'predicted_funding_fee': 0.000234 // 预测资金费用
     },
     'time_now':'1539778407.210858',    UTC时间戳
 }

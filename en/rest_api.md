@@ -734,12 +734,56 @@
         'symbol':'BTCUSD',
         'side': 'Buy', // Your position side at the time of settlement
         'size': 10,   // Your position size at the time of settlement
-        'funding_rate':'0.00375000', // Funding rate for settlement
-        'exec_fee': 0.00000116, // Funding fee. When the Funding fee is positive, longs pay shorts. When it is negative, shorts pay longs. 
+        'funding_rate':'0.00375000', // Funding rate for settlement. When the Funding rate is positive, longs pay shorts. When it is negative, shorts pay longs.
+        'exec_fee': 0.00000116, // Funding fee.  
         'exec_timestamp': 1539950401, // The time of funding settlement occurred, UTC timestamp
     },
     'time_now':'1539778407.210858',    UTC timestamp
     'rate_limit_status':10, // The number of remaining calls for this type of api in the current period(1 min).
 }
  
+```
+
+-----------
+## <span id="open-apifundingpredicted-fundingget">Get Predicted Funding Rate and Funding Fee</span>
+#### API Function
+
+> Get predicted funding rate and funding fee
+
+#### URL
+
+```
+> For Testnet
+https://api-testnet.bybit.com/open-api/funding/predicted-funding
+
+> For Mainnet
+https://api.bybit.com/open-api/
+```
+
+#### HTTP Request Method
+
+> get
+
+#### Request Parameters
+
+|parameter|required|type|comments|
+|:----- |:-------|:-----|----- |
+|symbol |true |string |Contract type (BTCUSD ETHUSD )    |
+
+
+#### Response example
+
+```js
+
+{
+    'ret_code':0   // return code(0：successful、-101：Parameters verification failed)
+    'ret_msg':'ok' // error message
+    'ext_code':'', // additional error code
+    'result': {
+        'predicted_funding_rate': 0.001, // predicted funding rate. When the Funding rate is positive, longs pay shorts. When it is negative, shorts pay longs.
+        'predicted_funding_fee': 0.000234 // predicted funding fee
+    },
+    'time_now':'1539778407.210858',    UTC timestamp
+}
+
 ```
