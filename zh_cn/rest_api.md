@@ -790,7 +790,7 @@ https://api.bybit.com/open-api/funding/prev-funding
 https://api-testnet.bybit.com/open-api/funding/predicted-funding
 
 // 主网地址
-https://api.bybit.com/open-api/
+https://api.bybit.com/open-api/open-api/funding/predicted-funding
 ```
 
 #### HTTP请求方式
