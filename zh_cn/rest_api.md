@@ -813,7 +813,7 @@ https://api.bybit.com/open-api/open-api/funding/predicted-funding
     'ret_msg':'ok' // 错误消息,
     'ext_code':'', // 补充错误码
     'result': {
-        'predicted_funding_rate': 0.001, // 预测资金费率
+        'predicted_funding_rate': 0.001, // 预测资金费率,为正数时,多仓支付费用，空仓收取费用; 为负数时，多仓收取费用，空仓支付费用
         'predicted_funding_fee': 0.000234 // 预测资金费用
     },
     'time_now':'1539778407.210858',    UTC时间戳
