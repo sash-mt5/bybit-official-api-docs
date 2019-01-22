@@ -159,12 +159,14 @@ ws.send('{"op":"subscribe","args":["kline.BTCUSD.1m"]}');
     "topic":"trade.BTCUSD",
     "data":[
         {
-            "timestamp":"2018-10-25T06:21:11.846Z",
+            "timestamp":"2019-01-22T15:04:33.461Z",
             "symbol":"BTCUSD",
             "side":"Buy",
-            "size":10670,
-            "price":6398.5,
-            "tick_direction":"ZeroMinusTick" // [PlusTick,ZeroPlusTick,MinusTick,ZeroMinusTick]
+            "size":980,
+            "price":3563.5,
+            "tick_direction":"PlusTick",
+            "trade_id":"9d229f26-09a8-42f8-aff3-0ba047b0449d",
+            "cross_seq":163261271
         }
     ]
 }
@@ -249,22 +251,25 @@ ws.send('{"op":"subscribe","args":["position"]}')
  ws.send('{"op":"subscribe","args":["execution"]}')
 
  // 推送的消息格式
- {
-     "topic":"execution",
-     "action":"new",
-     "data":[
-         {
+{
+    "topic":"execution",
+    "data":[
+        {
             "symbol":"BTCUSD",
-            "side":"Buy",
-            "order_id":"aaaaaaaa",
-            "price":6400.5,
-            "qty":100,
-            "leaves_qty":50,
+            "side":"Sell",
+            "order_id":"095f99d2-844c-4358-9a8f-4a973eb5c418",
+            "exec_id":"ce6e3ec9-0fb1-4972-8b66-c3d2fcd352f6",
+            "order_link_id":"4119012214309",
+            "price":3559,
+            "exec_qty":1028,
+            "exec_fee":-0.00007221,
+            "leaves_qty":0,
             "is_maker":true,
-            "trade_time":134234123.121322
-        }
-     ]
- }
+            "trade_time":"2019-01-22T14:49:38.000Z"
+        },
+    ]
+}
+
 ```
 
 <hr>
@@ -279,19 +284,20 @@ ws.send('{"op":"subscribe","args":["position"]}')
     "topic":"order",
     "data":[
         {
-            "order_id":"3ceb73c8-11db-45b1-a407-613dba55e5bf",
+            "order_id":"xxxxxxxx-xxxx-xxxx-832b-1eca710bf0a6",
+            "order_link_id":"xxxxxxxx",
             "symbol":"BTCUSD",
             "side":"Sell",
             "order_type":"Limit",
-            "price":6418.5,
-            "qty":596801,
+            "price":3559.5,
+            "qty":850,
             "time_in_force":"GoodTillCancel",
-            "order_status":"PartiallyFilled",
-            "leaves_qty":596800,
-            "cum_exec_qty":1,
-            "cum_exec_value":0.00015579,
-            "cum_exec_fee":0.00000003,
-            "timestamp":"2018-10-26T10:35:31.000Z"
+            "order_status":"Cancelled",
+            "leaves_qty":0,
+            "cum_exec_qty":0,
+            "cum_exec_value":0,
+            "cum_exec_fee":0,
+            "timestamp":"2019-01-22T14:49:38.000Z"
         }
     ]
 }
