@@ -52,7 +52,6 @@ var sign = hex(HMAC_SHA256($secret, $param_str));
 POST /user/leverage/save HTTP/1.1
 Host: api-testnet.bybit.com
 Content-Type: application/x-www-form-urlencoded
-Content-Length: 144
  
 api_key=B2Rou0PLPpGqcU0Vu2&leverage=100&symbol=BTCUSD&timestamp=1542434791000&sign=670e3e4aa32b243f2dedf1dafcec2fd17a440e71b05681550416507de591d908
  
@@ -62,7 +61,6 @@ api_key=B2Rou0PLPpGqcU0Vu2&leverage=100&symbol=BTCUSD&timestamp=1542434791000&si
 POST /user/leverage/save HTTP/1.1
 Host: api-testnet.bybit.com
 content-type: application/json
-Content-Length: 183
  
 {
     "api_key":"B2Rou0PLPpGqcU0Vu2",
