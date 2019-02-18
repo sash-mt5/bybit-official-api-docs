@@ -47,7 +47,22 @@ var ws = new WebSocket("wsurl")
 // Signature is the same as the first way's
 ws.send('{"op":"auth","args":["{api_key}",expires,"{signature}"]}');
 ```
- 
+
+### How to Send The Heartbeat Packet
+After establishing the connection,one can send a heartbeat packet to confirm the connection is normal by sending a json request.The specific formats are as follows: 
+```js
+ws.send('{"op":"ping"}');
+
+// Every ping packet will have a response. The response is sent in the following format:
+{
+    "success":true,
+    "ret_msg":"pong",
+    "request":{
+        "op":"ping",
+        "args":null
+    }
+}
+```
  
 ### How to Subscribe to a New Topic
  
