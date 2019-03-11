@@ -582,6 +582,7 @@
            'liq_price': 999999,    //liquidation price
            'bust_price': 999999,   //bankruptcy price
            'occ_closing_fee': 0,   //position closing 
+           'occ_funding_fee': 0,   //funding fee
            'take_profit': 0,       //take profit price
            'stop_loss': 0,         //stop loss price
            'trailing_stop': 0,     //trailing stop point 

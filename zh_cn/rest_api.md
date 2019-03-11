@@ -606,6 +606,7 @@ https://api.bybit.com/position/list
             'liq_price': 999999,    强平价格
             'bust_price': 999999,   破产价格
             'occ_closing_fee': 0,   平仓手续费
+            'occ_funding_fee': 0,   预占用资金费用
             'take_profit': 0,       止盈价格
             'stop_loss': 0,         止损价格
             'trailing_stop': 0,     追踪止损点数
