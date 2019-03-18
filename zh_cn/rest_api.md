@@ -846,7 +846,7 @@ https://api.bybit.com/open-api/order/execution_records/list
 
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
-|order_id |false |string |订单ID |
+|order_id |true |string |订单ID |
 
 #### 返回示例
 
