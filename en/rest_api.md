@@ -5,7 +5,7 @@
 * [Get active order](#open-apiorderlistget)
  
 * [Cancel active order](#open-apiordercancelpost)
- 
+
 ### Conditional Order
  
 * [Place conditional order](#open-apistop-ordercreatepost)
@@ -32,9 +32,9 @@
 
 * [Predicted funding](#open-apifundingpredicted-fundingget)
 
-### Closed Order
-* [Get the trade records of a order](#open-apiexecutionrecordslistpost)
+### Execution
 
+* [Get the trade records of a order](#open-apiexecutionrecordslistget)
  
 -----------
 ## <span id="open-apiordercreatepost"> Place Active Order </span>
@@ -452,6 +452,7 @@
  
 ```
  
+ 
 -----------
 ## <span id="userleverageget">User Leverage</span>
 #### API Function
@@ -794,8 +795,9 @@ https://api.bybit.com/open-api/open-api/funding/predicted-funding
 
 ```
 
------------
-## <span id="open-apiexecutionrecordslistpost">Get the trade records of  a  order </span>
+
+ -----------
+## <span id="open-apiexecutionrecordslistget">Get the trade records of  a  order </span>
 #### API Function
 
 > Get the trade records of a order
@@ -858,3 +860,4 @@ https://api.bybit.com/open-api/order/execution_records/list
 }
 
 ```
+

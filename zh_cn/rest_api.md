@@ -34,8 +34,8 @@
 
 * [查询预测资金费率和资金费用](#open-apifundingpredicted-fundingget)
 
-### 已结委托单
-* [查询委托单成交历史](#open-apiexecutionrecordslistpost)
+### 成交委托单
+* [查询委托单成交历史](#open-apiexecutionrecordslistget)
 
 -----------
 ## <span id="open-apiordercreatepost">创建活动委托单 </span>
@@ -823,7 +823,7 @@ https://api.bybit.com/open-api/open-api/funding/predicted-funding
 ```
 
 -----------
-## <span id="open-apiexecutionrecordslistpost">查询委托单成交历史 </span>
+## <span id="open-apiexecutionrecordslistget">查询委托单成交历史 </span>
 #### 接口功能
 
 > 获取委托单成交历史列表。
