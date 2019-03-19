@@ -807,10 +807,10 @@ https://api.bybit.com/open-api/open-api/funding/predicted-funding
 
 ```
 > For Testnet
-https://api-testnet.bybit.com/open-api/order/execution_records/list
+https://api-testnet.bybit.com/v2/private/execution/list
 
 > For Mainnet
-https://api.bybit.com/open-api/order/execution_records/list
+https://api.bybit.com/v2/private/execution/list
 ```
 
 #### HTTP Request Method

@@ -833,10 +833,10 @@ https://api.bybit.com/open-api/open-api/funding/predicted-funding
 
 ```
 // 测试网地址
-https://api-testnet.bybit.com/open-api/order/execution_records/list
+https://api-testnet.bybit.com/v2/private/execution/list
 
 // 主网地址
-https://api.bybit.com/open-api/order/execution_records/list
+https://api.bybit.com/v2/private/execution/list
 ```
 
 #### HTTP请求方式
