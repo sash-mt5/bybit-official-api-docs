@@ -833,28 +833,28 @@ https://api.bybit.com/open-api/order/execution_records/list
     'ext_info': '',                                       // additional error info
     'result': {
     'order_id': 'd854bb13-3fb9-4608-ade4-828f50210778',   // Unique order ID
-    'trade_list': [{
-        'closed_size': 0,                                // Closed size
-        'cross_seq': 3154097,                            // CrossSeq
-        'exec_fee': '-0.00000005',                       // Execution fee
-        'exec_id': 'b3551383-19b1-4aa6-8ac2-f996bea6e07c', // Unique exec ID
-        'exec_price': '4202',                              // Exec Price
-        'exec_qty': 1,                                   // Exec Qty
-        'exec_time': '1545203567',                       // Exec time
-        'exec_type': 'Trade',                            // Exec type
-        'exec_value': '0.00023798',                      // Exec value
-        'fee_rate': '-0.00025',                          // Fee rate
-        'last_liquidity_ind': 'AddedLiquidity',          // AddedLiquidity/RemovedLiquidity
-        'leaves_qty': 0,                                 // Leave Qty
-        'nth_fill': 7,                                   // Nth Fill 
-        'order_id': 'd854bb13-3fb9-4608-ade4-828f50210778', // Unique order ID
-        'order_price': '4202',                           // Order's price
-        'order_qty': 1,                                  // Order's qty
-        'order_type': 'Limit',                           // Order's type
-        'side': 'Sell',                                  // Side
-        'symbol': 'BTCUSD',                              // Symbol
-        'user_id': 155446                                // UserID
-    }]
+        'trade_list': [{
+            'closed_size': 0,                                // Closed size
+            'cross_seq': 3154097,                            // CrossSeq
+            'exec_fee': '-0.00000005',                       // Execution fee
+            'exec_id': 'b3551383-19b1-4aa6-8ac2-f996bea6e07c', // Unique exec ID
+            'exec_price': '4202',                              // Exec Price
+            'exec_qty': 1,                                   // Exec Qty
+            'exec_time': '1545203567',                       // Exec time
+            'exec_type': 'Trade',                            // Exec type
+            'exec_value': '0.00023798',                      // Exec value
+            'fee_rate': '-0.00025',                          // Fee rate
+            'last_liquidity_ind': 'AddedLiquidity',          // AddedLiquidity/RemovedLiquidity
+            'leaves_qty': 0,                                 // Leave Qty
+            'nth_fill': 7,                                   // Nth Fill 
+            'order_id': 'd854bb13-3fb9-4608-ade4-828f50210778', // Unique order ID
+            'order_price': '4202',                           // Order's price
+            'order_qty': 1,                                  // Order's qty
+            'order_type': 'Limit',                           // Order's type
+            'side': 'Sell',                                  // Side
+            'symbol': 'BTCUSD',                              // Symbol
+            'user_id': 155446                                // UserID
+        }]
     },
     'time_now': '1551340186.761136'
 }

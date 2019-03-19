@@ -859,28 +859,28 @@ https://api.bybit.com/open-api/order/execution_records/list
     'ext_info': '',                                           // 补充错误码
     'result': {
     'order_id': 'd854bb13-3fb9-4608-ade4-828f50210778',       // 订单号
-    'trade_list': [{
-        'closed_size': 0,                                     // 对应的平仓size
-        'cross_seq': 3154097,                                 // 撮合返回号
-        'exec_fee': '-0.00000005',                            // 资金/手续费 费用
-        'exec_id': 'b3551383-19b1-4aa6-8ac2-f996bea6e07c',    // 交易执行id
-        'exec_price': '4202',                                 // 成交价格
-        'exec_qty': 1,                                         // 成交数量
-        'exec_time': '1545203567',                             // 成交时间
-        'exec_type': 'Trade',                                  // 交易记录类别
-        'exec_value': '0.00023798',                            // 价值
-        'fee_rate': '-0.00025',                                // 资金/手续费 费率
-        'last_liquidity_ind': 'AddedLiquidity',                // AddedLiquidity/RemovedLiquidity
-        'leaves_qty': 0,                                      // 剩余数量
-        'nth_fill': 7,                                        // 该笔流水的第几笔成交
-        'order_id': 'd854bb13-3fb9-4608-ade4-828f50210778', // 订单号
-        'order_price': '4202',                                // 委托价格
-        'order_qty': 1,                                     // 委托数量
-        'order_type': 'Limit',                               // 交易记录类型
-        'side': 'Sell',                                     // 购买方向
-        'symbol': 'BTCUSD',                                  // 产品类别
-        'user_id': 155446                                     // 所属用户
-    }]
+        'trade_list': [{
+            'closed_size': 0,                                     // 对应的平仓size
+            'cross_seq': 3154097,                                 // 撮合返回号
+            'exec_fee': '-0.00000005',                            // 资金/手续费 费用
+            'exec_id': 'b3551383-19b1-4aa6-8ac2-f996bea6e07c',    // 交易执行id
+            'exec_price': '4202',                                 // 成交价格
+            'exec_qty': 1,                                         // 成交数量
+            'exec_time': '1545203567',                             // 成交时间
+            'exec_type': 'Trade',                                  // 交易记录类别
+            'exec_value': '0.00023798',                            // 价值
+            'fee_rate': '-0.00025',                                // 资金/手续费 费率
+            'last_liquidity_ind': 'AddedLiquidity',                // AddedLiquidity/RemovedLiquidity
+            'leaves_qty': 0,                                      // 剩余数量
+            'nth_fill': 7,                                        // 该笔流水的第几笔成交
+            'order_id': 'd854bb13-3fb9-4608-ade4-828f50210778', // 订单号
+            'order_price': '4202',                                // 委托价格
+            'order_qty': 1,                                     // 委托数量
+            'order_type': 'Limit',                               // 交易记录类型
+            'side': 'Sell',                                     // 购买方向
+            'symbol': 'BTCUSD',                                  // 产品类别
+            'user_id': 155446                                     // 所属用户
+        }]
     },
     'time_now': '1551340186.761136'
 }
