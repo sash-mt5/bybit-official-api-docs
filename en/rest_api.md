@@ -832,7 +832,7 @@ https://api.bybit.com/open-api/order/execution_records/list
     'ext_code': '',                                       // additional error code
     'ext_info': '',                                       // additional error info
     'result': {
-    'order_id': 'd854bb13-3fb9-4608-ade4-828f50210778',   // Unique order ID
+        'order_id': 'd854bb13-3fb9-4608-ade4-828f50210778',   // Unique order ID
         'trade_list': [{
             'closed_size': 0,                                // Closed size
             'cross_seq': 3154097,                            // CrossSeq

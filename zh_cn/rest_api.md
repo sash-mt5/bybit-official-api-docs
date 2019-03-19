@@ -858,7 +858,7 @@ https://api.bybit.com/open-api/order/execution_records/list
     'ext_code': '',                                           // 补充错误码
     'ext_info': '',                                           // 补充错误码
     'result': {
-    'order_id': 'd854bb13-3fb9-4608-ade4-828f50210778',       // 订单号
+        'order_id': 'd854bb13-3fb9-4608-ade4-828f50210778',       // 订单号
         'trade_list': [{
             'closed_size': 0,                                     // 对应的平仓size
             'cross_seq': 3154097,                                 // 撮合返回号
