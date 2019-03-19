@@ -5,7 +5,7 @@
 * [Get active order](#open-apiorderlistget)
  
 * [Cancel active order](#open-apiordercancelpost)
- 
+
 ### Conditional Order
  
 * [Place conditional order](#open-apistop-ordercreatepost)
@@ -31,6 +31,10 @@
 * [My funding fee](#userlastfundingfee)
 
 * [Predicted funding](#open-apifundingpredicted-fundingget)
+
+### Execution
+
+* [Get the trade records of a order](#open-apiexecutionrecordslistget)
  
 -----------
 ## <span id="open-apiordercreatepost"> Place Active Order </span>
@@ -448,6 +452,7 @@
  
 ```
  
+ 
 -----------
 ## <span id="userleverageget">User Leverage</span>
 #### API Function
@@ -790,3 +795,70 @@ https://api.bybit.com/open-api/open-api/funding/predicted-funding
 }
 
 ```
+
+
+ -----------
+## <span id="open-apiexecutionrecordslistget">Get the trade records of  a  order </span>
+#### API Function
+
+> Get the trade records of a order
+
+#### URL
+
+```
+> For Testnet
+https://api-testnet.bybit.com/open-api/order/execution_records/list
+
+> For Mainnet
+https://api.bybit.com/open-api/order/execution_records/list
+```
+
+#### HTTP Request Method
+
+> get
+
+#### 请求参数
+
+|parameter|required|type|comments|
+|:----- |:-------|:-----|----- |
+|order_id |true |string |orderID |
+
+#### 返回示例
+
+```js
+
+{
+    'ret_code': 0,                                        // return code
+    'ret_msg': 'OK',                                      // error message
+    'ext_code': '',                                       // additional error code
+    'ext_info': '',                                       // additional error info
+    'result': {
+        'order_id': 'd854bb13-3fb9-4608-ade4-828f50210778',   // Unique order ID
+        'trade_list': [{
+            'closed_size': 0,                                // Closed size
+            'cross_seq': 3154097,                            // CrossSeq
+            'exec_fee': '-0.00000005',                       // Execution fee
+            'exec_id': 'b3551383-19b1-4aa6-8ac2-f996bea6e07c', // Unique exec ID
+            'exec_price': '4202',                              // Exec Price
+            'exec_qty': 1,                                   // Exec Qty
+            'exec_time': '1545203567',                       // Exec time
+            'exec_type': 'Trade',                            // Exec type
+            'exec_value': '0.00023798',                      // Exec value
+            'fee_rate': '-0.00025',                          // Fee rate
+            'last_liquidity_ind': 'AddedLiquidity',          // AddedLiquidity/RemovedLiquidity
+            'leaves_qty': 0,                                 // Leave Qty
+            'nth_fill': 7,                                   // Nth Fill 
+            'order_id': 'd854bb13-3fb9-4608-ade4-828f50210778', // Unique order ID
+            'order_price': '4202',                           // Order's price
+            'order_qty': 1,                                  // Order's qty
+            'order_type': 'Limit',                           // Order's type
+            'side': 'Sell',                                  // Side
+            'symbol': 'BTCUSD',                              // Symbol
+            'user_id': 155446                                // UserID
+        }]
+    },
+    'time_now': '1551340186.761136'
+}
+
+```
+
