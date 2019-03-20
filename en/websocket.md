@@ -240,7 +240,7 @@ ws.send('{"op":"subscribe","args":["position"]}')
  
 // Response content format
 {
-   "topic":"position:BTCUSD",
+   "topic":"position",
    "action":"update",
    "data":[
        {

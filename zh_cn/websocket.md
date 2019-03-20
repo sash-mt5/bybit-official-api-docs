@@ -235,7 +235,7 @@ ws.send('{"op":"subscribe","args":["position"]}')
 
 // 推送的消息格式
 {
-    "topic":"position:BTCUSD",
+    "topic":"position",
     "action":"update",
     "data":[
         {
