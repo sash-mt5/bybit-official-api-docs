@@ -1,0 +1,132 @@
+openapi: 3.0.0
+info:
+  version: 1.1.0
+  title: Bybit
+  description: |
+    ## Overview
+    todo
+servers:
+  - url: 'https://api-testnet.bybit.com'
+    description: For Testnet
+  - url: ' https://api.bybit.com'
+    description: For Mainnet
+paths:
+  /v2/public/kline/list:
+    get:
+      summary: Query historical candles
+      operationId: getConfiguration
+      tags:
+        - Public
+      description: Query historical candles.
+      parameters:
+        - $ref: '#/components/parameters/symbol'
+        - $ref: '#/components/parameters/interval'
+        - $ref: '#/components/parameters/from'
+      responses:
+        200:
+          description: response
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/QueryKLineResp'
+                  - $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  parameters:
+    symbol:
+      name: symbol
+      in: query
+      required: true
+      schema:
+        type: string
+        enum:
+          - BTCUSD
+          - ETHUSD
+          
+    interval:
+      name: interval
+      in: query
+      required: true
+      schema:
+        type: string
+        enum:
+          - 1
+          - 3
+          - 5
+          - 15
+    
+    from:
+      name: from
+      in: query
+      required: true
+      schema:
+        type: integer
+
+  schemas:
+    SuccessResponse:
+      type: object
+      properties:
+        ret_code:
+          type: integer
+          description: ret_code
+          example: 0
+        ret_msg:
+          type: string
+          description: 'will always be ok'
+          example: 'ok'
+        time_now:
+          type: string
+          description: utc timestamp of server
+          example: '1539778407.210858'
+
+      required:
+        - ret_code
+
+    ErrorResponse:
+      type: object
+      properties:
+        ret_code:
+          type: integer
+          description: ret_code
+          example: -1
+        ret_msg:
+          type: string
+          description: Error message.
+          example: 'An error occurred.'
+        ext_code:
+          type: string
+          example: ''
+        result:
+          type: object
+          description: 'will be Null'
+          example: null
+        time_now:
+          type: string
+          description: utc timestamp of server
+          example: '1539778407.210858'
+      required:
+        - ret_code
+        - ret_msg
+
+    QueryKLineResp:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            result:
+              type: array
+              items:
+                $ref: '#/components/schemas/KLine'
+          required: 
+            - result
+
+    KLine:
+      type: object
+      properties:
+        symbol:
+          type: string
+          enum:
+            - BTCUSD
+            - ETHUSD
+        
