@@ -4,7 +4,7 @@ info:
   title: Bybit
   description: |
     ## Overview
-    todo
+    bybit-official-api-docs
 servers:
   - url: 'https://api-testnet.bybit.com'
     description: For Testnet
@@ -22,6 +22,7 @@ paths:
         - $ref: '#/components/parameters/symbol'
         - $ref: '#/components/parameters/interval'
         - $ref: '#/components/parameters/from'
+        - $ref: '#/components/parameters/limit'
       responses:
         200:
           description: response
@@ -55,11 +56,27 @@ components:
           - 3
           - 5
           - 15
+          - 30
+          - 60
+          - 120
+          - 240
+          - 360
+          - 720
+          - D
+          - M
+          - W
+          - Y
     
     from:
       name: from
       in: query
       required: true
+      schema:
+        type: integer
+    limit:
+      name: limit
+      in: query
+      description: less than or equal 200
       schema:
         type: integer
 
@@ -129,4 +146,38 @@ components:
           enum:
             - BTCUSD
             - ETHUSD
-        
+        interval:
+          type: string
+          enum: 
+            - 1
+            - 3
+            - 5
+            - 15
+            - 30
+            - 60
+            - 120
+            - 240
+            - 360
+            - 720
+            - D
+            - M
+            - W
+            - Y
+        open_time:
+          type: integer
+          example: 1553846940
+        open:
+          type: string
+          example: "5000.5"
+        high:
+          type: string
+          example: "5500.5"
+        low:
+          type: string
+          example: "4500"
+        close:
+          type: string
+          example: "5000.5"
+        volume:
+          type: string
+          example: "1100"
