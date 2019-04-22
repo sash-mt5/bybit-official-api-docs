@@ -13,11 +13,10 @@ servers:
 paths:
   /v2/public/kline/list:
     get:
-      summary: Query historical candles
-      operationId: getConfiguration
+      summary: kline
       tags:
         - Public
-      description: Query historical candles.
+      description: Query historical kline.
       parameters:
         - $ref: '#/components/parameters/symbol'
         - $ref: '#/components/parameters/interval'
