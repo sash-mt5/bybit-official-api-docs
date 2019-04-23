@@ -249,7 +249,7 @@ ws.send('{"op":"subscribe","args":["instrument.BTCUSD"]}')
 ws.send('{"op": "subscribe", "args": ["order_book_25L1.BTCUSD"]}');
 
 // Response content format
-// NOTE: After subscribe succeed,the first response's type is snapshot , the following responses's type are all deata 
+// NOTE: After subscribe succeed,the first response's type is snapshot , the following responses's type are all delta 
 
 //snapshot type format
 {
@@ -275,7 +275,7 @@ ws.send('{"op": "subscribe", "args": ["order_book_25L1.BTCUSD"]}');
      "timestamp_e6":1555647164875373
 }
 
-//the deata response includes three types(delete update insert)
+//the delta response includes three types(delete update insert)
 //delete :  delete some slots in orderbook where identified by id or price
 //update :  modify some slots's size in orderbook where identified by id or price
 //insert :  insert new slots in orderbook where identified by id or price
@@ -286,7 +286,7 @@ ws.send('{"op": "subscribe", "args": ["order_book_25L1.BTCUSD"]}');
      "type":"delta",
      "data":{
           "delete":[
-			 {
+             {
                    "price":"3001.00",
                    "symbol":"BTCUSD",
                    "id":30010000,
