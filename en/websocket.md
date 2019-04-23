@@ -7,6 +7,16 @@ wss://stream-testnet.bybit.com/realtime
 
 //For Mainnet
 wss://stream.bybit.com/realtime
+
+// V2 Version System topic
+
+//For Testnet
+
+wss://ws2-testnet.bybit.com/realtime
+
+//For Mainnet
+
+wss://ws2.bybit.com/realtime 
 ```
  
 ### Rate Limits
@@ -102,7 +112,10 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 * [trade](#trade) `// Real-time trading information`
 * [insurance](#insurance) `// Daily insurance fund update`
 * [instrument](#instrument) `// Lastet information for symbol`
- 
+  
+### V2 Version System topic
+* [orderBook25](#orderBook25_v2) `// OrderBook of 25 depth per side`
+
 ### Private Topic
 * [position](#position) `// Positions of your account`
 * [execution](#execution) `// Execution message`
@@ -229,6 +242,83 @@ ws.send('{"op":"subscribe","args":["instrument.BTCUSD"]}')
  }
 ```
  
+ <hr>
+
+### <span id="orderBook25_v2">OrderBook of 25 depth per side in V2 version</span>
+```js
+ws.send('{"op": "subscribe", "args": ["order_book_25L1.BTCUSD"]}');
+
+// Response content format
+// NOTE: After subscribe succeed,the first response's type is snapshot , the following responses's type are all deata 
+
+//snapshot type format
+{
+     "topic":"order_book_25L1.BTCUSD",
+     "type":"snapshot",
+     "data":[
+        {
+            "price":"2999.00",
+            "symbol":"BTCUSD",
+            "id":29990000,
+            "side":"Buy",
+            "size":9
+        },
+        {
+            "price":"3001.00",
+            "symbol":"BTCUSD",
+            "id":30010000,
+            "side":"Sell",
+            "size":10
+        }
+     ],
+     "cross_seq":11518,
+     "timestamp_e6":1555647164875373
+}
+
+//the deata response includes three types(delete update insert)
+//delete :  delete some slots in orderbook where identified by id or price
+//update :  modify some slots's size in orderbook where identified by id or price
+//insert :  insert new slots in orderbook where identified by id or price
+ 
+//delta type format
+{
+     "topic":"order_book_25L1.BTCUSD",
+     "type":"delta",
+     "data":{
+          "delete":[
+			 {
+                   "price":"3001.00",
+                   "symbol":"BTCUSD",
+                   "id":30010000,
+                   "side":"Sell"
+             }
+          ],
+          "update":[
+             {
+                   "price":"2999.00",
+                   "symbol":"BTCUSD",
+                   "id":29990000,
+                   "side":"Buy",
+                   "size":8
+             }
+          ],
+          "insert":[
+             {
+                   "price":"2998.00",
+                   "symbol":"BTCUSD",
+                   "id":29980000,
+                   "side":"Buy",
+                   "size":8
+             }
+          ],
+          "transactTimeE6":0
+     },
+     "cross_seq":11519,
+     "timestamp_e6":1555647221331673
+}
+
+```
+
  
 
 <hr>

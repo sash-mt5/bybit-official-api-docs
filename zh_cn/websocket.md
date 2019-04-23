@@ -7,6 +7,15 @@ wss://stream-testnet.bybit.com/realtime
 
 // 主网地址
 wss://stream.bybit.com/realtime
+
+
+// 新版行情
+
+// 测试网地址
+wss://ws2-testnet.bybit.com/realtime
+
+// 主网地址
+wss://ws2.bybit.com/realtime
 ```
 
 ### 连接限制
@@ -101,6 +110,9 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 * [trade](#trade) `// 实时交易`
 * [insurance](#insurance) `// 每日保险基金更新`
 * [instrument](#instrument) `// 产品最新信息`
+
+### 新版行情topic
+* [orderBook25](#orderBook25_v2) `// 25档orderBook`
 
 ### 个人类topic
 * [position](#position) `// 仓位变化`
@@ -226,6 +238,88 @@ ws.send('{"op":"subscribe","args":["instrument.BTCUSD"]}')
      }
  }
 ```
+<hr>
+
+
+### <span id="orderBook25_v2">订阅新版25档orderBook</span>
+```js
+// 发送订阅指令 以BTCUSD为例
+ws.send('{"op": "subscribe", "args": ["order_book_25L1.BTCUSD"]}');
+
+// 推送的消息格式 
+// 当在一条websocket连接上订阅成功后返回第一条消息的type是snapshot类型的
+// 后续的消息的type均是delta类型的，在接收到的snapshot消息上进行计算得到最新的orderbook
+
+//snapshot类型消息格式
+{
+     "topic":"order_book_25L1.BTCUSD",
+     "type":"snapshot",
+     "data":[
+        {
+            "price":"2999.00",
+            "symbol":"BTCUSD",
+            "id":29990000,
+            "side":"Buy",
+            "size":9
+        },
+        {
+            "price":"3001.00",
+            "symbol":"BTCUSD",
+            "id":30010000,
+            "side":"Sell",
+            "size":10
+        }
+     ],
+     "cross_seq":11518,
+     "timestamp_e6":1555647164875373
+}
+
+//delta类型的消息包含delete update insert三类数据，
+//价格档根据price字段或id字段来作为唯一标示
+//delta类型的消息包含delete update insert三类数据，
+//delete表示某个或多个价格档挂单量变为0
+//update表示某个或多个价格档的size更新
+//insert表示新增某个或多个价格档的挂挡
+ 
+//delta类型消息格式
+{
+     "topic":"order_book_25L1.BTCUSD",
+     "type":"delta",
+     "data":{
+          "delete":[
+			 {
+                   "price":"3001.00",
+                   "symbol":"BTCUSD",
+                   "id":30010000,
+                   "side":"Sell"
+             }
+          ],
+          "update":[
+             {
+                   "price":"2999.00",
+                   "symbol":"BTCUSD",
+                   "id":29990000,
+                   "side":"Buy",
+                   "size":8
+             }
+          ],
+          "insert":[
+             {
+                   "price":"2998.00",
+                   "symbol":"BTCUSD",
+                   "id":29980000,
+                   "side":"Buy",
+                   "size":8
+             }
+          ],
+          "transactTimeE6":0
+     },
+     "cross_seq":11519,
+     "timestamp_e6":1555647221331673
+}
+
+```
+
 <hr>
 
 ### <span id="position">仓位变化消息</position>
