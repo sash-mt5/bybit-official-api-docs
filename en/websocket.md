@@ -8,15 +8,6 @@ wss://stream-testnet.bybit.com/realtime
 //For Mainnet
 wss://stream.bybit.com/realtime
 
-// V2 Version System topic
-
-//For Testnet
-
-wss://ws2-testnet.bybit.com/realtime
-
-//For Mainnet
-
-wss://ws2.bybit.com/realtime 
 ```
  
 ### Rate Limits

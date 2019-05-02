@@ -8,14 +8,6 @@ wss://stream-testnet.bybit.com/realtime
 // 主网地址
 wss://stream.bybit.com/realtime
 
-
-// 新版行情
-
-// 测试网地址
-wss://ws2-testnet.bybit.com/realtime
-
-// 主网地址
-wss://ws2.bybit.com/realtime
 ```
 
 ### 连接限制
