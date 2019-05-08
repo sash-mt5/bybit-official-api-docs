@@ -78,8 +78,10 @@ https://api.bybit.com/open-api/order/create
 |symbol |true |string |产品类型, 有效选项:BTCUSD, ETHUSD (BTCUSD ETHUSD )    |
 |order_type |true |string |委托单价格类型, 有效选项:Limit, Market (Limit Market )    |
 |qty |true |integer |委托数量, 单比最大1百万 |
-|price |true |integer |委托价格, 在没有仓位时，做多的委托价格需高于市价的10%、低于1百万。如有仓位时则需优于强平价。单笔价格增减最小单位为0.5。 |
+|price |true |number |委托价格, 在没有仓位时，做多的委托价格需高于市价的10%、低于1百万。如有仓位时则需优于强平价。单笔价格增减最小单位为0.5。 |
 |time_in_force |true |string |执行策略, 有效选项:GoodTillCancel, ImmediateOrCancel, FillOrKill (GoodTillCancel ImmediateOrCancel FillOrKill )    |
+|take_profit |false |number |止盈价格 |
+|stop_loss |false |number |止损价格 |
 |order_link_id |false |string |机构自定义订单ID, 最大长度36位，且同一机构下自定义ID不可重复 |
 
 

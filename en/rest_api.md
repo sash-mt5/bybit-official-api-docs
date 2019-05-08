@@ -78,6 +78,8 @@
 |qty |true |integer |Order quantity. Maximum quantity of 1 million |
 |price |true |integer |Order price. If you held no position, order price has to be more than 10% of the market price and less than 1 million. If you has held any position already, your order price has to be better than liquidation price. The minimum unit of order price's increment or decrement is 0.5.  |
 |time_in_force |true |string |Time in force, Valid option: GoodTillCancel, ImmediateOrCancel, FillOrKill |
+|take_profit |false |number |take profit price|
+|stop_loss |false |number |stop loss price|
 |order_link_id |false |string |Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.|
  
  
