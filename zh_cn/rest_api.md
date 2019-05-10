@@ -79,7 +79,7 @@ https://api.bybit.com/open-api/order/create
 |order_type |true |string |委托单价格类型, 有效选项:Limit, Market (Limit Market )    |
 |qty |true |integer |委托数量, 单比最大1百万 |
 |price |true |number |委托价格, 在没有仓位时，做多的委托价格需高于市价的10%、低于1百万。如有仓位时则需优于强平价。单笔价格增减最小单位为0.5。 |
-|time_in_force |true |string |执行策略, 有效选项:GoodTillCancel, ImmediateOrCancel, FillOrKill (GoodTillCancel ImmediateOrCancel FillOrKill )    |
+|time_in_force |true |string |执行策略, 有效选项:GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly    |
 |take_profit |false |number |止盈价格 |
 |stop_loss |false |number |止损价格 |
 |order_link_id |false |string |机构自定义订单ID, 最大长度36位，且同一机构下自定义ID不可重复 |
@@ -304,7 +304,7 @@ https://api.bybit.com/open-api/stop-order/create
 |price |true |integer |条件委托执行价格 |
 |base_price |true |integer |当前市价。用于和stop_px值进行比较，确定当前条件委托是看空到stop_px时触发还是看多到stop_px触发。主要是用来标识当前条件单预期的方向 |
 |stop_px |true |integer |条件委托下单时市价 |
-|time_in_force |true |string |执行策略, 有效选项:GoodTillCancel, ImmediateOrCancel, FillOrKill (GoodTillCancel ImmediateOrCancel FillOrKill )    |
+|time_in_force |true |string |执行策略, 有效选项:GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly |
 |order_link_id |false |string |机构自定义订单ID, 最大长度36位，且同一机构下自定义ID不可重复 |
 
 
