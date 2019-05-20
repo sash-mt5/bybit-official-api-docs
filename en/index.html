@@ -18,7 +18,12 @@
     </style>
   </head>
   <body>
-    <redoc spec-url='/bybit-official-api-docs/en/rest_api/public.yaml'></redoc>
-    <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script>
+    <div id="redoc-container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/redoc@2.0.0-rc.8-1/bundles/redoc.standalone.js"> </script>
+    <script>
+        Redoc.init('https://bybit-exchange.github.io/bybit-official-api-docs/en/api.yaml', {
+            expandResponses: 'all'
+        }, document.getElementById('redoc-container'))
+    </script>
   </body>
 </html>
