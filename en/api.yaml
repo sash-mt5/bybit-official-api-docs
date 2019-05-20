@@ -20,7 +20,43 @@ x-tagGroups:
             - order
 
 paths:
-    #v2版本接口
+    # v1版本接口
+    /open-api/order/create:
+        post:
+            summary: place an order(will deprecat)
+            #deprecated: true
+            tags:
+                - order
+            description: |
+                Parameters of 'side', 'symbol', 'order_type', 'qty', 'price', 'time_in_force' are required for all active orders. Other parameters are optional unless specified.
+
+                Market price active order: A traditional market price order, will be filled at the best available price. 'price' and 'time_in_force' can set to be "" if and only if you are placing market price order.
+
+                Limit price active order: You can set an execution price for your order. Only when last traded price reaches the order price, the system will fill your order.
+
+                Take profit/Stop loss: You may only set a take-profit/stop-loss conditional order upon opening the position. Once you hold a position, the take profit and stop loss information u sent when placing an order will no longer be valid.
+
+                Order quantity: This parameter indicates the quantity of perpetual contracts you want to buy or sell, currently Bybit only support order quantity in an integer.
+
+                Order price: This parameter indicates the price of perpetual contracts you want to buy or sell, currently Bybit only support price increment of every 0.5.
+
+                Customize conditional order ID: You may customize order IDs for active orders. We will link it to the system order ID , and return the unique system order ID to you after the active order is created successfully. You may use this order ID to cancel your active order. The customized order ID is asked to be unique, with a maximum length of 36 characters.
+
+                Note: Each account can hold up to 200 active orders yet to be filled entirely simultaneously.
+
+            requestBody:
+                $ref: '#/components/requestBodies/CreateOrderReqV1'
+            responses:
+                200:
+                    description: cancel order response
+                    content:
+                        application/json:
+                            schema:
+                                oneOf:
+                                    -   $ref: '#/components/schemas/CreateOrderRespV1'
+                                    -   $ref: '#/components/schemas/ErrorResponse'
+
+    # v2版本接口
 
     /v2/public/kline/list:
         get:
@@ -50,7 +86,7 @@ paths:
             summary: Place an order V2(developing)
             operationId: CreateOrder
             requestBody:
-                $ref: '#/components/requestBodies/CreateOrderReq'
+                $ref: '#/components/requestBodies/CreateOrderReqV2'
             responses:
                 200:
                     description: response
@@ -58,7 +94,7 @@ paths:
                         application/json:
                             schema:
                                 oneOf:
-                                    -   $ref: '#/components/schemas/CreateOrderResp'
+                                    -   $ref: '#/components/schemas/CreateOrderRespV2'
                                     -   $ref: '#/components/schemas/ErrorResponse'
 
     /v2/private/order/cancel:
@@ -129,14 +165,23 @@ components:
                 type: integer
 
     requestBodies:
-        CreateOrderReq:
+        CreateOrderReqV1:
             content:
                 application/x-www-form-urlencoded:
                     schema:
-                        $ref: '#/components/schemas/CreateOrderReq'
+                        $ref: '#/components/schemas/CreateOrderReqV1'
                 application/json:
                     schema:
-                        $ref: '#/components/schemas/CreateOrderReq'
+                        $ref: '#/components/schemas/CreateOrderReqV1'
+
+        CreateOrderReqV2:
+            content:
+                application/x-www-form-urlencoded:
+                    schema:
+                        $ref: '#/components/schemas/CreateOrderReqV2'
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/CreateOrderReqV2'
 
         CancelOrderReq:
             content:
@@ -195,9 +240,46 @@ components:
                 - W
                 - Y
 
+        OrderStatus:
+            type: string
+            enum: [Rejected, New, PartiallyFilled, Filled, Cancelled]
 
         # Requests
-        CreateOrderReq:
+        CreateOrderReqV1:
+            type: object
+            properties:
+                symbol:
+                    $ref: '#/components/schemas/Symbol'
+                side:
+                    $ref: '#/components/schemas/Side'
+                order_type:
+                    $ref: '#/components/schemas/OrderType'
+                qty:
+                    type: int64
+                    example: 10
+                price:
+                    type: number
+                    example: 5000.5
+                time_in_force:
+                    $ref: '#/components/schemas/TimeInForce'
+                take_profit:
+                    type: number
+                    example: 5001
+                stop_loss:
+                    type: number
+                    example: 4500.5
+                order_link_id:
+                    type: string
+                    example: abcd-1234
+            required:
+                - side
+                - symbol
+                - order_type
+                - qty
+                - price
+                - time_in_force
+
+        CreateOrderReqV2:
             type: object
             properties:
                 symbol:
@@ -284,7 +366,66 @@ components:
                     required:
                         - result
 
-        CreateOrderResp:
+        CreateOrderRespV1:
+            allOf:
+                -   $ref: '#/components/schemas/SuccessResponse'
+                -   type: object
+                    properties:
+                        result:
+                            type: object
+                            properties:
+                                order_id:
+                                    type: string
+                                    example: abcd-1234
+                                user_id:
+                                    type: number
+                                    example: 1234
+                                side:
+                                    $ref: '#/components/schemas/Side'
+                                order_type:
+                                    $ref: '#/components/schemas/OrderType'
+                                price:
+                                    type: number
+                                    example: 5000.05
+                                qty:
+                                    type: number
+                                    example: 100
+                                time_in_force:
+                                    $ref: '#/components/schemas/TimeInForce'
+                                order_status:
+                                    $ref: '#/components/schemas/OrderStatus'
+                                last_exec_time:
+                                    type: number
+                                    example: 0.000000
+                                last_exec_price:
+                                    type: number
+                                    example: 0
+                                leaves_qty:
+                                    type: number
+                                    example: 0
+                                cum_exec_qty:
+                                    type: number
+                                    example: 0
+                                cum_exec_value:
+                                    type: number
+                                    example: 0
+                                cum_exec_fee:
+                                    type: number
+                                    example: 0
+                                reject_reason:
+                                    type: string
+                                    example: ""
+                                order_link_id:
+                                    type: string
+                                    example: ""
+                                created_at:
+                                    type: string
+                                    example: 2018-10-15T04:12:19.000Z
+                                updated_at:
+                                    type: string
+                                    example: 2018-10-15T04:12:19.000Z
+
+        CreateOrderRespV2:
             allOf:
                 -   $ref: '#/components/schemas/SuccessResponse'
                 -   type: object
