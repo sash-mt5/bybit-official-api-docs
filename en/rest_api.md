@@ -298,6 +298,8 @@
 |base_price |true |integer | Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order. |
 |stop_px | true | integer | Trigger price |
 |time_in_force |true |string |Time in force, Valid option: GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly |
+|close_on_trigger |false |bool |close on trigger
+|reduce_only |false |bool |reduce only
 |order_link_id |false |string |Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.|
  
  
