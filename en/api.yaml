@@ -58,7 +58,7 @@ paths:
 
     # v2版本接口
     
-    v2/public/symbol:
+    v2/public/symbols:
         get:
             operationId: query_symbol
             summary: symbol (developing)
