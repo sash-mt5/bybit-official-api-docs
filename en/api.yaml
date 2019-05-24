@@ -21,7 +21,7 @@ x-tagGroups:
 
 paths:
     # v1版本接口
-    /open-api/order/create:
+    open-api/order/create:
         post:
             summary: place an order(will deprecat)
             #deprecated: true
@@ -58,7 +58,7 @@ paths:
 
     # v2版本接口
     
-    /v2/public/symbol:
+    v2/public/symbol:
         get:
             operationId: query_symbol
             summary: symbol (developing)
@@ -75,7 +75,7 @@ paths:
                                     -   $ref: '#/components/schemas/QuerySymbolResp'
                                     -   $ref: '#/components/schemas/ErrorResponse'
 
-    /v2/public/kline/list:
+    v2/public/kline/list:
         get:
             operationId: query_kline
             summary: kline
@@ -97,7 +97,7 @@ paths:
                                     -   $ref: '#/components/schemas/QueryKLineResp'
                                     -   $ref: '#/components/schemas/ErrorResponse'
 
-    /v2/private/order/create:
+    v2/private/order/create:
         post:
             tags:
                 - order
@@ -115,7 +115,7 @@ paths:
                                     -   $ref: '#/components/schemas/CreateOrderRespV2'
                                     -   $ref: '#/components/schemas/ErrorResponse'
 
-    /v2/private/order/cancel:
+    v2/private/order/cancel:
         post:
             tags:
                 - order
