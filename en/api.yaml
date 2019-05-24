@@ -14,7 +14,7 @@ servers:
 x-tagGroups:
     -   name: Public Rest API1
         tags:
-            - kline
+            - public
     -   name: Private Rest API
         tags:
             - order
@@ -57,12 +57,30 @@ paths:
                                     -   $ref: '#/components/schemas/ErrorResponse'
 
     # v2版本接口
+    
+    /v2/public/symbol:
+        get:
+            operationId: query_symbol
+            summary: symbol (developing)
+            tags: 
+                - public
+            description: Query Symbols
+            responses:
+                200:
+                    description: response
+                    content:
+                        application/json:
+                            schema:
+                                oneOf:
+                                    -   $ref: '#/components/schemas/QuerySymbolResp'
+                                    -   $ref: '#/components/schemas/ErrorResponse'
 
     /v2/public/kline/list:
         get:
+            operationId: query_kline
             summary: kline
             tags:
-                - kline
+                - public
             description: Query historical kline.
             parameters:
                 -   $ref: '#/components/parameters/symbol_in_path'
@@ -84,7 +102,7 @@ paths:
             tags:
                 - order
             summary: Place an order V2(developing)
-            operationId: CreateOrder
+            operationId: create_order
             requestBody:
                 $ref: '#/components/requestBodies/CreateOrderReqV2'
             responses:
@@ -354,6 +372,16 @@ components:
                 - ret_code
                 - ret_msg
 
+        QuerySymbolResp:
+            allOf:
+                -   $ref: '#/components/schemas/SuccessResponse'
+                -   type: object
+                    properties:
+                        result:
+                            type: array
+                            items:
+                                $ref: '#/components/schemas/SymbolInfo'
+
         QueryKLineResp:
             allOf:
                 -   $ref: '#/components/schemas/SuccessResponse'
@@ -448,6 +476,47 @@ components:
                             example: null
 
         # Model
+        
+        SymbolInfo:
+            type: object
+            properties:
+                name:
+                    type: string
+                    example: BTCUSD
+                base_currency:
+                    type: string
+                    example: BTC
+                quote_currency:
+                    type: string
+                    example: USD
+                price_scale:
+                    type: number
+                    example: 2
+                price_filter:
+                    type: object
+                    properties:
+                        min_price:
+                            type: number
+                            example: 0.50
+                        max_price:
+                            type: number
+                            example: 1000000
+                        tick_size:
+                            type: number
+                            example: 0.50
+                lot_size_filter:
+                    type: object
+                    properties:
+                        min_trading_qty:
+                            type: number
+                            example: 1
+                        max_trading_qty:
+                            type: number
+                            example: 1000000
+                        qty_step:
+                            type: number
+                            example: 1
+        
         KLine:
             type: object
             properties:
