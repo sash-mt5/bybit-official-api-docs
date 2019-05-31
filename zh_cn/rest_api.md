@@ -82,6 +82,8 @@ https://api.bybit.com/open-api/order/create
 |time_in_force |true |string |执行策略, 有效选项:GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly    |
 |take_profit |false |number |止盈价格 |
 |stop_loss |false |number |止损价格 |
+|reduce_only |false |bool |只减仓
+|close_on_trigger |false |bool |触发后平仓
 |order_link_id |false |string |机构自定义订单ID, 最大长度36位，且同一机构下自定义ID不可重复 |
 
 
@@ -306,7 +308,6 @@ https://api.bybit.com/open-api/stop-order/create
 |stop_px |true |integer |条件委托下单时市价 |
 |time_in_force |true |string |执行策略, 有效选项:GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly |
 |close_on_trigger |false |bool |触发后平仓
-|reduce_only |false |bool |只减仓
 |order_link_id |false |string |机构自定义订单ID, 最大长度36位，且同一机构下自定义ID不可重复 |
 
 

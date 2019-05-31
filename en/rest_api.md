@@ -80,6 +80,8 @@
 |time_in_force |true |string |Time in force, Valid option: GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly |
 |take_profit |false |number |take profit price|
 |stop_loss |false |number |stop loss price|
+|reduce_only |false |bool |reduce only
+|close_on_trigger |false |bool |close on trigger
 |order_link_id |false |string |Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.|
  
  
@@ -299,7 +301,6 @@
 |stop_px | true | integer | Trigger price |
 |time_in_force |true |string |Time in force, Valid option: GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly |
 |close_on_trigger |false |bool |close on trigger
-|reduce_only |false |bool |reduce only
 |order_link_id |false |string |Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.|
  
  
