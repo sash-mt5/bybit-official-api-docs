@@ -423,7 +423,7 @@
  
 |parameter|required|type | comments|
 |:----- |:-------|:-----|----- |
-|order_id |true |string | Order ID. The unique order ID returned to you when the corresponding order was created. |
+|stop_order_id |true |string | Order ID. The unique order ID returned to you when the corresponding order was created. |
  
  
 #### Response example

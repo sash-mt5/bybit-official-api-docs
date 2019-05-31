@@ -437,7 +437,7 @@ https://api.bybit.com/open-api/stop-order/cancel
 
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
-|order_id |true |string |委托单ID, 数据来自创建活动委托单返回的订单唯一ID |
+|stop_order_id |true |string |委托单ID, 数据来自创建活动委托单返回的订单唯一ID |
 
 
 #### 返回示例
