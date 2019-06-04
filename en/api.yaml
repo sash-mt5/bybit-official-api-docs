@@ -61,7 +61,7 @@ paths:
     v2/public/symbols:
         get:
             operationId: query_symbol
-            summary: symbol (developing)
+            summary: symbol
             tags: 
                 - public
             description: Query Symbols
@@ -486,18 +486,28 @@ components:
                 base_currency:
                     type: string
                     example: BTC
+                    description: >
+                        For currency pairs only. This field contains the first currency of the pair. 
+                        For example, base currency for `BTCUSD` ticker is `BTC`.
                 quote_currency:
                     type: string
                     example: USD
+                    description:
+                        For example, quote currency for `BTCUSD` ticker is `USD`.
                 price_scale:
                     type: number
                     example: 2
+                    description: >
+                        Indicates how many decimal points the price has.
+                        For example, if the price has 2 decimal points (ex., 300.01), then `price_scale` is `2`. 
+                        If it has 3 decimals, then `prices_cale` is `3` etc.
                 price_filter:
                     type: object
                     properties:
                         min_price:
                             type: number
                             example: 0.50
+                            description: when place an order, the min price should be greater than last_price/10
                         max_price:
                             type: number
                             example: 1000000
