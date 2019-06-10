@@ -202,6 +202,7 @@ https://api.bybit.com/open-api/order/list
 #### 接口功能
 
 > 所有撤销活动委托都必须填写 &#39;order_id&#39;，在您创建活动委托成功时会为您返回36位唯一的订单ID。
+> 建议传symbol参数，否则可能会有很小的概率导致撤单失败，返回'Order not exists'错误.
 
 您可以撤销未成交、部分成交的活动委托单。但全部成交的活动委托不可取消。
 
@@ -224,6 +225,7 @@ https://api.bybit.com/open-api/order/cancel
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
 |order_id |true |string |活动委托单ID, 数据来自创建活动委托单返回的订单唯一ID |
+|symbol |false |string | 合约 |
 
 
 #### 返回示例

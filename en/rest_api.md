@@ -195,6 +195,7 @@
 ####API Function
  
 > 'order_id' is required for cancelling active order. The unique 36 characters order ID was returned to you when the active order was created successfully. 
+> 'symbol' is recommend filled, Otherwise, there will be a small probability of failure. 
  
 >You may cancel active order that are unfilled and partially filled. Fully filled order cannot be cancelled.
  
@@ -216,6 +217,7 @@
 |parameters|required|type|comments|
 |:----- |:-------|:-----|----- |
 |order_id |true |string |Your active order ID. The unique order ID returned to you when the corresponding active order was created |
+|symbol |false |string |Contract type. Valid option: BTCUSD, ETHUSD,EOSUSD,XRPUSD |
  
  
 #### Response example
