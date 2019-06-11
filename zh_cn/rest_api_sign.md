@@ -80,3 +80,24 @@ ret_code | 返回码(0：成功,其他失败) | 0
 ret_msg | 返回消息 | ok 
 ext_code | 补充错误码 | null 
 result | 不同业务接口返回与其对应的数据 | 
+
+ ### Errors
+
+`10004:error sign`
+
+这个错误是发送方签名与服务端计算出的签名不一致，
+可以通过上面的`如何进行签名`校验下发送的签名函数
+
+
+<hr>
+
+`10002:invalid request`
+
+```
+if (timestamp < (server_time + 1000) && (server_time - timestamp) <= recv_window) {
+  // 执行请求
+} else {
+  // invalid request
+  // 发送方的timestamp和recv_window不满足此逻辑校验导致
+}
+```

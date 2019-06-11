@@ -81,3 +81,23 @@ ext_code | external code error| null
 result | refer to each API|
 rate_limit_status | Number of remaining calls in current period(1 minute)
  
+ ### Errors
+
+`10004:error sign`
+
+This means the signature you signed is not the same as the server signed.
+You may need to visit the `How to sign` above.
+
+<hr>
+
+`10002:invalid request`
+
+```
+if (timestamp < (server_time + 1000) && (server_time - timestamp) <= recv_window) {
+  // process request
+} else {
+  // invalid request
+  // You may need to check timestamp and recv_window
+  // Server time can be get from the HTTP response.
+}
+```
