@@ -236,6 +236,7 @@ ws.send('{"op":"subscribe","args":["instrument.BTCUSD"]}')
 ### <span id="orderBook25_v2">订阅新版25档orderBook</span>
 ```js
 // 发送订阅指令 以BTCUSD为例
+// order_book_25L1.BTCUSD  L1是标识，与之前老orderbook的topic-orderBook25.BTCUSD做区分使用
 ws.send('{"op": "subscribe", "args": ["order_book_25L1.BTCUSD"]}');
 
 // 推送的消息格式 
