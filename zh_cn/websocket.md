@@ -320,8 +320,11 @@ ws.send('{"op": "subscribe", "args": ["order_book_25L1.BTCUSD"]}');
 
 ```
 orderbook由两个方向分别为buy和sell的列表组成，列表的键为价格，列表的值为数量。
+
 当接收到snapshot类型包时，清空之前所维护的orderbook,并以此snapshot包为基础开始进行演算,开始构建新的orderbook。后续在连接不断开的情况下，只会收到delta类型的数据包，delta数据包包含三类数据（delete,update,insert），每类数据中都包含方向，根据此方向来指定修改的orderbook里的键值列表，先处理delete数据，再处理update与insert的数据。
+
 delete表示在相应方向的列表中此价格的挂单档位挂单数目变为0，update表示在相应方向的列表中此价格的挂单档位数量修改至最新的size，insert表示在相应方向的列表中增加此价格的挂单档位且数量为size的值。
+
 **注意：后续会将订阅指令更新以获取更快速的数据，请关注文档更新**
 <hr>
 

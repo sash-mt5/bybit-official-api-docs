@@ -353,8 +353,11 @@ ws.send('{"op":"subscribe","args":["position"]}')
 }
 ```
 The orderbook consists of two lists of the buying direction and the selling direction. The key of the list is the price, and the value of the list is the quantity.
+
 When received the snapshot type package, the orderbook maintained before is cleared, and the calculation is started based on the snapshot package, the new orderbook will be built. In the case that the connection is not disconnected, only the delta type data package will be received. The delta type package contains three types of data ('delete', 'update', 'insert'), each type of data contains a direction, and the modified key is specified according to the direction. ‘delete’ data should be handled firstly,'update' data and 'insert' data should be handled secondly. 
+
 The list of values, 'delete' data indicates that the number of pending orders of special price in the corresponding direction list is 0, 'update' data indicates that the number of pending orders of special price in the corresponding direction list is changed to the latest size, 'insert' data indicates the list in the corresponding direction add the pending order of special price and the quantity is the value of size.
+
 **Attention: the subscribe topic will be updated to get faster data in future, please follow the documentation update**
 <hr>
  
