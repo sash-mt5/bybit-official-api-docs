@@ -101,3 +101,9 @@ if (timestamp < (server_time + 1000) && (server_time - timestamp) <= recv_window
   // Server time can be get from the HTTP response.
 }
 ```
+
+<hr>
+
+`10007`: Login faild
+
+This means the server didn't find a parameter named api_key in your HTTP request.
