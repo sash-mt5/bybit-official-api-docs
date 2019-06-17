@@ -246,6 +246,7 @@ ws.send('{"op":"subscribe","args":["instrument.BTCUSD"]}')
 
 ### <span id="orderBook25_v2">OrderBook of 25 depth per side in V2 version</span>
 ```js
+// 'L1' in order_book_25L1.BTCUSD is just a mark in order to make difference to the old topic 'orderBook25.BTCUSD'
 ws.send('{"op": "subscribe", "args": ["order_book_25L1.BTCUSD"]}');
 
 // Response content format
