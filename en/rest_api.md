@@ -772,7 +772,7 @@
 https://api-testnet.bybit.com/open-api/funding/predicted-funding
 
 > For Mainnet
-https://api.bybit.com/open-api/open-api/funding/predicted-funding
+https://api.bybit.com/open-api/funding/predicted-funding
 ```
 
 #### HTTP Request Method
