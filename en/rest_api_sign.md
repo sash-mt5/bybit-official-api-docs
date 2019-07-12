@@ -13,8 +13,8 @@
 ### Limits
  
 * API Request Rate Limits
-    * For order related API, such as *'place active order'*, *'get active order'*, the rate limit for each account is 800 requests per minute. 
-    * For position related API, such as *'leverage adjustment'*, *'get position'*, the rate limit for each account is 600 requests per minute.
+    * For order related API, such as *'place active order'*, *'get active order'*, the rate limit for each account is 80 requests per minute. 
+    * For position related API, such as *'leverage adjustment'*, *'get position'*, the rate limit for each account is 60 requests per minute.
  
 * Order Count Limits 
     * Each account can hold up to 200 active orders yet to be filled entirely simultaneously.
