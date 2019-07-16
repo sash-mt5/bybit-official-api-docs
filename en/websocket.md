@@ -325,7 +325,6 @@ When received the snapshot type package, the orderbook maintained before is clea
 
 The list of values, 'delete' data indicates that the number of pending orders of special price in the corresponding direction list is 0, 'update' data indicates that the number of pending orders of special price in the corresponding direction list is changed to the latest size, 'insert' data indicates the list in the corresponding direction add the pending order of special price and the quantity is the value of size.
 
-**Attention: the subscribe topic will be updated to get faster data in future, please follow the documentation update**
  
 <hr>
 
