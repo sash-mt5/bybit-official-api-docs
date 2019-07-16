@@ -244,16 +244,16 @@ ws.send('{"op":"subscribe","args":["instrument.BTCUSD"]}')
 ### <span id="orderBook25_v2">订阅新版25档orderBook</span>
 ```js
 // 发送订阅指令 以BTCUSD为例
-// order_book_25L1.BTCUSD  L1是标识，与之前老orderbook的topic-orderBook25.BTCUSD做区分使用
-ws.send('{"op": "subscribe", "args": ["order_book_25L1.BTCUSD"]}');
+// orderBookL2_25.BTCUSD 
+ws.send('{"op": "subscribe", "args": ["orderBookL2_25.BTCUSD"]}');
 
 // 推送的消息格式 
 // 当在一条websocket连接上订阅成功后返回第一条消息的type是snapshot类型的
 // 后续的消息的type均是delta类型的，在接收到的snapshot消息上进行计算得到最新的orderbook
 
-//snapshot类型消息格式
+//snapshot类型消息格式,data里的数据按价格排序，从buy到sell方向
 {
-     "topic":"order_book_25L1.BTCUSD",
+     "topic":"orderBookL2_25.BTCUSD",
      "type":"snapshot",
      "data":[
         {
@@ -284,7 +284,7 @@ ws.send('{"op": "subscribe", "args": ["order_book_25L1.BTCUSD"]}');
  
 //delta类型消息格式
 {
-     "topic":"order_book_25L1.BTCUSD",
+     "topic":"orderBookL2_25.BTCUSD",
      "type":"delta",
      "data":{
           "delete":[

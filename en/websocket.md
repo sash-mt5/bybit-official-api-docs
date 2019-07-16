@@ -246,15 +246,15 @@ ws.send('{"op":"subscribe","args":["instrument.BTCUSD"]}')
 
 ### <span id="orderBook25_v2">OrderBook of 25 depth per side in V2 version</span>
 ```js
-// 'L1' in order_book_25L1.BTCUSD is just a mark in order to make difference to the old topic 'orderBook25.BTCUSD'
-ws.send('{"op": "subscribe", "args": ["order_book_25L1.BTCUSD"]}');
+// orderBookL2_25.BTCUSD
+ws.send('{"op": "subscribe", "args": ["orderBookL2_25.BTCUSD"]}');
 
 // Response content format
 // NOTE: After subscribe succeed,the first response's type is snapshot , the following responses's type are all delta 
 
-//snapshot type format
+//snapshot type format，the data is ordered by price,from buy to sell
 {
-     "topic":"order_book_25L1.BTCUSD",
+     "topic":"orderBookL2_25.BTCUSD",
      "type":"snapshot",
      "data":[
         {
@@ -283,7 +283,7 @@ ws.send('{"op": "subscribe", "args": ["order_book_25L1.BTCUSD"]}');
  
 //delta type format
 {
-     "topic":"order_book_25L1.BTCUSD",
+     "topic":"orderBookL2_25.BTCUSD",
      "type":"delta",
      "data":{
           "delete":[
