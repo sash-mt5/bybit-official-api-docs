@@ -112,7 +112,8 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 * [instrument](#instrument) `// 产品最新信息`
 
 ### 新版行情topic
-* [orderBook25](#orderBook25_v2) `// 25档orderBook`
+* [orderBookL2_25](#orderBook25_v2) `// 25档orderBook`
+* [instrument_info](#instrument_info) `//合约信息`
 
 ### 个人类topic
 * [position](#position) `// 仓位变化`
@@ -326,6 +327,71 @@ orderbook由两个方向分别为buy和sell的列表组成，列表的键为价�
 
 delete表示在相应方向的列表中此价格的挂单档位挂单数目变为0，update表示在相应方向的列表中此价格的挂单档位数量修改至最新的size，insert表示在相应方向的列表中增加此价格的挂单档位且数量为size的值。
 
+<hr>
+
+### <span id="instrument_info">产品最新行情</span>
+
+```js
+ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
+
+// 推送的消息格式 先收到snapshot包，当连接未断开时后续只收到delta包
+// snapshot包格式如下 e4代表乘以10^4，e6代表乘以10^6
+{
+	"topic": "instrument_info.100ms.BTCUSD",
+	"type": "snapshot",
+	"data": {
+		"id": 1,
+		"symbol": "BTCUSD",                     //合约名字
+		"last_price_e4": 100000000,             //最新市价
+		"last_tick_direction": "ZeroPlusTick",  //价格变化方向:PlusTick,ZeroPlusTick,MinusTick,ZeroMinusTick
+		"prev_price_24h_e4": 100000000,         //24小时前的整点市价
+		"price_24h_pcnt_e6": 0,                 //市价相对24h变化百分比
+		"high_price_24h_e4": 100000000,         //24h最高价
+		"low_price_24h_e4": 58000000,           //24h最低价
+		"prev_price_1h_e4": 71000000,           //1小时前的整点市价
+		"price_1h_pcnt_e6": 408450,             //市价相对1小时前变化百分比
+		"mark_price_e4": 96758100,              //标记价格
+		"index_price_e4": 97000000,             //指数价格
+		"open_interest": 158666,                //未平仓合约数量，更新频率相对较慢，最慢一分钟更新一次
+		"open_value_e8": 2004325380,            //未平仓价值，更新频率相对较慢，最慢一分钟更新一次
+		"total_turnover_e8": 257108049130,      //总营业额(BTC价值)
+		"turnover_24h_e8": 8969373218,          //24小时营业额(BTC价值)
+		"total_volume": 15462289,               //总交易量(合约数)
+		"volume_24h": 541359,                   //24小时交易量(合约数)
+		"funding_rate_e6": -3750,               //资金费率
+		"predicted_funding_rate_e6": -3750,     //预测资金费率
+		"cross_seq": 7980,                      //序列号
+		"created_at": "2018-10-17T11:53:15Z",   
+		"updated_at": "2019-07-30T03:12:42Z",
+		"next_funding_time": "2019-07-30T08:00:00Z",//下次结算资金费用时间
+		"countdown_hour": 5                     //剩余时间去结算资金费用
+	},
+	"cross_seq": 7980,
+	"timestamp_e6": 1564456370126493            //行情推送时间
+}
+// delta包格式如下 只有在data字段下的update字段里有值，e4代表乘以10^4，e6代表乘以10^6，当instrument_info里的字段没有发生变化时相应的字段不进行推送
+{
+	"topic": "instrument_info.100ms.BTCUSD",
+	"type": "delta",
+	"data": {
+		"delete": [],
+		"update": [{
+			"id": 1,
+			"symbol": "BTCUSD",
+			"total_turnover_e8": 257108059130,
+			"turnover_24h_e8": 8969383218,
+			"total_volume": 15462290,
+			"volume_24h": 541360,
+			"cross_seq": 7981,
+			"created_at": "2018-10-17T11:53:15Z",
+			"updated_at": "2019-07-30T03:12:52Z"
+		}],
+		"insert": []
+	},
+	"cross_seq": 7981,
+	"timestamp_e6": 1564456372227451
+}
+```
 <hr>
 
 ### <span id="position">仓位变化消息</position>

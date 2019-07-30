@@ -114,7 +114,8 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 * [instrument](#instrument) `// Lastet information for symbol`
   
 ### V2 Version System topic
-* [orderBook25](#orderBook25_v2) `// OrderBook of 25 depth per side`
+* [orderBookL2_25](#orderBook25_v2) `// OrderBook of 25 depth per side`
+* [instrument_info](#instrument_info) `//instrument's infomation`
 
 ### Private Topic
 * [position](#position) `// Positions of your account`
@@ -328,6 +329,73 @@ The list of values, 'delete' data indicates that the number of pending orders of
  
 <hr>
 
+### <span id="instrument_info">Lastet information for symbol</span>
+
+```js
+ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
+
+// Response content format
+// NOTE: After subscribe succeed,the first response's type is snapshot , the following responses's type are all delta 
+// e4 stands for the result of the data multi 10^4，e6 stands for the result of the data multi 10^6
+// snapshot format
+{
+	"topic": "instrument_info.100ms.BTCUSD",
+	"type": "snapshot",
+	"data": {
+		"id": 1,
+		"symbol": "BTCUSD",                     //instrument name
+		"last_price_e4": 100000000,             //the latest price
+		"last_tick_direction": "ZeroPlusTick",  //the direction of last tick:PlusTick,ZeroPlusTick,MinusTick,ZeroMinusTick
+		"prev_price_24h_e4": 100000000,         //the price of prev 24h
+		"price_24h_pcnt_e6": 0,                 //the current lastprice percentage change from prev 24h price
+		"high_price_24h_e4": 100000000,         //the highest price of prev 24h
+		"low_price_24h_e4": 58000000,           //the lowest price of prev 24h
+		"prev_price_1h_e4": 71000000,           //the price of prev 1h
+		"price_1h_pcnt_e6": 408450,             //the current lastprice percentage change from prev 1h price
+		"mark_price_e4": 96758100,              //mark price
+		"index_price_e4": 97000000,             //index price
+		"open_interest": 158666,                //open interest quantity  Attention,the update is not timimmediately，the slowlest update is 1 minute 
+		"open_value_e8": 2004325380,            //open value quantity  Attention,the update is not immediately， the slowlest update is 1 minute 
+		"total_turnover_e8": 257108049130,      //total turnover
+		"turnover_24h_e8": 8969373218,          //24h turnover
+		"total_volume": 15462289,               //total volume
+		"volume_24h": 541359,                   //24h volume
+		"funding_rate_e6": -3750,               //funding rate
+		"predicted_funding_rate_e6": -3750,     //predicted funding rate
+		"cross_seq": 7980,                      //sequence
+		"created_at": "2018-10-17T11:53:15Z",   
+		"updated_at": "2019-07-30T03:12:42Z",
+		"next_funding_time": "2019-07-30T08:00:00Z",//next funding time 
+		"countdown_hour": 5                     //the rest time to settle funding fee
+	},
+	"cross_seq": 7980,
+	"timestamp_e6": 1564456370126493            //the timestamp of pruduce the infomation of instrument
+}
+// delta format  
+// Only the data-update field has the update data,the data-delete and data-insert is null.If a field not change,the field will not exist in data-update
+{
+	"topic": "instrument_info.100ms.BTCUSD",
+	"type": "delta",
+	"data": {
+		"delete": [],
+		"update": [{
+			"id": 1,
+			"symbol": "BTCUSD",
+			"total_turnover_e8": 257108059130,
+			"turnover_24h_e8": 8969383218,
+			"total_volume": 15462290,
+			"volume_24h": 541360,
+			"cross_seq": 7981,
+			"created_at": "2018-10-17T11:53:15Z",
+			"updated_at": "2019-07-30T03:12:52Z"
+		}],
+		"insert": []
+	},
+	"cross_seq": 7981,
+	"timestamp_e6": 1564456372227451
+}
+```
+<hr>
  
 ### <span id="position">Positions of your account</position>
  
