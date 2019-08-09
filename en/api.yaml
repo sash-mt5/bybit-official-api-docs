@@ -97,41 +97,6 @@ paths:
                                     -   $ref: '#/components/schemas/QueryKLineResp'
                                     -   $ref: '#/components/schemas/ErrorResponse'
 
-    v2/private/order/create:
-        post:
-            tags:
-                - order
-            summary: Place an order V2(developing)
-            operationId: create_order
-            requestBody:
-                $ref: '#/components/requestBodies/CreateOrderReqV2'
-            responses:
-                200:
-                    description: response
-                    content:
-                        application/json:
-                            schema:
-                                oneOf:
-                                    -   $ref: '#/components/schemas/CreateOrderRespV2'
-                                    -   $ref: '#/components/schemas/ErrorResponse'
-
-    v2/private/order/cancel:
-        post:
-            tags:
-                - order
-            summary: Cancel an order V2(developing)
-            requestBody:
-                $ref: '#/components/requestBodies/CancelOrderReq'
-            responses:
-                200:
-                    description: cancel order response
-                    content:
-                        application/json:
-                            schema:
-                                oneOf:
-                                    -   $ref: '#/components/schemas/CancelOrderResp'
-                                    -   $ref: '#/components/schemas/ErrorResponse'
-
 components:
     parameters:
         symbol_in_query:
