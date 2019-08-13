@@ -98,7 +98,7 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 ## Currently Supported Topics
  
 ### Public Topic
-* ~~[orderBook25](#orderBook25) `// OrderBook of 25 depth per side`~~  -----It's deprecated.The following V2 version [orderBookL2_25](orderBook25_v2) is recommended to use
+* ~~[orderBook25](#orderBook25) `// OrderBook of 25 depth per side`~~  -----It's deprecated.The following V2 version [orderBookL2_25](#orderBook25_v2) is recommended to use
 * [kline](#kline) `// Candlestick chart`
 * [trade](#trade) `// Real-time trading information`
 * [insurance](#insurance) `// Daily insurance fund update`

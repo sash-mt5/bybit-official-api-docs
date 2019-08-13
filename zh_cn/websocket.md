@@ -97,11 +97,11 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 ## 目前支持的topic
 
 ### 公共类topic
-* [orderBook25](#orderBook25) `// 25档orderBook` -----这是过时的，推荐使用下面描述的V2版本
+* ~~[orderBook25](#orderBook25) `// 25档orderBook`~~ -----这是过时的，推荐使用V2版本的[orderBookL2_25](#orderBook25_v2)
 * [kline](#kline) `// K线`
 * [trade](#trade) `// 实时交易`
 * [insurance](#insurance) `// 每日保险基金更新`
-* [instrument](#instrument) `// 产品最新信息`
+* ~~[instrument](#instrument) `// 产品最新信息`~~ -----这是过时的，推荐使用V2版本的[instrument_info](#instrument_info)
 
 ### 新版行情topic
 * [orderBookL2_25](#orderBook25_v2) `// 25档orderBook`
