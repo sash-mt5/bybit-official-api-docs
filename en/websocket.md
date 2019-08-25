@@ -50,7 +50,7 @@ ws.send('{"op":"auth","args":["{api_key}",expires,"{signature}"]}');
 ```
 
 ### How to Send The Heartbeat Packet
-After establishing the connection,one can send a heartbeat packet to confirm the connection is normal by sending a json request.The specific formats are as follows: 
+After establishing the connection, one can send a heartbeat packet to confirm the connection is normal by sending a json request. The specific formats are as follows: 
 ```js
 ws.send('{"op":"ping"}');
 
@@ -102,11 +102,11 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 * [kline](#kline) `// Candlestick chart`
 * [trade](#trade) `// Real-time trading information`
 * [insurance](#insurance) `// Daily insurance fund update`
-* ~~[instrument](#instrument) `// Lastet information for symbol`~~  -----It's deprecated. The following v2 version [instrument_info](#instrument_info) is recommended to use
+* ~~[instrument](#instrument) `// Latest information for symbol`~~  -----It's deprecated. The following v2 version [instrument_info](#instrument_info) is recommended to use
   
 ### V2 Version System topic
 * [orderBookL2_25](#orderBook25_v2) `// OrderBook of 25 depth per side`
-* [instrument_info](#instrument_info) `//instrument's infomation`
+* [instrument_info](#instrument_info) `// Instrument's infomation`
 
 ### Private Topic
 * [position](#position) `// Positions of your account`
@@ -215,7 +215,7 @@ ws.send('{"op":"subscribe","args":["insurance"]}')
  
  <hr>
  
-### <span id="instrument"> Lastet information for symbol</span>
+### <span id="instrument"> Latest information for symbol</span>
  
 ```js
 ws.send('{"op":"subscribe","args":["instrument.BTCUSD"]}')
@@ -242,9 +242,9 @@ ws.send('{"op":"subscribe","args":["instrument.BTCUSD"]}')
 ws.send('{"op": "subscribe", "args": ["orderBookL2_25.BTCUSD"]}');
 
 // Response content format
-// NOTE: After subscribe succeed,the first response's type is snapshot , the following responses's type are all delta 
+// NOTE: After a successful subscribe response, the first response's type is snapshot, while the following responses's type are all delta 
 
-//snapshot type format，the data is ordered by price,from buy to sell
+//snapshot type format. The data is ordered by price, from buy to sell
 {
      "topic":"orderBookL2_25.BTCUSD",
      "type":"snapshot",
@@ -311,22 +311,22 @@ ws.send('{"op": "subscribe", "args": ["orderBookL2_25.BTCUSD"]}');
 }
 
 ```
-The orderbook consists of two lists of the buying direction and the selling direction. The key of the list is the price, and the value of the list is the quantity.
+The orderbook consists of two lists: one in the buying direction and one in the selling direction. The key of the list is the price, and the value of the list is the quantity.
 
-When received the snapshot type package, the orderbook maintained before is cleared, and the calculation is started based on the snapshot package, the new orderbook will be built. In the case that the connection is not disconnected, only the delta type data package will be received. The delta type package contains three types of data ('delete', 'update', 'insert'), each type of data contains a direction, and the modified key is specified according to the direction. ‘delete’ data should be handled firstly,'update' data and 'insert' data should be handled secondly. 
+When the snapshot type package is received, the orderbook maintained before is cleared, and the calculation is started based on the snapshot package. From this, the new orderbook will be built. In the case that the connection is not disconnected, only the delta type data package will be received. The delta type package contains three types of data ('delete', 'update', 'insert'). Each type of data contains a direction, and the modified key is specified according to the direction. ‘delete’ data should be handled firstly, 'update' data and 'insert' data should be handled secondly. 
 
-The list of values, 'delete' data indicates that the number of pending orders of special price in the corresponding direction list is 0, 'update' data indicates that the number of pending orders of special price in the corresponding direction list is changed to the latest size, 'insert' data indicates the list in the corresponding direction add the pending order of special price and the quantity is the value of size.
+In the list of values, 'delete' data indicates that the number of pending orders of special price in the corresponding direction list is 0, 'update' data indicates that the number of pending orders of special price in the corresponding direction list is changed to the latest size, and 'insert' data indicates the list in the corresponding direction and the pending order of special price and the quantity is the value of size.
 
  
 <hr>
 
-### <span id="instrument_info">Lastet information for symbol</span>
+### <span id="instrument_info">Latest information for symbol</span>
 
 ```js
 ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
 
 // Response content format
-// NOTE: After subscribe succeed,the first response's type is snapshot , the following responses's type are all delta 
+// NOTE: After a successful subscribe response, the first response's type is snapshot, while the following responses's type are all delta 
 // e4 stands for the result of the data multi 10^4，e6 stands for the result of the data multi 10^6
 // snapshot format
 {
@@ -363,7 +363,7 @@ ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
 	"timestamp_e6": 1564456370126493            //the timestamp of pruduce the infomation of instrument
 }
 // delta format  
-// Only the data-update field has the update data,the data-delete and data-insert is null.If a field not change,the field will not exist in data-update
+// Only the data-update field has the update data, the data-delete and data-insert is null. If a field not change, the field will not exist in data-update
 {
 	"topic": "instrument_info.100ms.BTCUSD",
 	"type": "delta",
