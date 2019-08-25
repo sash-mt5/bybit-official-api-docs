@@ -33,20 +33,20 @@ recv_window| valid request timespan, unit: millisecond| int | no | 5000 | An htt
 sign | signature message |  string | yes | no | The signature message which is generated from a certain algorithm.
  
 #### How to Sign
-1.Concatenate all the public parameters except 'sign' in the format of http GET, by ascending order of parameters' name. To take *'leverage adjustment'* as example, it has two parameters('symbol' and *leverage*), and the result of concatenation is 
+1. Concatenate all the public parameters except 'sign' in the format of http GET, by ascending order of parameters' name. To take *'leverage adjustment'* as example, it has two parameters('symbol' and *leverage*), and the result of concatenation is 
  
 ``` js
 var param_str = 'api_key=B2Rou0PLPpGqcU0Vu2&leverage=100&symbol=BTCUSD&timestamp=1542434791000';
 ```
 
-2.Sign the parameters string.
+2. Sign the parameters string.
 ```js
 var secret = 't7T0YlFnYXk0Fx3JswQsDrViLg1Gh3DUU5Mr';
 var sign = hex(HMAC_SHA256($secret, $param_str));
 // sign = 670e3e4aa32b243f2dedf1dafcec2fd17a440e71b05681550416507de591d908
 ```
 
-3.Append the signature at the end of parameters string, and send the http request. Currently, we support the following two types of requesting parameters:
+3. Append the signature at the end of parameters string, and send the http request. Currently, we support the following two types of requesting parameters:
  
 ```http
 POST /user/leverage/save HTTP/1.1
@@ -75,11 +75,11 @@ content-type: application/json
  
 Name | Description | Sample value|
 :-: | :-: | :-:
-ret_code | return code(0：success, otherwise failure) | 0
+ret_code | return code (0：success, otherwise failure) | 0
 ret_msg | return message | ok
 ext_code | external code error| null
 result | refer to each API|
-rate_limit_status | Number of remaining calls in current period(1 minute)
+rate_limit_status | Number of remaining calls in current period (1 minute)
  
  ### Errors
 
@@ -104,6 +104,6 @@ if (timestamp < (server_time + 1000) && (server_time - timestamp) <= recv_window
 
 <hr>
 
-`10007`: Login faild
+`10007:Login failed`
 
 This means the server didn't find a parameter named api_key in your HTTP request.
