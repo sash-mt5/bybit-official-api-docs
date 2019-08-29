@@ -35,6 +35,12 @@
 ### Execution
 
 * [Get the trade records of a order](#open-apiexecutionrecordslistget)
+
+### Market data
+
+* [Get the orderbook](#orderbook-L2)
+
+* [Get latest information for symbol](#latest-information-for-symbol)
  
 -----------
 ## <span id="open-apiordercreatepost"> Place Active Order </span>
@@ -869,3 +875,123 @@ https://api.bybit.com/v2/private/execution/list
 
 ```
 
+-------
+## <span id="orderbook-L2">Get Orderbook</span>
+#### API Function
+ 
+> Get the orderbook
+
+> Response is in the snapshot format
+ 
+#### URL
+
+> For Testnet:
+> [https://api-testnet.bybit.com/v2/public/orderBook/L2](https://api-testnet.bybit.com/v2/public/orderBook/L2)
+
+> For Mainnet:
+> [https://api.bybit.com/v2/public/orderBook/L2](https://api.bybit.com/v2/public/orderBook/L2)
+ 
+#### HTTP Request Method
+ 
+> get
+ 
+#### Request parameters
+ 
+|parameters|required|type|comments|
+|:----- |:-------|:-----|----- |
+|symbol |true |string |Valid options: BTCUSD, ETHUSD, EOSUSD, XRPUSD |
+ 
+#### Response example
+ 
+```js
+
+{
+    "ret_code": 0,                              // return code
+    "ret_msg": "OK",                            // error message
+    "ext_code": "",                             // additional error code
+    "ext_info": "",                             // additional error info
+    "result": [
+        {
+            "symbol": "BTCUSD",                 // symbol
+            "price": "9487",                    // price
+            "size": 336241,                     // size (in USD contracts)
+            "side": "Buy"                       // side
+        },
+        {
+            "symbol": "BTCUSD",                 // symbol
+            "price": "9487.5",                  // price
+            "size": 522147,                     // size (in USD contracts)
+            "side": "Sell"                      // side
+        }
+    ],
+    "time_now": "1567108756.834357"             // UTC timestamp
+}
+ 
+```
+
+-------
+## <span id="latest-information-for-symbol">Latest information for symbol</span>
+#### API Function
+ 
+> Get the latest information for symbol
+ 
+#### URL
+
+> For Testnet:
+> [https://api-testnet.bybit.com/v2/public/tickers](https://api-testnet.bybit.com/v2/public/tickers)
+
+> For Mainnet:
+> [https://api.bybit.com/v2/public/tickers](https://api.bybit.com/v2/public/tickers)
+ 
+#### HTTP Request Method
+ 
+> get
+ 
+#### Request parameters
+ 
+|parameters|required|type|comments|
+|:----- |:-------|:-----|----- |
+ 
+#### Response example
+ 
+```js
+
+// other symbols omitted - the normal response will have additional dictionaries within the "result" class detailing the
+// different symbols
+
+{
+    "ret_code": 0,                                   // return code
+    "ret_msg": "OK",                                 // error message
+    "ext_code": "",                                  // additional error code
+    "ext_info": "",                                  // additional error info
+    "result": [
+        {
+            "symbol": "BTCUSD",                             // instrument name
+            "bid_price": "9499.5",                          // the bid price
+            "ask_price": "9500",                            // the ask price 
+            "last_price": "9499.50",                        // the latest price
+            "last_tick_direction": "ZeroMinusTick",         // the direction of last tick:PlusTick,ZeroPlusTick,MinusTick,ZeroMinusTick
+            "prev_price_24h": "9659.00",                    // the price of prev 24h
+            "price_24h_pcnt": "-0.02",                      // the current last price percentage change from prev 24h price
+            "high_price_24h": "9737.00",                    // the highest price of prev 24h
+            "low_price_24h": "9322.50",                     // the lowest price of prev 24h
+            "prev_price_1h": "9469.00",                     // the price of prev 1h
+            "price_1h_pcnt": "0.00",                        // the current lastprice percentage change from prev 1h price
+            "mark_price": "9509.24",                        // mark price
+            "index_price": "9509.00",                       // index price
+            "open_interest": 78923133,                      // open interest quantity  Attention,the update is not timimmediately，the slowlest update is 1 minute 
+            "open_value": "8078.86",                        // open value quantity  Attention,the update is not immediately， the slowlest update is 1 minute 
+            "total_turnover": "6540981.84",                 // total turnover
+            "turnover_24h": "59236.52",                     // 24h turnover
+            "total_volume": 62971273761,                    // total volume
+            "volume_24h": 564198332,                        // 24h volume
+            "funding_rate": "0.00",                         // funding rate
+            "predicted_funding_rate": "-0.00",              // predicted funding rate
+            "next_funding_time": "2019-08-30T00:00:00Z",    // next funding time
+            "countdown_hour": 4                             // the rest time to settle funding fee
+        }
+    ],
+    "time_now": "1567109419.049271"
+}
+
+```
