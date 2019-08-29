@@ -253,7 +253,7 @@ Example error response:
 ### ANY ADJUSTMENTS MADE WILL TRIGGER IMMEDIATE LIQUIDATION
 * ```'ret_code': 30050,```
 * ```'ret_msg': 'Any adjustments made will trigger immediate liquidation'```
-### CANNOT SET LEVERAGE TO [%s] AS IT WOULD EXCEED YOUR RISK _LIMIT
+### CANNOT SET LEVERAGE TO [%s] AS IT WOULD EXCEED YOUR RISK_LIMIT
 * ```'ret_code': 30051,```
 * ```'ret_msg': 'due to risk limit, cannot set leverage to [%s]'```
 ### CANNOT SET LEVERAGE TO [value]
