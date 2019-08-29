@@ -46,7 +46,7 @@ var ws = new WebSocket("wsurl?param");
 // Second way to authenticate
 var ws = new WebSocket("wsurl")
 // Signature is the same as the first way's
-ws.send('{"op":"auth","args":["{api_key}",expires,"{signature}"]}');
+ws.send('{"op":"auth","args":["{api_key}","{expires}","{signature}"]}');
 ```
 
 ### How to Send The Heartbeat Packet

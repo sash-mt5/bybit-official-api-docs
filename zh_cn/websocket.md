@@ -45,7 +45,7 @@ var ws = new WebSocket("wsurl?param");
 // 第二种认证方式
 var ws = new WebSocket("wsurl")
 // signature加签方式与第一种方式一致
-ws.send('{"op":"auth","args":["{api_key}",expires,"{signature}"]}');
+ws.send('{"op":"auth","args":["{api_key}","{expires}","{signature}"]}');
 ```
 
 ### 如何发送业务心跳包
