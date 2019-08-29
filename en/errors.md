@@ -200,6 +200,9 @@ Example error response:
 ### THE EXPECTED POSITION VALUE AFTER ORDER EXECUTION EXCEEDS THE CURRENT RISK LIMIT
 * ```'ret_code': 30036,```
 * ```'ret_msg': 'The expected position value after order execution exceeds the current risk limit'```
+### ORDER ALREADY CANCELLED
+* ```'ret_code': 30037,```
+* ```'ret_msg': 'Order already cancelled'```
 ### NO POSITION RECORD FOR USER_ID, SYMBOL
 * ```'ret_code': 30041,```
 * ```'ret_msg': 'No position record foruser_id, symbol'```
