@@ -36,7 +36,7 @@ Example error response:
 * ```'ret_code': 20001,```
 * ```'ret_msg': 'Order not exists'```
 ### SIDE IS REQUIRED
-* ```'ret_code': Order not exists,```
+* ```'ret_code': 20003,```
 * ```'ret_msg': 'side is required'```
 ### SIDE IS NOT IN THE RANGE OF SELECTED
 * ```'ret_code': 20004,```
