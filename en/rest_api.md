@@ -60,7 +60,11 @@
 
 >Customize conditional order ID: You may customize order IDs for active orders. We will link it to the system order ID , and return the unique system order ID to you after the active order is created successfully. You may use this order ID to cancel your active order. The customized order ID is asked to be unique, with a maximum length of 36 characters.
 
->Note: Each account can hold up to 200 active orders yet to be filled entirely simultaneously.
+>Notes:
+>* Each account can hold up to 200 active orders yet to be filled entirely simultaneously.
+>* 'order_status' values explained:
+>    * 'Created' indicates the order has been accepted by the system but not yet entered into the orderbook
+>    * 'New' indicates the order has entered into the orderbook.
 
 #### URL
 
