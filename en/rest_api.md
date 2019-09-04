@@ -830,13 +830,13 @@
 > Mainnet:
 > [https://api.bybit.com/v2/private/execution/list](https://api.bybit.com/v2/private/execution/list)
 
-#### 请求参数
+#### Request parameters
 
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
 |order_id |true |string |orderID |
 
-#### 返回示例
+#### Response example
 
 ```js
 
