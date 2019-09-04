@@ -43,7 +43,7 @@
 * [Get latest information for symbol](#latest-information-for-symbol)
 
 -----------
-## <span id="open-apiordercreatepost"> Place Active Order </span>
+## <span id="open-apiordercreatepost">Place Active Order</span>
 #### API Function
 
 >Parameters of 'side', 'symbol', 'order_type', 'qty', 'price', 'time_in_force' are required for all active orders. Other parameters are optional unless specified.
@@ -66,17 +66,17 @@
 >    * 'Created' indicates the order has been accepted by the system but not yet entered into the orderbook
 >    * 'New' indicates the order has entered into the orderbook.
 
-#### URL
+#### HTTP Request
 
+##### Method
+> POST ```/open-api/order/create```
+
+##### URL
 > For Testnet:
 > [https://api-testnet.bybit.com/open-api/order/create](https://api-testnet.bybit.com/open-api/order/create)
 
 > For Mainnet:
 > [https://api.bybit.com/open-api/order/create](https://api.bybit.com/open-api/order/create)
-
-#### HTTP Request Method
-
-> post
 
 #### Request Parameters
 
@@ -130,22 +130,22 @@
 ```
 
 -----------
-## <span id="open-apiorderlistget">Get Active Order </span>
+## <span id="open-apiorderlistget">Get Active Order</span>
 #### API Function
 
 > Get my active order list
 
-#### URL
+#### HTTP Request
 
+##### Method
+> GET ```/open-api/order/list```
+
+##### URL
 > For Testnet:
 > [https://api-testnet.bybit.com/open-api/order/list](https://api-testnet.bybit.com/open-api/order/list)
 
 > For Mainnet:
 > [https://api.bybit.com/open-api/order/list](https://api.bybit.com/open-api/order/list)
-
-#### HTTP Request Method
-
-> get
 
 #### Request parameters
 
@@ -209,18 +209,17 @@
 
 >You may cancel active order that are unfilled and partially filled. Fully filled order cannot be cancelled.
 
-#### URL
+#### HTTP Request
 
+##### Method
+> POST ```/open-api/order/cancel```
+
+##### URL
 > For Testnet
 > [https://api-testnet.bybit.com/open-api/order/cancel](https://api-testnet.bybit.com/open-api/order/cancel)
 
 > For Mainnet
 > [https://api.bybit.com/open-api/order/cancel](https://api.bybit.com/open-api/order/cancel)
-
-
-####  HTTP Request Method
-
-> post
 
 ####  Request Parameters
 
@@ -265,7 +264,7 @@
 ```
 
 -----------
-## <span id="open-apistop-ordercreatepost"> Place Conditional Order </span>
+## <span id="open-apistop-ordercreatepost">Place Conditional Order</span>
 #### API Function
 
 >Parameters of 'side', 'symbol', 'order_type', 'qty', 'price', 'base_price', 'stop_px', 'time_in_force' are required for all active orders. Other parameters are optional unless specified.
@@ -286,18 +285,17 @@
 
 >Note: Take profit/Stop loss is not supported in placing conditional orders. One can only use these 2 functions when placing active orders. Moreover, each account can hold up to 10 conditional orders yet to be filled entirely simultaneously.
 
+#### HTTP Request
 
+##### Method
+> POST ```/open-api/stop-order/create```
 
-#### URL
+##### URL
 > For Testnet
 > [https://api-testnet.bybit.com/open-api/stop-order/create](https://api-testnet.bybit.com/open-api/stop-order/create)
 
 > For Mainnet
 > [https://api.bybit.com/open-api/stop-order/create](https://api.bybit.com/open-api/stop-order/create)
-
-#### HTTP Request Method
-
-> post
 
 #### Request Parameters
 
@@ -347,21 +345,22 @@
 ```
 
 -----------
-## <span id="open-apistop-orderlistget">Get Conditional Order </span>
+## <span id="open-apistop-orderlistget">Get Conditional Order</span>
 #### API Function
 
 > Get my conditional order list。
 
-#### URL
+#### HTTP Request
+
+##### Method
+> GET ```/open-api/stop-order/list```
+
+##### URL
 > For Testnet
 > [https://api-testnet.bybit.com/open-api/stop-order/list](https://api-testnet.bybit.com/open-api/stop-order/list)
 
 > For Mainnet
 > [https://api.bybit.com/open-api/stop-order/list](https://api.bybit.com/open-api/stop-order/list)
-
-#### HTTP Request Method
-
-> get
 
 #### Request Parameters
 
@@ -420,17 +419,17 @@
 
 >You may cancel all untriggered conditional orders. Essentially, after a conditional order is triggered, it will become an active order. So, when a conditional order is triggered, cancellation has to be done through the active order port for all unfilled or partial filled active order. Similarly, order that has been fully filled cannot be cancelled.
 
-#### URL
+#### HTTP Request
 
+##### Method
+> POST ```/open-api/stop-order/cancel```
+
+##### URL
 > For Testnet
 > [https://api-testnet.bybit.com/open-api/stop-order/cancel](https://api-testnet.bybit.com/open-api/stop-order/cancel)
 
 > For Mainnet
 > [https://api.bybit.com/open-api/stop-order/cancel](https://api.bybit.com/open-api/stop-order/cancel)
-
-#### HTTP Request Method
-
-> post
 
 #### Request Parameters
 
@@ -476,18 +475,17 @@
 
 > Get user leverage
 
-#### URL
+#### HTTP Request
 
+##### Method
+> GET ```/user/leverage```
+
+##### URL
  > For Testnet
 > [https://api-testnet.bybit.com/user/leverage](https://api-testnet.bybit.com/user/leverage)
 
 > For Mainnet
 > [https://api.bybit.com/user/leverage](https://api.bybit.com/user/leverage)
-
-
-#### HTTP Request Method
-
-> get
 
 #### Request Parameters
 
@@ -530,18 +528,17 @@
 
 > Change user leverage
 
-#### URL
+#### HTTP Request
 
+##### Method
+> POST ```/user/leverage/save```
+
+##### URL
 > For Testnet
 > [https://api-testnet.bybit.com/user/leverage/save](https://api-testnet.bybit.com/user/leverage/save)
 
 > For Mainnet
 > [https://api.bybit.com/user/leverage/save](https://api.bybit.com/user/leverage/save)
-
-
-#### HTTP Request Method
-
-> post
 
 #### Request Parameters
 
@@ -571,17 +568,17 @@
 
 > Get my position list
 
-#### URL
+#### HTTP Request
 
+##### Method
+> GET ```/position/list```
+
+##### URL
 > For Testnet
 > [https://api-testnet.bybit.com/position/list](https://api-testnet.bybit.com/position/list)
 
 > For Mainnet
 > [https://api.bybit.com/position/list](https://api.bybit.com/position/list)
-
-#### HTTP Request Method
-
-> get
 
 #### Request Parameters
 
@@ -643,19 +640,17 @@
 
 > Update margin
 
-#### URL
+#### HTTP Request
 
+##### Method
+> POST ```/position/change-position-margin```
+
+##### URL
 > For Testnet
 > [https://api-testnet.bybit.com/position/change-position-margin](https://api-testnet.bybit.com/position/change-position-margin)
 
 > For Mainnet
 > [https://api.bybit.com/position/change-position-margin](https://api.bybit.com/position/change-position-margin)
-
-
-
-#### HTTP Request Method
-
-> post
 
 #### Request Parameters
 
@@ -686,19 +681,17 @@
 > Funding rate is generated every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC.
 > If it's 12:00 UTC now, what you will get is the funding rate generated at 08:00 UTC.
 
-#### URL
+#### HTTP Request
 
+##### Method
+> GET ```/open-api/funding/prev-funding-rate```
+
+##### URL
 > For Testnet
 > [https://api-testnet.bybit.com/open-api/funding/prev-funding-rate](https://api-testnet.bybit.com/open-api/funding/prev-funding-rate)
 
 > For Mainnet
 > [https://api.bybit.com/open-api/funding/prev-funding-rate](https://api.bybit.com/open-api/funding/prev-funding-rate)
-
-
-
-#### HTTP Request Method
-
-> get
 
 #### Request Parameters
 
@@ -735,19 +728,17 @@
 > For example, at 16 o'clock, the settlement is based on the fund rate generated at 8 o'clock.
 > The fund rate generated at 16 o'clock will be used at 0:00 on the next day.
 
-#### URL
+#### HTTP Request
 
+##### Method
+> GET ```/open-api/funding/prev-funding```
+
+##### URL
 > For Testnet
 > [https://api-testnet.bybit.com/open-api/funding/prev-funding](https://api-testnet.bybit.com/open-api/funding/prev-funding)
 
 > For Mainnet
 > [https://api.bybit.com/open-api/funding/prev-funding](https://api.bybit.com/open-api/funding/prev-funding)
-
-
-
-#### HTTP Request Method
-
-> get
 
 #### Request Parameters
 
@@ -784,19 +775,17 @@
 
 > Get predicted funding rate and funding fee
 
-#### URL
+#### HTTP Request
 
-```
-> For Testnet
-https://api-testnet.bybit.com/open-api/funding/predicted-funding
+##### Method
+> GET ```/open-api/funding/predicted-funding```
 
-> For Mainnet
-https://api.bybit.com/open-api/funding/predicted-funding
-```
+##### URL
+> Testnet:
+> [https://api-testnet.bybit.com/open-api/funding/predicted-funding](https://api-testnet.bybit.com/open-api/funding/predicted-funding)
 
-#### HTTP Request Method
-
-> get
+> Mainnet:
+> [https://api.bybit.com/open-api/funding/predicted-funding](https://api.bybit.com/open-api/funding/predicted-funding)
 
 #### Request Parameters
 
@@ -824,24 +813,22 @@ https://api.bybit.com/open-api/funding/predicted-funding
 
 
  -----------
-## <span id="open-apiexecutionrecordslistget">Get the trade records of  a  order </span>
+## <span id="open-apiexecutionrecordslistget">Get the trade records of a order</span>
 #### API Function
 
 > Get the trade records of a order
 
-#### URL
+#### HTTP Request
 
-```
-> For Testnet
-https://api-testnet.bybit.com/v2/private/execution/list
+##### Method
+> GET ```/v2/private/execution/list```
 
-> For Mainnet
-https://api.bybit.com/v2/private/execution/list
-```
+##### URL
+> Testnet:
+> [https://api-testnet.bybit.com/v2/private/execution/list](https://api-testnet.bybit.com/v2/private/execution/list)
 
-#### HTTP Request Method
-
-> get
+> Mainnet:
+> [https://api.bybit.com/v2/private/execution/list](https://api.bybit.com/v2/private/execution/list)
 
 #### 请求参数
 
@@ -896,17 +883,17 @@ https://api.bybit.com/v2/private/execution/list
 
 > Response is in the snapshot format
 
-#### URL
+#### HTTP Request
 
+##### Method
+> GET ```/v2/public/orderBook/L2```
+
+##### URL
 > For Testnet:
 > [https://api-testnet.bybit.com/v2/public/orderBook/L2](https://api-testnet.bybit.com/v2/public/orderBook/L2)
 
 > For Mainnet:
 > [https://api.bybit.com/v2/public/orderBook/L2](https://api.bybit.com/v2/public/orderBook/L2)
-
-#### HTTP Request Method
-
-> get
 
 #### Request parameters
 
@@ -948,17 +935,17 @@ https://api.bybit.com/v2/private/execution/list
 
 > Get the latest information for symbol
 
-#### URL
+#### HTTP Request
 
+##### Method
+> GET ```/v2/public/tickers```
+
+##### URL
 > For Testnet:
 > [https://api-testnet.bybit.com/v2/public/tickers](https://api-testnet.bybit.com/v2/public/tickers)
 
 > For Mainnet:
 > [https://api.bybit.com/v2/public/tickers](https://api.bybit.com/v2/public/tickers)
-
-#### HTTP Request Method
-
-> get
 
 #### Request parameters
 
