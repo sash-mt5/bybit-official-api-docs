@@ -202,7 +202,7 @@
 
 -----------
 ## <span id="open-apiordercancelpost">Cancel Active Order</span>
-####API Function
+#### API Function
 
 > 'order_id' is required for cancelling active order. The unique 36 characters order ID was returned to you when the active order was created successfully.
 > 'symbol' is recommend filled, Otherwise, there will be a small probability of failure.
