@@ -495,22 +495,31 @@
 |:----- |:-------|:-----|----- |
 
 
-####  Response example
+#### Response example
 
 ```js
 
 {
-   'ret_code':0   //return code (0: successful, -1: failed)
-   'ret_msg':'ok' //error message,
-   'ext_code':''  //error code,
-   'result': {
-       'BTCUSD': {
-           'leverage': 100
-       },
-       'ETHUSD': {
-           'leverage': 1
-       }
-   'time_now':'1539778407.210858',    //UTC timestamp
+    'ret_code': 0,    // return code (0: successful, -1: failed)
+    'ret_msg': 'ok',  // error message
+    'ext_code': '',   // error code
+    'result': {
+        'BTCUSD': {
+            'leverage': 1
+        },
+        'EOSUSD': {
+            'leverage': 1
+        },
+        'ETHUSD': {
+            'leverage': 1
+        },
+        'XRPUSD': {
+            'leverage': 1
+        }
+    },
+    'ext_info': null,
+    'time_now': '1567608910.732004',  // UTC timestamp
+    'rate_limit_status': 74
 }
 
 ```
