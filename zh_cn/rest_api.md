@@ -37,6 +37,9 @@
 ### 成交委托单
 * [查询委托单成交历史](#open-apiexecutionrecordslistget)
 
+### K线图历史数据
+* [查询K线图历史数据](#open-apioperationhistoricalkline)
+
 -----------
 ## <span id="open-apiordercreatepost">创建活动委托单 </span>
 #### 接口功能
@@ -893,4 +896,16 @@ https://api.bybit.com/v2/private/execution/list
     'time_now': '1551340186.761136'
 }
 
+```
+
+## <span id="open-apioperationhistoricalkline">查询K线图历史数据 </span>
+#### 接口功能
+
+> 获取K线图历史数据列表
+
+#### URL
+
+```
+// 请跳转至新版API文档中参考
+https://bybit-exchange.github.io/bybit-official-api-docs/en/index.html#operation/query_kline
 ```
