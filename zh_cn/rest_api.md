@@ -37,6 +37,12 @@
 ### 成交委托单
 * [查询委托单成交历史](#open-apiexecutionrecordslistget)
 
+### K线图历史数据
+* [查询K线图历史数据](https://bybit-exchange.github.io/bybit-official-api-docs/en/index.html#operation/query_kline)
+
+### 货币
+* [查询交易所内已上线交易的货币对](https://bybit-exchange.github.io/bybit-official-api-docs/en/index.html#operation/query_symbol)
+
 -----------
 ## <span id="open-apiordercreatepost">创建活动委托单 </span>
 #### 接口功能

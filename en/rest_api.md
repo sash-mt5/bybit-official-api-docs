@@ -42,6 +42,14 @@
 
 * [Get latest information for symbol](#latest-information-for-symbol)
 
+### Kline data
+
+* [Query historical kline](https://bybit-exchange.github.io/bybit-official-api-docs/en/index.html#operation/query_kline)
+ 
+### Symbol
+
+* [Query Symbols](https://bybit-exchange.github.io/bybit-official-api-docs/en/index.html#operation/query_symbol)
+
 -----------
 ## <span id="open-apiordercreatepost">Place Active Order</span>
 #### API Function
@@ -995,3 +1003,4 @@
 }
 
 ```
+
