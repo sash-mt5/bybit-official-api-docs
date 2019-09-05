@@ -9,21 +9,21 @@ wss://stream-testnet.bybit.com/realtime
 wss://stream.bybit.com/realtime
 
 ```
- 
+
 ### Rate Limits
- 
+
 One single api_key can establish 20 connections simultaneously. Any additional connection after 20 connections will be rejected.
- 
+
 ### Authentication
- 
+
 For public topics, no authentication is required. As for private topics, authentication is required.
- 
+
 Currently, there are two ways to authenticate your identity.
- 
+
 1. Apply for authentication when establishing a connection.
 2. Apply for authentication after establishing a connection through auth request.
- 
- 
+
+
 ```js
 // First way to authenticate
 var api_key = "";
@@ -34,15 +34,15 @@ var expires = time.now()+1000;
 
 // Signature
 var signature = hex(HMAC_SHA256(secret, 'GET/realtime' + expires));
- 
+
 // Parameters string
 var param = "api_key={api_key}&expires={expires}&signature={signature}";
- 
+
 // Establishing connection
 var ws = new WebSocket("wsurl?param");
- 
+
 // --------------------------------------------------------------------------
- 
+
 // Second way to authenticate
 var ws = new WebSocket("wsurl")
 // Signature is the same as the first way's
@@ -50,7 +50,7 @@ ws.send('{"op":"auth","args":["{api_key}","{expires}","{signature}"]}');
 ```
 
 ### How to Send The Heartbeat Packet
-After establishing the connection, one can send a heartbeat packet to confirm the connection is normal by sending a json request. The specific formats are as follows: 
+After establishing the connection, one can send a heartbeat packet to confirm the connection is normal by sending a json request. The specific formats are as follows:
 ```js
 ws.send('{"op":"ping"}');
 
@@ -64,22 +64,22 @@ ws.send('{"op":"ping"}');
     }
 }
 ```
- 
+
 ### How to Subscribe to a New Topic
- 
+
 After establishing the connection, one can subscribe to a new topic by sending a json request. The specific formats are as follows:
 ```js
 ws.send('{"op":"subscribe","args":["topic","topic.filter"]}');
- 
+
 // Split the multiple filters by '|' if they belong to the same cluster of topics.
 // For example, subscribing to BTCUSD one minute and three minutes kline.
 ws.send('{"op":"subscribe","args":["kline.BTCUSD.1m|3m"]}');
- 
+
 // Use '*' when subscribing to all data of the same type filter.
 // For exmaple, subscribing to all products' interval kline.
 ws.send('{"op":"subscribe","args":["kline.*.*"]}')
- 
- 
+
+
 // Result of subscribed topic
 // Every subscription will have a response. The response is sent in the following format:
 {
@@ -92,18 +92,18 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
        ]
    }
 }
- 
+
 ```
- 
+
 ## Currently Supported Topics
- 
+
 ### Public Topic
 * ~~[orderBook25](#orderBook25) `// OrderBook of 25 depth per side`~~  -----It's deprecated.The following V2 version [orderBookL2_25](#orderBook25_v2) is recommended to use
 * [kline](#kline) `// Candlestick chart`
 * [trade](#trade) `// Real-time trading information`
 * [insurance](#insurance) `// Daily insurance fund update`
 * ~~[instrument](#instrument) `// Latest information for symbol`~~  -----It's deprecated. The following v2 version [instrument_info](#instrument_info) is recommended to use
-  
+
 ### V2 Version System topic
 * [orderBookL2_25](#orderBook25_v2) `// OrderBook of 25 depth per side`
 * [instrument_info](#instrument_info) `// Instrument's infomation`
@@ -112,14 +112,14 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 * [position](#position) `// Positions of your account`
 * [execution](#execution) `// Execution message`
 * [order](#order) `// Update for your orders`
- 
+
 <hr>
- 
+
 ### <span id="orderBook25">OrderBook of 25 depth per side</span>
 ```js
 // Send subscription request
 ws.send('{"op": "subscribe", "args": ["orderBook25.BTCUSD"]}');
- 
+
 // Response content format
 {
    "topic":"orderBook25",
@@ -134,13 +134,13 @@ ws.send('{"op": "subscribe", "args": ["orderBook25.BTCUSD"]}');
        ]
    }
 }
- 
+
 ```
- 
+
 <hr>
- 
+
 ### <span id="kline">Candlestick chart</span>
- 
+
 * Currently supported interval
 * 1m 3m 5m 15m 30m
 * 1h 2h 3h 4h 6h
@@ -149,7 +149,7 @@ ws.send('{"op": "subscribe", "args": ["orderBook25.BTCUSD"]}');
 * 1M
 ```js
 ws.send('{"op":"subscribe","args":["kline.BTCUSD.1m"]}');
- 
+
 // Response content format
 {
    "topic":"kline.BTCUSD.1m",
@@ -167,14 +167,14 @@ ws.send('{"op":"subscribe","args":["kline.BTCUSD.1m"]}');
    }
 }
 ```
- 
+
 <hr>
- 
+
 ### <span id="trade"> Real-time trading information </span>
- 
+
 ```js
 ws.send('{"op":"subscribe","args":["trade"]}')
- 
+
 // Response content format
 {
     "topic":"trade.BTCUSD",
@@ -192,14 +192,14 @@ ws.send('{"op":"subscribe","args":["trade"]}')
     ]
 }
 ```
- 
+
 <hr>
- 
+
 ### <span id="insurance">Daily insurance fund update</span>
- 
+
 ```js
 ws.send('{"op":"subscribe","args":["insurance"]}')
- 
+
 // Response content format
 {
     "topic":"insurance.BTC",
@@ -211,17 +211,17 @@ ws.send('{"op":"subscribe","args":["insurance"]}')
     }
 }
 ```
- 
- 
+
+
  <hr>
- 
+
 ### <span id="instrument"> Latest information for symbol</span>
- 
+
 ```js
 ws.send('{"op":"subscribe","args":["instrument.BTCUSD"]}')
 
 // Response content format
-// NOTE: Message belong to "data" class will only be sent to you when it changes. 
+// NOTE: Message belong to "data" class will only be sent to you when it changes.
 // For example, if 'index_price' and 'mark_price' changed and the 'transaction price' didn't change, then only 'symbol', 'index_price' and 'mark_price' will be sent to you, without 'last_price'.
  {
      "topic":"instrument.BTCUSD",
@@ -233,7 +233,7 @@ ws.send('{"op":"subscribe","args":["instrument.BTCUSD"]}')
      }
  }
 ```
- 
+
  <hr>
 
 ### <span id="orderBook25_v2">OrderBook of 25 depth per side in V2 version</span>
@@ -242,7 +242,7 @@ ws.send('{"op":"subscribe","args":["instrument.BTCUSD"]}')
 ws.send('{"op": "subscribe", "args": ["orderBookL2_25.BTCUSD"]}');
 
 // Response content format
-// NOTE: After a successful subscribe response, the first response's type is snapshot, while the following responses's type are all delta 
+// NOTE: After a successful subscribe response, the first response's type is snapshot, while the following responses's type are all delta
 
 //snapshot type format. The data is ordered by price, from buy to sell
 {
@@ -272,7 +272,7 @@ ws.send('{"op": "subscribe", "args": ["orderBookL2_25.BTCUSD"]}');
 //delete :  delete some slots in orderbook where identified by id or price
 //update :  modify some slots's size in orderbook where identified by id or price
 //insert :  insert new slots in orderbook where identified by id or price
- 
+
 //delta type format
 {
      "topic":"orderBookL2_25.BTCUSD",
@@ -313,11 +313,11 @@ ws.send('{"op": "subscribe", "args": ["orderBookL2_25.BTCUSD"]}');
 ```
 The orderbook consists of two lists: one in the buying direction and one in the selling direction. The key of the list is the price, and the value of the list is the quantity.
 
-When the snapshot type package is received, the orderbook maintained before is cleared, and the calculation is started based on the snapshot package. From this, the new orderbook will be built. In the case that the connection is not disconnected, only the delta type data package will be received. The delta type package contains three types of data ('delete', 'update', 'insert'). Each type of data contains a direction, and the modified key is specified according to the direction. ‘delete’ data should be handled firstly, 'update' data and 'insert' data should be handled secondly. 
+When the snapshot type package is received, the orderbook maintained before is cleared, and the calculation is started based on the snapshot package. From this, the new orderbook will be built. In the case that the connection is not disconnected, only the delta type data package will be received. The delta type package contains three types of data ('delete', 'update', 'insert'). Each type of data contains a direction, and the modified key is specified according to the direction. ‘delete’ data should be handled firstly, 'update' data and 'insert' data should be handled secondly.
 
 In the list of values, 'delete' data indicates that the number of pending orders of special price in the corresponding direction list is 0, 'update' data indicates that the number of pending orders of special price in the corresponding direction list is changed to the latest size, and 'insert' data indicates the list in the corresponding direction and the pending order of special price and the quantity is the value of size.
 
- 
+
 <hr>
 
 ### <span id="instrument_info">Latest information for symbol</span>
@@ -326,7 +326,7 @@ In the list of values, 'delete' data indicates that the number of pending orders
 ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
 
 // Response content format
-// NOTE: After a successful subscribe response, the first response's type is snapshot, while the following responses's type are all delta 
+// NOTE: After a successful subscribe response, the first response's type is snapshot, while the following responses's type are all delta
 // e4 stands for the result of the data multi 10^4，e6 stands for the result of the data multi 10^6
 // snapshot format
 {
@@ -345,8 +345,8 @@ ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
 		"price_1h_pcnt_e6": 408450,             //the current lastprice percentage change from prev 1h price
 		"mark_price_e4": 96758100,              //mark price
 		"index_price_e4": 97000000,             //index price
-		"open_interest": 158666,                //open interest quantity  Attention,the update is not timimmediately，the slowlest update is 1 minute 
-		"open_value_e8": 2004325380,            //open value quantity  Attention,the update is not immediately， the slowlest update is 1 minute 
+		"open_interest": 158666,                //open interest quantity  Attention,the update is not timimmediately，the slowlest update is 1 minute
+		"open_value_e8": 2004325380,            //open value quantity  Attention,the update is not immediately， the slowlest update is 1 minute
 		"total_turnover_e8": 257108049130,      //total turnover
 		"turnover_24h_e8": 8969373218,          //24h turnover
 		"total_volume": 15462289,               //total volume
@@ -356,7 +356,7 @@ ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
 		"cross_seq": 7980,                      //sequence
 		"created_at": "2018-10-17T11:53:15Z",   
 		"updated_at": "2019-07-30T03:12:42Z",
-		"next_funding_time": "2019-07-30T08:00:00Z",//next funding time 
+		"next_funding_time": "2019-07-30T08:00:00Z",//next funding time
 		"countdown_hour": 5                     //the rest time to settle funding fee
 	},
 	"cross_seq": 7980,
@@ -387,12 +387,12 @@ ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
 }
 ```
 <hr>
- 
+
 ### <span id="position">Positions of your account</position>
- 
+
 ```js
 ws.send('{"op":"subscribe","args":["position"]}')
- 
+
 // Response content format
 {
    "topic":"position",
@@ -417,11 +417,11 @@ ws.send('{"op":"subscribe","args":["position"]}')
    ]
 }
 <hr>
- 
+
 ### <span id="execution">Execution message</span>
 ```js
 ws.send('{"op":"subscribe","args":["execution"]}')
- 
+
 // Response content format
 {
     "topic":"execution",
@@ -442,14 +442,14 @@ ws.send('{"op":"subscribe","args":["execution"]}')
     ]
 }
 ```
- 
+
 <hr>
- 
+
 ### <span id="order">Update for your orders</span>
- 
+
 ```js
 ws.send('{"op":"subscribe","args":["order"]}')
- 
+
 // Response content format
 {
     "topic":"order",
@@ -474,4 +474,3 @@ ws.send('{"op":"subscribe","args":["order"]}')
 }
 
 ```
- 
