@@ -154,11 +154,10 @@ https://api.bybit.com/open-api/order/list
 |:----- |:-------|:-----|----- |
 |order_id |false |string |订单ID |
 |order_link_id |false |string |机构自定义订单ID |
-|symbol |false |string |产品类型 (BTCUSD ETHUSD )    |
-|sort |false |string |排序字段，默认按创建时间排序 (created_at cum_exec_qty qty last_exec_price price cum_exec_value cum_exec_fee )    |
-|order |false |string |升序降序， 默认降序 (desc asc )    |
+|symbol |false |string |产品类型, 默认 `BTCUSD` )    |
+|order |false |string |排序字段是`created_at`, 升序降序， 默认降序 (desc asc )    |
 |page |false |integer |页码，默认取第一页数据 |
-|limit |false |integer |一页数量，一页默认展示20条数据 |
+|limit |false |integer |一页数量，一页默认展示20条数据; 最大支持50条每页 |
 |order_status |false |string |指定订单状态查询订单列表。不传该参数则默认查询所有状态订单。该参数支持多状态查询，状态之间用英文逗号分割。状态参数：Created,New,PartiallyFilled,Filled,Cancelled,Rejected |
 
 
@@ -376,11 +375,10 @@ https://api.bybit.com/open-api/stop-order/list
 |:----- |:-------|:-----|----- |
 |stop_order_id |false |string |条件委托订单ID |
 |order_link_id |false |string |机构自定义订单ID |
-|symbol |false |string |产品类型 (BTCUSD ETHUSD )    |
-|sort |false |string |排序字段，默认按创建时间排序 (created_at )    |
-|order |false |string |升序降序，默认降序 (desc asc )    |
+|symbol |false |string |产品类型,默认`BTCUSD`    |
+|order |false |string |排序字段为`created_at`,升序降序，默认降序 (desc asc )    |
 |page |false |integer |页码，默认取第一页数据 |
-|limit |false |integer |一页数量，默认一页展示20条数据 |
+|limit |false |integer |一页数量，默认一页展示20条数据;最大支持50条每页 |
 
 
 #### 返回示例
@@ -900,3 +898,4 @@ https://api.bybit.com/v2/private/execution/list
 }
 
 ```
+
