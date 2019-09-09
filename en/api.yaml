@@ -138,6 +138,7 @@ components:
             name: from
             in: query
             required: true
+            description: from timestamp
             schema:
                 type: integer
         limit:
