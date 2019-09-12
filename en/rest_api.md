@@ -161,11 +161,10 @@
 |:----- |:-------|:-----|----- |
 |order_id |false |string |Order ID |
 |order_link_id |false |string |Customized order ID |
-|symbol |false |string | Contract type (BTCUSD, ETHUSD )    |
-|sort |false |string |Sorted. Default sort by created time (created_at, cum_exec_qty, qty, last_exec_price, price, cum_exec_value, cum_exec_fee)    |
-|order |false |string |Ascending or descending. Default as descending  (desc, asc )   |
+|symbol |false |string |Contract type. Default `BTCUSD`    |
+|order |false |string |Sort field is `created_at`, ascending or descending. Default as descending  (desc, asc )   |
 |page |false |integer |Page. Default getting first page data |
-|limit |false |integer |Limit for data size per page. Default as showing 20 pieces of data per page |
+|limit |false |integer |Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page |
 |order_status |false |string | Query your orders for all statuses if 'order_status' is empty. If you want to query orders with specific statuses , you can pass the order_status split by ','.  Available order_status: Created, New, PartiallyFilled, Filled, Cancelled, Rejected
 
 #### Response example
@@ -376,11 +375,10 @@
 |:----- |:-------|:-----|----- |
 |stop_order_id |false |string |Order ID of conditional order|
 |order_link_id |false |string |Agency customized order ID|
-|symbol |false |string |Contract type (BTCUSD ETHUSD )    |
-|sort |false |string |Sorted. Default sort by created time (created_at)    |
-|order |false |string |Ascending or descending. Default as descending  (desc, asc )   |
+|symbol |false |string |Contract type. Default `BTCUSD`    |
+|order |false |string |Sort field is `created_at`, ascending or descending. Default as descending  (desc, asc )   |
 |page |false |integer |Page. Default getting first page data |
-|limit |false |integer |Limit for data size per page. Default as showing 20 pieces of data per page |
+|limit |false |integer |Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page |
 
 
 #### Response example
@@ -1003,4 +1001,6 @@
 }
 
 ```
+
+
 
