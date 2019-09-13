@@ -1,3 +1,7 @@
+### Common
+
+* [Server time](#open-apiservertimeget)
+
 ### Active Order
 
 * [Place active order](#open-apiordercreatepost)
@@ -53,6 +57,45 @@
 ### ENUM definitions
 
  * [ENUM definitions and descriptions](#ENUMs)
+
+-----------
+## <span id="open-apiservertimeget">Server time</span>
+#### API Function
+
+> Get bybit server time。
+
+#### HTTP Request
+
+##### Method
+> GET ```/v2/public/time```
+
+##### URL
+> For Testnet:
+> [https://api-testnet.bybit.com/v2/public/time](https://api-testnet.bybit.com/v2/public/time)
+
+> For Mainnet:
+> [https://api.bybit.com/v2/public/time](https://api.bybit.com/v2/public/time)
+
+#### Request Parameters
+
+|parameter|required|type|comments|
+|:----- |:-------|:-----|----- |
+
+
+#### Response example
+
+```js
+
+   {
+       'ret_code':0   //Error code - True
+       'ret_msg':'ok' //Error message
+       'ext_code':''  ,
+       'result':{
+       },
+       'time_now':'1539778407.210858',    //UTC timestamp, used for time calibration
+   }
+
+```
 
 -----------
 ## <span id="open-apiordercreatepost">Place Active Order</span>
