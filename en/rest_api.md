@@ -652,7 +652,7 @@
            'id': 1,                //position ID
            'user_id': 1,           //user ID
            'risk_id': 1,           //risk limit ID
-           'symbol': 'BTCUSD',     //Contract type (BTCUSD,ETHUSD)
+           'symbol': 'BTCUSD',     //Contract type
            'side': 'None',         //position Side  (None, buy, sell)
            'size': 0,              //position size
            'position_value': 0,    //position value
@@ -667,7 +667,7 @@
            'take_profit': 0,       //take profit price
            'stop_loss': 0,         //stop loss price
            'trailing_stop': 0,     //trailing stop point
-           'position_status': 'Normal',   //Status Normal(normal), Liq(Liquidation in process), ADL(ADL in process)
+           'position_status': 'Normal',   //Status Normal (normal), Liq (Liquidation in process), ADL (ADL in process)
            'deleverage_indicator': 1,
            'oc_calc_data': '{\'blq\':\'0\',\'bmp\':\'0\',\'slq\':\'0\',\'smp\':\'0\'}',
            'order_margin': 0,      //Used margin by order
@@ -682,7 +682,7 @@
            'updated_at': '2018-10-20T13:43:21.000Z'
        }
    ],
-   'time_now': '1540043097.995523'      UTC timestamp
+   'time_now': '1540043097.995523'      //UTC timestamp
 }
 *    
 ```
@@ -718,7 +718,7 @@
 ```js
 
 {
-   'ret_code':0   //return code(0: successful, -1: failed)
+   'ret_code':0   //return code (0: successful, -1: failed)
    'ret_msg':'ok' //error message
    'ext_code':'', //error code
   'result': null,  //One can decide whether a request is successful depending on ret_code. Will always return 'null'
@@ -758,15 +758,15 @@
 ```js
 
 {
-    'ret_code':0   // return code(0：successful、-101：Parameters verification failed)
+    'ret_code':0   // return code (0: successful. -101: Parameters verification failed)
     'ret_msg':'ok' // error message
     'ext_code':'', // additional error code
     'result': {
         'symbol':'BTCUSD',
-        'funding_rate':'0.00375000', // When the Funding Rate is positive, longs pay shorts. When it is negative, shorts pay longs.
+        'funding_rate':'0.00375000', // When the funding rate is positive, longs pay shorts. When it is negative, shorts pay longs.
         'funding_rate_timestamp':1539950401 //The time of funding rate generated, UTC timestamp
     },
-    'time_now':'1539778407.210858',    UTC timestamp
+    'time_now':'1539778407.210858',    //UTC timestamp
 }
 
 ```
@@ -777,9 +777,9 @@
 #### API Function
 
 > Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC.
-> The current intervals's fund fee settlement is based on the previous intervals's fund rate.
-> For example, at 16 o'clock, the settlement is based on the fund rate generated at 8 o'clock.
-> The fund rate generated at 16 o'clock will be used at 0:00 on the next day.
+> The current interval's fund fee settlement is based on the previous interval's fund rate.
+> For example, at 16:00, the settlement is based on the fund rate generated at 8:00.
+> The fund rate generated at 16:00 will be used at 0:00 on the next day.
 
 #### HTTP Request
 
@@ -805,19 +805,19 @@
 ```js
 
 {
-    'ret_code':0   // return code(0：successful、-101：Parameters verification failed)
+    'ret_code':0   // return code (0：successful、-101：Parameters verification failed)
     'ret_msg':'ok' // error message
     'ext_code':'', // additional error code
     'result': {
         'symbol':'BTCUSD',
         'side': 'Buy', // Your position side at the time of settlement
         'size': 10,   // Your position size at the time of settlement
-        'funding_rate':'0.00375000', // Funding rate for settlement. When the Funding rate is positive, longs pay shorts. When it is negative, shorts pay longs.
+        'funding_rate':'0.00375000', // Funding rate for settlement. When the funding rate is positive, longs pay shorts. When it is negative, shorts pay longs.
         'exec_fee': 0.00000116, // Funding fee.  
         'exec_timestamp': 1539950401, // The time of funding settlement occurred, UTC timestamp
     },
     'time_now':'1539778407.210858',    UTC timestamp
-    'rate_limit_status':10, // The number of remaining calls for this type of api in the current period(1 min).
+    'rate_limit_status':10, // The number of remaining calls for this type of API in the current period (1 min).
 }
 
 ```
@@ -1029,11 +1029,11 @@
             "high_price_24h": "9737.00",                    // the highest price of prev 24h
             "low_price_24h": "9322.50",                     // the lowest price of prev 24h
             "prev_price_1h": "9469.00",                     // the price of prev 1h
-            "price_1h_pcnt": "0.00",                        // the current lastprice percentage change from prev 1h price
+            "price_1h_pcnt": "0.00",                        // the current last price percentage change from prev 1h price
             "mark_price": "9509.24",                        // mark price
             "index_price": "9509.00",                       // index price
-            "open_interest": 78923133,                      // open interest quantity  Attention,the update is not timimmediately，the slowlest update is 1 minute
-            "open_value": "8078.86",                        // open value quantity  Attention,the update is not immediately， the slowlest update is 1 minute
+            "open_interest": 78923133,                      // open interest quantity - updates every minute
+            "open_value": "8078.86",                        // open value quantity - updates every minute
             "total_turnover": "6540981.84",                 // total turnover
             "turnover_24h": "59236.52",                     // 24h turnover
             "total_volume": 62971273761,                    // total volume
