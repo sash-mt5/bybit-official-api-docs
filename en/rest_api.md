@@ -50,6 +50,10 @@
 
 * [Query Symbols](https://bybit-exchange.github.io/bybit-official-api-docs/en/index.html#operation/query_symbol)
 
+### ENUM definitions
+
+ * [ENUM definitions and descriptions](#ENUMs)
+
 -----------
 ## <span id="open-apiordercreatepost">Place Active Order</span>
 #### API Function
@@ -90,12 +94,12 @@
 
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
-|side |true |string |Side. Valid option: Buy, Sell    |
-|symbol |true |string |Contract type. Valid option: BTCUSD, ETHUSD    |
-|order_type |true |string |Active order type. Valid option: Limit, Market   |
-|qty |true |integer |Order quantity. Maximum quantity of 1 million |
-|price |true |integer |Order price. If you held no position, order price has to be more than 10% of the market price and less than 1 million. If you has held any position already, your order price has to be better than liquidation price. The minimum unit of order price's increment or decrement is 0.5.  |
-|time_in_force |true |string |Time in force, Valid option: GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly |
+|side |true |string |Side    |
+|symbol |true |string |Contract type.    |
+|order_type |true |string |Active order type   |
+|qty |true |integer |Order quantity. |
+|price |true |integer |Order price.  |
+|time_in_force |true |string |Time in force |
 |take_profit |false |number |take profit price|
 |stop_loss |false |number |stop loss price|
 |reduce_only |false |bool |reduce only
@@ -162,10 +166,10 @@
 |order_id |false |string |Order ID |
 |order_link_id |false |string |Customized order ID |
 |symbol |false |string |Contract type. Default `BTCUSD`    |
-|order |false |string |Sort field is `created_at`, ascending or descending. Default as descending  (desc, asc )   |
+|order |false |string |Sort orders by creation date   |
 |page |false |integer |Page. Default getting first page data |
 |limit |false |integer |Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page |
-|order_status |false |string | Query your orders for all statuses if 'order_status' is empty. If you want to query orders with specific statuses , you can pass the order_status split by ','.  Available order_status: Created, New, PartiallyFilled, Filled, Cancelled, Rejected
+|order_status |false |string | Query your orders for all statuses if 'order_status' is empty. If you want to query orders with specific statuses , you can pass the order_status split by ','.  
 
 #### Response example
 
@@ -233,7 +237,7 @@
 |parameters|required|type|comments|
 |:----- |:-------|:-----|----- |
 |order_id |true |string |Your active order ID. The unique order ID returned to you when the corresponding active order was created |
-|symbol |false |string |Contract type. Valid option: BTCUSD, ETHUSD,EOSUSD,XRPUSD |
+|symbol |false |string |Contract type. |
 
 
 #### Response example
@@ -309,14 +313,14 @@
 
  |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
-|side |true |string |Side. Valid option: Buy, Sell    |
-|symbol |true |string |Contract type. Valid option: BTCUSD, ETHUSD    |
-|order_type |true |string |Conditional order type. Valid option: Limit, Market |
-|qty |true |integer |Order quantity. Maximum quantity of 1 million |
+|side |true |string |Side.    |
+|symbol |true |string |Contract type.    |
+|order_type |true |string |Conditional order type. |
+|qty |true |integer |Order quantity. |
 |price| true | integer | Execution price for conditional order|
 |base_price |true |integer | Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order. |
 |stop_px | true | integer | Trigger price |
-|time_in_force |true |string |Time in force, Valid option: GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly |
+|time_in_force |true |string |Time in force |
 |close_on_trigger |false |bool |close on trigger
 |order_link_id |false |string |Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.|
 
@@ -376,7 +380,7 @@
 |stop_order_id |false |string |Order ID of conditional order|
 |order_link_id |false |string |Agency customized order ID|
 |symbol |false |string |Contract type. Default `BTCUSD`    |
-|order |false |string |Sort field is `created_at`, ascending or descending. Default as descending  (desc, asc )   |
+|order |false |string |Sort orders by creation date   |
 |page |false |integer |Page. Default getting first page data |
 |limit |false |integer |Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page |
 
@@ -550,7 +554,7 @@
 
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
-|symbol |true |string | Contract type (BTCUSD ETHUSD )    |
+|symbol |true |string |Contract type    |
 |leverage |true |string |leverage  |
 
 
@@ -662,7 +666,7 @@
 
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
-|symbol |true |string |Contract type (BTCUSD ETHUSD )    |
+|symbol |true |string |Contract type    |
 |margin |true |string |margin  |
 
 
@@ -703,7 +707,7 @@
 
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
-|symbol |true |string |Contract type (BTCUSD ETHUSD )    |
+|symbol |true |string |Contract type    |
 
 
 #### Response example
@@ -750,7 +754,7 @@
 
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
-|symbol |true |string |Contract type (BTCUSD ETHUSD )    |
+|symbol |true |string |Contract type    |
 
 
 #### Response example
@@ -797,7 +801,7 @@
 
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
-|symbol |true |string |Contract type (BTCUSD ETHUSD )    |
+|symbol |true |string |Contract type    |
 
 
 #### Response example
@@ -905,7 +909,7 @@
 
 |parameters|required|type|comments|
 |:----- |:-------|:-----|----- |
-|symbol |true |string |Valid options: BTCUSD, ETHUSD, EOSUSD, XRPUSD |
+|symbol |true |string |Contract type |
 
 #### Response example
 
@@ -1001,3 +1005,76 @@
 }
 
 ```
+
+-------
+## <span id="ENUMs">ENUM definitions</span>
+> This is a list of valid options (and rules) for the different parameters when sending a request to the API
+#### Side (`side`)
+* `Buy`
+* `Sell`
+
+#### Symbol (`symbol`)
+* `BTCUSD`
+* `ETHUSD`
+* `EOSUSD`
+* `XRPUSD`
+
+#### Order type (`order_type`)
+* `Limit`
+* `Market`
+
+#### Quantity (`qty`)
+* Maximum quantity of 1 million (`1000000`)
+* Must be an integer - no decimals, only a whole number of USD contracts
+  * `40` - allowed
+  * `30.5` - illegal
+
+#### Price (`price`)
+* Active order
+  * Must be in 0.5 increments
+  * Must be less than 1 million (`1000000`)
+  * If the user has no open position then the price must be greater than 10% of the market price
+    * For example, if the current market price (last price) is `10314`, then the absolute minimum the price may be is `1031.5`. It may not be `1031` or below.
+    * In pseudocode (assuming the price is an increment of 0.5):
+      ```
+      IF price > (last_price * 0.1) THEN
+        price = "valid"
+      ELSE
+        price = "invalid"
+      ```
+  * If the user holds a position, the order price must be better than the liquidation price.
+    * For example, if the liquidation price of the open position is `5176.5` then the price may be a minimum of `5177`
+* Conditional order
+  * Must be equal to order greater than `1`
+
+#### Time in force (`time_in_force`)
+* `GoodTillCancel`
+* `ImmediateOrCancel`
+* `FillOrKill`
+* `PostOnly`
+* `""`
+  * If and only if the user is placing a market order
+
+#### Order status (`order_status`)
+* `Created`
+* `New`
+* `PartiallyFilled`
+* `Filled`
+* `Cancelled`
+* `Rejected`
+
+#### Order (`order`)
+* __NOTE: currently broken for both get conditional order and get active order__
+* This is for sorting the orders by creation date
+* `desc` (default)
+* `asc`
+
+#### Order status (`order_status`)
+* Filter fetched orders by their order statuses
+* To filter by multiple statuses, separate with a comma like so: `Filled,New`
+* `Created`
+* `Rejected`
+* `New`
+* `PartiallyFilled`
+* `Filled`
+* `Cancelled`
