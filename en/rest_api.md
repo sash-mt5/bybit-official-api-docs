@@ -1074,19 +1074,27 @@
 
 #### Price (`price`)
 * Active order
-  * Must be in 0.5 increments
+  * Must be an increment of that market's `tick_size`
+    * Use modulo(`%`) to calculate whether or not a price will be accepted, like so:
+      ```js
+      IF price % tick_size = 0
+        // send request
+      ELSE
+        // do not send request as the price will not be accepted by the system
+      ```
+    * Current symbol information (like tick sizes) can be found here: [https://api.bybit.com/v2/public/symbols](https://api.bybit.com/v2/public/symbols)
   * Must be less than 1 million (`1000000`)
   * If the user has no open position then the price must be greater than 10% of the market price
     * For example, if the current market price (last price) is `10314`, then the absolute minimum the price may be is `1031.5`. It may not be `1031` or below.
     * In pseudocode (assuming the price is an increment of 0.5):
-      ```
-      IF price > (last_price * 0.1) THEN
-        price = "valid"
+      ```js
+      IF price > (last_price * 0.1)
+        // send request
       ELSE
-        price = "invalid"
+        // do not send request as the price will not be accepted by the system
       ```
   * If the user holds a position, the order price must be better than the liquidation price.
-    * For example, if the liquidation price of the open position is `5176.5` then the price may be a minimum of `5177`
+    * For example, if the liquidation price of an open long position is `5176.5` then the price may be a minimum of `5177`. In the case of a short position the price must be less than the liquidation price.
 * Conditional order
   * Must be equal to order greater than `1`
 
