@@ -764,7 +764,7 @@
     'result': {
         'symbol':'BTCUSD',
         'funding_rate':'0.00375000', // When the funding rate is positive, longs pay shorts. When it is negative, shorts pay longs.
-        'funding_rate_timestamp':1539950401 // The time of funding rate generated, UTC timestamp
+        'funding_rate_timestamp':1539950401 // The time of funding rate generation, UTC timestamp
     },
     'time_now':'1539778407.210858',    // UTC timestamp
 }
