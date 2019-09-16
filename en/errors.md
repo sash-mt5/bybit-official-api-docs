@@ -29,7 +29,7 @@ Example error response:
 * ```'ret_msg': 'Too many visits!'```
 ### UNMATCHED IP
 * ```'ret_code': 10010,```
-* ```'ret_msg': 'unmatched IP'```
+* ```'ret_msg': 'unmatched IP, request_ip: xx.xxx.xxx.x'```
 
 ## Order
 ### ORDER DOES NOT EXIST
