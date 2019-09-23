@@ -49,10 +49,14 @@
 ### Kline data
 
 * [Query historical kline](https://bybit-exchange.github.io/bybit-official-api-docs/en/index.html#operation/query_kline)
- 
+
 ### Symbol
 
 * [Query Symbols](https://bybit-exchange.github.io/bybit-official-api-docs/en/index.html#operation/query_symbol)
+
+### ENUM definitions
+
+ * [ENUM definitions and descriptions](#ENUMs)
 
 -----------
 ## <span id="open-apiservertimeget">Server time</span>
@@ -133,12 +137,12 @@
 
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
-|side |true |string |Side. Valid option: Buy, Sell    |
-|symbol |true |string |Contract type. Valid option: BTCUSD, ETHUSD    |
-|order_type |true |string |Active order type. Valid option: Limit, Market   |
-|qty |true |integer |Order quantity. Maximum quantity of 1 million |
-|price |true |integer |Order price. If you held no position, order price has to be more than 10% of the market price and less than 1 million. If you has held any position already, your order price has to be better than liquidation price. The minimum unit of order price's increment or decrement is 0.5.  |
-|time_in_force |true |string |Time in force, Valid option: GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly |
+|side |true |string |Side    |
+|symbol |true |string |Contract type.    |
+|order_type |true |string |Active order type   |
+|qty |true |integer |Order quantity. |
+|price |true |integer |Order price.  |
+|time_in_force |true |string |Time in force |
 |take_profit |false |number |take profit price|
 |stop_loss |false |number |stop loss price|
 |reduce_only |false |bool |reduce only
@@ -205,10 +209,10 @@
 |order_id |false |string |Order ID |
 |order_link_id |false |string |Customized order ID |
 |symbol |false |string |Contract type. Default `BTCUSD`    |
-|order |false |string |Sort field is `created_at`, ascending or descending. Default as descending  (desc, asc )   |
+|order |false |string |Sort orders by creation date   |
 |page |false |integer |Page. Default getting first page data |
 |limit |false |integer |Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page |
-|order_status |false |string | Query your orders for all statuses if 'order_status' is empty. If you want to query orders with specific statuses , you can pass the order_status split by ','.  Available order_status: Created, New, PartiallyFilled, Filled, Cancelled, Rejected
+|order_status |false |string | Query your orders for all statuses if 'order_status' is empty. If you want to query orders with specific statuses , you can pass the order_status split by ','.  
 
 #### Response example
 
@@ -276,7 +280,7 @@
 |parameters|required|type|comments|
 |:----- |:-------|:-----|----- |
 |order_id |true |string |Your active order ID. The unique order ID returned to you when the corresponding active order was created |
-|symbol |false |string |Contract type. Valid option: BTCUSD, ETHUSD,EOSUSD,XRPUSD |
+|symbol |false |string |Contract type. |
 
 
 #### Response example
@@ -352,14 +356,14 @@
 
  |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
-|side |true |string |Side. Valid option: Buy, Sell    |
-|symbol |true |string |Contract type. Valid option: BTCUSD, ETHUSD    |
-|order_type |true |string |Conditional order type. Valid option: Limit, Market |
-|qty |true |integer |Order quantity. Maximum quantity of 1 million |
+|side |true |string |Side.    |
+|symbol |true |string |Contract type.    |
+|order_type |true |string |Conditional order type. |
+|qty |true |integer |Order quantity. |
 |price| true | integer | Execution price for conditional order|
 |base_price |true |integer | Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order. |
 |stop_px | true | integer | Trigger price |
-|time_in_force |true |string |Time in force, Valid option: GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly |
+|time_in_force |true |string |Time in force |
 |close_on_trigger |false |bool |close on trigger
 |order_link_id |false |string |Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.|
 
@@ -419,7 +423,7 @@
 |stop_order_id |false |string |Order ID of conditional order|
 |order_link_id |false |string |Agency customized order ID|
 |symbol |false |string |Contract type. Default `BTCUSD`    |
-|order |false |string |Sort field is `created_at`, ascending or descending. Default as descending  (desc, asc )   |
+|order |false |string |Sort orders by creation date   |
 |page |false |integer |Page. Default getting first page data |
 |limit |false |integer |Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page |
 
@@ -593,7 +597,7 @@
 
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
-|symbol |true |string | Contract type (BTCUSD ETHUSD )    |
+|symbol |true |string |Contract type    |
 |leverage |true |string |leverage  |
 
 
@@ -648,7 +652,7 @@
            'id': 1,                //position ID
            'user_id': 1,           //user ID
            'risk_id': 1,           //risk limit ID
-           'symbol': 'BTCUSD',     //Contract type (BTCUSD,ETHUSD)
+           'symbol': 'BTCUSD',     //Contract type
            'side': 'None',         //position Side  (None, buy, sell)
            'size': 0,              //position size
            'position_value': 0,    //position value
@@ -663,7 +667,7 @@
            'take_profit': 0,       //take profit price
            'stop_loss': 0,         //stop loss price
            'trailing_stop': 0,     //trailing stop point
-           'position_status': 'Normal',   //Status Normal(normal), Liq(Liquidation in process), ADL(ADL in process)
+           'position_status': 'Normal',   //Status Normal (normal), Liq (Liquidation in process), ADL (ADL in process)
            'deleverage_indicator': 1,
            'oc_calc_data': '{\'blq\':\'0\',\'bmp\':\'0\',\'slq\':\'0\',\'smp\':\'0\'}',
            'order_margin': 0,      //Used margin by order
@@ -678,7 +682,7 @@
            'updated_at': '2018-10-20T13:43:21.000Z'
        }
    ],
-   'time_now': '1540043097.995523'      UTC timestamp
+   'time_now': '1540043097.995523'      //UTC timestamp
 }
 *    
 ```
@@ -705,7 +709,7 @@
 
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
-|symbol |true |string |Contract type (BTCUSD ETHUSD )    |
+|symbol |true |string |Contract type    |
 |margin |true |string |margin  |
 
 
@@ -714,7 +718,7 @@
 ```js
 
 {
-   'ret_code':0   //return code(0: successful, -1: failed)
+   'ret_code':0   //return code (0: successful, -1: failed)
    'ret_msg':'ok' //error message
    'ext_code':'', //error code
   'result': null,  //One can decide whether a request is successful depending on ret_code. Will always return 'null'
@@ -746,7 +750,7 @@
 
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
-|symbol |true |string |Contract type (BTCUSD ETHUSD )    |
+|symbol |true |string |Contract type    |
 
 
 #### Response example
@@ -754,15 +758,15 @@
 ```js
 
 {
-    'ret_code':0   // return code(0：successful、-101：Parameters verification failed)
+    'ret_code':0   // return code (0: successful. -101: Parameters verification failed)
     'ret_msg':'ok' // error message
     'ext_code':'', // additional error code
     'result': {
         'symbol':'BTCUSD',
-        'funding_rate':'0.00375000', // When the Funding Rate is positive, longs pay shorts. When it is negative, shorts pay longs.
-        'funding_rate_timestamp':1539950401 //The time of funding rate generated, UTC timestamp
+        'funding_rate':'0.00375000', // When the funding rate is positive, longs pay shorts. When it is negative, shorts pay longs.
+        'funding_rate_timestamp':1539950401 // The time of funding rate generation, UTC timestamp
     },
-    'time_now':'1539778407.210858',    UTC timestamp
+    'time_now':'1539778407.210858',    // UTC timestamp
 }
 
 ```
@@ -773,9 +777,9 @@
 #### API Function
 
 > Funding settlement occurs every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC.
-> The current intervals's fund fee settlement is based on the previous intervals's fund rate.
-> For example, at 16 o'clock, the settlement is based on the fund rate generated at 8 o'clock.
-> The fund rate generated at 16 o'clock will be used at 0:00 on the next day.
+> The current interval's fund fee settlement is based on the previous interval's fund rate.
+> For example, at 16:00, the settlement is based on the fund rate generated at 8:00.
+> The fund rate generated at 16:00 will be used at 0:00 on the next day.
 
 #### HTTP Request
 
@@ -793,7 +797,7 @@
 
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
-|symbol |true |string |Contract type (BTCUSD ETHUSD )    |
+|symbol |true |string |Contract type    |
 
 
 #### Response example
@@ -801,19 +805,19 @@
 ```js
 
 {
-    'ret_code':0   // return code(0：successful、-101：Parameters verification failed)
+    'ret_code':0   // return code (0: successful, -101: Parameters verification failed)
     'ret_msg':'ok' // error message
     'ext_code':'', // additional error code
     'result': {
         'symbol':'BTCUSD',
         'side': 'Buy', // Your position side at the time of settlement
         'size': 10,   // Your position size at the time of settlement
-        'funding_rate':'0.00375000', // Funding rate for settlement. When the Funding rate is positive, longs pay shorts. When it is negative, shorts pay longs.
+        'funding_rate':'0.00375000', // Funding rate for settlement. When the funding rate is positive, longs pay shorts. When it is negative, shorts pay longs.
         'exec_fee': 0.00000116, // Funding fee.  
         'exec_timestamp': 1539950401, // The time of funding settlement occurred, UTC timestamp
     },
-    'time_now':'1539778407.210858',    UTC timestamp
-    'rate_limit_status':10, // The number of remaining calls for this type of api in the current period(1 min).
+    'time_now':'1539778407.210858',    // UTC timestamp
+    'rate_limit_status':10, // The number of remaining calls for this type of API in the current period (1 min).
 }
 
 ```
@@ -840,7 +844,7 @@
 
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
-|symbol |true |string |Contract type (BTCUSD ETHUSD )    |
+|symbol |true |string |Contract type    |
 
 
 #### Response example
@@ -848,14 +852,14 @@
 ```js
 
 {
-    'ret_code':0   // return code(0：successful、-101：Parameters verification failed)
+    'ret_code':0   // return code (0: successful, -101: Parameters verification failed)
     'ret_msg':'ok' // error message
     'ext_code':'', // additional error code
     'result': {
-        'predicted_funding_rate': 0.001, // predicted funding rate. When the Funding rate is positive, longs pay shorts. When it is negative, shorts pay longs.
+        'predicted_funding_rate': 0.001, // predicted funding rate. When the funding rate is positive, longs pay shorts. When it is negative, shorts pay longs.
         'predicted_funding_fee': 0.000234 // predicted funding fee
     },
-    'time_now':'1539778407.210858',    UTC timestamp
+    'time_now':'1539778407.210858',    // UTC timestamp
 }
 
 ```
@@ -948,7 +952,7 @@
 
 |parameters|required|type|comments|
 |:----- |:-------|:-----|----- |
-|symbol |true |string |Valid options: BTCUSD, ETHUSD, EOSUSD, XRPUSD |
+|symbol |true |string |Contract type |
 
 #### Response example
 
@@ -1025,11 +1029,11 @@
             "high_price_24h": "9737.00",                    // the highest price of prev 24h
             "low_price_24h": "9322.50",                     // the lowest price of prev 24h
             "prev_price_1h": "9469.00",                     // the price of prev 1h
-            "price_1h_pcnt": "0.00",                        // the current lastprice percentage change from prev 1h price
+            "price_1h_pcnt": "0.00",                        // the current last price percentage change from prev 1h price
             "mark_price": "9509.24",                        // mark price
             "index_price": "9509.00",                       // index price
-            "open_interest": 78923133,                      // open interest quantity  Attention,the update is not timimmediately，the slowlest update is 1 minute
-            "open_value": "8078.86",                        // open value quantity  Attention,the update is not immediately， the slowlest update is 1 minute
+            "open_interest": 78923133,                      // open interest quantity - updates every minute (updates may be more frequent than every 1 minute)
+            "open_value": "8078.86",                        // open value quantity - updates every minute (updates may be more frequent than every 1 minute)
             "total_turnover": "6540981.84",                 // total turnover
             "turnover_24h": "59236.52",                     // 24h turnover
             "total_volume": 62971273761,                    // total volume
@@ -1045,5 +1049,83 @@
 
 ```
 
+-------
+## <span id="ENUMs">ENUM definitions</span>
+> This is a list of valid options (and rules) for the different parameters when sending a request to the API
+#### Side (`side`)
+* `Buy`
+* `Sell`
 
+#### Symbol (`symbol`)
+* `BTCUSD`
+* `ETHUSD`
+* `EOSUSD`
+* `XRPUSD`
 
+#### Order type (`order_type`)
+* `Limit`
+* `Market`
+
+#### Quantity (`qty`)
+* Maximum quantity of 1 million (`1000000`)
+* Must be an integer - no decimals, only a whole number of USD contracts
+  * `40` - allowed
+  * `30.5` - illegal
+
+#### Price (`price`)
+* Active order
+  * Must be an increment of that market's `tick_size`
+    * Use modulo(`%`) to calculate whether or not a price will be accepted, like so:
+      ```js
+      IF price % tick_size = 0
+        // send request
+      ELSE
+        // do not send request as the price will not be accepted by the system
+      ```
+    * Current symbol information (like tick sizes) can be found here: [https://api.bybit.com/v2/public/symbols](https://api.bybit.com/v2/public/symbols)
+  * Must be less than 1 million (`1000000`)
+  * If the user has no open position then the price must be greater than 10% of the market price
+    * For example, if the current market price (last price) is `10314`, then the absolute minimum the price may be is `1031.5`. It may not be `1031` or below.
+    * In pseudocode (assuming the price is an increment of 0.5):
+      ```js
+      IF price > (last_price * 0.1)
+        // send request
+      ELSE
+        // do not send request as the price will not be accepted by the system
+      ```
+  * If the user holds a position, the order price must be better than the liquidation price.
+    * For example, if the liquidation price of an open long position is `5176.5` then the price may be a minimum of `5177`. In the case of a short position the price must be less than the liquidation price.
+* Conditional order
+  * Must be equal to order greater than `1`
+
+#### Time in force (`time_in_force`)
+* `GoodTillCancel`
+* `ImmediateOrCancel`
+* `FillOrKill`
+* `PostOnly`
+* `""`
+  * If and only if the user is placing a market order
+
+#### Order status (`order_status`)
+* `Created`
+* `New`
+* `PartiallyFilled`
+* `Filled`
+* `Cancelled`
+* `Rejected`
+
+#### Order (`order`)
+* __NOTE: currently broken for both get conditional order and get active order__
+* This is for sorting the orders by creation date
+* `desc` (default)
+* `asc`
+
+#### Order status (`order_status`)
+* Filter fetched orders by their order statuses
+* To filter by multiple statuses, separate with a comma like so: `Filled,New`
+* `Created`
+* `Rejected`
+* `New`
+* `PartiallyFilled`
+* `Filled`
+* `Cancelled`
