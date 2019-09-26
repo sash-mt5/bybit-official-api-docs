@@ -28,6 +28,12 @@
 
 * [Change margin](#positionchange-position-marginpost)
 
+* [Set Trading-Stop](#position-settradingstoppost)
+
+### Wallet
+
+* [Get Wallet fund Records](#wallet-fundrecordget)
+
 ### Funding
 
 * [Funding rate](#lastfundingrate)
@@ -728,6 +734,137 @@
 ```
 
 -----------
+## <span id="position-settradingstoppost"> Set Trading-Stop</span>
+#### API Function
+
+> Set Trading-Stop Condition
+
+#### HTTP Request
+
+##### Method
+> POST ```/open-api/position/trading-stop```
+
+##### URL
+> For Testnet
+> [https://api-testnet.bybit.com/open-api/position/trading-stop](https://api-testnet.bybit.com/open-api/position/trading-stop)
+
+> For Mainnet
+> [https://api.bybit.com/open-api/position/trading-stop](https://api.bybit.com/open-api/position/trading-stop)
+
+#### Request Parameters
+
+|parameter|required|type|comments|
+|:----- |:-------|:-----|----- |
+|symbol |true |string |Contract type |
+|take_profit |false |string |Not less than 0, 0 means cancel TP |
+|stop_loss |false |string |Not less than 0, means cancel SL |
+|trailing_stop |false |string |Not less than 0, means cancel TS |
+
+
+#### Response example
+
+```js
+
+{
+  "ret_code": 0,
+  "ret_msg": "ok",
+  "ext_code": "",
+  "result": {
+    "id": 14760,
+    "user_id": 103669,
+    "symbol": "XRPUSD",
+    "side": "Buy",
+    "size": 12,
+    "position_value": 45.67685363,
+    "entry_price": 0.26271512,
+    "risk_id": 31,
+    "auto_add_margin": 0,
+    "leverage": 1,
+    "position_margin": 45.67685363,
+    "liq_price": 0.1317,
+    "bust_price": 0.1314,
+    "occ_closing_fee": 0.06849316,
+    "occ_funding_fee": 0,
+    "take_profit": 0.5254,
+    "stop_loss": 0.2284,
+    "trailing_stop": 0.0005,
+    "position_status": "Normal",
+    "deleverage_indicator": 3,
+    "oc_calc_data": "{\"blq\":0,\"slq\":0,\"bmp\":0,\"smp\":0,\"fq\":-12,\"bv2c\":1.0060762,\"sv2c\":1.0007575}",
+    "order_margin": 0,
+    "wallet_balance": 997.93529367,
+    "realised_pnl": -0.00553302,
+    "cum_realised_pnl": -2.06470633,
+    "cum_commission": 0,
+    "cross_seq": 140882727,
+    "position_seq": 93672155,
+    "created_at": "2019-08-05T03:19:26.000Z",
+    "updated_at": "2019-09-24T05:46:58.000Z"
+  },
+  "time_now": "1569304018.857490"
+}
+
+```
+
+-----------
+## <span id="wallet-fundrecordget"> Get wallet fund records</span>
+#### API Function
+
+> Get wallet fund records
+
+#### HTTP Request
+
+##### Method
+> GET ```/open-api/wallet/fund/records```
+
+##### URL
+> For Testnet
+> [https://api-testnet.bybit.com/open-api/wallet/fund/records](https://api-testnet.bybit.com/open-api/wallet/fund/records)
+
+> For Mainnet
+> [https://api.bybit.com/open-api/wallet/fund/records](https://api.bybit.com/open-api/wallet/fund/records)
+
+#### Request Parameters
+
+|parameter|required|type|comments|
+|:----- |:-------|:-----|----- |
+|start_date |false |string |Start point for result  |
+|end_date |false |string |End point for result  |
+|currency |false |string |Contract type |
+|wallet_fund_type |false |string |Contract type |
+|page |false |integer |Page. Default getting first page data |
+|limit |false |integer |Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page |
+
+
+#### Response example
+
+```js
+
+{
+  "ret_code": 0,
+  "ret_msg": "ok",
+  "ext_code": "",
+  "result": {
+    "data": [{
+      "id": 128495,
+      "user_id": 103669,
+      "coin": "XRP",
+      "wallet_id": 14760,
+      "type": "Realized P&L",
+      "amount": "1.18826225",
+      "tx_id": "",
+      "address": "XRPUSD",
+      "wallet_balance": "999.12908894",
+      "exec_time": "2019-09-25T00:00:15.000Z",
+      "cross_seq": 0
+    }]
+  },
+  "time_now": "1569395810.140869"
+}
+
+```
+
+-----------
 ## <span id="lastfundingrate"> Get the Last Funding Rate</span>
 #### API Function
 
@@ -1061,6 +1198,23 @@
 * `ETHUSD`
 * `EOSUSD`
 * `XRPUSD`
+
+#### Currency (`currency`)
+* `BTC`
+* `ETH`
+* `EOS`
+* `XRP`
+
+
+#### Wallet fund type (`wallet_fund_type`)
+* `Deposit`
+* `Withdraw`
+* `RealisedPNL`
+* `Commission`
+* `Refund`
+* `Prize`
+* `ExchangeOrderWithdraw`
+* `ExchangeOrderDeposit`
 
 #### Order type (`order_type`)
 * `Limit`
