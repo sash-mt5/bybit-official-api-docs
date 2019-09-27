@@ -227,10 +227,10 @@ Example error response:
 
 ## Position
 ### ORDER PRICE IS OUT OF PERMISSIBLE RANGE
-* ```'ret_code': 20005,```
+* ```'ret_code': 30005,```
 * ```'ret_msg': 'Order price is out of permissible range'```
 ### LAST_PRICE IS REQUIRED
-* ```'ret_code': 20006,```
+* ```'ret_code': 30006,```
 * ```'ret_msg': 'no last_price'```
 ### LEVERAGE IS REQUIRED
 * ```'ret_code': 20022,```
