@@ -757,8 +757,8 @@
 |:----- |:-------|:-----|----- |
 |symbol |true |string |Contract type |
 |take_profit |false |string |Not less than 0, 0 means cancel TP |
-|stop_loss |false |string |Not less than 0, means cancel SL |
-|trailing_stop |false |string |Not less than 0, means cancel TS |
+|stop_loss |false |string |Not less than 0, 0 means cancel SL |
+|trailing_stop |false |string |Not less than 0, 0 means cancel TS |
 
 
 #### Response example
