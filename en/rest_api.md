@@ -1,50 +1,14 @@
-### Common
+### ENUM definitions
 
+ * [ENUM definitions and descriptions](#ENUMs)
+
+
+## Public data
 * [Server time](#open-apiservertimeget)
-
-### Active Order
-
-* [Place active order](#open-apiordercreatepost)
-
-* [Get active order](#open-apiorderlistget)
-
-* [Cancel active order](#open-apiordercancelpost)
-
-### Conditional Order
-
-* [Place conditional order](#open-apistop-ordercreatepost)
-
-* [Get conditional order](#open-apistop-orderlistget)
-
-* [Cancel conditional order](#open-apistop-ordercancelpost)
-
-### Positions
-
-* [User leverage](#userleverageget)
-
-* [Change leverage](#userleveragesavepost)
-
-* [My position](#positionlistget)
-
-* [Change margin](#positionchange-position-marginpost)
-
-* [Set Trading-Stop](#position-settradingstoppost)
-
-### Wallet
-
-* [Get Wallet fund Records](#wallet-fundrecordget)
-
-### Funding
 
 * [Funding rate](#lastfundingrate)
 
-* [My funding fee](#userlastfundingfee)
-
 * [Predicted funding](#open-apifundingpredicted-fundingget)
-
-### Execution
-
-* [Get the trade records of a order](#open-apiexecutionrecordslistget)
 
 ### Market data
 
@@ -60,9 +24,57 @@
 
 * [Query Symbols](https://bybit-exchange.github.io/bybit-official-api-docs/en/index.html#operation/query_symbol)
 
-### ENUM definitions
 
- * [ENUM definitions and descriptions](#ENUMs)
+
+## Private data
+
+### Orders
+##### Active Order
+* [Place active order](#open-apiordercreatepost)
+
+* [Get active orders](#open-apiorderlistget)
+
+* [Cancel active order](#open-apiordercancelpost)
+
+##### Conditional Order
+
+* [Place conditional order](#open-apistop-ordercreatepost)
+
+* [Get conditional orders](#open-apistop-orderlistget)
+
+* [Cancel conditional order](#open-apistop-ordercancelpost)
+
+
+### Positions
+##### User leverage
+* [Get leverage](#userleverageget)
+
+* [Change leverage](#userleveragesavepost)
+
+##### User position
+
+* [My position](#positionlistget)
+
+* [Change margin](#positionchange-position-marginpost)
+
+* [Set position SL/TP/TS](#position-settradingstoppost)
+
+
+### Wallet
+
+* [Get wallet fund records](#wallet-fundrecordget)
+
+### Funding
+
+
+* [My funding fee](#userlastfundingfee)
+
+
+### Order information
+
+* [Get the trade records of an order](#open-apiexecutionrecordslistget)
+
+
 
 -----------
 ## <span id="open-apiservertimeget">Server time</span>
@@ -191,7 +203,7 @@
 ```
 
 -----------
-## <span id="open-apiorderlistget">Get Active Order</span>
+## <span id="open-apiorderlistget">Get Active Orders</span>
 #### API Function
 
 > Get my active order list
@@ -405,7 +417,7 @@
 ```
 
 -----------
-## <span id="open-apistop-orderlistget">Get Conditional Order</span>
+## <span id="open-apistop-orderlistget">Get Conditional Orders</span>
 #### API Function
 
 > Get my conditional order list。
@@ -734,10 +746,10 @@
 ```
 
 -----------
-## <span id="position-settradingstoppost"> Set Trading-Stop</span>
+## <span id="position-settradingstoppost">Set position SL/TP/TS</span>
 #### API Function
 
-> Set Trading-Stop Condition
+> Set the open position's stop loss, take profit, and trailing stop values
 
 #### HTTP Request
 
@@ -1003,10 +1015,10 @@
 
 
  -----------
-## <span id="open-apiexecutionrecordslistget">Get the trade records of a order</span>
+## <span id="open-apiexecutionrecordslistget">Get the trade records of an order</span>
 #### API Function
 
-> Get the trade records of a order
+> Get the trade records of an order
 
 #### HTTP Request
 
