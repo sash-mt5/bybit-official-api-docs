@@ -830,8 +830,9 @@
 |:----- |:-------|:-----|----- |
 |start_date |false |string |Start point for result  |
 |end_date |false |string |End point for result  |
-|currency |false |string |Contract type |
-|wallet_fund_type |false |string |Contract type |
+|currency |false |string |Currency type |
+|coin |false |string |`currency` alias |
+|wallet_fund_type |false |string |Wallet fund type |
 |page |false |integer |Page. Default getting first page data |
 |limit |false |integer |Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page |
 
