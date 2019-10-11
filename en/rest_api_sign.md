@@ -20,6 +20,9 @@
     * Each account can hold up to 200 active orders yet to be filled entirely simultaneously.
     * Each account can hold up to 5 conditional orders in the same side simultaneously.
 
+* How To Raised API Limit Threshold
+    * Please send application email to api@bybit.com, We will reply in 3-5 working days.
+    
 ### Authentication
 
 When calling API, you need to provide your API Key as an identification for every request. Meanwhile, a signature of the request you are making is asked. You need to sign the request data with the corresponding Secret Key.
