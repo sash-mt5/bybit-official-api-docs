@@ -10,6 +10,10 @@
 
 <a href="https://www.bybit.com/app/user/api-management">https://www.bybit.com/app/user/api-management</a>
 
+### HTTP Requests
+* `GET` requests should be in the `application/x-www-form-urlencoded` format
+* `POST` requests should be in the `application/json` format
+
 ### Limits
 
 * API Request Rate Limits
@@ -22,7 +26,7 @@
 
 * How To Raised API Limit Threshold
     * Please send application email to api@bybit.com, We will reply in 3-5 working days.
-    
+
 ### Authentication
 
 When calling API, you need to provide your API Key as an identification for every request. Meanwhile, a signature of the request you are making is asked. You need to sign the request data with the corresponding Secret Key.
