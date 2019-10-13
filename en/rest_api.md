@@ -147,7 +147,7 @@
 |symbol |true |string |Contract type.    |
 |order_type |true |string |Active order type   |
 |qty |true |integer |Order quantity. |
-|price |true |integer |Order price.  |
+|price |true |number |Order price.  |
 |time_in_force |true |string |Time in force |
 |take_profit |false |number |take profit price|
 |stop_loss |false |number |stop loss price|
@@ -366,9 +366,9 @@
 |symbol |true |string |Contract type.    |
 |order_type |true |string |Conditional order type. |
 |qty |true |integer |Order quantity. |
-|price| true | integer | Execution price for conditional order|
-|base_price |true |integer | Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order. |
-|stop_px | true | integer | Trigger price |
+|price| true | number | Execution price for conditional order|
+|base_price |true |number | Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order. |
+|stop_px | true | number | Trigger price |
 |time_in_force |true |string |Time in force |
 |close_on_trigger |false |bool |close on trigger
 |order_link_id |false |string |Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.|
