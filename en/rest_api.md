@@ -10,6 +10,8 @@
 
 * [Cancel active order](#open-apiordercancelpost)
 
+* [Replace order](#open-apiorderreplacepost)
+
 ### Conditional Order
 
 * [Place conditional order](#open-apistop-ordercreatepost)
@@ -17,6 +19,8 @@
 * [Get conditional order](#open-apistop-orderlistget)
 
 * [Cancel conditional order](#open-apistop-ordercancelpost)
+
+* [Replace conditional order](#open-apistop-orderreplacepost)
 
 ### Positions
 
@@ -324,6 +328,55 @@
 ```
 
 -----------
+
+## <span id="open-apiorderreplacepost">Replace Order</span>
+#### API Function
+
+> Replace-order can modify your active order.
+
+> 'order_id' and 'symbol' is required for finding an active order.'p_r_qty' and 'p_r_price 'are the modified price and quantity. If these two fields are not provided, nothing will be modified.
+
+> Please note that only orders that are unfilled and partially filled can be modified by the replace-order api
+
+
+#### HTTP Request
+
+##### Method
+> POST ```/open-api/order/replace```
+
+##### URL
+> For Testnet
+> [https://api-testnet.bybit.com/open-api/order/cancel](https://api-testnet.bybit.com/open-api/order/cancel)
+
+> For Mainnet
+> [https://api.bybit.com/open-api/order/cancel](https://api.bybit.com/open-api/order/cancel)
+
+####  Request Parameters
+
+|parameters|required|type|comments|
+|:----- |:-------|:-----|----- |
+|order_id |true |string |Your active order ID. The unique order ID returned to you when the corresponding active order was created |
+|symbol |true |string |Contract type. |
+|p_r_qty |false |int |New order quantity |
+|p_r_price |false |number |New order price |
+
+#### Response example
+
+```js
+
+{
+    'ret_code':0   //Error code,
+    'ret_msg':'ok' //Error message,
+    'ext_code':'', 
+    'result':'ok' 
+    'time_now':'1539778407.210858',    // UTC timestamp
+    'rate_limit_status': 0,            // The remaining number of accesses in one minute
+}
+
+```
+
+
+-----------
 ## <span id="open-apistop-ordercreatepost">Place Conditional Order</span>
 #### API Function
 
@@ -527,6 +580,56 @@
    }
 
 ```
+-----------
+
+
+## <span id="open-apistop-orderreplacepost">Replace conditional order</span>
+#### API Function
+
+> Replace conditional order can modify your conditional order.
+
+> 'order_id','symbol' is required for finding an active order.'p_r_qty', 'p_r_price' and 'p_r_trigger_price' will be set to your new conditional order. If these fields are not provided, nothing will be modified.
+
+> Please note that you can only modify untriggered conditional order.
+
+
+#### HTTP Request
+
+##### Method
+> POST ```/open-api/stop-order/replace```
+
+##### URL
+> For Testnet
+> [https://api-testnet.bybit.com/open-api/order/cancel](https://api-testnet.bybit.com/open-api/order/cancel)
+
+> For Mainnet
+> [https://api.bybit.com/open-api/order/cancel](https://api.bybit.com/open-api/order/cancel)
+
+####  Request Parameters
+
+|parameters|required|type|comments|
+|:----- |:-------|:-----|----- |
+|order_id |true |string |Your active order ID. The unique order ID returned to you when the corresponding active order was created |
+|symbol |true |string |Contract type. |
+|p_r_qty |false |int |New conditional order's quantity |
+|p_r_price |false |number |New conditional order's price |
+|p_r_trigger_price |false |number |New conditional order's tirgger price |
+
+#### Response example
+
+```js
+
+{
+    'ret_code':0   //Error code,
+    'ret_msg':'ok' //Error message,
+    'ext_code':'', 
+    'result':'ok' 
+    'time_now':'1539778407.210858',    // UTC timestamp
+    'rate_limit_status': 0,            // The remaining number of accesses in one minute
+}
+
+```
+
 
 
 -----------
