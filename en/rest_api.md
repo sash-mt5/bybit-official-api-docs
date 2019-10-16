@@ -147,18 +147,18 @@
   "ext_code": "",
   "result": [
     {
-      "api_key": "zh2PIPKrIH1ewaRZ1l",
-      "user_id": 160249,
-      "ips": [
+      "api_key": "zh2PIPKrIH1ewaRZ1l",          //API key
+      "user_id": 160249,                        //user id
+      "ips": [                                  //available IP
         "173.194.72.139"
       ],
       "note": "stephen",
-      "permissions": [
+      "permissions": [                          //permissions
         "Order",
         "Position"
       ],
-      "created_at": "2019-08-13T10:07:17.000Z",
-      "read_only": true
+      "created_at": "2019-08-13T10:07:17.000Z", //create time
+      "read_only": true                         //read only flag
     }
   ],
   "ext_info": null,
@@ -406,10 +406,10 @@
 
 ##### URL
 > For Testnet
-> [https://api-testnet.bybit.com/open-api/order/cancel](https://api-testnet.bybit.com/open-api/order/cancel)
+> [https://api-testnet.bybit.com/open-api/order/cancel](https://api-testnet.bybit.com/open-api/order/replace)
 
 > For Mainnet
-> [https://api.bybit.com/open-api/order/cancel](https://api.bybit.com/open-api/order/cancel)
+> [https://api.bybit.com/open-api/order/cancel](https://api-testnet.bybit.com/open-api/order/replace)
 
 ####  Request Parameters
 
@@ -660,10 +660,10 @@
 
 ##### URL
 > For Testnet
-> [https://api-testnet.bybit.com/open-api/order/cancel](https://api-testnet.bybit.com/open-api/order/cancel)
+> [https://api-testnet.bybit.com/open-api/order/cancel](https://api-testnet.bybit.com/open-api/stop-order/replace)
 
 > For Mainnet
-> [https://api.bybit.com/open-api/order/cancel](https://api.bybit.com/open-api/order/cancel)
+> [https://api.bybit.com/open-api/order/cancel](https://api.bybit.com/open-api/stop-order/replace)
 
 ####  Request Parameters
 
@@ -934,37 +934,38 @@
   "ret_msg": "ok",
   "ext_code": "",
   "result": {
-    "id": 14760,
-    "user_id": 103669,
-    "symbol": "XRPUSD",
-    "side": "Buy",
-    "size": 12,
-    "position_value": 45.67685363,
-    "entry_price": 0.26271512,
-    "risk_id": 31,
-    "auto_add_margin": 0,
-    "leverage": 1,
-    "position_margin": 45.67685363,
-    "liq_price": 0.1317,
-    "bust_price": 0.1314,
-    "occ_closing_fee": 0.06849316,
-    "occ_funding_fee": 0,
-    "take_profit": 0.5254,
-    "stop_loss": 0.2284,
-    "trailing_stop": 0.0005,
-    "position_status": "Normal",
-    "deleverage_indicator": 3,
-    "oc_calc_data": "{\"blq\":0,\"slq\":0,\"bmp\":0,\"smp\":0,\"fq\":-12,\"bv2c\":1.0060762,\"sv2c\":1.0007575}",
-    "order_margin": 0,
-    "wallet_balance": 997.93529367,
-    "realised_pnl": -0.00553302,
-    "cum_realised_pnl": -2.06470633,
-    "cum_commission": 0,
-    "cross_seq": 140882727,
-    "position_seq": 93672155,
-    "created_at": "2019-08-05T03:19:26.000Z",
-    "updated_at": "2019-09-24T05:46:58.000Z"
-  },
+           'id': 1,                //position ID
+           'user_id': 1,           //user ID
+           'risk_id': 1,           //risk limit ID
+           'symbol': 'BTCUSD',     //Contract type
+           'side': 'None',         //position Side  (None, buy, sell)
+           'size': 0,              //position size
+           'position_value': 0,    //position value
+           'entry_price': 0,       //entry price
+           'leverage': 1,          //user leverage
+           'auto_add_margin': 0,   //auto margin replenishment switch
+           'position_margin': 0,   //position margin
+           'liq_price': 999999,    //liquidation price
+           'bust_price': 999999,   //bankruptcy price
+           'occ_closing_fee': 0,   //position closing
+           'occ_funding_fee': 0,   //funding fee
+           'take_profit': 0,       //take profit price
+           'stop_loss': 0,         //stop loss price
+           'trailing_stop': 0,     //trailing stop point
+           'position_status': 'Normal',   //Status Normal (normal), Liq (Liquidation in process), ADL (ADL in process)
+           'deleverage_indicator': 1,
+           'oc_calc_data': '{\'blq\':\'0\',\'bmp\':\'0\',\'slq\':\'0\',\'smp\':\'0\'}',
+           'order_margin': 0,      //Used margin by order
+           'wallet_balance': 0,    //wallet balance
+           'unrealised_pnl': 0,    //unrealised profit and loss
+           'realised_pnl': 0,      //daily realized profit and loss
+           'cum_realised_pnl': 0,  //Total realized profit and loss
+           'cum_commission': 0,    //Total commissions
+           'cross_seq': 0,         //
+           'position_seq': 2,      //position sequence number
+           'created_at': '2018-10-18T07:15:51.000Z',
+           'updated_at': '2018-10-20T13:43:21.000Z'
+       },
   "time_now": "1569304018.857490"
 }
 
@@ -1006,20 +1007,20 @@
 ```js
 
 {
-  "ret_code": 0,
-  "ret_msg": "ok",
+  "ret_code": 0,                            //Error code 0 means success
+  "ret_msg": "ok",                          //Error message
   "ext_code": "",
   "result": {
     "data": [{
-      "id": 128495,
-      "user_id": 103669,
-      "coin": "XRP",
-      "wallet_id": 14760,
-      "type": "Realized P&L",
+      "id": 128495,                         //id
+      "user_id": 103669,                    //user id
+      "coin": "XRP",                        //coin type
+      "wallet_id": 14760,                   //wallet id
+      "type": "Realized P&L",               //funding type
       "amount": "1.18826225",
       "tx_id": "",
-      "address": "XRPUSD",
-      "wallet_balance": "999.12908894",
+      "address": "XRPUSD",                  //address
+      "wallet_balance": "999.12908894",     //balance
       "exec_time": "2019-09-25T00:00:15.000Z",
       "cross_seq": 0
     }]
@@ -1063,16 +1064,16 @@
 
 ```js
 {
-  "ret_code": 0,
-  "ret_msg": "ok",
+  "ret_code": 0,                                        //Error code 0 means success
+  "ret_msg": "ok",                                      //error message
   "ext_code": "",
   "result": {
     "data": [{
-      "id": 137,
-      "user_id": 160249,
-      "coin": "XRP",
-      "status": "Pending",
-      "amount": "20.00000000",
+      "id": 137,                                        //id
+      "user_id": 160249,                                //user id
+      "coin": "XRP",                                    //coin type
+      "status": "Pending",                              //status
+      "amount": "20.00000000",                          //amount
       "fee": "0.25000000",
       "address": "rH7H595XYEVTEHU2FySYsWnmfACBnZS9zM",
       "tx_id": "",

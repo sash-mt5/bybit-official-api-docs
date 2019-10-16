@@ -104,3 +104,12 @@ if (timestamp < (server_time + 1000) && (server_time - timestamp) <= recv_window
   // 发送方的timestamp和recv_window不满足此逻辑校验导致
 }
 ```
+
+
+<hr>
+
+`10007:登录失败`
+
+```
+request请求中未添加api_key参数
+```
