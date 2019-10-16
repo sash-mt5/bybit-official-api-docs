@@ -2,6 +2,10 @@
 
 * [Server time](#open-apiservertimeget)
 
+### API key
+
+* [API key info](#open-apikeyget)
+
 ### Active Order
 
 * [Place active order](#open-apiordercreatepost)
@@ -36,7 +40,9 @@
 
 ### Wallet
 
-* [Get Wallet fund Records](#wallet-fundrecordget)
+* [Get Wallet fund records](#wallet-fundrecordget)
+
+* [Get Withdraw records](#wallet-withdrawrecordget)
 
 ### Funding
 
@@ -48,7 +54,7 @@
 
 ### Execution
 
-* [Get the trade records of a order](#open-apiexecutionrecordslistget)
+* [Get user's trade records](#open-apiexecutionrecordslistget)
 
 ### Market data
 
@@ -62,7 +68,7 @@
 
 ### Symbol
 
-* [Query Symbols](https://bybit-exchange.github.io/bybit-official-api-docs/en/index.html#operation/query_symbol)
+* [Query symbols](https://bybit-exchange.github.io/bybit-official-api-docs/en/index.html#operation/query_symbol)
 
 ### ENUM definitions
 
@@ -104,6 +110,60 @@
        },
        'time_now':'1539778407.210858',    //UTC timestamp, used for time calibration
    }
+
+```
+
+-----------
+## <span id="open-apikeyget">API key info</span>
+#### API Function
+
+> Get User API key Info。
+
+#### HTTP Request
+
+##### Method
+> GET ```/open-api/api-key```
+
+##### URL
+> For Testnet:
+> [https://api-testnet.bybit.com/open-api/api-key](https://api-testnet.bybit.com/open-api/api-key)
+
+> For Mainnet:
+> [https://api.bybit.com/open-api/api-key](https://api.bybit.com/open-api/api-key)
+
+#### Request Parameters
+
+|parameter|required|type|comments|
+|:----- |:-------|:-----|----- |
+
+
+#### Response example
+
+```js
+
+{
+  "ret_code": 0,
+  "ret_msg": "ok",
+  "ext_code": "",
+  "result": [
+    {
+      "api_key": "zh2PIPKrIH1ewaRZ1l",
+      "user_id": 160249,
+      "ips": [
+        "173.194.72.139"
+      ],
+      "note": "stephen",
+      "permissions": [
+        "Order",
+        "Position"
+      ],
+      "created_at": "2019-08-13T10:07:17.000Z",
+      "read_only": true
+    }
+  ],
+  "ext_info": null,
+  "time_now": "1570869813.399178"
+}
 
 ```
 
@@ -420,10 +480,10 @@
 |order_type |true |string |Conditional order type. |
 |qty |true |integer |Order quantity. |
 |price| true | number | Execution price for conditional order|
-|base_price |true |number | Send current market price. It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order. |
+|base_price |true |number | It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order. |
 |stop_px | true | number | Trigger price |
-|trigger_by | true | string | Trigger price type. Default `LastPrice` |
 |time_in_force |true |string |Time in force |
+|trigger_by | false | string | Trigger price type. Default `LastPrice` |
 |close_on_trigger |false |bool |close on trigger
 |order_link_id |false |string |Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.|
 
@@ -831,7 +891,7 @@
    'ret_code':0   //return code (0: successful, -1: failed)
    'ret_msg':'ok' //error message
    'ext_code':'', //error code
-  'result': null,  //One can decide whether a request is successful depending on ret_code. Will always return 'null'
+   'result': null,  //One can decide whether a request is successful depending on ret_code. Will always return 'null'
    'time_now':'1539778407.210858',    //UTC timestamp
 }
 
@@ -965,6 +1025,63 @@
     }]
   },
   "time_now": "1569395810.140869"
+}
+
+```
+
+-----------
+## <span id="wallet-withdrawrecordget"> Get withdraw records</span>
+#### API Function
+
+> Get withdraw records
+
+#### HTTP Request
+
+##### Method
+> GET ```/open-api/wallet/withdraw/list```
+
+##### URL
+> For Testnet
+> [https://api-testnet.bybit.com/open-api/wallet/withdraw/list](https://api-testnet.bybit.com/open-api/wallet/withdraw/list)
+
+> For Mainnet
+> [https://api.bybit.com/open-api/wallet/withdraw/list](https://api.bybit.com/open-api/wallet/withdraw/list)
+
+#### Request Parameters
+
+|parameter|required|type|comments|
+|:----- |:-------|:-----|----- |
+|start_date |false |string |Start point for result |
+|end_date |false |string |End point for result |
+|coin |false |string |Currency |
+|status |false |string |Withdraw status |
+|page |false |integer |Page. Default getting first page data |
+|limit |false |integer |Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page |
+
+
+#### Response example
+
+```js
+{
+  "ret_code": 0,
+  "ret_msg": "ok",
+  "ext_code": "",
+  "result": {
+    "data": [{
+      "id": 137,
+      "user_id": 160249,
+      "coin": "XRP",
+      "status": "Pending",
+      "amount": "20.00000000",
+      "fee": "0.25000000",
+      "address": "rH7H595XYEVTEHU2FySYsWnmfACBnZS9zM",
+      "tx_id": "",
+      "submited_at": "2019-06-11T02:20:24.000Z",
+      "updated_at": "2019-06-11T02:20:24.000Z"
+    }]
+  },
+  "ext_info": null,
+  "time_now": "1570863984.536136"
 }
 
 ```
@@ -1108,10 +1225,10 @@
 
 
  -----------
-## <span id="open-apiexecutionrecordslistget">Get the trade records of a order</span>
+## <span id="open-apiexecutionrecordslistget">Get user's trade records</span>
 #### API Function
 
-> Get the trade records of a order
+> Get user's trade records
 
 #### HTTP Request
 
@@ -1129,7 +1246,11 @@
 
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
-|order_id |true |string |orderID |
+|order_id |false |string |OrderID. If not provided, will return user's trading records |
+|symbol |false |string |Contract type. If `order_id` not provided, `symbol` is required |
+|start_time |false |int |Start timestamp point for result |
+|page |false |integer |Page. Default getting first page data |
+|limit |false |integer |Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page |
 
 #### Response example
 
@@ -1141,7 +1262,7 @@
     'ext_code': '',                                       // additional error code
     'ext_info': '',                                       // additional error info
     'result': {
-        'order_id': 'd854bb13-3fb9-4608-ade4-828f50210778',   // Unique order ID
+        'order_id': '',   // always empty
         'trade_list': [{
             'closed_size': 0,                                // Closed size
             'cross_seq': 3154097,                            // CrossSeq
@@ -1246,6 +1367,7 @@
 
 |parameters|required|type|comments|
 |:----- |:-------|:-----|----- |
+|symbol |false |string |Contract type |
 
 #### Response example
 
@@ -1253,7 +1375,6 @@
 
 // other symbols omitted - the normal response will have additional dictionaries within the "result" class detailing the
 // different symbols
-
 {
     "ret_code": 0,                                   // return code
     "ret_msg": "OK",                                 // error message
@@ -1304,7 +1425,7 @@
 * `EOSUSD`
 * `XRPUSD`
 
-#### Currency (`currency`)
+#### Currency (`currency`/`coin`)
 * `BTC`
 * `ETH`
 * `EOS`
@@ -1320,6 +1441,16 @@
 * `Prize`
 * `ExchangeOrderWithdraw`
 * `ExchangeOrderDeposit`
+
+#### Withdraw status (`status`)
+* `ToBeConfirmed`
+* `UnderReview`
+* `Pending` - Pending transfer
+* `Success`
+* `CancelByUser`
+* `Reject`
+* `Expire`
+
 
 #### Order type (`order_type`)
 * `Limit`
@@ -1365,7 +1496,7 @@
 * `""`
   * If and only if the user is placing a market order
 
-#### Trigger price type(`trigger_by`)
+#### Trigger price type (`trigger_by`)
 * `LastPrice`
 * `IndexPrice`
 * `MarkPrice`

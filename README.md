@@ -2,6 +2,8 @@
 
 Official Documentation for the Bybit APIs and Web Socket
 
-[中文简体](./zh_cn/README.md)
+[API Doc](./en/README.md)
 
-[English](./en/README.md)
+[Official SDK](https://github.com/bybit-exchange/api-connectors)
+
+[CCXT Fork](https://github.com/bybit-exchange/ccxt)
