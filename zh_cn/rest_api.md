@@ -152,7 +152,7 @@
 
 ```
 -----------
-## <span id="open-apiservertimeget">密钥信息</span>
+## <span id="open-apikeyget">密钥信息</span>
 #### 接口功能
 
 > 获取账户API密钥信息
@@ -438,7 +438,7 @@ https://api.bybit.com/open-api/order/cancel
 
 -----------
 
-## <span id="open-apiorderreplacepost">Server time</span>
+## <span id="open-apiorderreplacepost">修改订单信息</span>
 #### API Function
 
 > 活动订单修改
@@ -449,8 +449,8 @@ https://api.bybit.com/open-api/order/cancel
 
 #### HTTP Request
 
-##### Method
-> GET ```/open-api/order/replace```
+##### 请求方式
+> POST 
 
 ##### URL
 > 测试网地址
