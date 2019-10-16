@@ -36,7 +36,7 @@
 
 * [更新保证金](#positionchange-position-marginpost)
 
-* [设置止盈止损]](#position-settradingstoppost)
+* [设置止盈止损](#position-settradingstoppost)
 
 ### 钱包
 
