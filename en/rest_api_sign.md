@@ -8,6 +8,10 @@
 > For Mainnet
 <a href="https://www.bybit.com/app/user/api-management">https://www.bybit.com/app/user/api-management</a>
 
+### HTTP Requests
+* `GET` requests should be in the `application/x-www-form-urlencoded` format
+* `POST` requests should be in the `application/json` format
+
 ### Limits
 
 * API Request Rate Limits
