@@ -6,7 +6,7 @@ Official Documentation for the Bybit APIs and Web Socket
 
 [Official SDK](https://github.com/bybit-exchange/api-connectors)
 
-[CCXT Fork](https://github.com/bybit-exchange/ccxt)
+[CCXT Fork](https://github.com/bybit-exchange/ccxt/tree/bybit)
 
 --------
 
@@ -16,5 +16,5 @@ Bybit APIs 和 Web Socket的官方文档
 
 [官方SDK](https://github.com/bybit-exchange/api-connectors)
 
-[CCXT支持](https://github.com/bybit-exchange/ccxt)
+[CCXT支持](https://github.com/bybit-exchange/ccxt/tree/bybit)
 
