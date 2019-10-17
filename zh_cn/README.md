@@ -6,4 +6,6 @@ rest api身份验证及接口信息
 
 * [rest api接口信息](./rest_api.md)
 
+* [API 错误信息](./errors.md)
+
 [websocket推送](./websocket.md)
