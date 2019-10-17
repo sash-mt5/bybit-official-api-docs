@@ -2,12 +2,10 @@
 
 ### Getting Your API Key and Secret Key
 
-// For Testnet
-
+> For Testnet
 <a href="https://testnet.bybit.com/user/api-management">https://testnet.bybit.com/user/api-management</a>
 
- // For Mainnet
-
+> For Mainnet
 <a href="https://www.bybit.com/app/user/api-management">https://www.bybit.com/app/user/api-management</a>
 
 ### Limits
@@ -22,10 +20,10 @@
 
 * How To Raised API Limit Threshold
     * Please send application email to api@bybit.com, We will reply in 3-5 working days.
-    
+
 ### Authentication
 
-When calling API, you need to provide your API Key as an identification for every request. Meanwhile, a signature of the request you are making is asked. You need to sign the request data with the corresponding Secret Key.
+When calling the API, you need to provide your API key as identification for every request. In addition, a signature of the request you are making is required, which should be signed using the corresponding API secret.
 
 #### Public Parameters
 Name | Description | Type | Required | Default value| Comments
@@ -36,7 +34,7 @@ recv_window| valid request timespan, unit: millisecond| int | no | 5000 | An htt
 sign | signature message |  string | yes | no | The signature message which is generated from a certain algorithm.
 
 #### How to Sign
-1. Concatenate all the public parameters except 'sign' in the format of http GET, by ascending order of parameters' name. To take *'leverage adjustment'* as example, it has two parameters('symbol' and *leverage*), and the result of concatenation is
+1. Concatenate all the public parameters except 'sign' in the query string format. The parameters must be ordered in **ascending** order. Here is an example of adjusting the leverage of an account (using the 'symbol' and 'leverage' parameters):
 
 ``` js
 var param_str = 'api_key=B2Rou0PLPpGqcU0Vu2&leverage=100&symbol=BTCUSD&timestamp=1542434791000';
@@ -49,16 +47,21 @@ var sign = hex(HMAC_SHA256($secret, $param_str));
 // sign = 670e3e4aa32b243f2dedf1dafcec2fd17a440e71b05681550416507de591d908
 ```
 
-3. Append the signature at the end of parameters string, and send the http request. Currently, we support the following two types of requesting parameters:
+3. Append the signature at the end of parameters string, and send the HTTP request.
+Please note that the format for messages is different depending on whether you are sending a GET or POST request:
+
+GET requests:
 
 ```http
-POST /user/leverage/save HTTP/1.1
+GET /user/leverage/save HTTP/1.1
 Host: api-testnet.bybit.com
 Content-Type: application/x-www-form-urlencoded
 
 api_key=B2Rou0PLPpGqcU0Vu2&leverage=100&symbol=BTCUSD&timestamp=1542434791000&sign=670e3e4aa32b243f2dedf1dafcec2fd17a440e71b05681550416507de591d908
 
 ```
+
+POST requests:
 
 ```http
 POST /user/leverage/save HTTP/1.1
@@ -89,7 +92,7 @@ rate_limit_status | Number of remaining calls in current period (1 minute)
 `10004:error sign`
 
 This means the signature you signed is not the same as the server signed.
-You may need to visit the `How to sign` above.
+You may need to visit the [How to sign](#how-to-sign) section above.
 
 <hr>
 
