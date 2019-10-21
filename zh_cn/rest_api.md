@@ -16,6 +16,8 @@
 
 * [活动单修改](#open-apiorderreplacepost)
 
+* [查询单个活动委托](#v2-private-order)
+
 ### 条件委托单
 
 * [创建条件委托单](#open-apistop-ordercreatepost)
@@ -441,8 +443,6 @@ https://api.bybit.com/open-api/order/cancel
 ## <span id="open-apiorderreplacepost">修改订单信息</span>
 #### API Function
 
-> 活动订单修改
-
 > 'order_id'和'symbol'是必传字段.'p_r_qty' 和 'p_r_price '分别是你想修改的订单的新的量价信息. 如果这两个字段没填，那么默认不修改.
 
 > 请注意，只有未成交或未完全成交的订单才可以被修改。
@@ -483,6 +483,70 @@ https://api.bybit.com/open-api/order/cancel
     }
 
 ```
+-----------
+
+## <span id="v2-private-order">查询单个活动委托</span>
+#### API Function
+
+> 查询单个活动委托
+
+#### HTTP Request
+
+##### 请求方式
+> GET 
+
+##### URL
+> 测试网地址
+> https://api-testnet.bybit.com/v2/private/order
+
+> 主网地址
+> https://api-testnet.bybit.com/v2/private/order
+
+#### Request Parameters
+
+|参数|必选|类型|说明|
+|:----- |:-------|:-----|----- |
+|order_id |true |string |订单id |
+|symbol |true |string | 合约种类. |
+
+
+#### Response example
+
+```js
+
+	{
+	  "ret_code": 0,
+	  "ret_msg": "OK",
+	  "ext_code": "",
+	  "ext_info": "",
+	  "result": {
+	    "user_id": 160744,
+	    "symbol": "BTCUSD",
+	    "side": "Sell",
+	    "order_type": "Limit",
+	    "price": "8083",
+	    "qty": 10,
+	    "time_in_force": "GoodTillCancel",
+	    "order_status": "New",
+	    "ext_fields": {
+	      "o_req_num": -308787,
+	      "xreq_type": "x_create",
+	      "xreq_offset": 4154640
+	    },
+	    "leaves_qty": 10,
+	    "leaves_value": "0.00123716",
+	    "cum_exec_qty": 0,
+	    "reject_reason": "",
+	    "order_link_id": "",
+	    "created_at": "2019-10-21T07:28:19.396246Z",
+	    "updated_at": "2019-10-21T07:28:19.396246Z",
+	    "order_id": "efa44157-c355-4a98-b6d6-1d846a936b93"
+	  },
+	  "time_now": "1571651135.291930"
+	}
+
+```
+
 -----------
 ## <span id="open-apistop-ordercreatepost">创建条件委托单 </span>
 #### 接口功能
