@@ -91,7 +91,14 @@ ext_code | external code error| null
 result | refer to each API|
 rate_limit_status | Number of remaining calls in current period (1 minute)
 
- ### Errors
+### Example of signature algorithm
+
+* [C#](/en/example/Encryption.cs)
+* [Python](/en/example/Encryption.py)
+* [C++](/en/example/Encryption.cpp)
+* [Go](/en/example/Encryption.go)
+
+### Errors
 
 `10004:error sign`
 
