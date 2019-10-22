@@ -16,7 +16,7 @@
 
 * [Replace order](#open-apiorderreplacepost)
 
-* [Real-time Query Active Order](#v2-private-order)
+* [Query active order (real-time)](#v2-private-order)
 
 ### Conditional Order
 
@@ -432,8 +432,8 @@
 {
     'ret_code':0   //Error code,
     'ret_msg':'ok' //Error message,
-    'ext_code':'', 
-    'result':'ok' 
+    'ext_code':'',
+    'result':'ok'
     'time_now':'1539778407.210858',    // UTC timestamp
     'rate_limit_status': 0,            // The remaining number of accesses in one minute
 }
@@ -441,26 +441,26 @@
 
 -----------
 
-## <span id="v2-private-order">Real-time Query Active Order</span>
+## <span id="v2-private-order">Query active order (real-time)</span>
 #### API Function
 
-> Real-time Query Active Order information 
+> Query real-time active order information
 
 #### HTTP Request
 
-##### 请求方式
-> GET 
+##### Method
+> GET `/v2/private/order`
 
 ##### URL
-> For Testnet
+> For Testnet:
 > https://api-testnet.bybit.com/v2/private/order
 
-> For Mainnet
-> https://api-testnet.bybit.com/v2/private/order
+> For Mainnet:
+> https://api.bybit.com/v2/private/order
 
 #### Request Parameters
 
-|参数|必选|类型|说明|
+|parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
 |order_id |true |string | Your active order ID. The unique order ID returned to you when the corresponding active order was created|
 |symbol |true |string | 	Contract type |
@@ -749,8 +749,8 @@
 {
     'ret_code':0   //Error code,
     'ret_msg':'ok' //Error message,
-    'ext_code':'', 
-    'result':'ok' 
+    'ext_code':'',
+    'result':'ok'
     'time_now':'1539778407.210858',    // UTC timestamp
     'rate_limit_status': 0,            // The remaining number of accesses in one minute
 }
