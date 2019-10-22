@@ -86,10 +86,10 @@ rate_limit_status | Number of remaining calls in current period (1 minute)
 
 ### Example of signature algorithm
 
-* [C#](/example/Encryption.cs)
-* [Python](/example/Encryption.py)
-* [C++](/example/Encryption.cpp)
-* [Go](/example/Encryption.go)
+* [C#](/en/example/Encryption.cs)
+* [Python](/en/example/Encryption.py)
+* [C++](/en/example/Encryption.cpp)
+* [Go](/en/example/Encryption.go)
 
 ### Errors
 

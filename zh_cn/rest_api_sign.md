@@ -85,12 +85,12 @@ ext_code | 补充错误码 | null
 result | 不同业务接口返回与其对应的数据 | 
 
 
-### 加密算法示例
+### 签名算法示例
 
-* [C#](/example/Encryption.cs)
-* [Python](/example/Encryption.py)
-* [C++](/example/Encryption.cpp)
-* [Go](/example/Encryption.go)
+* [C#](example/Encryption.cs)
+* [Python](example/Encryption.py)
+* [C++](example/Encryption.cpp)
+* [Go](example/Encryption.go)
 
 
 ### Errors
