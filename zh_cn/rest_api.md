@@ -507,7 +507,7 @@ https://api.bybit.com/open-api/order/cancel
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
 |order_id |true |string |订单id |
-|symbol |true |string | 合约种类. |
+|symbol |true |string | 合约种类 |
 
 
 #### Response example

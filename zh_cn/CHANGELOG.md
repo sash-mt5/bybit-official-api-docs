@@ -1,4 +1,9 @@
 <hr>
+## 2019-10-22
+
+### rest api
+- [实时查询活动单信息](https://github.com/bybit-exchange/bybit-official-api-docs/blob/master/zh_cn/rest_api.md#v2-private-order) [新增]
+<hr>
 
 ## 2018-11-09
 
