@@ -16,7 +16,7 @@
 
 * [活动单修改](#open-apiorderreplacepost)
 
-* [查询单个活动委托](#v2-private-order)
+* [实时查询活动委托](#v2-private-order)
 
 ### 条件委托单
 
@@ -304,6 +304,8 @@ https://api.bybit.com/open-api/order/create
 
 > 获取我的活动委托单列表。
 
+> 创建/取消订单是异步。如果要获取订单的实时信息，可以调用接口[实时查询活动单信息](#v2-private-order)
+
 #### URL
 
 ```
@@ -485,10 +487,10 @@ https://api.bybit.com/open-api/order/cancel
 ```
 -----------
 
-## <span id="v2-private-order">查询单个活动委托</span>
+## <span id="v2-private-order">实时查询活动委托</span>
 #### API Function
 
-> 查询单个活动委托
+> 实时查询活动委托
 
 #### HTTP Request
 
