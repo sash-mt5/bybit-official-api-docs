@@ -116,7 +116,7 @@ Example error response:
 ### 订单类型不合法
 * ```'ret_code': 30008,```
 * ```'ret_msg': 'order_type invalid'```
-### 用户没有对应的头寸
+### 用户没有对应的持仓
 * ```'ret_code': 30009,```
 * ```'ret_msg': 'no position for uid, symbol'```
 ### 钱包余额不足
@@ -128,16 +128,16 @@ Example error response:
 ### 由于ADL，不允许操作
 * ```'ret_code': 30012,```
 * ```'ret_msg': 'Operation not allowed as position is undergoing ADL'```
-### 头寸处于其他状态
+### 持仓处于其他状态
 * ```'ret_code': 30013,```
 * ```'ret_msg': 'position is in other status'```
-### 下单数量应和头寸一只
+### 下单数量应和持仓数量一致
 * ```'ret_code': 30014,```
 * ```'ret_msg': 'Invalid exit order: qty != size'```
-### 平仓订单不合法，应和头寸方向相反
+### 平仓订单不合法，应和持仓方向相反
 * ```'ret_code': 30015,```
 * ```'ret_msg': 'Invalid exit order: side should be opposite'```
-### 请取消止盈止损单
+### 请先取消止盈止损单
 * ```'ret_code': 30016,```
 * ```'ret_msg': 'Please cancel Take Profit and Stop Loss first'```
 ### 不能低于强平价格
@@ -146,22 +146,22 @@ Example error response:
 ### 不能高于卖方向强平价格
 * ```'ret_code': 30018,```
 * ```'ret_msg': 'estimated fill price:[%s] cannot be higher than current Sell liq_price:{$position->liq_price}'```
-### 不能将TP/SL参数置于非空头寸
+### 不能将TP/SL参数用于非0仓位
 * ```'ret_code': 30019,```
 * ```'ret_msg': 'cannot attach TP/SL params for none-zero position'```
-### 头寸已经适用于TP/SL参数
+### 持仓已有TP/SL设置
 * ```'ret_code': 30020,```
 * ```'ret_msg': 'position already have TP/SL params'```
 ### 预计保证金不足
 * ```'ret_code': 30021,```
 * ```'ret_msg': 'cannot afford estimated position_margin:[%s]'```
-### 买方强平家不能高于标记价格
+### 预计买方向强平价格不能高于标记价格
 * ```'ret_code': 30022,```
 * ```'ret_msg': 'estimated Buy liq_price:[%s] cannot be higher than current mark_price:[%s]'```
-### 卖方强平价不能低于标记价格
+### 预计卖方向强平价不能低于标记价格
 * ```'ret_code': 30023,```
 * ```'ret_msg': 'estimated Sell liq_price:[%s] cannot be lower than current mark_price:[%s]'```
-### 不能为空仓头寸设置
+### 空仓无法设置
 * ```'ret_code': 30024,```
 * ```'ret_msg': 'cannot set [%s] for zero position'```
 ### 应该比标记价格高10%且不大于1000000
@@ -173,22 +173,22 @@ Example error response:
 ### 止盈价应高于上笔成交价
 * ```'ret_code': 30027,```
 * ```'ret_msg': 'Price set for Take profit should be higher than Last Traded Price'```
-### 止损价应在强平价和上笔成交价
+### 止损价应在强平价和上笔成交价之间
 * ```'ret_code': 30028,```
 * ```'ret_msg': 'Price set for Stop loss should be between Liquidation price and Last Traded Price'```
-### 止损价格应在最后交易价格和清算价格之间
+### 止损价格应在上笔成交价和清算价格之间
 * ```'ret_code': 30029,```
 * ```'ret_msg': 'Price set for Stop loss should be between Last Traded Price and Liquidation price'```
-### 设定的止盈价格应低于最后交易价格
+### 设定的止盈价格应低于上笔成交价
 * ```'ret_code': 30030,```
 * ```'ret_msg': 'Price set for Take profit should be lower than Last Traded Price'```
-### 可用头寸不足
+### 可用余额不足以支付订单费用
 * ```'ret_code': 30031,```
 * ```'ret_msg': 'Insufficient available balance:[%s] for order cost:[%s]'```
 ### 订单已成交或已取消
 * ```'ret_code': 30032,```
 * ```'ret_msg': 'Order has been finished or canceled'```
-### 止损单的数目超过所容许的最高限额
+### 条件单的数目超过所容许的最高限额
 * ```'ret_code': 30033,```
 * ```'ret_msg': 'The number of stop orders (%s) exceeds maximum limit allowed'```
 ### 条件单不存在
@@ -203,7 +203,7 @@ Example error response:
 ### 订单已取消
 * ```'ret_code': 30037,```
 * ```'ret_msg': 'Order already cancelled'```
-### 无响应订单记录
+### 无相应订单记录
 * ```'ret_code': 30041,```
 * ```'ret_msg': 'No position record foruser_id, symbol'```
 ### 钱包余额不足
@@ -215,13 +215,13 @@ Example error response:
 ### 不允许操作，因为位置正在进行ADL
 * ```'ret_code': 30044,```
 * ```'ret_msg': 'Operation not allowed as position is undergoing ADL'```
-### 头寸处于其他状态
+### 持仓处于其他状态
 * ```'ret_code': 30045,```
 * ```'ret_msg': 'position is in other status'```
-### 平仓合约数量超过风险限额，请调整您的风险限额水平再试
+### 请求的合约数量超过风险限额，请调整您的风险限额水平后重试
 * ```'ret_code': 30057,```
 * ```'ret_msg': 'Requested quantity of contracts exceeds risk limit, please adjust your risk limit level before trying again'```
-### 不满足只减仓条件
+### 不满足只减仓的条件
 * ```'ret_code': 30063,```
 * ```'ret_msg': 'reduce-only rule not satisfied'```
 

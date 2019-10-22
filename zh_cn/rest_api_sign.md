@@ -84,7 +84,16 @@ ret_msg | 返回消息 | ok
 ext_code | 补充错误码 | null 
 result | 不同业务接口返回与其对应的数据 | 
 
- ### Errors
+
+### 签名算法示例
+
+* [C#](example/Encryption.cs)
+* [Python](example/Encryption.py)
+* [C++](example/Encryption.cpp)
+* [Go](example/Encryption.go)
+
+
+### Errors
 
 `10004:error sign`
 

@@ -443,7 +443,7 @@ https://api.bybit.com/open-api/order/cancel
 
 > 活动订单修改
 
-> 'order_id'和'symbol'是避暑字段.'p_r_qty' 和 'p_r_price '分别是你想修改的订单的新的量价信息. 如果这两个字段没填，那么默认不修改.
+> 'order_id'和'symbol'是必传字段.'p_r_qty' 和 'p_r_price '分别是你想修改的订单的新的量价信息. 如果这两个字段没填，那么默认不修改.
 
 > 请注意，只有未成交或未完全成交的订单才可以被修改。
 
@@ -457,7 +457,7 @@ https://api.bybit.com/open-api/order/cancel
 > https://api-testnet.bybit.com/open-api/order/replace
 
 > 主网地址
-> https://api-testnet.bybit.com/open-api/order/replace
+> https://api.bybit.com/open-api/order/replace
 
 #### Request Parameters
 
