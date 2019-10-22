@@ -146,10 +146,10 @@ Example error response:
 ### 不能高于卖方向强平价格
 * ```'ret_code': 30018,```
 * ```'ret_msg': 'estimated fill price:[%s] cannot be higher than current Sell liq_price:{$position->liq_price}'```
-### 不能将TP/SL参数置于非空
+### 不能将TP/SL参数用于非0仓位
 * ```'ret_code': 30019,```
 * ```'ret_msg': 'cannot attach TP/SL params for none-zero position'```
-### 持仓已经适用于TP/SL参数
+### 持仓已有TP/SL设置
 * ```'ret_code': 30020,```
 * ```'ret_msg': 'position already have TP/SL params'```
 ### 预计保证金不足
@@ -182,13 +182,13 @@ Example error response:
 ### 设定的止盈价格应低于上笔成交价
 * ```'ret_code': 30030,```
 * ```'ret_msg': 'Price set for Take profit should be lower than Last Traded Price'```
-### 可用余额不足
+### 可用余额不足以支付订单费用
 * ```'ret_code': 30031,```
 * ```'ret_msg': 'Insufficient available balance:[%s] for order cost:[%s]'```
 ### 订单已成交或已取消
 * ```'ret_code': 30032,```
 * ```'ret_msg': 'Order has been finished or canceled'```
-### 止损单的数目超过所容许的最高限额
+### 条件单的数目超过所容许的最高限额
 * ```'ret_code': 30033,```
 * ```'ret_msg': 'The number of stop orders (%s) exceeds maximum limit allowed'```
 ### 条件单不存在
@@ -221,7 +221,7 @@ Example error response:
 ### 平仓合约数量超过风险限额，请调整您的风险限额水平再试
 * ```'ret_code': 30057,```
 * ```'ret_msg': 'Requested quantity of contracts exceeds risk limit, please adjust your risk limit level before trying again'```
-### 不满足只减仓条件
+### 不满足只减仓的条件
 * ```'ret_code': 30063,```
 * ```'ret_msg': 'reduce-only rule not satisfied'```
 
