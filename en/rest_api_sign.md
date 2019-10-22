@@ -84,7 +84,7 @@ ext_code | external code error| null
 result | refer to each API|
 rate_limit_status | Number of remaining calls in current period (1 minute)
 
-### Example of encryption algorithm
+### Example of signature algorithm
 
 * [C#](/example/Encryption.cs)
 * [Python](/example/Encryption.py)
