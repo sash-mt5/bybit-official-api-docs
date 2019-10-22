@@ -218,7 +218,7 @@ Example error response:
 ### 持仓处于其他状态
 * ```'ret_code': 30045,```
 * ```'ret_msg': 'position is in other status'```
-### 平仓合约数量超过风险限额，请调整您的风险限额水平再试
+### 请求的合约数量超过风险限额，请调整您的风险限额水平后重试
 * ```'ret_code': 30057,```
 * ```'ret_msg': 'Requested quantity of contracts exceeds risk limit, please adjust your risk limit level before trying again'```
 ### 不满足只减仓的条件
