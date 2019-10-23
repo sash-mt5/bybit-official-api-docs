@@ -502,7 +502,7 @@ https://api.bybit.com/open-api/order/cancel
 > https://api-testnet.bybit.com/v2/private/order
 
 > 主网地址
-> https://api-testnet.bybit.com/v2/private/order
+> https://api.bybit.com/v2/private/order
 
 #### Request Parameters
 
