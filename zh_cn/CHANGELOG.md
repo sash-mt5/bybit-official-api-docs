@@ -6,8 +6,11 @@
 - [实时查询活动单信息](./rest_api.md#v2-private-order) [新增]
 
 ### Websocket API
-- [Topic position](./websocket.md#position) [更新: 添加了额外字段]
-- [Topic trade](./websocket.md#trade) [更新: 现在支持在一个消息中推送多条交易]
+- [Topic position](./websocket.md#position) [更新]
+	- 添加了额外字段
+- [Topic trade](./websocket.md#trade) [更新]
+	- 修复重复推送交易数据的问题
+	- 现在支持在一个消息中推送多条交易
 <hr>
 
 ## 2018-11-09
