@@ -10,4 +10,4 @@ API authentication and API documentation
 
 [WebSocket data](./websocket.md)
 
-[ChangeLog](./CHANGELOG.md)
+[Changelog](./CHANGELOG.md)
