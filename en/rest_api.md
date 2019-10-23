@@ -16,6 +16,8 @@
 
 * [Replace order](#open-apiorderreplacepost)
 
+* [Query active order (real-time)](#v2-private-order)
+
 ### Conditional Order
 
 * [Place conditional order](#open-apistop-ordercreatepost)
@@ -260,10 +262,13 @@
 
 > Get my active order list
 
+> Order creation/cancellation is asynchronous.If you want real-time information about an order, you can call [Real-time query Active Order information](#v2-private-order)
+
 #### HTTP Request
 
 ##### Method
 > GET ```/open-api/order/list```
+
 
 ##### URL
 > For Testnet:
@@ -427,14 +432,76 @@
 {
     'ret_code':0   //Error code,
     'ret_msg':'ok' //Error message,
-    'ext_code':'', 
-    'result':'ok' 
+    'ext_code':'',
+    'result':'ok'
     'time_now':'1539778407.210858',    // UTC timestamp
     'rate_limit_status': 0,            // The remaining number of accesses in one minute
 }
-
 ```
 
+-----------
+
+## <span id="v2-private-order">Query active order (real-time)</span>
+#### API Function
+
+> Query real-time active order information
+
+#### HTTP Request
+
+##### Method
+> GET `/v2/private/order`
+
+##### URL
+> For Testnet:
+> https://api-testnet.bybit.com/v2/private/order
+
+> For Mainnet:
+> https://api.bybit.com/v2/private/order
+
+#### Request Parameters
+
+|parameter|required|type|comments|
+|:----- |:-------|:-----|----- |
+|order_id |true |string | Your active order ID. The unique order ID returned to you when the corresponding active order was created|
+|symbol |true |string | 	Contract type |
+
+
+#### Response example
+
+```js
+
+	{
+	  "ret_code": 0,
+	  "ret_msg": "OK",
+	  "ext_code": "",
+	  "ext_info": "",
+	  "result": {
+	    "user_id": 160744,
+	    "symbol": "BTCUSD",
+	    "side": "Sell",
+	    "order_type": "Limit",
+	    "price": "8083",
+	    "qty": 10,
+	    "time_in_force": "GoodTillCancel",
+	    "order_status": "New",
+	    "ext_fields": {
+	      "o_req_num": -308787,
+	      "xreq_type": "x_create",
+	      "xreq_offset": 4154640
+	    },
+	    "leaves_qty": 10,
+	    "leaves_value": "0.00123716",
+	    "cum_exec_qty": 0,
+	    "reject_reason": "",
+	    "order_link_id": "",
+	    "created_at": "2019-10-21T07:28:19.396246Z",
+	    "updated_at": "2019-10-21T07:28:19.396246Z",
+	    "order_id": "efa44157-c355-4a98-b6d6-1d846a936b93"
+	  },
+	  "time_now": "1571651135.291930"
+	}
+
+```
 
 -----------
 ## <span id="open-apistop-ordercreatepost">Place Conditional Order</span>
@@ -682,8 +749,8 @@
 {
     'ret_code':0   //Error code,
     'ret_msg':'ok' //Error message,
-    'ext_code':'', 
-    'result':'ok' 
+    'ext_code':'',
+    'result':'ok'
     'time_now':'1539778407.210858',    // UTC timestamp
     'rate_limit_status': 0,            // The remaining number of accesses in one minute
 }
