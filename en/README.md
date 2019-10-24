@@ -9,3 +9,5 @@ API authentication and API documentation
 * [API errors](./errors.md)
 
 [WebSocket data](./websocket.md)
+
+[Changelog](./CHANGELOG.md)

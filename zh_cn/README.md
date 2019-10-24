@@ -9,3 +9,5 @@ rest api身份验证及接口信息
 * [API 错误信息](./errors.md)
 
 [websocket推送](./websocket.md)
+
+[变更历史](./CHANGELOG.md)
