@@ -267,34 +267,36 @@ https://api.bybit.com/open-api/order/create
 
 ```js
 
-    {
-        'ret_code':0   错误码 - 正确,
-        'ret_msg':'ok' 错误消息,
-        'ext_code':''  ,
-        'result':{
-            'order_id': 'string',              UUID类型订单唯一ID
-            'user_id': 0,                      用户ID
-            'symbol': 'string',                产品类型
-            'side': 'string',                  购买方向
-            'order_type': 'string',            订单类型
-            'price': 0,                        委托价格
-            'qty': 0,                          委托数量
-            'time_in_force': 'string',         执行策略
-            'order_status': 'string',          委托状态: Created:创建订单;Rejected:订单被拒绝;New:订单待成交;PartiallyFilled:订单部分成交;Filled:订单全部成交,Cancelled:订单被取消
-            'last_exec_time': 0.000000,        最近一次成交时间
-            'last_exec_price': 0,              最近一次成交价格
-            'leaves_qty': 0,                   剩余委托数量
-            'cum_exec_qty': 0,                 累计成交数量
-            'cum_exec_value': 0,               累计成交的名义价值
-            'cum_exec_fee': 0,                 累计已成交手续费
-            'reject_reason': 'string',         被拒单的原因
-            'order_link_id': 'string',         机构自定义订单ID
-            'created_at':'2018-10-15T04:12:19.000Z',
-            'updated_at':'2018-10-15T04:12:19.000Z',
-        },
-        'time_now':'1539778407.210858',    UTC时间戳
-        'rate_limit_status': 0,            当前时间区间内(1分钟)该类型接口剩余访问次数
-    }
+	{
+	  "ret_code": 0,
+	  "ret_msg": "OK",
+	  "ext_code": "",
+	  "ext_info": "",
+	  "result": {
+	    "user_id": 160744,
+	    "symbol": "BTCUSD",
+	    "side": "Sell",
+	    "order_type": "Limit",
+	    "price": "8083",
+	    "qty": 10,
+	    "time_in_force": "GoodTillCancel",
+	    "order_status": "New",
+	    "ext_fields": {
+	      "o_req_num": -308787,
+	      "xreq_type": "x_create",
+	      "xreq_offset": 4154640
+	    },
+	    "leaves_qty": 10,
+	    "leaves_value": "0.00123716",
+	    "cum_exec_qty": 0,
+	    "reject_reason": "",
+	    "order_link_id": "",
+	    "created_at": "2019-10-21T07:28:19.396246Z",
+	    "updated_at": "2019-10-21T07:28:19.396246Z",
+	    "order_id": "efa44157-c355-4a98-b6d6-1d846a936b93"
+	  },
+	  "time_now": "1571651135.291930"
+	}
 
 ```
 
@@ -1571,7 +1573,7 @@ https://api.bybit.com/v2/private/execution/list
 
 -------
 ## <span id="ENUMs">枚举类型定义</span>
-> This is a list of valid options (and rules) for the different parameters when sending a request to the API
+> 这是向API发送请求时不同参数的有效选项(和规则)列表
 #### Side (`side`)
 * `Buy`
 * `Sell`
@@ -1588,96 +1590,84 @@ https://api.bybit.com/v2/private/execution/list
 * `EOS`
 * `XRP`
 
-
 #### Wallet fund type (`wallet_fund_type`)
-* `Deposit`
-* `Withdraw`
-* `RealisedPNL`
-* `Commission`
-* `Refund`
-* `Prize`
-* `ExchangeOrderWithdraw`
-* `ExchangeOrderDeposit`
+* `Deposit`                 `存款`
+* `Withdraw`                `提现`
+* `RealisedPNL`             `已结盈亏`
+* `Commission`              `佣金`
+* `Refund`                  `退款`
+* `Prize`                   `赠金`
+* `ExchangeOrderWithdraw`   `资产兑换(扣钱)`
+* `ExchangeOrderDeposit`    `资产兑换(加钱)`
 
 #### Withdraw status (`status`)
-* `ToBeConfirmed`
-* `UnderReview`
-* `Pending` - Pending transfer
-* `Success`
-* `CancelByUser`
-* `Reject`
-* `Expire`
+* `ToBeConfirmed`   - `待确认`
+* `UnderReview`     -`复核中`
+* `Pending`         -`待转账`
+* `Success`         -`成功`
+* `CancelByUser`    -`由用户取消`
+* `Reject`          -`被拒绝`
+* `Expire`          -`过期`
 
 
 #### Order type (`order_type`)
-* `Limit`
-* `Market`
+* `Limit`   -`限价单`
+* `Market`  -`市价单`
 
 #### Quantity (`qty`)
-* Maximum quantity of 1 million (`1000000`)
-* Must be an integer - no decimals, only a whole number of USD contracts
-  * `40` - allowed
-  * `30.5` - illegal
+* 最大为1百万 (`1000000`)
+* 只能为整数
+  * `40` - 合法
+  * `30.5` - 非法
 
 #### Price (`price`)
-* Active order
-  * Must be an increment of that market's `tick_size`
-    * Use modulo(`%`) to calculate whether or not a price will be accepted, like so:
+* 活跃订单
+  * 必须为合约最小变动价格的整数倍 `tick_size`
+    * 使用取余符号(%), 来计算价格是否合法，如:
       ```js
       IF price % tick_size = 0
-        // send request
+        // 发送订单
       ELSE
-        // do not send request as the price will not be accepted by the system
+        // 不会发送订单，因为价格将不被系统接受
       ```
-    * Current symbol information (like tick sizes) can be found here: [https://api.bybit.com/v2/public/symbols](https://api.bybit.com/v2/public/symbols)
-  * Must be less than 1 million (`1000000`)
-  * If the user has no open position then the price must be greater than 10% of the market price
-    * For example, if the current market price (last price) is `10314`, then the absolute minimum the price may be is `1031.5`. It may not be `1031` or below.
-    * In pseudocode (assuming the price is an increment of 0.5):
+    * 当前合约信息可以参考: [https://api.bybit.com/v2/public/symbols](https://api.bybit.com/v2/public/symbols)
+  * 最大为1百万 (`1000000`)
+  * 如果用户没有未平仓，则价格必须大于市场价格的10%
+    * 如, 若当前市场价(last price) 为 `10314`, 那么下单价格的最小值为 `1031.5`. 
+    * 伪代码(假设价格是0.5的增量):
       ```js
       IF price > (last_price * 0.1)
-        // send request
+        // 发送订单
       ELSE
-        // do not send request as the price will not be accepted by the system
+        // 不会发送订单，因为价格将不被系统接受
       ```
-  * If the user holds a position, the order price must be better than the liquidation price.
-    * For example, if the liquidation price of an open long position is `5176.5` then the price may be a minimum of `5177`. In the case of a short position the price must be less than the liquidation price.
-* Conditional order
-  * Must be equal to order greater than `1`
+  * 如果已持有仓位，那么价格必须高于强平价格
+    * 如, 若多仓的强平价格为 `5176.5` 那么价格最小为 `5177`. 在做空的情况下，价格必须低于强平价格。
+* 条件单
+  * 必须大于等于 `1`
 
-#### Time in force (`time_in_force`)
-* `GoodTillCancel`
-* `ImmediateOrCancel`
-* `FillOrKill`
-* `PostOnly`
-* `""`
-  * If and only if the user is placing a market order
+#### [Time in force](https://help.bybit.com/hc/en-us/articles/360007211974-Time-in-Force) (`time_in_force`) 
+* `GoodTillCancel`      `挂单直到成交`
+* `ImmediateOrCancel`   `下单后任何未完成部分立即被取消`
+* `FillOrKill`          `订单要么完全成交要么取消`
+* `PostOnly`            `只挂单`
+* `""`                  `当且仅当市价单时为空`
 
 #### Trigger price type (`trigger_by`)
-* `LastPrice`
-* `IndexPrice`
-* `MarkPrice`
+* `LastPrice`       `市场价格`
+* `IndexPrice`      `指数价格`
+* `MarkPrice`       `标记价格`
 
 #### Order status (`order_status`)
-* `Created`
-* `New`
-* `PartiallyFilled`
-* `Filled`
-* `Cancelled`
-* `Rejected`
+* `Created`         `订单待确认`
+* `New`             `订单已确认`
+* `PartiallyFilled` `部分成交`
+* `Filled`          `全部成交`
+* `Cancelled`       `已取消`
+* `Rejected`        `订单被拒绝`
 
 #### Order (`order`)
 * __NOTE: currently broken for both get conditional order and get active order__
-* This is for sorting the orders by creation date
-* `desc` (default)
-* `asc`
-
-#### Order status (`order_status`)
-* Filter fetched orders by their order statuses
-* To filter by multiple statuses, separate with a comma like so: `Filled,New`
-* `Created`
-* `Rejected`
-* `New`
-* `PartiallyFilled`
-* `Filled`
-* `Cancelled`
+* `订单排序选项`
+* `desc`    `降序排列`(default)
+* `asc`     `升序排列`
