@@ -226,33 +226,36 @@
 
 ```js
 
-   {
-       'ret_code':0   //Error code - True
-       'ret_msg':'ok' //Error message
-       'ext_code':''  ,
-       'result':{
-           'order_id': 'string',              //Unique order ID
-           'user_id': 0,                      //User ID
-           'symbol': 'string',                //Contract type
-           'side': 'string',                  //Side
-           'order_type': 'string',            //Order type
-           'price': 0,                        //Order price
-           'qty': 0,                          //Order quantity
-           'time_in_force': 'string',         //Time in force
-           'order_status': 'string',          //Order status: Created: order created; Rejected: order rejected; New: order pending; PartiallyFilled: order filled partially; Filled: order filled fully, Cancelled: order cancelled
-           'last_exec_time': 0.000000,        //Last execution time
-           'last_exec_price': 0,              //Last execution price
-           'leaves_qty': 0,                   //Remaining order quantity
-           'cum_exec_qty': 0,                 //Accumulated execution quantity
-           'cum_exec_value': 0,               //Accumulated execution value
-           'cum_exec_fee': 0,                 //Accumulated execution fee
-           'reject_reason': 'string',         //Reason for rejection
-           'order_link_id': 'string',         //Agency customized order ID
-           'created_at':'2018-10-15T04:12:19.000Z',
-           'updated_at':'2018-10-15T04:12:19.000Z',
-       },
-       'time_now':'1539778407.210858',    //UTC timestamp
-   }
+	{
+	  "ret_code": 0,
+	  "ret_msg": "OK",
+	  "ext_code": "",
+	  "ext_info": "",
+	  "result": {
+	    "user_id": 160744,
+	    "symbol": "BTCUSD",
+	    "side": "Sell",
+	    "order_type": "Limit",
+	    "price": "8083",
+	    "qty": 10,
+	    "time_in_force": "GoodTillCancel",
+	    "order_status": "New",
+	    "ext_fields": {
+	      "o_req_num": -308787,
+	      "xreq_type": "x_create",
+	      "xreq_offset": 4154640
+	    },
+	    "leaves_qty": 10,
+	    "leaves_value": "0.00123716",
+	    "cum_exec_qty": 0,
+	    "reject_reason": "",
+	    "order_link_id": "",
+	    "created_at": "2019-10-21T07:28:19.396246Z",
+	    "updated_at": "2019-10-21T07:28:19.396246Z",
+	    "order_id": "efa44157-c355-4a98-b6d6-1d846a936b93"
+	  },
+	  "time_now": "1571651135.291930"
+	}
 
 ```
 
