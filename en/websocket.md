@@ -99,7 +99,7 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 
 ### Public Topic
 * ~~[orderBook25](#orderBook25) `// OrderBook of 25 depth per side`~~  -----It's deprecated.The following V2 version [orderBookL2_25](#orderBook25_v2) is recommended to use
-* [kline](#kline) `// Candlestick chart`
+* [kline](#kline)  **Update** `// Candlestick chart`
 * [trade](#trade) `// Real-time trading information`
 * [insurance](#insurance) `// Daily insurance fund update`
 * ~~[instrument](#instrument) `// Latest information for symbol`~~  -----It's deprecated. The following v2 version [instrument_info](#instrument_info) is recommended to use
@@ -144,8 +144,8 @@ ws.send('{"op": "subscribe", "args": ["orderBook25.BTCUSD"]}');
 * Currently supported interval
 * 1m 3m 5m 15m 30m
 * 1h 2h 3h 4h 6h
-* 1d 3d
-* 1w 2w
+* 1d
+* 1w
 * 1M
 ```js
 ws.send('{"op":"subscribe","args":["kline.BTCUSD.1m"]}');
@@ -154,7 +154,6 @@ ws.send('{"op":"subscribe","args":["kline.BTCUSD.1m"]}');
 {
    "topic":"kline.BTCUSD.1m",
    "data":{
-       "id":563,
        "symbol":"BTCUSD",
        "open_time":1539918000,
        "open":5900,
