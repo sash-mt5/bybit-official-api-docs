@@ -48,6 +48,14 @@ var ws = new WebSocket("wsurl")
 ws.send('{"op":"auth","args":["{api_key}","{expires}","{signature}"]}');
 ```
 
+### <span id="signature-algorithm">签名算法示例</span>
+
+* [C#](example/Encryption.cs)
+* [Python](example/Encryption.py)
+* [C++](example/Encryption.cpp)
+* [Go](example/Encryption.go)
+
+
 ### 如何发送业务心跳包
 连接建立后，通过发送json格式的心跳包来进行心跳探测,具体格式如下
 ```js

@@ -44,7 +44,7 @@ sign | signature message |  string | yes | no | The signature message which is g
 var param_str = 'api_key=B2Rou0PLPpGqcU0Vu2&leverage=100&symbol=BTCUSD&timestamp=1542434791000';
 ```
 
-2. Sign the parameters string.
+2. Sign the parameters string. [Signature Algorithm Example](#signature-algorithm)
 ```js
 var secret = 't7T0YlFnYXk0Fx3JswQsDrViLg1Gh3DUU5Mr';
 var sign = hex(HMAC_SHA256($secret, $param_str));
@@ -91,7 +91,8 @@ ext_code | external code error| null
 result | refer to each API|
 rate_limit_status | Number of remaining calls in current period (1 minute)
 
-### Example of signature algorithm
+
+### <span id="signature-algorithm">Example of signature algorithm</span>
 
 * [C#](/en/example/Encryption.cs)
 * [Python](/en/example/Encryption.py)
