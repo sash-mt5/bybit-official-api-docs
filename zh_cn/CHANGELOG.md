@@ -1,4 +1,10 @@
 <hr>
+## 2019-10-30
+### rest api
+- [更新频率限制](./rest_api_sign.md#rest-rate-limit)[更新]
+	- 频率限制精确到毫秒
+	- 细化接口的频率限制
+	- 新增字段rate_limit_reset_ms、rate_limit
 ## 2019-11-03
 
 ### rest api
@@ -6,27 +12,8 @@
     - 新增额外字段
     - 更新ips字段返回内容
 <hr>
-
-## 2019-10-26
-
-### Websocket API
-- [Kline](./websocket.md#kline) [更新]
-	- 删除了`id`字段
-	- 删除了 `三日线`-`3d` `两周线`-`2w`两种类型的K线
-	- 优化了逻辑，Kline topic将提供更精准的数据
-
-<hr>
-
-## 2019-10-31
-
-### klineV2 topic
-- [klineV2](./websocket.md#klineV2) [新增]
-
-
-<hr>
-
 ## 2019-10-22
-
+<hr>
 ### rest api
 - [实时查询活动单信息](./rest_api.md#v2-private-order) [新增]
 
