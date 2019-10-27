@@ -93,6 +93,8 @@ rate_limit_status | Number of remaining calls in current period (1 minute)
 
 ### <span id="signature-algorithm">Example of signature algorithm</span>
 
+### <span id="signature-algorithm">Example of signature algorithm</span>
+
 * [C#](/en/example/Encryption.cs)
 * [Python](/en/example/Encryption.py)
 * [C++](/en/example/Encryption.cpp)
