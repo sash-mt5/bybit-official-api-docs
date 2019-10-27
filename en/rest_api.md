@@ -1,3 +1,11 @@
+### Base Endpoint
+
+* For testnet
+https://api-testnet.bybit.com
+
+* For mainnet
+https://api.bybit.com
+
 ### Common
 
 * [Server time](#open-apiservertimeget)
@@ -126,13 +134,6 @@
 ##### Method
 > GET ```/open-api/api-key```
 
-##### URL
-> For Testnet:
-> [https://api-testnet.bybit.com/open-api/api-key](https://api-testnet.bybit.com/open-api/api-key)
-
-> For Mainnet:
-> [https://api.bybit.com/open-api/api-key](https://api.bybit.com/open-api/api-key)
-
 #### Request Parameters
 
 |parameter|required|type|comments|
@@ -198,13 +199,6 @@
 ##### Method
 > POST ```/open-api/order/create```
 
-##### URL
-> For Testnet:
-> [https://api-testnet.bybit.com/open-api/order/create](https://api-testnet.bybit.com/open-api/order/create)
-
-> For Mainnet:
-> [https://api.bybit.com/open-api/order/create](https://api.bybit.com/open-api/order/create)
-
 #### Request Parameters
 
 |parameter|required|type|comments|
@@ -213,7 +207,7 @@
 |symbol |true |string |Contract type.    |
 |order_type |true |string |Active order type   |
 |qty |true |integer |Order quantity. |
-|price |true |number |Order price.  |
+|price |false |number |Order price. Required if you make limit price order |
 |time_in_force |true |string |Time in force |
 |take_profit |false |number |take profit price|
 |stop_loss |false |number |stop loss price|
@@ -272,13 +266,6 @@
 ##### Method
 > GET ```/open-api/order/list```
 
-
-##### URL
-> For Testnet:
-> [https://api-testnet.bybit.com/open-api/order/list](https://api-testnet.bybit.com/open-api/order/list)
-
-> For Mainnet:
-> [https://api.bybit.com/open-api/order/list](https://api.bybit.com/open-api/order/list)
 
 #### Request parameters
 
@@ -346,13 +333,6 @@
 ##### Method
 > POST ```/open-api/order/cancel```
 
-##### URL
-> For Testnet
-> [https://api-testnet.bybit.com/open-api/order/cancel](https://api-testnet.bybit.com/open-api/order/cancel)
-
-> For Mainnet
-> [https://api.bybit.com/open-api/order/cancel](https://api.bybit.com/open-api/order/cancel)
-
 ####  Request Parameters
 
 |parameters|required|type|comments|
@@ -412,13 +392,6 @@
 ##### Method
 > POST ```/open-api/order/replace```
 
-##### URL
-> For Testnet
-> [https://api-testnet.bybit.com/open-api/order/cancel](https://api-testnet.bybit.com/open-api/order/replace)
-
-> For Mainnet
-> [https://api.bybit.com/open-api/order/cancel](https://api-testnet.bybit.com/open-api/order/replace)
-
 ####  Request Parameters
 
 |parameters|required|type|comments|
@@ -454,12 +427,6 @@
 ##### Method
 > GET `/v2/private/order`
 
-##### URL
-> For Testnet:
-> https://api-testnet.bybit.com/v2/private/order
-
-> For Mainnet:
-> https://api.bybit.com/v2/private/order
 
 #### Request Parameters
 
@@ -533,13 +500,6 @@
 ##### Method
 > POST ```/open-api/stop-order/create```
 
-##### URL
-> For Testnet
-> [https://api-testnet.bybit.com/open-api/stop-order/create](https://api-testnet.bybit.com/open-api/stop-order/create)
-
-> For Mainnet
-> [https://api.bybit.com/open-api/stop-order/create](https://api.bybit.com/open-api/stop-order/create)
-
 #### Request Parameters
 
 
@@ -549,7 +509,7 @@
 |symbol |true |string |Contract type.    |
 |order_type |true |string |Conditional order type. |
 |qty |true |integer |Order quantity. |
-|price| true | number | Execution price for conditional order|
+|price| false | number | Execution price for conditional order. Required if you make limit price order|
 |base_price |true |number | It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order. |
 |stop_px | true | number | Trigger price |
 |time_in_force |true |string |Time in force |
@@ -598,13 +558,6 @@
 
 ##### Method
 > GET ```/open-api/stop-order/list```
-
-##### URL
-> For Testnet
-> [https://api-testnet.bybit.com/open-api/stop-order/list](https://api-testnet.bybit.com/open-api/stop-order/list)
-
-> For Mainnet
-> [https://api.bybit.com/open-api/stop-order/list](https://api.bybit.com/open-api/stop-order/list)
 
 #### Request Parameters
 
@@ -667,13 +620,6 @@
 ##### Method
 > POST ```/open-api/stop-order/cancel```
 
-##### URL
-> For Testnet
-> [https://api-testnet.bybit.com/open-api/stop-order/cancel](https://api-testnet.bybit.com/open-api/stop-order/cancel)
-
-> For Mainnet
-> [https://api.bybit.com/open-api/stop-order/cancel](https://api.bybit.com/open-api/stop-order/cancel)
-
 #### Request Parameters
 
 |parameter|required|type | comments|
@@ -728,13 +674,6 @@
 ##### Method
 > POST ```/open-api/stop-order/replace```
 
-##### URL
-> For Testnet
-> [https://api-testnet.bybit.com/open-api/order/cancel](https://api-testnet.bybit.com/open-api/stop-order/replace)
-
-> For Mainnet
-> [https://api.bybit.com/open-api/order/cancel](https://api.bybit.com/open-api/stop-order/replace)
-
 ####  Request Parameters
 
 |parameters|required|type|comments|
@@ -772,13 +711,6 @@
 
 ##### Method
 > GET ```/user/leverage```
-
-##### URL
- > For Testnet
-> [https://api-testnet.bybit.com/user/leverage](https://api-testnet.bybit.com/user/leverage)
-
-> For Mainnet
-> [https://api.bybit.com/user/leverage](https://api.bybit.com/user/leverage)
 
 #### Request Parameters
 
@@ -826,13 +758,6 @@
 ##### Method
 > POST ```/user/leverage/save```
 
-##### URL
-> For Testnet
-> [https://api-testnet.bybit.com/user/leverage/save](https://api-testnet.bybit.com/user/leverage/save)
-
-> For Mainnet
-> [https://api.bybit.com/user/leverage/save](https://api.bybit.com/user/leverage/save)
-
 #### Request Parameters
 
 |parameter|required|type|comments|
@@ -865,13 +790,6 @@
 
 ##### Method
 > GET ```/position/list```
-
-##### URL
-> For Testnet
-> [https://api-testnet.bybit.com/position/list](https://api-testnet.bybit.com/position/list)
-
-> For Mainnet
-> [https://api.bybit.com/position/list](https://api.bybit.com/position/list)
 
 #### Request Parameters
 
@@ -938,13 +856,6 @@
 ##### Method
 > POST ```/position/change-position-margin```
 
-##### URL
-> For Testnet
-> [https://api-testnet.bybit.com/position/change-position-margin](https://api-testnet.bybit.com/position/change-position-margin)
-
-> For Mainnet
-> [https://api.bybit.com/position/change-position-margin](https://api.bybit.com/position/change-position-margin)
-
 #### Request Parameters
 
 |parameter|required|type|comments|
@@ -977,13 +888,6 @@
 
 ##### Method
 > POST ```/open-api/position/trading-stop```
-
-##### URL
-> For Testnet
-> [https://api-testnet.bybit.com/open-api/position/trading-stop](https://api-testnet.bybit.com/open-api/position/trading-stop)
-
-> For Mainnet
-> [https://api.bybit.com/open-api/position/trading-stop](https://api.bybit.com/open-api/position/trading-stop)
 
 #### Request Parameters
 
@@ -1052,13 +956,6 @@
 ##### Method
 > GET ```/open-api/wallet/fund/records```
 
-##### URL
-> For Testnet
-> [https://api-testnet.bybit.com/open-api/wallet/fund/records](https://api-testnet.bybit.com/open-api/wallet/fund/records)
-
-> For Mainnet
-> [https://api.bybit.com/open-api/wallet/fund/records](https://api.bybit.com/open-api/wallet/fund/records)
-
 #### Request Parameters
 
 |parameter|required|type|comments|
@@ -1111,13 +1008,6 @@
 ##### Method
 > GET ```/open-api/wallet/withdraw/list```
 
-##### URL
-> For Testnet
-> [https://api-testnet.bybit.com/open-api/wallet/withdraw/list](https://api-testnet.bybit.com/open-api/wallet/withdraw/list)
-
-> For Mainnet
-> [https://api.bybit.com/open-api/wallet/withdraw/list](https://api.bybit.com/open-api/wallet/withdraw/list)
-
 #### Request Parameters
 
 |parameter|required|type|comments|
@@ -1169,13 +1059,6 @@
 ##### Method
 > GET ```/open-api/funding/prev-funding-rate```
 
-##### URL
-> For Testnet
-> [https://api-testnet.bybit.com/open-api/funding/prev-funding-rate](https://api-testnet.bybit.com/open-api/funding/prev-funding-rate)
-
-> For Mainnet
-> [https://api.bybit.com/open-api/funding/prev-funding-rate](https://api.bybit.com/open-api/funding/prev-funding-rate)
-
 #### Request Parameters
 
 |parameter|required|type|comments|
@@ -1215,13 +1098,6 @@
 
 ##### Method
 > GET ```/open-api/funding/prev-funding```
-
-##### URL
-> For Testnet
-> [https://api-testnet.bybit.com/open-api/funding/prev-funding](https://api-testnet.bybit.com/open-api/funding/prev-funding)
-
-> For Mainnet
-> [https://api.bybit.com/open-api/funding/prev-funding](https://api.bybit.com/open-api/funding/prev-funding)
 
 #### Request Parameters
 
@@ -1263,13 +1139,6 @@
 ##### Method
 > GET ```/open-api/funding/predicted-funding```
 
-##### URL
-> Testnet:
-> [https://api-testnet.bybit.com/open-api/funding/predicted-funding](https://api-testnet.bybit.com/open-api/funding/predicted-funding)
-
-> Mainnet:
-> [https://api.bybit.com/open-api/funding/predicted-funding](https://api.bybit.com/open-api/funding/predicted-funding)
-
 #### Request Parameters
 
 |parameter|required|type|comments|
@@ -1305,13 +1174,6 @@
 
 ##### Method
 > GET ```/v2/private/execution/list```
-
-##### URL
-> Testnet:
-> [https://api-testnet.bybit.com/v2/private/execution/list](https://api-testnet.bybit.com/v2/private/execution/list)
-
-> Mainnet:
-> [https://api.bybit.com/v2/private/execution/list](https://api.bybit.com/v2/private/execution/list)
 
 #### Request parameters
 
@@ -1375,13 +1237,6 @@
 ##### Method
 > GET ```/v2/public/orderBook/L2```
 
-##### URL
-> For Testnet:
-> [https://api-testnet.bybit.com/v2/public/orderBook/L2](https://api-testnet.bybit.com/v2/public/orderBook/L2)
-
-> For Mainnet:
-> [https://api.bybit.com/v2/public/orderBook/L2](https://api.bybit.com/v2/public/orderBook/L2)
-
 #### Request parameters
 
 |parameters|required|type|comments|
@@ -1426,13 +1281,6 @@
 
 ##### Method
 > GET ```/v2/public/tickers```
-
-##### URL
-> For Testnet:
-> [https://api-testnet.bybit.com/v2/public/tickers](https://api-testnet.bybit.com/v2/public/tickers)
-
-> For Mainnet:
-> [https://api.bybit.com/v2/public/tickers](https://api.bybit.com/v2/public/tickers)
 
 #### Request parameters
 
