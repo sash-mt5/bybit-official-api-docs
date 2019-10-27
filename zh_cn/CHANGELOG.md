@@ -1,4 +1,10 @@
 <hr>
+## 2019-10-30
+### rest api
+- [更新频率限制](./rest_api_sign.md#rest-rate-limit)[更新]
+	- 频率限制精确到毫秒
+	- 细化接口的频率限制
+	- 新增字段rate_limit_reset_ms、rate_limit
 ## 2019-11-03
 
 ### rest api
