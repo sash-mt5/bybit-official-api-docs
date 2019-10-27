@@ -152,8 +152,6 @@ result | 不同业务接口返回与其对应的数据 |
 
 ### <span id="signature-algorithm">签名算法示例</span>
 
-### <span id="signature-algorithm">签名算法示例</span>
-
 * [C#](example/Encryption.cs)
 * [Python](example/Encryption.py)
 * [C++](example/Encryption.cpp)
