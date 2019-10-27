@@ -1,5 +1,15 @@
 <hr>
 
+## 2019-10-26
+
+### Websocket API
+- [Kline](./websocket.md#kline) [更新]
+	- 删除了`id`字段
+	- 删除了 `三日线`-`3d` `两周线`-`2w`两种类型的K线
+	- 优化了逻辑，Kline topic将提供更精准的数据
+
+<hr>
+
 ## 2019-10-22
 
 ### rest api

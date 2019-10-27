@@ -106,7 +106,7 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 
 ### 公共类topic
 * ~~[orderBook25](#orderBook25) `// 25档orderBook`~~ -----这是过时的，推荐使用V2版本的[orderBookL2_25](#orderBook25_v2)
-* [kline](#kline) `// K线`
+* [kline](#kline)  **有更新** `// K线`
 * [trade](#trade) `// 实时交易`
 * [insurance](#insurance) `// 每日保险基金更新`
 * ~~[instrument](#instrument) `// 产品最新信息`~~ -----这是过时的，推荐使用V2版本的[instrument_info](#instrument_info)
@@ -151,8 +151,8 @@ ws.send('{"op": "subscribe", "args": ["orderBook25.BTCUSD"]}');
 * 目前支持的interval
 * 1m 3m 5m 15m 30m
 * 1h 2h 3h 4h 6h
-* 1d 3d
-* 1w 2w
+* 1d
+* 1w
 * 1M
 ```js
 ws.send('{"op":"subscribe","args":["kline.BTCUSD.1m"]}');
@@ -161,7 +161,6 @@ ws.send('{"op":"subscribe","args":["kline.BTCUSD.1m"]}');
 {
     "topic":"kline.BTCUSD.1m",
     "data":{
-        "id":563,
         "symbol":"BTCUSD",
         "open_time":1539918000,
         "open":5900,
