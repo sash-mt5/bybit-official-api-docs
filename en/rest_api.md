@@ -1,9 +1,9 @@
 ### Base Endpoint
 
-* For testnet
+* Testnet:
 https://api-testnet.bybit.com
 
-* For mainnet
+* Mainnet:
 https://api.bybit.com
 
 ### Common
@@ -90,17 +90,9 @@ https://api.bybit.com
 
 > Get bybit server time。
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > GET ```/v2/public/time```
-
-##### URL
-> For Testnet:
-> [https://api-testnet.bybit.com/v2/public/time](https://api-testnet.bybit.com/v2/public/time)
-
-> For Mainnet:
-> [https://api.bybit.com/v2/public/time](https://api.bybit.com/v2/public/time)
 
 #### Request Parameters
 
@@ -129,9 +121,8 @@ https://api.bybit.com
 
 > Get User API key Info。
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > GET ```/open-api/api-key```
 
 #### Request Parameters
@@ -194,9 +185,8 @@ https://api.bybit.com
 >    * 'Created' indicates the order has been accepted by the system but not yet entered into the orderbook
 >    * 'New' indicates the order has entered into the orderbook.
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > POST ```/open-api/order/create```
 
 #### Request Parameters
@@ -261,9 +251,8 @@ https://api.bybit.com
 
 > Order creation/cancellation is asynchronous.If you want real-time information about an order, you can call [Real-time query Active Order information](#v2-private-order)
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > GET ```/open-api/order/list```
 
 
@@ -328,9 +317,8 @@ https://api.bybit.com
 
 >You may cancel active order that are unfilled and partially filled. Fully filled order cannot be cancelled.
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > POST ```/open-api/order/cancel```
 
 ####  Request Parameters
@@ -387,9 +375,8 @@ https://api.bybit.com
 > Please note that only orders that are unfilled and partially filled can be modified by the replace-order api
 
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > POST ```/open-api/order/replace```
 
 ####  Request Parameters
@@ -422,9 +409,8 @@ https://api.bybit.com
 
 > Query real-time active order information
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > GET `/v2/private/order`
 
 
@@ -495,9 +481,8 @@ https://api.bybit.com
 
 >Note: Take profit/Stop loss is not supported in placing conditional orders. One can only use these 2 functions when placing active orders. Moreover, each account can hold up to 10 conditional orders yet to be filled entirely simultaneously.
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > POST ```/open-api/stop-order/create```
 
 #### Request Parameters
@@ -554,9 +539,8 @@ https://api.bybit.com
 
 > Get my conditional order list。
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > GET ```/open-api/stop-order/list```
 
 #### Request Parameters
@@ -615,9 +599,8 @@ https://api.bybit.com
 
 >You may cancel all untriggered conditional orders. Essentially, after a conditional order is triggered, it will become an active order. So, when a conditional order is triggered, cancellation has to be done through the active order port for all unfilled or partial filled active order. Similarly, order that has been fully filled cannot be cancelled.
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > POST ```/open-api/stop-order/cancel```
 
 #### Request Parameters
@@ -669,9 +652,8 @@ https://api.bybit.com
 > Please note that you can only modify untriggered conditional order.
 
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > POST ```/open-api/stop-order/replace```
 
 ####  Request Parameters
@@ -707,9 +689,8 @@ https://api.bybit.com
 
 > Get user leverage
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > GET ```/user/leverage```
 
 #### Request Parameters
@@ -753,9 +734,8 @@ https://api.bybit.com
 
 > Change user leverage
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > POST ```/user/leverage/save```
 
 #### Request Parameters
@@ -786,9 +766,8 @@ https://api.bybit.com
 
 > Get my position list
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > GET ```/position/list```
 
 #### Request Parameters
@@ -851,9 +830,8 @@ https://api.bybit.com
 
 > Update margin
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > POST ```/position/change-position-margin```
 
 #### Request Parameters
@@ -884,9 +862,8 @@ https://api.bybit.com
 
 > Set Trading-Stop Condition
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > POST ```/open-api/position/trading-stop```
 
 #### Request Parameters
@@ -951,9 +928,8 @@ https://api.bybit.com
 
 > Get wallet fund records
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > GET ```/open-api/wallet/fund/records```
 
 #### Request Parameters
@@ -1003,9 +979,8 @@ https://api.bybit.com
 
 > Get withdraw records
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > GET ```/open-api/wallet/withdraw/list```
 
 #### Request Parameters
@@ -1054,9 +1029,8 @@ https://api.bybit.com
 > Funding rate is generated every 8 hours at 00:00 UTC, 08:00 UTC and 16:00 UTC.
 > If it's 12:00 UTC now, what you will get is the funding rate generated at 08:00 UTC.
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > GET ```/open-api/funding/prev-funding-rate```
 
 #### Request Parameters
@@ -1094,9 +1068,8 @@ https://api.bybit.com
 > For example, at 16:00, the settlement is based on the fund rate generated at 8:00.
 > The fund rate generated at 16:00 will be used at 0:00 on the next day.
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > GET ```/open-api/funding/prev-funding```
 
 #### Request Parameters
@@ -1134,9 +1107,8 @@ https://api.bybit.com
 
 > Get predicted funding rate and funding fee
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > GET ```/open-api/funding/predicted-funding```
 
 #### Request Parameters
@@ -1170,9 +1142,8 @@ https://api.bybit.com
 
 > Get user's trade records
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > GET ```/v2/private/execution/list```
 
 #### Request parameters
@@ -1232,9 +1203,8 @@ https://api.bybit.com
 
 > Response is in the snapshot format
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > GET ```/v2/public/orderBook/L2```
 
 #### Request parameters
@@ -1277,9 +1247,8 @@ https://api.bybit.com
 
 > Get the latest information for symbol
 
-#### HTTP Request
+#### HTTP Request Method
 
-##### Method
 > GET ```/v2/public/tickers```
 
 #### Request parameters
