@@ -1,3 +1,12 @@
+### REST 根URL
+
+* 测试网
+https://api-testnet.bybit.com
+
+* 主网
+https://api.bybit.com
+
+
 ### 通用请求
 
 * [获取服务器时间](#open-apiservertimeget)
@@ -78,64 +87,18 @@
 
 
 -----------
-## <span id="open-apiservertimeget">Server time</span>
-#### API Function
+## <span id="open-apiservertimeget">服务器时间</span>
+#### 接口功能
 
-> Get bybit server time。
+> 获取服务器时间。
 
-#### HTTP Request
+#### HTTP请求方式
 
-##### Method
-> GET ```/v2/public/time```
-
-##### URL
-> For Testnet:
-> [https://api-testnet.bybit.com/v2/public/time](https://api-testnet.bybit.com/v2/public/time)
-
-> For Mainnet:
-> [https://api.bybit.com/v2/public/time](https://api.bybit.com/v2/public/time)
+> GET   /v2/public/time
 
 #### Request Parameters
 
-|parameter|required|type|comments|
-|:----- |:-------|:-----|----- |
-
-
-#### Response example
-
-```js
-
-   {
-       'ret_code':0   //Error code - True
-       'ret_msg':'ok' //Error message
-       'ext_code':''  ,
-       'result':{
-       },
-       'time_now':'1539778407.210858',    //UTC timestamp, used for time calibration
-   }
-
-```
------------
-## <span id="open-apikeyget">服务器时间</span>
-#### API Function
-
-> Get bybit server time。
-
-#### HTTP Request
-
-##### Method
-> GET ```/v2/public/time```
-
-##### URL
-> For Testnet:
-> [https://api-testnet.bybit.com/v2/public/time](https://api-testnet.bybit.com/v2/public/time)
-
-> For Mainnet:
-> [https://api.bybit.com/v2/public/time](https://api.bybit.com/v2/public/time)
-
-#### Request Parameters
-
-|parameter|required|type|comments|
+|参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
 
 
@@ -159,19 +122,9 @@
 
 > 获取账户API密钥信息
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/api-key
-
-// 主网地址
-https://api.bybit.com/open-api/api-key
-```
-
 #### HTTP请求方式
 
-> get
+> GET   /open-api/api-key
 
 
 #### 请求参数
@@ -232,19 +185,9 @@ https://api.bybit.com/open-api/api-key
 >    * 'Created' 意味着Order以及被服务器接受，但还没有进入Order book
 >    * 'New' 意味着Order以及进入Order book
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/order/create
-
-// 主网地址
-https://api.bybit.com/open-api/order/create
-```
-
 #### HTTP请求方式
 
-> post
+> POST  /open-api/order/create
 
 #### 请求参数
 
@@ -254,7 +197,7 @@ https://api.bybit.com/open-api/order/create
 |symbol |true |string |产品类型, 有效选项:BTCUSD, ETHUSD (BTCUSD ETHUSD )    |
 |order_type |true |string |委托单价格类型, 有效选项:Limit, Market (Limit Market )    |
 |qty |true |integer |委托数量, 单比最大1百万 |
-|price |true |number |委托价格, 在没有仓位时，做多的委托价格需高于市价的10%、低于1百万。如有仓位时则需优于强平价。单笔价格增减最小单位为0.5。 |
+|price |false |number |委托价格, 在没有仓位时，做多的委托价格需高于市价的10%、低于1百万。如有仓位时则需优于强平价。单笔价格增减最小单位为0.5。如果下限价单，则price为必输字段 |
 |time_in_force |true |string |执行策略, 有效选项:GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly    |
 |take_profit |false |number |止盈价格 |
 |stop_loss |false |number |止损价格 |
@@ -267,34 +210,36 @@ https://api.bybit.com/open-api/order/create
 
 ```js
 
-    {
-        'ret_code':0   错误码 - 正确,
-        'ret_msg':'ok' 错误消息,
-        'ext_code':''  ,
-        'result':{
-            'order_id': 'string',              UUID类型订单唯一ID
-            'user_id': 0,                      用户ID
-            'symbol': 'string',                产品类型
-            'side': 'string',                  购买方向
-            'order_type': 'string',            订单类型
-            'price': 0,                        委托价格
-            'qty': 0,                          委托数量
-            'time_in_force': 'string',         执行策略
-            'order_status': 'string',          委托状态: Created:创建订单;Rejected:订单被拒绝;New:订单待成交;PartiallyFilled:订单部分成交;Filled:订单全部成交,Cancelled:订单被取消
-            'last_exec_time': 0.000000,        最近一次成交时间
-            'last_exec_price': 0,              最近一次成交价格
-            'leaves_qty': 0,                   剩余委托数量
-            'cum_exec_qty': 0,                 累计成交数量
-            'cum_exec_value': 0,               累计成交的名义价值
-            'cum_exec_fee': 0,                 累计已成交手续费
-            'reject_reason': 'string',         被拒单的原因
-            'order_link_id': 'string',         机构自定义订单ID
-            'created_at':'2018-10-15T04:12:19.000Z',
-            'updated_at':'2018-10-15T04:12:19.000Z',
-        },
-        'time_now':'1539778407.210858',    UTC时间戳
-        'rate_limit_status': 0,            当前时间区间内(1分钟)该类型接口剩余访问次数
-    }
+	{
+	  "ret_code": 0,
+	  "ret_msg": "OK",
+	  "ext_code": "",
+	  "ext_info": "",
+	  "result": {
+	    "user_id": 160744,
+	    "symbol": "BTCUSD",
+	    "side": "Sell",
+	    "order_type": "Limit",
+	    "price": "8083",
+	    "qty": 10,
+	    "time_in_force": "GoodTillCancel",
+	    "order_status": "New",
+	    "ext_fields": {
+	      "o_req_num": -308787,
+	      "xreq_type": "x_create",
+	      "xreq_offset": 4154640
+	    },
+	    "leaves_qty": 10,
+	    "leaves_value": "0.00123716",
+	    "cum_exec_qty": 0,
+	    "reject_reason": "",
+	    "order_link_id": "",
+	    "created_at": "2019-10-21T07:28:19.396246Z",
+	    "updated_at": "2019-10-21T07:28:19.396246Z",
+	    "order_id": "efa44157-c355-4a98-b6d6-1d846a936b93"
+	  },
+	  "time_now": "1571651135.291930"
+	}
 
 ```
 
@@ -306,19 +251,10 @@ https://api.bybit.com/open-api/order/create
 
 > 创建/取消订单是异步。如果要获取订单的实时信息，可以调用接口[实时查询活动单信息](#v2-private-order)
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/order/list
-
-// 主网地址
-https://api.bybit.com/open-api/order/list
-```
 
 #### HTTP请求方式
 
-> get
+> GET   /open-api/order/list
 
 #### 请求参数
 
@@ -383,19 +319,10 @@ https://api.bybit.com/open-api/order/list
 
 > 您可以撤销未成交、部分成交的活动委托单。但全部成交的活动委托不可取消。
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/order/cancel
-
-// 主网地址
-https://api.bybit.com/open-api/order/cancel
-```
 
 #### HTTP请求方式
 
-> post
+> POST  /open-api/order/cancel
 
 #### 请求参数
 
@@ -449,17 +376,9 @@ https://api.bybit.com/open-api/order/cancel
 
 > 请注意，只有未成交或未完全成交的订单才可以被修改。
 
-#### HTTP Request
+#### HTTP请求方式
 
-##### 请求方式
-> POST 
-
-##### URL
-> 测试网地址
-> https://api-testnet.bybit.com/open-api/order/replace
-
-> 主网地址
-> https://api.bybit.com/open-api/order/replace
+> POST  /open-api/order/replace
 
 #### Request Parameters
 
@@ -492,17 +411,10 @@ https://api.bybit.com/open-api/order/cancel
 
 > 实时查询活动委托
 
-#### HTTP Request
+#### HTTP请求方式
 
-##### 请求方式
-> GET 
+> GET   /v2/private/order
 
-##### URL
-> 测试网地址
-> https://api-testnet.bybit.com/v2/private/order
-
-> 主网地址
-> https://api-testnet.bybit.com/v2/private/order
 
 #### Request Parameters
 
@@ -569,19 +481,9 @@ https://api.bybit.com/open-api/order/cancel
 
 请注意: 只允许最多创建10个条件委托单
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/stop-order/create
-
-// 主网地址
-https://api.bybit.com/open-api/stop-order/create
-```
-
 #### HTTP请求方式
 
-> post
+> POST  /open-api/stop-order/create
 
 #### 请求参数
 
@@ -591,7 +493,7 @@ https://api.bybit.com/open-api/stop-order/create
 |symbol |true |string |产品类型, 有效选项:BTCUSD, ETHUSD (BTCUSD ETHUSD )    |
 |order_type |true |string |委托单价格类型, 有效选项:Limit, Market (Limit Market )    |
 |qty |true |integer |委托数量 |
-|price |true |integer |条件委托执行价格 |
+|price |false |integer |条件委托执行价格。如果条件委托是现价单，则price为必输字段 |
 |base_price |true |integer |当前市价。用于和stop_px值进行比较，确定当前条件委托是看空到stop_px时触发还是看多到stop_px触发。主要是用来标识当前条件单预期的方向 |
 |stop_px |true |integer |条件委托下单时市价 |
 |time_in_force |true |string |执行策略, 有效选项:GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly |
@@ -637,19 +539,9 @@ https://api.bybit.com/open-api/stop-order/create
 
 > 获取我的条件委托单列表。
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/stop-order/list
-
-// 主网地址
-https://api.bybit.com/open-api/stop-order/list
-```
-
 #### HTTP请求方式
 
-> get
+> GET   /open-api/stop-order/list
 
 #### 请求参数
 
@@ -708,19 +600,10 @@ https://api.bybit.com/open-api/stop-order/list
 
 您可以撤销所有未被激活的条件委托。本质上所有条件委托在被激活后都是属于活动委托，所以条件委托一旦被激活，您需要通过调用取消活动委托接口来取消所有未成交、部分成交的活动委托单。同样全部成交的活动委托不可取消。
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/stop-order/cancel
-
-// 主网地址
-https://api.bybit.com/open-api/stop-order/cancel
-```
 
 #### HTTP请求方式
 
-> post
+> POST  /open-api/stop-order/cancel
 
 #### 请求参数
 
@@ -772,20 +655,9 @@ https://api.bybit.com/open-api/stop-order/cancel
 > 请注意，只有未触发的条件单才能被修改。
 
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/stop-order/replace
-
-// 主网地址
-https://api.bybit.com/open-api/stop-order/replace
-
-```
-
 #### HTTP请求方式
 
-> post
+> POST  /open-api/stop-order/replace
 
 #### 请求参数
 
@@ -818,19 +690,9 @@ https://api.bybit.com/open-api/stop-order/replace
 
 > 获取用户杠杆。
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/user/leverage
-
-// 主网地址
-https://api.bybit.com/user/leverage
-```
-
 #### HTTP请求方式
 
-> get
+> GET   /user/leverage
 
 #### 请求参数
 
@@ -865,19 +727,10 @@ https://api.bybit.com/user/leverage
 
 > 修改用户杠杆。
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/user/leverage/save
-
-// 主网地址
-https://api.bybit.com/user/leverage/save
-```
 
 #### HTTP请求方式
 
-> post
+> POST  /user/leverage/save
 
 #### 请求参数
 
@@ -908,19 +761,10 @@ https://api.bybit.com/user/leverage/save
 
 > 获取我的仓位列表。通过该接口可以获取当前用户的持仓信息，如持仓数量、账户余额等信息
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/position/list
-
-// 主网地址
-https://api.bybit.com/position/list
-```
 
 #### HTTP请求方式
 
-> get
+> GET   /position/list
 
 #### 请求参数
 
@@ -984,19 +828,9 @@ https://api.bybit.com/position/list
 
 > 更新保证金
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/position/change-position-margin
-
-// 主网地址
-https://api.bybit.com/position/change-position-margin
-```
-
 #### HTTP请求方式
 
-> post
+> POST  /position/change-position-margin
 
 #### 请求参数
 
@@ -1026,20 +860,9 @@ https://api.bybit.com/position/change-position-margin
 
 > 设置止盈止损
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/position/trading-stop
-
-// 主网地址
-https://api.bybit.com/open-api/position/trading-stop
-
-```
-
 #### HTTP请求方式
 
-> post
+> POST  /open-api/position/trading-stop
 
 #### 请求参数
 
@@ -1102,20 +925,9 @@ https://api.bybit.com/open-api/position/trading-stop
 
 > 获取入金记录
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/wallet/fund/records
-
-// 主网地址
-https://api.bybit.com/open-api/wallet/fund/records
-
-```
-
 #### HTTP请求方式
 
-> GET
+> GET   /open-api/wallet/fund/records
 
 #### 请求参数
 
@@ -1165,20 +977,9 @@ https://api.bybit.com/open-api/wallet/fund/records
 
 > 获取当前order book数据
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/v2/public/orderBook/L2
-
-// 主网地址
-https://api.bybit.com/v2/public/orderBook/L2
-
-```
-
 #### HTTP请求方式
 
-> GET
+> GET   /v2/public/orderBook/L2
 
 #### 请求参数
 
@@ -1222,20 +1023,9 @@ https://api.bybit.com/v2/public/orderBook/L2
 
 > 获取合约最新信息
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/v2/public/tickers
-
-// 主网地址
-https://api.bybit.com/v2/public/tickers
-
-```
-
 #### HTTP请求方式
 
-> GET
+> GET   /v2/public/tickers
 
 #### 请求参数
 
@@ -1294,20 +1084,9 @@ https://api.bybit.com/v2/public/tickers
 
 > 获取出金记录
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/wallet/withdraw/list
-
-// 主网地址
-https://api.bybit.com/open-api/wallet/withdraw/list
-
-```
-
 #### HTTP请求方式
 
-> GET
+> GET   /open-api/wallet/withdraw/list
 
 #### 请求参数
 
@@ -1360,20 +1139,9 @@ https://api.bybit.com/open-api/wallet/withdraw/list
 
 假设当前时间是12点，则返回的是8点产生的资金费率
  
-
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/funding/prev-funding-rate
-
-// 主网地址
-https://api.bybit.com/open-api/funding/prev-funding-rate
-```
-
 #### HTTP请求方式
 
-> get
+> GET   /open-api/funding/prev-funding-rate
 
 #### 请求参数
 
@@ -1412,20 +1180,9 @@ https://api.bybit.com/open-api/funding/prev-funding-rate
 
 而16点产生的资金费率则会在第二天0点结算时使用
 
-
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/funding/prev-funding
-
-// 主网地址
-https://api.bybit.com/open-api/funding/prev-funding
-```
-
 #### HTTP请求方式
 
-> get
+> GET   /open-api/funding/prev-funding
 
 #### 请求参数
 
@@ -1461,19 +1218,9 @@ https://api.bybit.com/open-api/funding/prev-funding
 
 > 查询预测资金费率和资金费用
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/funding/predicted-funding
-
-// 主网地址
-https://api.bybit.com/open-api/open-api/funding/predicted-funding
-```
-
 #### HTTP请求方式
 
-> get
+> GET   /open-api/funding/predicted-funding
 
 #### 请求参数
 
@@ -1505,19 +1252,9 @@ https://api.bybit.com/open-api/open-api/funding/predicted-funding
 
 > 获取委托单成交历史列表。
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/v2/private/execution/list
-
-// 主网地址
-https://api.bybit.com/v2/private/execution/list
-```
-
 #### HTTP请求方式
 
-> get
+> GET   /v2/private/execution/list
 
 #### 请求参数
 
@@ -1571,7 +1308,7 @@ https://api.bybit.com/v2/private/execution/list
 
 -------
 ## <span id="ENUMs">枚举类型定义</span>
-> This is a list of valid options (and rules) for the different parameters when sending a request to the API
+> 这是向API发送请求时不同参数的有效选项(和规则)列表
 #### Side (`side`)
 * `Buy`
 * `Sell`
@@ -1588,96 +1325,84 @@ https://api.bybit.com/v2/private/execution/list
 * `EOS`
 * `XRP`
 
-
 #### Wallet fund type (`wallet_fund_type`)
-* `Deposit`
-* `Withdraw`
-* `RealisedPNL`
-* `Commission`
-* `Refund`
-* `Prize`
-* `ExchangeOrderWithdraw`
-* `ExchangeOrderDeposit`
+* `Deposit`                 `存款`
+* `Withdraw`                `提现`
+* `RealisedPNL`             `已结盈亏`
+* `Commission`              `佣金`
+* `Refund`                  `退款`
+* `Prize`                   `赠金`
+* `ExchangeOrderWithdraw`   `资产兑换(扣钱)`
+* `ExchangeOrderDeposit`    `资产兑换(加钱)`
 
 #### Withdraw status (`status`)
-* `ToBeConfirmed`
-* `UnderReview`
-* `Pending` - Pending transfer
-* `Success`
-* `CancelByUser`
-* `Reject`
-* `Expire`
+* `ToBeConfirmed`   - `待确认`
+* `UnderReview`     -`复核中`
+* `Pending`         -`待转账`
+* `Success`         -`成功`
+* `CancelByUser`    -`由用户取消`
+* `Reject`          -`被拒绝`
+* `Expire`          -`过期`
 
 
 #### Order type (`order_type`)
-* `Limit`
-* `Market`
+* `Limit`   -`限价单`
+* `Market`  -`市价单`
 
 #### Quantity (`qty`)
-* Maximum quantity of 1 million (`1000000`)
-* Must be an integer - no decimals, only a whole number of USD contracts
-  * `40` - allowed
-  * `30.5` - illegal
+* 最大为1百万 (`1000000`)
+* 只能为整数
+  * `40` - 合法
+  * `30.5` - 非法
 
 #### Price (`price`)
-* Active order
-  * Must be an increment of that market's `tick_size`
-    * Use modulo(`%`) to calculate whether or not a price will be accepted, like so:
+* 活跃订单
+  * 必须为合约最小变动价格的整数倍 `tick_size`
+    * 使用取余符号(%), 来计算价格是否合法，如:
       ```js
       IF price % tick_size = 0
-        // send request
+        // 发送订单
       ELSE
-        // do not send request as the price will not be accepted by the system
+        // 不会发送订单，因为价格将不被系统接受
       ```
-    * Current symbol information (like tick sizes) can be found here: [https://api.bybit.com/v2/public/symbols](https://api.bybit.com/v2/public/symbols)
-  * Must be less than 1 million (`1000000`)
-  * If the user has no open position then the price must be greater than 10% of the market price
-    * For example, if the current market price (last price) is `10314`, then the absolute minimum the price may be is `1031.5`. It may not be `1031` or below.
-    * In pseudocode (assuming the price is an increment of 0.5):
+    * 当前合约信息可以参考: [https://api.bybit.com/v2/public/symbols](https://api.bybit.com/v2/public/symbols)
+  * 最大为1百万 (`1000000`)
+  * 如果用户没有未平仓，则价格必须大于市场价格的10%
+    * 如, 若当前市场价(last price) 为 `10314`, 那么下单价格的最小值为 `1031.5`. 
+    * 伪代码(假设价格是0.5的增量):
       ```js
       IF price > (last_price * 0.1)
-        // send request
+        // 发送订单
       ELSE
-        // do not send request as the price will not be accepted by the system
+        // 不会发送订单，因为价格将不被系统接受
       ```
-  * If the user holds a position, the order price must be better than the liquidation price.
-    * For example, if the liquidation price of an open long position is `5176.5` then the price may be a minimum of `5177`. In the case of a short position the price must be less than the liquidation price.
-* Conditional order
-  * Must be equal to order greater than `1`
+  * 如果已持有仓位，那么价格必须高于强平价格
+    * 如, 若多仓的强平价格为 `5176.5` 那么价格最小为 `5177`. 在做空的情况下，价格必须低于强平价格。
+* 条件单
+  * 必须大于等于 `1`
 
-#### Time in force (`time_in_force`)
-* `GoodTillCancel`
-* `ImmediateOrCancel`
-* `FillOrKill`
-* `PostOnly`
-* `""`
-  * If and only if the user is placing a market order
+#### [Time in force](https://help.bybit.com/hc/en-us/articles/360007211974-Time-in-Force) (`time_in_force`) 
+* `GoodTillCancel`      `挂单直到成交`
+* `ImmediateOrCancel`   `下单后任何未完成部分立即被取消`
+* `FillOrKill`          `订单要么完全成交要么取消`
+* `PostOnly`            `只挂单`
+* `""`                  `当且仅当市价单时为空`
 
 #### Trigger price type (`trigger_by`)
-* `LastPrice`
-* `IndexPrice`
-* `MarkPrice`
+* `LastPrice`       `市场价格`
+* `IndexPrice`      `指数价格`
+* `MarkPrice`       `标记价格`
 
 #### Order status (`order_status`)
-* `Created`
-* `New`
-* `PartiallyFilled`
-* `Filled`
-* `Cancelled`
-* `Rejected`
+* `Created`         `订单待确认`
+* `New`             `订单已确认`
+* `PartiallyFilled` `部分成交`
+* `Filled`          `全部成交`
+* `Cancelled`       `已取消`
+* `Rejected`        `订单被拒绝`
 
 #### Order (`order`)
 * __NOTE: currently broken for both get conditional order and get active order__
-* This is for sorting the orders by creation date
-* `desc` (default)
-* `asc`
-
-#### Order status (`order_status`)
-* Filter fetched orders by their order statuses
-* To filter by multiple statuses, separate with a comma like so: `Filled,New`
-* `Created`
-* `Rejected`
-* `New`
-* `PartiallyFilled`
-* `Filled`
-* `Cancelled`
+* `订单排序选项`
+* `desc`    `降序排列`(default)
+* `asc`     `升序排列`

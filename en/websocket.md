@@ -49,6 +49,13 @@ var ws = new WebSocket("wsurl")
 ws.send('{"op":"auth","args":["{api_key}","{expires}","{signature}"]}');
 ```
 
+### <span id="signature-algorithm">Example of signature algorithm</span>
+
+* [C#](/en/example/Encryption.cs)
+* [Python](/en/example/Encryption.py)
+* [C++](/en/example/Encryption.cpp)
+* [Go](/en/example/Encryption.go)
+
 ### How to Send The Heartbeat Packet
 After establishing the connection, one can send a heartbeat packet to confirm the connection is normal by sending a json request. The specific formats are as follows:
 ```js
@@ -99,7 +106,7 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 
 ### Public Topic
 * ~~[orderBook25](#orderBook25) `// OrderBook of 25 depth per side`~~  -----It's deprecated.The following V2 version [orderBookL2_25](#orderBook25_v2) is recommended to use
-* [kline](#kline) `// Candlestick chart`
+* [kline](#kline)  **Update** `// Candlestick chart`
 * [trade](#trade) `// Real-time trading information`
 * [insurance](#insurance) `// Daily insurance fund update`
 * ~~[instrument](#instrument) `// Latest information for symbol`~~  -----It's deprecated. The following v2 version [instrument_info](#instrument_info) is recommended to use
@@ -144,8 +151,8 @@ ws.send('{"op": "subscribe", "args": ["orderBook25.BTCUSD"]}');
 * Currently supported interval
 * 1m 3m 5m 15m 30m
 * 1h 2h 3h 4h 6h
-* 1d 3d
-* 1w 2w
+* 1d
+* 1w
 * 1M
 ```js
 ws.send('{"op":"subscribe","args":["kline.BTCUSD.1m"]}');
@@ -154,7 +161,6 @@ ws.send('{"op":"subscribe","args":["kline.BTCUSD.1m"]}');
 {
    "topic":"kline.BTCUSD.1m",
    "data":{
-       "id":563,
        "symbol":"BTCUSD",
        "open_time":1539918000,
        "open":5900,
@@ -399,19 +405,32 @@ ws.send('{"op":"subscribe","args":["position"]}')
    "action":"update",
    "data":[
        {
+           "user_id": 1,                       // user ID
            "symbol":"BTCUSD",                  // the contract for this position
-           "side":"Sell",                      // side
            "size":11,                          // the current position amount
+           "side":"Sell",                      // side
+           "position_value":0.00159252,        // positional value
            "entry_price":6907.291588174717,    // entry price
            "liq_price":7100.234,               // liquidation price
            "bust_price":7088.1234,             // bankruptcy price
-           "take_profit":0,                    // take profit price
-           "stop_loss":0,                      // stop loss price
-           "trailing_stop":0,                  // trailing stop points
-           "position_value":0.00159252,        // positional value
            "leverage":1,                       // leverage
+           "order_margin": 1,                  // order margin
+           "position_margin": 1,               // position margin
+           "available_balance": 2,             // available balance
+           "take_profit":0,                    // take profit price           
+           "tp_trigger_by": "LastPrice",       // take profit trigger price, eg: LastPrice, IndexPrice. Conditional order only
+           "stop_loss":0,                      // stop loss price
+           "sl_trigger_by": "",                // stop loss trigger price, eg: LastPrice, IndexPrice. Conditional order only
+           "realised_pnl": 0.10,               // realised PNL
+           "trailing_stop":0,                  // trailing stop points
+           "wallet_balance": 4.12,             // wallet balance
+           "risk_id": 1,                       
+           "occ_closing_fee": 0.1,             // position closing
+           "occ_funding_fee": 0.1,             // funding fee
+           "auto_add_margin":0,                // auto margin replenishment switch
+           "cum_realised_pnl": 0.12,           // Total realized profit and loss
            "position_status":"Normal",         // status of position (Normal:normal Liq:in the process of liquidation Adl:in the process of Auto-Deleveraging)
-           "auto_add_margin":0,                // Auto margin replenishment enabled (0:no 1:yes)
+                        // Auto margin replenishment enabled (0:no 1:yes)
            "position_seq":14                   // position version number
        }
    ]

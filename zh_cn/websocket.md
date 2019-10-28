@@ -48,6 +48,14 @@ var ws = new WebSocket("wsurl")
 ws.send('{"op":"auth","args":["{api_key}","{expires}","{signature}"]}');
 ```
 
+### <span id="signature-algorithm">签名算法示例</span>
+
+* [C#](example/Encryption.cs)
+* [Python](example/Encryption.py)
+* [C++](example/Encryption.cpp)
+* [Go](example/Encryption.go)
+
+
 ### 如何发送业务心跳包
 连接建立后，通过发送json格式的心跳包来进行心跳探测,具体格式如下
 ```js
@@ -98,7 +106,7 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 
 ### 公共类topic
 * ~~[orderBook25](#orderBook25) `// 25档orderBook`~~ -----这是过时的，推荐使用V2版本的[orderBookL2_25](#orderBook25_v2)
-* [kline](#kline) `// K线`
+* [kline](#kline)  **有更新** `// K线`
 * [trade](#trade) `// 实时交易`
 * [insurance](#insurance) `// 每日保险基金更新`
 * ~~[instrument](#instrument) `// 产品最新信息`~~ -----这是过时的，推荐使用V2版本的[instrument_info](#instrument_info)
@@ -143,8 +151,8 @@ ws.send('{"op": "subscribe", "args": ["orderBook25.BTCUSD"]}');
 * 目前支持的interval
 * 1m 3m 5m 15m 30m
 * 1h 2h 3h 4h 6h
-* 1d 3d
-* 1w 2w
+* 1d
+* 1w
 * 1M
 ```js
 ws.send('{"op":"subscribe","args":["kline.BTCUSD.1m"]}');
@@ -153,7 +161,6 @@ ws.send('{"op":"subscribe","args":["kline.BTCUSD.1m"]}');
 {
     "topic":"kline.BTCUSD.1m",
     "data":{
-        "id":563,
         "symbol":"BTCUSD",
         "open_time":1539918000,
         "open":5900,
@@ -397,19 +404,31 @@ ws.send('{"op":"subscribe","args":["position"]}')
     "action":"update",
     "data":[
         {
+            "user_id": 1,                       // 用户id
             "symbol":"BTCUSD",                  // 产品
-            "side":"Sell",                      // 方向
             "size":11,                          // 数量
+            "side":"Sell",                      // 方向
+            "position_value":0.00159252,        // 仓位名义价值
             "entry_price":6907.291588174717,    // 开仓价
             "liq_price":7100.234,               // 强平价
             "bust_price":7088.1234,             // 破产价
-            "take_profit":0,                    // 止盈价格
-            "stop_loss":0,                      // 止损价格
-            "trailing_stop":0,                  // 追踪止损点数
-            "position_value":0.00159252,        // 仓位名义价值
             "leverage":1,                       // 杠杆
-            "position_status":"Normal",         // 仓位状态(Normal:正常 Liq:强平中 Adl:被减仓中)
+            "order_margin": 1,                  // 委托预占用保证金
+            "position_margin": 1,               // 仓位保证金
+            "available_balance": 2,             // 可用余额
+            "take_profit":0,                    // 止盈价格
+            "tp_trigger_by": 2,                 // 由什么价格来触发止盈，如：最新价格、标记价格等; 非条件单不返回该字段
+            "stop_loss":0,                      // 止损价格
+            "sl_trigger_by": 2,                 // 由什么价格来触发止损，如：最新价格、标记价格等；非条件单不返回该字段
+            "realised_pnl": 0.10,               // 今日已结盈亏
+            "trailing_stop":0,                  // 追踪止损点数
+            "wallet_balance": 4.12,             // 账户余额
+            "risk_id": 1,                       
+            "occ_closing_fee": 0.1,             // 平仓手续费
+            "occ_funding_fee": 0.1,             // 预占用资金费用
             "auto_add_margin":0,                // 是否自动追加保证金(0:否 1:是)
+            "cum_realised_pnl": 0.12,           // Total realized profit and loss
+            "position_status":"Normal",         // 仓位状态(Normal:正常 Liq:强平中 Adl:被减仓中)
             "position_seq":14                   // 仓位版本号
         }
     ]

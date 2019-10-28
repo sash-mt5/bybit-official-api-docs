@@ -1,8 +1,26 @@
 <hr>
+
+## 2019-10-26
+
+### Websocket API
+- [Kline](./websocket.md#kline) [更新]
+	- 删除了`id`字段
+	- 删除了 `三日线`-`3d` `两周线`-`2w`两种类型的K线
+	- 优化了逻辑，Kline topic将提供更精准的数据
+
+<hr>
+
 ## 2019-10-22
 
 ### rest api
 - [实时查询活动单信息](./rest_api.md#v2-private-order) [新增]
+
+### Websocket API
+- [Topic position](./websocket.md#position) [更新]
+	- 添加了额外字段
+- [Topic trade](./websocket.md#trade) [更新]
+	- 修复重复推送交易数据的问题
+	- 现在支持在一个消息中推送多条交易
 <hr>
 
 ## 2018-11-09
