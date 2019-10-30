@@ -763,7 +763,7 @@ https://api.bybit.com
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
 |symbol |true |string |Contract type    |
-|leverage |true |string |leverage  |
+|leverage |true |string |leverage. `zero means Cross Margin mod` |
 
 
 ####  Response example
@@ -816,7 +816,7 @@ https://api.bybit.com
            'position_value': 0,    //position value
            'entry_price': 0,       //entry price
            'leverage': 1,          //user leverage
-           'auto_add_margin': 0,   //auto margin replenishment switch
+           'auto_add_margin': 0,   //1 means Cross Margin mod and 0 means 
            'position_margin': 0,   //position margin
            'liq_price': 999999,    //liquidation price
            'bust_price': 999999,   //bankruptcy price
@@ -917,7 +917,7 @@ https://api.bybit.com
            'position_value': 0,    //position value
            'entry_price': 0,       //entry price
            'leverage': 1,          //user leverage
-           'auto_add_margin': 0,   //auto margin replenishment switch
+           'auto_add_margin': 0,   //1 means Cross Margin mod and 0 means
            'position_margin': 0,   //position margin
            'liq_price': 999999,    //liquidation price
            'bust_price': 999999,   //bankruptcy price
