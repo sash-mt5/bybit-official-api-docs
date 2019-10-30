@@ -328,7 +328,8 @@ https://api.bybit.com
 
 |parameters|required|type|comments|
 |:----- |:-------|:-----|----- |
-|order_id |true |string |Your active order ID. The unique order ID returned to you when the corresponding active order was created |
+|order_id |false |string |Your active order ID. The unique order ID returned to you when the corresponding active order was created. `Required` if not pass order_link_id|
+|order_link_id |false |string |Agency customized order ID. `Required` if not pass order_id |
 |symbol |false |string |Contract type. |
 
 
@@ -421,8 +422,9 @@ https://api.bybit.com
 
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
-|order_id |true |string | Your active order ID. The unique order ID returned to you when the corresponding active order was created|
-|symbol |true |string | 	Contract type |
+|order_id |true |string | Your active order ID. The unique order ID returned to you when the corresponding active order was created. `Required` if not pass order_link_id. |
+|order_link_id |true |string | Agency customized order ID. `Required` if not pass order_id .|
+|symbol |true |string |Contract type |
 
 
 #### Response example
@@ -610,8 +612,8 @@ https://api.bybit.com
 
 |parameter|required|type | comments|
 |:----- |:-------|:-----|----- |
-|stop_order_id |true |string | Order ID. The unique order ID returned to you when the corresponding order was created. |
-
+|stop_order_id |false |string | Order ID. The unique order ID returned to you when the corresponding order was created. `Required` if not pass order_link_id|
+|order_link_id |false |string | Agency customized order ID. `Required` if not pass stop_order_id|
 
 #### Response example
 
