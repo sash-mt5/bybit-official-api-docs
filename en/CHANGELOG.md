@@ -1,5 +1,13 @@
 <hr>
 
+## 2019-10-26
+
+### Websocket API
+- [klineV2](websocket.md#klineV2) [add]
+
+
+<hr>
+
 ## 2019-10-22
 
 ### REST API
