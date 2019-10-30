@@ -24,7 +24,7 @@
 
 ### 认证
 
-在调用 API 时，需要提供 API Key 作为每个请求的身份识别，并且通过secret对请求数据加签
+在调用 API 时，需要提供 API Key 作为每个请求的身份识别，并且通过secret对请求数据加签。[签名算法](#signature-algorithm)
 
 #### 公共参数
 字段名 | 字段释义 |  字段类型 | 是否必填 | 默认值 | 说明
@@ -85,7 +85,7 @@ ext_code | 补充错误码 | null
 result | 不同业务接口返回与其对应的数据 | 
 
 
-### 签名算法示例
+### <span id="signature-algorithm">签名算法示例</span>
 
 * [C#](example/Encryption.cs)
 * [Python](example/Encryption.py)
