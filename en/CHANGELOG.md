@@ -3,10 +3,8 @@
 ## 2019-10-26
 
 ### Websocket API
-- [Kline](./websocket.md#kline) [Update]
-	- delete `id` in response
-	- delete two types `three days`-`3d` `two weeks`-`2w`
-	- the Kline data will be more accurate
+- [klineV2](websocket.md#klineV2) [add]
+
 
 <hr>
 
