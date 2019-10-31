@@ -56,7 +56,7 @@ On each request to the API, these fields are return：
       </tr>
       <tr>
         <td rowspan="3">75/min</td>
-        <td>leverage/save  </td>
+        <td>user/leverage/save  </td>
       </tr>
       <tr><td>position/change-position-margin </td></tr>
       <tr><td>position/trading-stop           </td></tr>
