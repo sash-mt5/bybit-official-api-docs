@@ -49,6 +49,14 @@ var ws = new WebSocket("wsurl")
 ws.send('{"op":"auth","args":["{api_key}","{expires}","{signature}"]}');
 ```
 
+### <span id="signature-algorithm">Example of signature algorithm</span>
+
+* [C#](/en/example/Encryption.cs)
+* [Python](/en/example/Encryption.py)
+* [C++](/en/example/Encryption.cpp)
+* [Go](/en/example/Encryption.go)
+
+
 ### How to Send The Heartbeat Packet
 After establishing the connection, one can send a heartbeat packet to confirm the connection is normal by sending a json request. The specific formats are as follows:
 ```js

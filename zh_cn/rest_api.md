@@ -1,3 +1,12 @@
+### REST 根URL
+
+* 测试网
+https://api-testnet.bybit.com
+
+* 主网
+https://api.bybit.com
+
+
 ### 通用请求
 
 * [获取服务器时间](#open-apiservertimeget)
@@ -78,64 +87,18 @@
 
 
 -----------
-## <span id="open-apiservertimeget">Server time</span>
-#### API Function
+## <span id="open-apiservertimeget">服务器时间</span>
+#### 接口功能
 
-> Get bybit server time。
+> 获取服务器时间。
 
-#### HTTP Request
+#### HTTP请求方式
 
-##### Method
-> GET ```/v2/public/time```
-
-##### URL
-> For Testnet:
-> [https://api-testnet.bybit.com/v2/public/time](https://api-testnet.bybit.com/v2/public/time)
-
-> For Mainnet:
-> [https://api.bybit.com/v2/public/time](https://api.bybit.com/v2/public/time)
+> GET   /v2/public/time
 
 #### Request Parameters
 
-|parameter|required|type|comments|
-|:----- |:-------|:-----|----- |
-
-
-#### Response example
-
-```js
-
-   {
-       'ret_code':0   //Error code - True
-       'ret_msg':'ok' //Error message
-       'ext_code':''  ,
-       'result':{
-       },
-       'time_now':'1539778407.210858',    //UTC timestamp, used for time calibration
-   }
-
-```
------------
-## <span id="open-apikeyget">服务器时间</span>
-#### API Function
-
-> Get bybit server time。
-
-#### HTTP Request
-
-##### Method
-> GET ```/v2/public/time```
-
-##### URL
-> For Testnet:
-> [https://api-testnet.bybit.com/v2/public/time](https://api-testnet.bybit.com/v2/public/time)
-
-> For Mainnet:
-> [https://api.bybit.com/v2/public/time](https://api.bybit.com/v2/public/time)
-
-#### Request Parameters
-
-|parameter|required|type|comments|
+|参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
 
 
@@ -159,19 +122,9 @@
 
 > 获取账户API密钥信息
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/api-key
-
-// 主网地址
-https://api.bybit.com/open-api/api-key
-```
-
 #### HTTP请求方式
 
-> get
+> GET   /open-api/api-key
 
 
 #### 请求参数
@@ -232,19 +185,9 @@ https://api.bybit.com/open-api/api-key
 >    * 'Created' 意味着Order以及被服务器接受，但还没有进入Order book
 >    * 'New' 意味着Order以及进入Order book
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/order/create
-
-// 主网地址
-https://api.bybit.com/open-api/order/create
-```
-
 #### HTTP请求方式
 
-> post
+> POST  /open-api/order/create
 
 #### 请求参数
 
@@ -254,7 +197,7 @@ https://api.bybit.com/open-api/order/create
 |symbol |true |string |产品类型, 有效选项:BTCUSD, ETHUSD (BTCUSD ETHUSD )    |
 |order_type |true |string |委托单价格类型, 有效选项:Limit, Market (Limit Market )    |
 |qty |true |integer |委托数量, 单比最大1百万 |
-|price |true |number |委托价格, 在没有仓位时，做多的委托价格需高于市价的10%、低于1百万。如有仓位时则需优于强平价。单笔价格增减最小单位为0.5。 |
+|price |false |number |委托价格, 在没有仓位时，做多的委托价格需高于市价的10%、低于1百万。如有仓位时则需优于强平价。单笔价格增减最小单位为0.5。如果下限价单，则price为必输字段 |
 |time_in_force |true |string |执行策略, 有效选项:GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly    |
 |take_profit |false |number |止盈价格 |
 |stop_loss |false |number |止损价格 |
@@ -308,19 +251,10 @@ https://api.bybit.com/open-api/order/create
 
 > 创建/取消订单是异步。如果要获取订单的实时信息，可以调用接口[实时查询活动单信息](#v2-private-order)
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/order/list
-
-// 主网地址
-https://api.bybit.com/open-api/order/list
-```
 
 #### HTTP请求方式
 
-> get
+> GET   /open-api/order/list
 
 #### 请求参数
 
@@ -385,19 +319,10 @@ https://api.bybit.com/open-api/order/list
 
 > 您可以撤销未成交、部分成交的活动委托单。但全部成交的活动委托不可取消。
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/order/cancel
-
-// 主网地址
-https://api.bybit.com/open-api/order/cancel
-```
 
 #### HTTP请求方式
 
-> post
+> POST  /open-api/order/cancel
 
 #### 请求参数
 
@@ -451,17 +376,9 @@ https://api.bybit.com/open-api/order/cancel
 
 > 请注意，只有未成交或未完全成交的订单才可以被修改。
 
-#### HTTP Request
+#### HTTP请求方式
 
-##### 请求方式
-> POST 
-
-##### URL
-> 测试网地址
-> https://api-testnet.bybit.com/open-api/order/replace
-
-> 主网地址
-> https://api.bybit.com/open-api/order/replace
+> POST  /open-api/order/replace
 
 #### Request Parameters
 
@@ -494,17 +411,10 @@ https://api.bybit.com/open-api/order/cancel
 
 > 实时查询活动委托
 
-#### HTTP Request
+#### HTTP请求方式
 
-##### 请求方式
-> GET 
+> GET   /v2/private/order
 
-##### URL
-> 测试网地址
-> https://api-testnet.bybit.com/v2/private/order
-
-> 主网地址
-> https://api.bybit.com/v2/private/order
 
 #### Request Parameters
 
@@ -571,19 +481,9 @@ https://api.bybit.com/open-api/order/cancel
 
 请注意: 只允许最多创建10个条件委托单
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/stop-order/create
-
-// 主网地址
-https://api.bybit.com/open-api/stop-order/create
-```
-
 #### HTTP请求方式
 
-> post
+> POST  /open-api/stop-order/create
 
 #### 请求参数
 
@@ -593,7 +493,7 @@ https://api.bybit.com/open-api/stop-order/create
 |symbol |true |string |产品类型, 有效选项:BTCUSD, ETHUSD (BTCUSD ETHUSD )    |
 |order_type |true |string |委托单价格类型, 有效选项:Limit, Market (Limit Market )    |
 |qty |true |integer |委托数量 |
-|price |true |integer |条件委托执行价格 |
+|price |false |integer |条件委托执行价格。如果条件委托是现价单，则price为必输字段 |
 |base_price |true |integer |当前市价。用于和stop_px值进行比较，确定当前条件委托是看空到stop_px时触发还是看多到stop_px触发。主要是用来标识当前条件单预期的方向 |
 |stop_px |true |integer |条件委托下单时市价 |
 |time_in_force |true |string |执行策略, 有效选项:GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly |
@@ -639,19 +539,9 @@ https://api.bybit.com/open-api/stop-order/create
 
 > 获取我的条件委托单列表。
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/stop-order/list
-
-// 主网地址
-https://api.bybit.com/open-api/stop-order/list
-```
-
 #### HTTP请求方式
 
-> get
+> GET   /open-api/stop-order/list
 
 #### 请求参数
 
@@ -710,19 +600,10 @@ https://api.bybit.com/open-api/stop-order/list
 
 您可以撤销所有未被激活的条件委托。本质上所有条件委托在被激活后都是属于活动委托，所以条件委托一旦被激活，您需要通过调用取消活动委托接口来取消所有未成交、部分成交的活动委托单。同样全部成交的活动委托不可取消。
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/stop-order/cancel
-
-// 主网地址
-https://api.bybit.com/open-api/stop-order/cancel
-```
 
 #### HTTP请求方式
 
-> post
+> POST  /open-api/stop-order/cancel
 
 #### 请求参数
 
@@ -774,20 +655,9 @@ https://api.bybit.com/open-api/stop-order/cancel
 > 请注意，只有未触发的条件单才能被修改。
 
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/stop-order/replace
-
-// 主网地址
-https://api.bybit.com/open-api/stop-order/replace
-
-```
-
 #### HTTP请求方式
 
-> post
+> POST  /open-api/stop-order/replace
 
 #### 请求参数
 
@@ -820,19 +690,9 @@ https://api.bybit.com/open-api/stop-order/replace
 
 > 获取用户杠杆。
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/user/leverage
-
-// 主网地址
-https://api.bybit.com/user/leverage
-```
-
 #### HTTP请求方式
 
-> get
+> GET   /user/leverage
 
 #### 请求参数
 
@@ -867,19 +727,10 @@ https://api.bybit.com/user/leverage
 
 > 修改用户杠杆。
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/user/leverage/save
-
-// 主网地址
-https://api.bybit.com/user/leverage/save
-```
 
 #### HTTP请求方式
 
-> post
+> POST  /user/leverage/save
 
 #### 请求参数
 
@@ -910,19 +761,10 @@ https://api.bybit.com/user/leverage/save
 
 > 获取我的仓位列表。通过该接口可以获取当前用户的持仓信息，如持仓数量、账户余额等信息
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/position/list
-
-// 主网地址
-https://api.bybit.com/position/list
-```
 
 #### HTTP请求方式
 
-> get
+> GET   /position/list
 
 #### 请求参数
 
@@ -986,19 +828,9 @@ https://api.bybit.com/position/list
 
 > 更新保证金
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/position/change-position-margin
-
-// 主网地址
-https://api.bybit.com/position/change-position-margin
-```
-
 #### HTTP请求方式
 
-> post
+> POST  /position/change-position-margin
 
 #### 请求参数
 
@@ -1028,20 +860,9 @@ https://api.bybit.com/position/change-position-margin
 
 > 设置止盈止损
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/position/trading-stop
-
-// 主网地址
-https://api.bybit.com/open-api/position/trading-stop
-
-```
-
 #### HTTP请求方式
 
-> post
+> POST  /open-api/position/trading-stop
 
 #### 请求参数
 
@@ -1104,20 +925,9 @@ https://api.bybit.com/open-api/position/trading-stop
 
 > 获取入金记录
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/wallet/fund/records
-
-// 主网地址
-https://api.bybit.com/open-api/wallet/fund/records
-
-```
-
 #### HTTP请求方式
 
-> GET
+> GET   /open-api/wallet/fund/records
 
 #### 请求参数
 
@@ -1167,20 +977,9 @@ https://api.bybit.com/open-api/wallet/fund/records
 
 > 获取当前order book数据
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/v2/public/orderBook/L2
-
-// 主网地址
-https://api.bybit.com/v2/public/orderBook/L2
-
-```
-
 #### HTTP请求方式
 
-> GET
+> GET   /v2/public/orderBook/L2
 
 #### 请求参数
 
@@ -1224,20 +1023,9 @@ https://api.bybit.com/v2/public/orderBook/L2
 
 > 获取合约最新信息
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/v2/public/tickers
-
-// 主网地址
-https://api.bybit.com/v2/public/tickers
-
-```
-
 #### HTTP请求方式
 
-> GET
+> GET   /v2/public/tickers
 
 #### 请求参数
 
@@ -1296,20 +1084,9 @@ https://api.bybit.com/v2/public/tickers
 
 > 获取出金记录
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/wallet/withdraw/list
-
-// 主网地址
-https://api.bybit.com/open-api/wallet/withdraw/list
-
-```
-
 #### HTTP请求方式
 
-> GET
+> GET   /open-api/wallet/withdraw/list
 
 #### 请求参数
 
@@ -1362,20 +1139,9 @@ https://api.bybit.com/open-api/wallet/withdraw/list
 
 假设当前时间是12点，则返回的是8点产生的资金费率
  
-
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/funding/prev-funding-rate
-
-// 主网地址
-https://api.bybit.com/open-api/funding/prev-funding-rate
-```
-
 #### HTTP请求方式
 
-> get
+> GET   /open-api/funding/prev-funding-rate
 
 #### 请求参数
 
@@ -1414,20 +1180,9 @@ https://api.bybit.com/open-api/funding/prev-funding-rate
 
 而16点产生的资金费率则会在第二天0点结算时使用
 
-
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/funding/prev-funding
-
-// 主网地址
-https://api.bybit.com/open-api/funding/prev-funding
-```
-
 #### HTTP请求方式
 
-> get
+> GET   /open-api/funding/prev-funding
 
 #### 请求参数
 
@@ -1463,19 +1218,9 @@ https://api.bybit.com/open-api/funding/prev-funding
 
 > 查询预测资金费率和资金费用
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/open-api/funding/predicted-funding
-
-// 主网地址
-https://api.bybit.com/open-api/open-api/funding/predicted-funding
-```
-
 #### HTTP请求方式
 
-> get
+> GET   /open-api/funding/predicted-funding
 
 #### 请求参数
 
@@ -1507,19 +1252,9 @@ https://api.bybit.com/open-api/open-api/funding/predicted-funding
 
 > 获取委托单成交历史列表。
 
-#### URL
-
-```
-// 测试网地址
-https://api-testnet.bybit.com/v2/private/execution/list
-
-// 主网地址
-https://api.bybit.com/v2/private/execution/list
-```
-
 #### HTTP请求方式
 
-> get
+> GET   /v2/private/execution/list
 
 #### 请求参数
 
