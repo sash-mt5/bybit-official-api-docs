@@ -6,6 +6,10 @@
 - [Get User API key Info](./rest_api.md#open-apikeyget) [update]
     - Add extra info
     - Update ips field to return content
+- [update rest api rate limit](./rest_api_sign.md#rest-rate-limit)[update]
+	- The rate limit is accurate to milliseconds
+	- Refine the rate limit of the endpoints
+	- add new response fields: rate_limit_reset_ms、rate_limit
 ### Websocket API
 - [klineV2](websocket.md#klineV2) [new]
 <hr>

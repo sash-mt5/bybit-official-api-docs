@@ -1,27 +1,17 @@
 <hr>
+
 ## 2019-11-03
 
 ### rest api
 - [密钥信息](./rest_api.md#open-apikeyget) [更新]
     - 新增额外字段
     - 更新ips字段返回内容
-<hr>
-
-## 2019-10-26
-
-### Websocket API
-- [Kline](./websocket.md#kline) [更新]
-	- 删除了`id`字段
-	- 删除了 `三日线`-`3d` `两周线`-`2w`两种类型的K线
-	- 优化了逻辑，Kline topic将提供更精准的数据
-
-<hr>
-
-## 2019-10-31
-
-### klineV2 topic
+- [更新频率限制](./rest_api_sign.md#rest-rate-limit)[更新]
+	- 频率限制精确到毫秒
+	- 细化接口的频率限制
+	- 新增字段rate_limit_reset_ms、rate_limit
+### Websocket
 - [klineV2](./websocket.md#klineV2) [新增]
-
 
 <hr>
 
@@ -36,6 +26,7 @@
 - [Topic trade](./websocket.md#trade) [更新]
 	- 修复重复推送交易数据的问题
 	- 现在支持在一个消息中推送多条交易
+	
 <hr>
 
 ## 2018-11-09
