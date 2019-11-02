@@ -152,7 +152,8 @@ https://api.bybit.com
     {
       "api_key": "zh2PIPKrIH1ewaRZ1l",          //API key
       "user_id": 160249,                        //user id
-      "ips": [                                  //available IP
+      "type": "personal",                       //personal or third-party application name such as aicoin
+      "ips": [                                  //bind ip type to a third-party application to return a request whitelist
         "173.194.72.139"
       ],
       "note": "stephen",

@@ -1,13 +1,11 @@
 <hr>
 
-## 2019-10-26
+## 2019-11-04
 
-### Websocket API
-- [Kline](./websocket.md#kline) [Update]
-	- delete `id` in response
-	- delete two types `three days`-`3d` `two weeks`-`2w`
-	- the Kline data will be more accurate
-
+### rest api
+- [Get User API key Info](./rest_api.md#open-apikeyget) [更新]
+    - Add extra info
+    - Update ips field to return content
 <hr>
 
 ## 2019-10-22

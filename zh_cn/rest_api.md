@@ -145,7 +145,8 @@ https://api.bybit.com
             {
             "api_key": "zh2PIPKrIH1ewaRZ1l",            //API key
             "user_id": 160249,                          //用户ID
-            "ips": [                                    //可用IP
+            "type": "personal",                         //个人或第三方应用名称 如aicoin
+            "ips": [                                    //绑定ip type为第三方应用则返回请求白名单列表
                 "173.194.72.139"
             ],
             "note": "stephen",
