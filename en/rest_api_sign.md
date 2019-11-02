@@ -98,6 +98,7 @@ rate_limit_status | Number of remaining calls in current period (1 minute)
 * [Python](/en/example/Encryption.py)
 * [C++](/en/example/Encryption.cpp)
 * [Go](/en/example/Encryption.go)
+* [PHP](/en/example/Encryption.php)
 
 ### Errors
 
