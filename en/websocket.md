@@ -422,7 +422,7 @@ ws.send('{"op":"subscribe","args":["klineV2.1.BTCUSD"]}')
         'end': 1572425700,                      //end time of the candle
         'open': 9200,                           //open price
         'close': 9202.5,                        //close price
-        'high': 9202.5,                         //max price 
+        'high': 9202.5,                         //max price
         'low': 9196,                            //min price
         'volume': 81790,                        //volume
         'turnover': 8.889247899999999,          //turnover
