@@ -1,8 +1,12 @@
 <hr>
 
-## 2019-11-03
+## 2019-11-04
 
 ### rest api
+- [撤销活动委托单](./rest_api.md##open-apiordercancelpost) [更新]
+    - 支持通过`order_link_id`撤单
+- [撤消条件委托单](./rest_api.md##open-apiordercancelpost) [更新]
+    - 支持通过`order_link_id`撤单
 - [密钥信息](./rest_api.md#open-apikeyget) [更新]
     - 新增额外字段
     - 更新ips字段返回内容
