@@ -114,7 +114,7 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 
 ### V2 Version System topic
 * [orderBookL2_25](#orderBook25_v2) `// OrderBook of 25 depth per side`
-* [instrument_info](#instrument_info) `// Instrument's infomation`
+* [instrument_info](#instrument_info) `// Instrument's information`
 * [klineV2](#kline_v2) `// New kline topic`
 
 ### Private Topic
@@ -251,7 +251,7 @@ ws.send('{"op":"subscribe","args":["instrument.BTCUSD"]}')
 ws.send('{"op": "subscribe", "args": ["orderBookL2_25.BTCUSD"]}');
 
 // Response content format
-// NOTE: After a successful subscribe response, the first response's type is snapshot, while the following responses's type are all delta
+// NOTE: After a successful subscribe response, the first response's type is snapshot, while the following responses' type are all delta
 
 //snapshot type format. The data is ordered by price, from buy to sell
 {
@@ -277,9 +277,9 @@ ws.send('{"op": "subscribe", "args": ["orderBookL2_25.BTCUSD"]}');
      "timestamp_e6":1555647164875373
 }
 
-//the delta response includes three types(delete update insert)
+//the delta response includes three types (delete update insert)
 //delete :  delete some slots in orderbook where identified by id or price
-//update :  modify some slots's size in orderbook where identified by id or price
+//update :  modify some slots' size in orderbook where identified by id or price
 //insert :  insert new slots in orderbook where identified by id or price
 
 //delta type format
@@ -335,7 +335,7 @@ In the list of values, 'delete' data indicates that the number of pending orders
 ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
 
 // Response content format
-// NOTE: After a successful subscribe response, the first response's type is snapshot, while the following responses's type are all delta
+// NOTE: After a successful subscribe response, the first response's type is snapshot, while the following responses' type are all delta
 // e4 stands for the result of the data multi 10^4，e6 stands for the result of the data multi 10^6
 // snapshot format
 {
@@ -354,8 +354,8 @@ ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
 		"price_1h_pcnt_e6": 408450,             //the current lastprice percentage change from prev 1h price
 		"mark_price_e4": 96758100,              //mark price
 		"index_price_e4": 97000000,             //index price
-		"open_interest": 158666,                //open interest quantity  Attention,the update is not timimmediately，the slowlest update is 1 minute
-		"open_value_e8": 2004325380,            //open value quantity  Attention,the update is not immediately， the slowlest update is 1 minute
+		"open_interest": 158666,                //open interest quantity - Attention, the update is not immediate - slowest update is 1 minute
+		"open_value_e8": 2004325380,            //open value quantity - Attention, the update is not immediate - the slowest update is 1 minute
 		"total_turnover_e8": 257108049130,      //total turnover
 		"turnover_24h_e8": 8969373218,          //24h turnover
 		"total_volume": 15462289,               //total volume
@@ -369,7 +369,7 @@ ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
 		"countdown_hour": 5                     //the rest time to settle funding fee
 	},
 	"cross_seq": 7980,
-	"timestamp_e6": 1564456370126493            //the timestamp of pruduce the infomation of instrument
+	"timestamp_e6": 1564456370126493            //the timestamp when the information was produced
 }
 // delta format  
 // Only the data-update field has the update data, the data-delete and data-insert is null. If a field not change, the field will not exist in data-update
