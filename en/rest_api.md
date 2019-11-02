@@ -512,7 +512,7 @@ https://api.bybit.com
 |symbol |true |string |Contract type.    |
 |order_type |true |string |Conditional order type. |
 |qty |true |integer |Order quantity. |
-|price|true | number | Execution price for conditional order. Required if you make limit price order|
+|price|false | number | Execution price for conditional order. Required if you make limit price order|
 |base_price |true |number | It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order. |
 |stop_px | true | number | Trigger price |
 |time_in_force |true |string |Time in force |

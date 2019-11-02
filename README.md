@@ -8,6 +8,8 @@ Official Documentation for the Bybit APIs and Web Socket
 
 [CCXT Fork](https://github.com/bybit-exchange/ccxt/tree/bybit)
 
+[Official Telegram API Group](https://t.me/Bybitapi)
+
 --------
 
 Bybit APIs 和 Web Socket的官方文档
@@ -16,5 +18,6 @@ Bybit APIs 和 Web Socket的官方文档
 
 [官方SDK](https://github.com/bybit-exchange/api-connectors)
 
-[CCXT支持](https://github.com/bybit-exchange/ccxt/tree/bybit)
+[官方CCXT维护分支](https://github.com/bybit-exchange/ccxt/tree/bybit)
 
+[官方Telegram API讨论群](https://t.me/Bybitapi)
