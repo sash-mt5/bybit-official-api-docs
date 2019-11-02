@@ -6,8 +6,6 @@ https://api-testnet.bybit.com
 * For mainnet
 https://api.bybit.com
 
-## Contents
-
 ### Common
 
 * [Server time](#open-apiservertimeget)
