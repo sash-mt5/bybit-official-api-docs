@@ -106,7 +106,7 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 
 ### Public Topic
 * ~~[orderBook25](#orderBook25) `// OrderBook of 25 depth per side`~~  -----It's deprecated.The following V2 version [orderBookL2_25](#orderBook25_v2) is recommended to use
-* [kline](#kline)  **Update** `// Candlestick chart`
+* ~~[kline](#kline) `// Candlestick chart`~~  -----It's deprecated.The following V2 version [klineV2](#kline_v2)  is recommended to use
 * [trade](#trade) `// Real-time trading information`
 * [insurance](#insurance) `// Daily insurance fund update`
 * ~~[instrument](#instrument) `// Latest information for symbol`~~  -----It's deprecated. The following v2 version [instrument_info](#instrument_info) is recommended to use
@@ -114,6 +114,7 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 ### V2 Version System topic
 * [orderBookL2_25](#orderBook25_v2) `// OrderBook of 25 depth per side`
 * [instrument_info](#instrument_info) `// Instrument's infomation`
+* [klineV2](#kline_v2) `// New kline topic`
 
 ### Private Topic
 * [position](#position) `// Positions of your account`
@@ -151,8 +152,8 @@ ws.send('{"op": "subscribe", "args": ["orderBook25.BTCUSD"]}');
 * Currently supported interval
 * 1m 3m 5m 15m 30m
 * 1h 2h 3h 4h 6h
-* 1d
-* 1w
+* 1d 3d
+* 1w 2w
 * 1M
 ```js
 ws.send('{"op":"subscribe","args":["kline.BTCUSD.1m"]}');
@@ -161,6 +162,7 @@ ws.send('{"op":"subscribe","args":["kline.BTCUSD.1m"]}');
 {
    "topic":"kline.BTCUSD.1m",
    "data":{
+       "id":563,
        "symbol":"BTCUSD",
        "open_time":1539918000,
        "open":5900,
@@ -392,6 +394,44 @@ ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
 	"timestamp_e6": 1564456372227451
 }
 ```
+<hr>
+
+### <span id="kline_v2">kline_v2 topic</span>
+
+* Currently supported interval
+* 1 3 5 15 30
+* 60 120 240 360 720
+* D
+* W
+* M
+* Y
+
+**Note that if `confirm` is `true`, it means that the data is the final tick for the interval. Otherwise, it is a snapshot.**
+
+```js
+
+ws.send('{"op":"subscribe","args":["klineV2.1.BTCUSD"]}')
+
+// Response content format
+{
+    'topic': 'klineV2.1.BTCUSD',                //topic name
+    'data': [{
+        'start': 1572425640,                    //start time of the candle
+        'end': 1572425700,                      //end time of the candle
+        'open': 9200,                           //open price
+        'close': 9202.5,                        //close price
+        'high': 9202.5,                         //max price 
+        'low': 9196,                            //min price
+        'volume': 81790,                        //volume
+        'turnover': 8.889247899999999,          //turnover
+        'confirm': False,                       //snapshot flag
+        'cross_seq': 297503466,                 
+        'timestamp': 1572425676958323           //cross time
+    }],
+    'timestamp_e6': 1572425677047994            //server time
+}
+```
+
 <hr>
 
 ### <span id="position">Positions of your account</position>

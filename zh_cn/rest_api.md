@@ -145,7 +145,8 @@ https://api.bybit.com
             {
             "api_key": "zh2PIPKrIH1ewaRZ1l",            //API key
             "user_id": 160249,                          //用户ID
-            "ips": [                                    //可用IP
+            "type": "personal",                         //个人或第三方应用名称 如aicoin
+            "ips": [                                    //绑定ip type为第三方应用则返回请求白名单列表
                 "173.194.72.139"
             ],
             "note": "stephen",
@@ -328,7 +329,8 @@ https://api.bybit.com
 
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
-|order_id |true |string |活动委托单ID, 数据来自创建活动委托单返回的订单唯一ID |
+|order_id |false |string |活动委托单ID, 数据来自创建活动委托单返回的订单唯一ID。如果不填order_link_id则为必输 |
+|order_link_id |false |string |机构用户ID.如果不填order_id则为必输|
 |symbol |false |string | 合约 |
 
 
@@ -420,7 +422,8 @@ https://api.bybit.com
 
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
-|order_id |true |string |订单id |
+|order_id |false |string |订单id。如果不填order_link_id则为必输 |
+|order_link_id |false |string | 机构用户ID.如果不填order_id则为必输|
 |symbol |true |string | 合约种类 |
 
 
@@ -609,7 +612,8 @@ https://api.bybit.com
 
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
-|stop_order_id |true |string |委托单ID, 数据来自创建活动委托单返回的订单唯一ID |
+|stop_order_id |false |string |委托单ID, 数据来自创建活动委托单返回的订单唯一ID。如果不填order_link_id则为必输 |
+|order_link_id |false |string | 机构用户ID.如果不填stop_order_id则为必输|
 
 
 #### 返回示例

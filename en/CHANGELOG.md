@@ -1,13 +1,21 @@
 <hr>
 
-## 2019-10-26
+## 2019-11-04
 
+### REST API
+- [Cancel order](./rest_api.md##open-apiordercancelpost) [update]
+    - Support cancel order by `order_link_id`
+- [Cancel stop-order](./rest_api.md##open-apiordercancelpost) [update]
+    - Support cancel stop-order by `order_link_id`
+- [Get user API key info](./rest_api.md#open-apikeyget) [update]
+    - Add extra info
+    - Update ips field to return content
+- [Update rest api rate limit](./rest_api_sign.md#rest-rate-limit)[update]
+	- The rate limit is accurate to milliseconds
+	- Refine the rate limit of the endpoints
+	- add new response fields: rate_limit_reset_ms、rate_limit
 ### Websocket API
-- [Kline](./websocket.md#kline) [Update]
-	- delete `id` in response
-	- delete two types `three days`-`3d` `two weeks`-`2w`
-	- the Kline data will be more accurate
-
+- [klineV2](websocket.md#klineV2) [new]
 <hr>
 
 ## 2019-10-22

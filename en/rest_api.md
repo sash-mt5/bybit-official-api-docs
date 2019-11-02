@@ -145,7 +145,8 @@ https://api.bybit.com
     {
       "api_key": "zh2PIPKrIH1ewaRZ1l",          //API key
       "user_id": 160249,                        //user id
-      "ips": [                                  //available IP
+      "type": "personal",                       //personal or third-party application name such as aicoin
+      "ips": [                                  //bind ip type to a third-party application to return a request whitelist
         "173.194.72.139"
       ],
       "note": "stephen",
@@ -327,7 +328,8 @@ https://api.bybit.com
 
 |parameters|required|type|comments|
 |:----- |:-------|:-----|----- |
-|order_id |true |string |Your active order ID. The unique order ID returned to you when the corresponding active order was created |
+|order_id |false |string |Your active order ID. The unique order ID returned to you when the corresponding active order was created. `Required` if not pass order_link_id|
+|order_link_id |false |string |Agency customized order ID. `Required` if not pass order_id |
 |symbol |false |string |Contract type. |
 
 
@@ -420,8 +422,9 @@ https://api.bybit.com
 
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
-|order_id |true |string | Your active order ID. The unique order ID returned to you when the corresponding active order was created|
-|symbol |true |string | 	Contract type |
+|order_id |true |string | Your active order ID. The unique order ID returned to you when the corresponding active order was created. `Required` if not pass order_link_id. |
+|order_link_id |true |string | Agency customized order ID. `Required` if not pass order_id .|
+|symbol |true |string |Contract type |
 
 
 #### Response example
@@ -496,7 +499,7 @@ https://api.bybit.com
 |symbol |true |string |Contract type.    |
 |order_type |true |string |Conditional order type. |
 |qty |true |integer |Order quantity. |
-|price| false | number | Execution price for conditional order. Required if you make limit price order|
+|price|false | number | Execution price for conditional order. Required if you make limit price order|
 |base_price |true |number | It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order. |
 |stop_px | true | number | Trigger price |
 |time_in_force |true |string |Time in force |
@@ -609,8 +612,8 @@ https://api.bybit.com
 
 |parameter|required|type | comments|
 |:----- |:-------|:-----|----- |
-|stop_order_id |true |string | Order ID. The unique order ID returned to you when the corresponding order was created. |
-
+|stop_order_id |false |string | Order ID. The unique order ID returned to you when the corresponding order was created. `Required` if not pass order_link_id|
+|order_link_id |false |string | Agency customized order ID. `Required` if not pass stop_order_id|
 
 #### Response example
 
