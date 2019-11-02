@@ -106,11 +106,11 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 ## Currently Supported Topics
 
 ### Public Topic
-* ~~[orderBook25](#orderBook25) `// OrderBook of 25 depth per side`~~  -----It's deprecated.The following V2 version [orderBookL2_25](#orderBook25_v2) is recommended to use
-* ~~[kline](#kline) `// Candlestick chart`~~  -----It's deprecated.The following V2 version [klineV2](#kline_v2)  is recommended to use
+* ~~[orderBook25](#orderBook25) `// OrderBook of 25 depth per side`~~  -----It's deprecated. The following V2 version [orderBookL2_25](#orderBook25_v2) is recommended to use
+* ~~[kline](#kline) `// Candlestick chart`~~  -----It's deprecated. The following V2 version [klineV2](#kline_v2)  is recommended to use
 * [trade](#trade) `// Real-time trading information`
 * [insurance](#insurance) `// Daily insurance fund update`
-* ~~[instrument](#instrument) `// Latest information for symbol`~~  -----It's deprecated. The following v2 version [instrument_info](#instrument_info) is recommended to use
+* ~~[instrument](#instrument) `// Latest information for symbol`~~  -----It's deprecated. The following V2 version [instrument_info](#instrument_info) is recommended to use
 
 ### V2 Version System topic
 * [orderBookL2_25](#orderBook25_v2) `// OrderBook of 25 depth per side`
@@ -397,9 +397,9 @@ ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
 ```
 <hr>
 
-### <span id="kline_v2">kline_v2 topic</span>
+### <span id="kline_v2">Kline V2</span>
 
-* Currently supported interval
+* Currently supported intervals
 * 1 3 5 15 30
 * 60 120 240 360 720
 * D
