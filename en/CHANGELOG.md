@@ -3,9 +3,11 @@
 ## 2019-11-04
 
 ### rest api
-- [Get User API key Info](./rest_api.md#open-apikeyget) [更新]
+- [Get User API key Info](./rest_api.md#open-apikeyget) [update]
     - Add extra info
     - Update ips field to return content
+### Websocket API
+- [klineV2](websocket.md#klineV2) [new]
 <hr>
 
 ## 2019-10-22
