@@ -12,21 +12,82 @@
 * `GET` requests should be in the `application/x-www-form-urlencoded` format
 * `POST` requests should be in the `application/json` format
 
-### Limits
+### Rate Limits
+##### Understanding Your Request Rate Limit
+Every request to the API returns the following fields:
+```
+"rate_limit_status":119,
+"rate_limit_reset_ms":1572114055663815,
+"rate_limit":120
+```
+* `rate_limit_status` - remaining requests
+* `rate_limit` - your current limit
+* `rate_limit_reset_ms` - this is the timestamp indicating when your request limit resets *if* you have exceeded your `rate_limit`. Otherwise, this is just the current timestamp.
 
-* API Request Rate Limits
-    * For order related API, such as *'place active order'*, *'get active order'*, the rate limit for each account is 80 requests per minute.
-    * For position related API, such as *'leverage adjustment'*, *'get position'*, the rate limit for each account is 60 requests per minute.
+##### Rate Limits For All Endpoints
 
-* Order Count Limits
-    * Each account can hold up to 200 active orders yet to be filled entirely simultaneously.
-    * Each account can hold up to 5 conditional orders in the same side simultaneously.
+  <escape>
+    <table>
+      <tr>
+        <th>limit</th>
+        <th>path</th>
+      </tr>
+      <tr>
+        <td rowspan="6">100/min</td>
+        <td>open-api/order/create </td>
+      </tr>
+      <tr><td>open-api/order/cancel       </td></tr>
+      <tr><td>open-api/stop-order/create  </td></tr>
+      <tr><td>open-api/stop-order/cancel  </td></tr>
+      <tr><td>open-api/order/replace      </td></tr>
+      <tr><td>open-api/stop-order/replace </td></tr>
+      <tr>
+        <td rowspan="3">600/min</td>
+        <td>open-api/order/list </td>
+      </tr>
+	    <tr><td>open-api/stop-order/list </td></tr>
+      <tr><td>v2/private/order </td></tr>
+      <tr>
+        <td>120/min</td>
+        <td>v2/private/execution/list</td>
+      </tr>
+      <tr>
+        <td rowspan="3">75/min</td>
+        <td>user/leverage/save  </td>
+      </tr>
+      <tr><td>position/change-position-margin </td></tr>
+      <tr><td>position/trading-stop           </td></tr>
+      <tr>
+        <td rowspan="2">120/min</td>
+        <td>position/list  </td>
+      </tr>
+      <tr><td>user/leverage</td></tr>
+      <tr>
+        <td rowspan="3">120/min</td>
+        <td>open-api/funding/prev-funding-rate  </td>
+      </tr>
+      <tr><td>open-api/funding/prev-funding      </td></tr>
+      <tr><td>open-api/funding/predicted-funding </td></tr>
+      <tr>
+        <td rowspan="2">120/min</td>
+        <td>open-api/wallet/fund/records  </td>
+      </tr>
+	  <tr><td>open-api/wallet/withdraw/list </td></tr>
+    <tr>
+        <td rowspan="1">600/min</td>
+        <td>open-api/api-key  </td>
+      </tr>
+    </table>
+  </escape>
 
-* How To Raised API Limit Threshold
-    * Please send application email to api@bybit.com, We will reply in 3-5 working days.
+#### Order Count Limits
+  * Each account can hold up to 200 active orders yet to be filled entirely simultaneously.
+  * Each account can hold up to 10 conditional orders yet to be filled entirely simultaneously
+
+#### How To Raise API Limit Threshold
+  * Please send your application email to api@bybit.com. We will reply in 3-5 working days.
 
 ### Authentication
-
 When calling the API, you need to provide your API key as identification for every request. In addition, a signature of the request you are making is required, which should be signed using the corresponding API secret.
 
 #### Public Parameters
@@ -91,7 +152,8 @@ ext_code | external code error| null
 result | refer to each API|
 rate_limit_status | Number of remaining calls in current period (1 minute)
 
-### <span id="signature-algorithm">Example of signature algorithm</span>
+
+### <span id="signature-algorithm">Examples of the Signature Algorithm</span>
 
 * [C#](/en/example/Encryption.cs)
 * [Python](/en/example/Encryption.py)

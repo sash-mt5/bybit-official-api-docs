@@ -9,6 +9,7 @@ https://api.bybit.com
 ### Common
 
 * [Server time](#open-apiservertimeget)
+* [Announcement](#open-apiannouncement)
 
 ### API key
 
@@ -124,6 +125,57 @@ https://api.bybit.com
 ```
 
 -----------
+## <span id="open-apiannouncement">Announcement</span>
+#### API Function
+
+> Get bybit OpenAPI announcements in the last 30 days。
+
+#### HTTP Request
+
+##### Method
+> GET ```/v2/public/announcement```
+
+##### URL
+> For Testnet:
+> [https://api-testnet.bybit.com/v2/public/announcement](https://api-testnet.bybit.com/v2/public/announcement)
+
+> For Mainnet:
+> [https://api.bybit.com/v2/public/announcement](https://api.bybit.com/v2/public/announcement)
+
+#### Request Parameters
+
+|parameter|required|type|comments|
+|:----- |:-------|:-----|----- |
+
+
+#### Response example
+
+```js
+
+{
+  "ret_code": 0,
+  "ret_msg": "OK",
+  "ext_code": "",
+  "ext_info": "",
+  "result": [{
+    "id": 1,
+    "title": "New API",
+    "link": "https://github.com/bybit-exchange/bybit-official-api-docs/blob/master/en/CHANGELOG.md",
+    "summary": "Add announcement api",
+    "created_at": "2019-10-29T11:24:01Z"//publish time
+  }, {
+    "id": 3,
+    "title": "Update API",
+    "link": "https://github.com/bybit-exchange/bybit-official-api-docs/blob/master/en/CHANGELOG.md",
+    "summary": "Update get stop order list",
+    "created_at": "2019-10-29T12:26:43Z"
+  }],
+  "time_now": "1572580751.222836"
+}
+
+```
+
+-----------
 ## <span id="open-apikeyget">API key info</span>
 #### API Function
 
@@ -152,7 +204,8 @@ https://api.bybit.com
     {
       "api_key": "zh2PIPKrIH1ewaRZ1l",          //API key
       "user_id": 160249,                        //user id
-      "ips": [                                  //available IP
+      "type": "personal",                       //personal or third-party application name such as aicoin
+      "ips": [                                  //bind ip type to a third-party application to return a request whitelist
         "173.194.72.139"
       ],
       "note": "stephen",
@@ -337,7 +390,8 @@ https://api.bybit.com
 
 |parameters|required|type|comments|
 |:----- |:-------|:-----|----- |
-|order_id |true |string |Your active order ID. The unique order ID returned to you when the corresponding active order was created |
+|order_id |false |string |Your active order ID. The unique order ID returned to you when the corresponding active order was created. `Required` if not pass order_link_id|
+|order_link_id |false |string |Agency customized order ID. `Required` if not pass order_id |
 |symbol |false |string |Contract type. |
 
 
@@ -432,8 +486,9 @@ https://api.bybit.com
 
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
-|order_id |true |string | Your active order ID. The unique order ID returned to you when the corresponding active order was created|
-|symbol |true |string | 	Contract type |
+|order_id |true |string | Your active order ID. The unique order ID returned to you when the corresponding active order was created. `Required` if not pass order_link_id. |
+|order_link_id |true |string | Agency customized order ID. `Required` if not pass order_id .|
+|symbol |true |string |Contract type |
 
 
 #### Response example
@@ -509,7 +564,7 @@ https://api.bybit.com
 |symbol |true |string |Contract type.    |
 |order_type |true |string |Conditional order type. |
 |qty |true |integer |Order quantity. |
-|price|true | number | Execution price for conditional order. Required if you make limit price order|
+|price|false | number | Execution price for conditional order. Required if you make limit price order|
 |base_price |true |number | It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order. |
 |stop_px | true | number | Trigger price |
 |time_in_force |true |string |Time in force |
@@ -624,8 +679,8 @@ https://api.bybit.com
 
 |parameter|required|type | comments|
 |:----- |:-------|:-----|----- |
-|stop_order_id |true |string | Order ID. The unique order ID returned to you when the corresponding order was created. |
-
+|stop_order_id |false |string | Order ID. The unique order ID returned to you when the corresponding order was created. `Required` if not pass order_link_id|
+|order_link_id |false |string | Agency customized order ID. `Required` if not pass stop_order_id|
 
 #### Response example
 

@@ -49,13 +49,13 @@ var ws = new WebSocket("wsurl")
 ws.send('{"op":"auth","args":["{api_key}","{expires}","{signature}"]}');
 ```
 
-### <span id="signature-algorithm">Example of signature algorithm</span>
+### <span id="signature-algorithm">Examples of the Signature Algorithm</span>
 
 * [C#](/en/example/Encryption.cs)
 * [Python](/en/example/Encryption.py)
 * [C++](/en/example/Encryption.cpp)
 * [Go](/en/example/Encryption.go)
-
+* [PHP](/en/example/Encryption.php)
 
 ### How to Send The Heartbeat Packet
 After establishing the connection, one can send a heartbeat packet to confirm the connection is normal by sending a json request. The specific formats are as follows:
@@ -106,20 +106,22 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 ## Currently Supported Topics
 
 ### Public Topic
-* ~~[orderBook25](#orderBook25) `// OrderBook of 25 depth per side`~~  -----It's deprecated.The following V2 version [orderBookL2_25](#orderBook25_v2) is recommended to use
-* [kline](#kline) `// Candlestick chart`
+* ~~[orderBook25](#orderBook25) `// OrderBook of 25 depth per side`~~  -----It's deprecated. The following V2 version [orderBookL2_25](#orderBook25_v2) is recommended to use
+* ~~[kline](#kline) `// Candlestick chart`~~  -----It's deprecated. The following V2 version [klineV2](#kline_v2)  is recommended to use
 * [trade](#trade) `// Real-time trading information`
 * [insurance](#insurance) `// Daily insurance fund update`
-* ~~[instrument](#instrument) `// Latest information for symbol`~~  -----It's deprecated. The following v2 version [instrument_info](#instrument_info) is recommended to use
+* ~~[instrument](#instrument) `// Latest information for symbol`~~  -----It's deprecated. The following V2 version [instrument_info](#instrument_info) is recommended to use
 
 ### V2 Version System topic
 * [orderBookL2_25](#orderBook25_v2) `// OrderBook of 25 depth per side`
-* [instrument_info](#instrument_info) `// Instrument's infomation`
+* [instrument_info](#instrument_info) `// Instrument's information`
+* [klineV2](#kline_v2) `// New kline topic`
 
 ### Private Topic
 * [position](#position) `// Positions of your account`
 * [execution](#execution) `// Execution message`
 * [order](#order) `// Update for your orders`
+* [stop_order](#stop-order) `// Update for your stop orders`
 
 <hr>
 
@@ -250,7 +252,7 @@ ws.send('{"op":"subscribe","args":["instrument.BTCUSD"]}')
 ws.send('{"op": "subscribe", "args": ["orderBookL2_25.BTCUSD"]}');
 
 // Response content format
-// NOTE: After a successful subscribe response, the first response's type is snapshot, while the following responses's type are all delta
+// NOTE: After a successful subscribe response, the first response's type is snapshot, while the following responses' type are all delta
 
 //snapshot type format. The data is ordered by price, from buy to sell
 {
@@ -276,9 +278,9 @@ ws.send('{"op": "subscribe", "args": ["orderBookL2_25.BTCUSD"]}');
      "timestamp_e6":1555647164875373
 }
 
-//the delta response includes three types(delete update insert)
+//the delta response includes three types (delete update insert)
 //delete :  delete some slots in orderbook where identified by id or price
-//update :  modify some slots's size in orderbook where identified by id or price
+//update :  modify some slots' size in orderbook where identified by id or price
 //insert :  insert new slots in orderbook where identified by id or price
 
 //delta type format
@@ -334,7 +336,7 @@ In the list of values, 'delete' data indicates that the number of pending orders
 ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
 
 // Response content format
-// NOTE: After a successful subscribe response, the first response's type is snapshot, while the following responses's type are all delta
+// NOTE: After a successful subscribe response, the first response's type is snapshot, while the following responses' type are all delta
 // e4 stands for the result of the data multi 10^4，e6 stands for the result of the data multi 10^6
 // snapshot format
 {
@@ -353,8 +355,8 @@ ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
 		"price_1h_pcnt_e6": 408450,             //the current lastprice percentage change from prev 1h price
 		"mark_price_e4": 96758100,              //mark price
 		"index_price_e4": 97000000,             //index price
-		"open_interest": 158666,                //open interest quantity  Attention,the update is not timimmediately，the slowlest update is 1 minute
-		"open_value_e8": 2004325380,            //open value quantity  Attention,the update is not immediately， the slowlest update is 1 minute
+		"open_interest": 158666,                //open interest quantity - Attention, the update is not immediate - slowest update is 1 minute
+		"open_value_e8": 2004325380,            //open value quantity - Attention, the update is not immediate - the slowest update is 1 minute
 		"total_turnover_e8": 257108049130,      //total turnover
 		"turnover_24h_e8": 8969373218,          //24h turnover
 		"total_volume": 15462289,               //total volume
@@ -368,7 +370,7 @@ ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
 		"countdown_hour": 5                     //the rest time to settle funding fee
 	},
 	"cross_seq": 7980,
-	"timestamp_e6": 1564456370126493            //the timestamp of pruduce the infomation of instrument
+	"timestamp_e6": 1564456370126493            //the timestamp when the information was produced
 }
 // delta format  
 // Only the data-update field has the update data, the data-delete and data-insert is null. If a field not change, the field will not exist in data-update
@@ -394,6 +396,44 @@ ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
 	"timestamp_e6": 1564456372227451
 }
 ```
+<hr>
+
+### <span id="kline_v2">Kline V2</span>
+
+* Currently supported intervals
+* 1 3 5 15 30
+* 60 120 240 360 720
+* D
+* W
+* M
+* Y
+
+**Note that if `confirm` is `true`, it means that the data is the final tick for the interval. Otherwise, it is a snapshot.**
+
+```js
+
+ws.send('{"op":"subscribe","args":["klineV2.1.BTCUSD"]}')
+
+// Response content format
+{
+    'topic': 'klineV2.1.BTCUSD',                //topic name
+    'data': [{
+        'start': 1572425640,                    //start time of the candle
+        'end': 1572425700,                      //end time of the candle
+        'open': 9200,                           //open price
+        'close': 9202.5,                        //close price
+        'high': 9202.5,                         //max price
+        'low': 9196,                            //min price
+        'volume': 81790,                        //volume
+        'turnover': 8.889247899999999,          //turnover
+        'confirm': False,                       //snapshot flag
+        'cross_seq': 297503466,                 
+        'timestamp': 1572425676958323           //cross time
+    }],
+    'timestamp_e6': 1572425677047994            //server time
+}
+```
+
 <hr>
 
 ### <span id="position">Positions of your account</position>
@@ -493,6 +533,35 @@ ws.send('{"op":"subscribe","args":["order"]}')
             "timestamp":"2019-01-22T14:49:38.000Z"
         }
     ]
+}
+
+```
+
+<hr>
+
+### <span id="stop-order">Update for your stop orders</span>
+
+```js
+ws.send('{"op":"subscribe","args":["stop_order"]}')
+
+// Response content format
+{
+  "topic": "stop_order",
+  "data": [{
+    "order_id": "795d87a1-db49-4fd5-acd9-062cc45bfad9",
+    "order_status": "Untriggered",
+    "stop_order_type": "StopLoss",
+    "symbol": "BTCUSD",
+    "side": "Buy",
+    "qty": 1000,
+    "user_id": 529950,
+    "price": 0,
+    "order_type": "Market",
+    "time_in_force": "ImmediateOrCancel",
+    "trigger_price": 9270,
+    "trigger_by": "LastPrice"
+  }],
+  "user_id": 529950
 }
 
 ```

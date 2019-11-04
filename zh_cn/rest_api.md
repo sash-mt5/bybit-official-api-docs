@@ -10,6 +10,7 @@ https://api.bybit.com
 ### 通用请求
 
 * [获取服务器时间](#open-apiservertimeget)
+* [获取公告](#open-apiannouncement)
 
 ### API 密钥
 
@@ -116,6 +117,58 @@ https://api.bybit.com
    }
 
 ```
+
+-----------
+## <span id="open-apiannouncement">Announcement</span>
+#### API Function
+
+> Get bybit OpenAPI announcements in the last 30 days。
+
+#### HTTP Request
+
+##### Method
+> GET ```/v2/public/announcement```
+
+##### URL
+> For Testnet:
+> [https://api-testnet.bybit.com/v2/public/announcement](https://api-testnet.bybit.com/v2/public/announcement)
+
+> For Mainnet:
+> [https://api.bybit.com/v2/public/announcement](https://api.bybit.com/v2/public/announcement)
+
+#### Request Parameters
+
+|parameter|required|type|comments|
+|:----- |:-------|:-----|----- |
+
+
+#### Response example
+
+```js
+
+{
+  "ret_code": 0,
+  "ret_msg": "OK",
+  "ext_code": "",
+  "ext_info": "",
+  "result": [{
+    "id": 1,
+    "title": "New API",
+    "link": "https://github.com/bybit-exchange/bybit-official-api-docs/blob/master/en/CHANGELOG.md",
+    "summary": "Add announcement api",
+    "created_at": "2019-10-29T11:24:01Z"//publish time
+  }, {
+    "id": 3,
+    "title": "Update API",
+    "link": "https://github.com/bybit-exchange/bybit-official-api-docs/blob/master/en/CHANGELOG.md",
+    "summary": "Update get stop order list",
+    "created_at": "2019-10-29T12:26:43Z"
+  }],
+  "time_now": "1572580751.222836"
+}
+
+```
+
 -----------
 ## <span id="open-apikeyget">密钥信息</span>
 #### 接口功能
@@ -145,7 +198,8 @@ https://api.bybit.com
             {
             "api_key": "zh2PIPKrIH1ewaRZ1l",            //API key
             "user_id": 160249,                          //用户ID
-            "ips": [                                    //可用IP
+            "type": "personal",                         //个人或第三方应用名称 如aicoin
+            "ips": [                                    //绑定ip type为第三方应用则返回请求白名单列表
                 "173.194.72.139"
             ],
             "note": "stephen",
@@ -328,7 +382,8 @@ https://api.bybit.com
 
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
-|order_id |true |string |活动委托单ID, 数据来自创建活动委托单返回的订单唯一ID |
+|order_id |false |string |活动委托单ID, 数据来自创建活动委托单返回的订单唯一ID。如果不填order_link_id则为必输 |
+|order_link_id |false |string |机构用户ID.如果不填order_id则为必输|
 |symbol |false |string | 合约 |
 
 
@@ -420,7 +475,8 @@ https://api.bybit.com
 
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
-|order_id |true |string |订单id |
+|order_id |false |string |订单id。如果不填order_link_id则为必输 |
+|order_link_id |false |string | 机构用户ID.如果不填order_id则为必输|
 |symbol |true |string | 合约种类 |
 
 
@@ -609,7 +665,8 @@ https://api.bybit.com
 
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
-|stop_order_id |true |string |委托单ID, 数据来自创建活动委托单返回的订单唯一ID |
+|stop_order_id |false |string |委托单ID, 数据来自创建活动委托单返回的订单唯一ID。如果不填order_link_id则为必输 |
+|order_link_id |false |string | 机构用户ID.如果不填stop_order_id则为必输|
 
 
 #### 返回示例
