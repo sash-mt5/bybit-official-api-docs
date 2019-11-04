@@ -12,22 +12,19 @@
 * `GET` requests should be in the `application/x-www-form-urlencoded` format
 * `POST` requests should be in the `application/json` format
 
-### Limits
-
-#### API Request Rate Limits
-> The rate limit is accurate to milliseconds
-##### Viewing Your Request Rate Limit
-On each request to the API, these fields are return：
+### Rate Limits
+##### Understanding Your Request Rate Limit
+Every request to the API returns the following fields:
 ```
 "rate_limit_status":119,
 "rate_limit_reset_ms":1572114055663815,
 "rate_limit":120
 ```
-* rate_limit you current limit; 
-* rate_limit_status remaining requests; 
-* rate_limit_reset_ms the timestamp reset you request limit, If you have not exceeded your limit, this value is always the current timestamp，the timestamp unit is millisecond.
+* `rate_limit_status` - remaining requests
+* `rate_limit` - your current limit
+* `rate_limit_reset_ms` - this is the timestamp indicating when your request limit resets *if* you have exceeded your `rate_limit`. Otherwise, this is just the current timestamp.
 
-##### endpoints rate limit details
+##### Rate Limits For All Endpoints
 
   <escape>
     <table>
@@ -84,14 +81,13 @@ On each request to the API, these fields are return：
   </escape>
 
 #### Order Count Limits
-    * Each account can hold up to 200 active orders yet to be filled entirely simultaneously.
-    * Each account can hold up to 5 conditional orders in the same side simultaneously.
+  * Each account can hold up to 200 active orders yet to be filled entirely simultaneously.
+  * Each account can hold up to 10 conditional orders yet to be filled entirely simultaneously
 
-#### How To Raised API Limit Threshold
-    * Please send application email to api@bybit.com, We will reply in 3-5 working days.
+#### How To Raise API Limit Threshold
+  * Please send your application email to api@bybit.com. We will reply in 3-5 working days.
 
 ### Authentication
-
 When calling the API, you need to provide your API key as identification for every request. In addition, a signature of the request you are making is required, which should be signed using the corresponding API secret.
 
 #### Public Parameters
@@ -157,7 +153,7 @@ result | refer to each API|
 rate_limit_status | Number of remaining calls in current period (1 minute)
 
 
-### <span id="signature-algorithm">Example of signature algorithm</span>
+### <span id="signature-algorithm">Examples of the Signature Algorithm</span>
 
 * [C#](/en/example/Encryption.cs)
 * [Python](/en/example/Encryption.py)
