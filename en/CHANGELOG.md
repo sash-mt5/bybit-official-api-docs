@@ -16,6 +16,7 @@
 	- Add new response fields: `rate_limit_reset_ms`, `rate_limit`
 ### Websocket API
 - [klineV2](websocket.md#kline_v2) [new]
+- [stop_order](websocket.md#stop-order) [new]
 <hr>
 
 
