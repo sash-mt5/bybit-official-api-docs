@@ -2,9 +2,10 @@
 ## 2019-11-03
 
 ### rest api
-- [撤销活动委托单](./rest_api.md##open-apiordercancelpost) [更新]
+- [获取公告](./rest_api.md#open-apiannouncement) [新增]
+- [撤销活动委托单](./rest_api.md#open-apiordercancelpost) [更新]
     - 支持通过`order_link_id`撤单
-- [撤消条件委托单](./rest_api.md##open-apiordercancelpost) [更新]
+- [撤消条件委托单](./rest_api.md#open-apiordercancelpost) [更新]
     - 支持通过`order_link_id`撤单
 - [密钥信息](./rest_api.md#open-apikeyget) [更新]
     - 新增额外字段
