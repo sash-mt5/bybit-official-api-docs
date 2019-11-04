@@ -121,6 +121,7 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 * [position](#position) `// Positions of your account`
 * [execution](#execution) `// Execution message`
 * [order](#order) `// Update for your orders`
+* [stop_order](#stop-order) `// Update for your stop orders`
 
 <hr>
 

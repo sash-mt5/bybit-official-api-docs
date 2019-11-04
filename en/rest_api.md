@@ -9,6 +9,7 @@ https://api.bybit.com
 ### Common
 
 * [Server time](#open-apiservertimeget)
+* [Announcement](#open-apiannouncement)
 
 ### API key
 
@@ -120,6 +121,57 @@ https://api.bybit.com
        },
        'time_now':'1539778407.210858',    //UTC timestamp, used for time calibration
    }
+
+```
+
+-----------
+## <span id="open-apiannouncement">Announcement</span>
+#### API Function
+
+> Get bybit OpenAPI announcements in the last 30 days。
+
+#### HTTP Request
+
+##### Method
+> GET ```/v2/public/announcement```
+
+##### URL
+> For Testnet:
+> [https://api-testnet.bybit.com/v2/public/announcement](https://api-testnet.bybit.com/v2/public/announcement)
+
+> For Mainnet:
+> [https://api.bybit.com/v2/public/announcement](https://api.bybit.com/v2/public/announcement)
+
+#### Request Parameters
+
+|parameter|required|type|comments|
+|:----- |:-------|:-----|----- |
+
+
+#### Response example
+
+```js
+
+{
+  "ret_code": 0,
+  "ret_msg": "OK",
+  "ext_code": "",
+  "ext_info": "",
+  "result": [{
+    "id": 1,
+    "title": "New API",
+    "link": "https://github.com/bybit-exchange/bybit-official-api-docs/blob/master/en/CHANGELOG.md",
+    "summary": "Add announcement api",
+    "created_at": "2019-10-29T11:24:01Z"//publish time
+  }, {
+    "id": 3,
+    "title": "Update API",
+    "link": "https://github.com/bybit-exchange/bybit-official-api-docs/blob/master/en/CHANGELOG.md",
+    "summary": "Update get stop order list",
+    "created_at": "2019-10-29T12:26:43Z"
+  }],
+  "time_now": "1572580751.222836"
+}
 
 ```
 
