@@ -535,3 +535,32 @@ ws.send('{"op":"subscribe","args":["order"]}')
 }
 
 ```
+
+<hr>
+
+### <span id="stop-order">Update for your stop orders</span>
+
+```js
+ws.send('{"op":"subscribe","args":["stop_order"]}')
+
+// Response content format
+{
+  "topic": "stop_order",
+  "data": [{
+    "order_id": "795d87a1-db49-4fd5-acd9-062cc45bfad9",
+    "order_status": "Untriggered",
+    "stop_order_type": "StopLoss",
+    "symbol": "BTCUSD",
+    "side": "Buy",
+    "qty": 1000,
+    "user_id": 529950,
+    "price": 0,
+    "order_type": "Market",
+    "time_in_force": "ImmediateOrCancel",
+    "trigger_price": 9270,
+    "trigger_by": "LastPrice"
+  }],
+  "user_id": 529950
+}
+
+```
