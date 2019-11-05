@@ -737,7 +737,7 @@ https://api.bybit.com
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
 |symbol |true |string |产品类型 (BTCUSD ETHUSD )    |
-|leverage |true |string |杠杆. `杠杆为0 意味着全仓模式`|
+|leverage |true |string |杠杆. `杠杆为0 意味着全仓模式.全场模式下修改杠杆会变成逐仓模式`|
 
 
 #### 返回示例

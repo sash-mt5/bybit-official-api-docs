@@ -752,6 +752,7 @@ https://api.bybit.com
 #### API Function
 
 > Change user leverage
+> Note that `your position mod will be changed to Isolated Margin mod if you change your leverage from 0 to other values `
 
 #### HTTP Request
 
@@ -763,7 +764,7 @@ https://api.bybit.com
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
 |symbol |true |string |Contract type    |
-|leverage |true |string |leverage. `zero means Cross Margin mod` |
+|leverage |true |string |leverage. `0 means Cross Margin mod and other values means Isolated Margin mod` |
 
 
 ####  Response example
@@ -816,7 +817,7 @@ https://api.bybit.com
            'position_value': 0,    //position value
            'entry_price': 0,       //entry price
            'leverage': 1,          //user leverage
-           'auto_add_margin': 0,   //1 means Cross Margin mod and 0 means 
+           'auto_add_margin': 0,   //1 means Cross Margin mod and 0 means Isolated Margin
            'position_margin': 0,   //position margin
            'liq_price': 999999,    //liquidation price
            'bust_price': 999999,   //bankruptcy price
@@ -917,7 +918,7 @@ https://api.bybit.com
            'position_value': 0,    //position value
            'entry_price': 0,       //entry price
            'leverage': 1,          //user leverage
-           'auto_add_margin': 0,   //1 means Cross Margin mod and 0 means
+           'auto_add_margin': 0,   //1 means Cross Margin mod and 0 means Isolated Margin
            'position_margin': 0,   //position margin
            'liq_price': 999999,    //liquidation price
            'bust_price': 999999,   //bankruptcy price
