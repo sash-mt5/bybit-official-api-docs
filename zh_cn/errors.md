@@ -35,25 +35,25 @@ Example error response:
 ### 订单不存在
 * ```'ret_code': 20001,```
 * ```'ret_msg': 'Order not exists'```
-### 方向为必输字段
+### 方向为必填字段
 * ```'ret_code': 20003,```
 * ```'ret_msg': 'side is required'```
 ### 买卖方向不合法
 * ```'ret_code': 20004,```
 * ```'ret_msg': 'side is not in the range of selected'```
-### 合约为必输项
+### 合约为必填项
 * ```'ret_code': 20005,```
 * ```'ret_msg': 'symbol is required'```
 ### 合约字段不合法
 * ```'ret_code': 20006,```
 * ```'ret_msg': 'symbol is not in the range of selected'```
-### 订单类型为必输项
+### 订单类型为必填项
 * ```'ret_code': 20007,```
 * ```'ret_msg': 'order_type is required'```
 ### 订单类型不合法
 * ```'ret_code': 20008,```
 * ```'ret_msg': 'order_type is not in the range of selected'```
-### 下单数量为必输项
+### 下单数量为必填项
 * ```'ret_code': 20009,```
 * ```'ret_msg': 'qty is required'```
 ### 下单数量应该大于0
@@ -65,33 +65,45 @@ Example error response:
 ### 下单数量应是1-1000000之间的值
 * ```'ret_code': 20012,```
 * ```'ret_msg': 'qty need between 1 - 1000000'```
-### 价格为必输项
+### 价格为必填项
 * ```'ret_code': 20013,```
 * ```'ret_msg': 'price is required'```
 ### 价格不合法
 * ```'ret_code': 20014,```
 * ```'ret_msg': 'price need greater than zero'```
-### 成交类型是必输项
+### 成交类型是必填项
 * ```'ret_code': 20015,```
 * ```'ret_msg': 'time_in_force is required'```
 ### 成交类型输入不合法
 * ```'ret_code': 20016,```
 * ```'ret_msg': 'time_in_force is not in the range of selected'```
-### ORDER_ID为必输项
+### ORDER_ID为必填项
 * ```'ret_code': 20017,```
 * ```'ret_msg': 'order_id is required'```
 ### 日期格式不合法
 * ```'ret_code': 20018,```
 * ```'ret_msg': 'The date format is invalid'```
-### STOP_PX为必输项
+### STOP_PX为必填项
 * ```'ret_code': 20019,```
 * ```'ret_msg': 'stop_px is required'```
-### BASE_PRICE为必输项
+### BASE_PRICE为必填项
 * ```'ret_code': 20020,```
 * ```'ret_msg': 'base_price is required'```
-### 条件单ID为必输项
+### 条件单ID为必填项
 * ```'ret_code': 20021,```
 * ```'ret_msg': 'stop_order_id is required'```
+### 杠杆为必填
+* ```'ret_code': 20022,```
+* ```'ret_msg': 'missing param: leverage'```
+### 杠杆必须是数字
+* ```'ret_code': 20023,```
+* ```'ret_msg': 'leverage must be a number'```
+### 杠杆必须大于0
+* ```'ret_code': 20031,```
+* ```'ret_msg': 'leverage must be greater than zero'```
+### 订单号或外部订单号为必填
+* ```'ret_code': 20084,```
+* ```'ret_msg': 'order_id or order_link_id is required'```
 ### ORDER_LINK_ID不唯一
 * ```'ret_code': 30001,```
 * ```'ret_msg': 'order_link_id not unique'```
@@ -107,7 +119,7 @@ Example error response:
 ### 订单价格范围不合法
 * ```'ret_code': 30005,```
 * ```'ret_msg': 'Order price is out of permissible range'```
-### last_price为必输字段
+### last_price为必填字段
 * ```'ret_code': 30006,```
 * ```'ret_msg': 'no last_price'```
 ### 订单价格范围不合法
@@ -229,10 +241,10 @@ Example error response:
 ### 订单价格超出了允许的范围
 * ```'ret_code': 30005,```
 * ```'ret_msg': 'Order price is out of permissible range'```
-### last_price为必输字段
+### last_price为必填字段
 * ```'ret_code': 30006,```
 * ```'ret_msg': 'no last_price'```
-### leverag为必输字段
+### leverag为必填字段
 * ```'ret_code': 20022,```
 * ```'ret_msg': 'leverage is required'```
 ### leverage必须是一个数字
@@ -241,7 +253,7 @@ Example error response:
 ### leverage必须大于0
 * ```'ret_code': 20031,```
 * ```'ret_msg': 'leverage need greater than zero'```
-### margin为必输字段
+### margin为必填字段
 * ```'ret_code': 20070,```
 * ```'ret_msg': 'margin is required'```
 ### margin应大于0
