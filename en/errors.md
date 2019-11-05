@@ -103,6 +103,9 @@ Note: `[%s]` acts as a placeholder, usually for invalid values which are sent to
 ### LEVERAGE MUST BE GREATER THAN ZERO
 * ```'ret_code': 20031,```
 * ```'ret_msg': 'leverage must be greater than zero'```
+### ORDER_ID OR ORDER_LINK_ID IS REQUIRED
+* ```'ret_code': 20084,```
+* ```'ret_msg': 'order_id or order_link_id is required'```
 ### ORDER_LINK_ID MUST BE UNIQUE
 * ```'ret_code': 30001,```
 * ```'ret_msg': 'invalid value for param: order_link_id sent: [%s]'```
