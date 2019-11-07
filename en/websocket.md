@@ -57,7 +57,6 @@ ws.send('{"op":"auth","args":["{api_key}","{expires}","{signature}"]}');
 * [Go](/en/example/Encryption.go)
 * [PHP](/en/example/Encryption.php)
 
-
 ### How to Send The Heartbeat Packet
 After establishing the connection, one can send a heartbeat packet to confirm the connection is normal by sending a json request. The specific formats are as follows:
 ```js

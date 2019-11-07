@@ -1,6 +1,6 @@
 <hr>
 
-## 2019-11-04
+## 2019-10-22
 
 ### rest api
 - [获取公告](./rest_api.md#open-apiannouncement) [新增]
@@ -65,6 +65,7 @@
 - [Topic trade](./websocket.md#trade) [更新]
 	- 修复重复推送交易数据的问题
 	- 现在支持在一个消息中推送多条交易
+	
 <hr>
 
 ## 2018-11-09
