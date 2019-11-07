@@ -114,7 +114,7 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 
 ### V2 Version System topic
 * [orderBookL2_25](#orderBook25_v2) `// OrderBook of 25 depth per side`
-* [instrument_info](#instrument_info) `// Instrument's infomation`
+* [instrument_info](#instrument_info) `// Instrument's information`
 * [klineV2](#kline_v2) `// New kline topic`
 
 ### Private Topic
@@ -154,8 +154,8 @@ ws.send('{"op": "subscribe", "args": ["orderBook25.BTCUSD"]}');
 * Currently supported interval
 * 1m 3m 5m 15m 30m
 * 1h 2h 3h 4h 6h
-* 1d
-* 1w
+* 1d 3d
+* 1w 2w
 * 1M
 ```js
 ws.send('{"op":"subscribe","args":["kline.BTCUSD.1m"]}');
@@ -164,6 +164,7 @@ ws.send('{"op":"subscribe","args":["kline.BTCUSD.1m"]}');
 {
    "topic":"kline.BTCUSD.1m",
    "data":{
+       "id":563,
        "symbol":"BTCUSD",
        "open_time":1539918000,
        "open":5900,
@@ -397,9 +398,9 @@ ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
 ```
 <hr>
 
-### <span id="kline_v2">kline_v2 topic</span>
+### <span id="kline_v2">kline_v2</span>
 
-* Currently supported interval
+* Currently supported intervals
 * 1 3 5 15 30
 * 60 120 240 360 720
 * D

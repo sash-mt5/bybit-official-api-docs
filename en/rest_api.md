@@ -911,6 +911,7 @@ https://api.bybit.com
 
 #### HTTP Request
 
+##### Method
 > POST ```/position/change-position-margin```
 
 #### Request Parameters
