@@ -164,6 +164,7 @@ ws.send('{"op":"subscribe","args":["kline.BTCUSD.1m"]}');
 {
     "topic":"kline.BTCUSD.1m",
     "data":{
+        "id":563,
         "symbol":"BTCUSD",
         "open_time":1539918000,
         "open":5900,
