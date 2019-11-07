@@ -830,7 +830,7 @@ https://api.bybit.com
            'deleverage_indicator': 1,
            'oc_calc_data': '{\'blq\':\'0\',\'bmp\':\'0\',\'slq\':\'0\',\'smp\':\'0\'}',
            'order_margin': 0,      //Used margin by order
-           'wallet_balance': 0,    //wallet balance
+           'wallet_balance': 0,    //wallet balance.When in Cross Margin mod, the number minus your unclosed loss is your real wallet balance.
            'unrealised_pnl': 0,    //unrealised profit and loss
            'realised_pnl': 0,      //daily realized profit and loss
            'cum_realised_pnl': 0,  //Total realized profit and loss
@@ -851,6 +851,8 @@ https://api.bybit.com
 #### API Function
 
 > Update margin
+
+***Note that you can't change margin when your position is in Cross Margin mod***
 
 #### HTTP Request
 
@@ -931,7 +933,7 @@ https://api.bybit.com
            'deleverage_indicator': 1,
            'oc_calc_data': '{\'blq\':\'0\',\'bmp\':\'0\',\'slq\':\'0\',\'smp\':\'0\'}',
            'order_margin': 0,      //Used margin by order
-           'wallet_balance': 0,    //wallet balance
+           'wallet_balance': 0,    //wallet balance.When in Cross Margin mod, the number minus your unclosed loss is your real wallet balance.
            'unrealised_pnl': 0,    //unrealised profit and loss
            'realised_pnl': 0,      //daily realized profit and loss
            'cum_realised_pnl': 0,  //Total realized profit and loss

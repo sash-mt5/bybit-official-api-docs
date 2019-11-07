@@ -804,7 +804,7 @@ https://api.bybit.com
             'deleverage_indicator': 1,
             'oc_calc_data': '{\'blq\':\'0\',\'bmp\':\'0\',\'slq\':\'0\',\'smp\':\'0\'}',
             'order_margin': 0,      委托预占用保证金
-            'wallet_balance': 0,    账户余额
+            'wallet_balance': 0,    账户余额.注意，在全仓模式下，该数字减去未结亏损才是真实可用余额
             'unrealised_pnl': 0,    以标记价格计算的未结盈亏
             'realised_pnl': 0,      今日已结盈亏
             'cum_realised_pnl': 0,  累计已结盈亏
@@ -907,7 +907,7 @@ https://api.bybit.com
             'deleverage_indicator': 1,
             'oc_calc_data': '{\'blq\':\'0\',\'bmp\':\'0\',\'slq\':\'0\',\'smp\':\'0\'}',
             'order_margin': 0,      委托预占用保证金
-            'wallet_balance': 0,    账户余额
+            'wallet_balance': 0,    账户余额.注意，在全仓模式，该数字减去未结亏损才是真实可用余额
             'unrealised_pnl': 0,    以标记价格计算的未结盈亏
             'realised_pnl': 0,      今日已结盈亏
             'cum_realised_pnl': 0,  累计已结盈亏
@@ -963,7 +963,7 @@ https://api.bybit.com
       "amount": "1.18826225",                   //数量
       "tx_id": "",
       "address": "XRPUSD",                      //地址
-      "wallet_balance": "999.12908894",         //头寸
+      "wallet_balance": "999.12908894",         //可用余额
       "exec_time": "2019-09-25T00:00:15.000Z",
       "cross_seq": 0
     }]
