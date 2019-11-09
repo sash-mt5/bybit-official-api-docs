@@ -794,7 +794,7 @@ https://api.bybit.com
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
 |symbol |true |string |产品类型 (BTCUSD ETHUSD )    |
-|leverage |true |string |杠杆 |
+|leverage |true |string |杠杆. `杠杆为0 意味着全仓模式.全场模式下修改杠杆会变成逐仓模式`|
 
 
 #### 返回示例
@@ -848,7 +848,7 @@ https://api.bybit.com
             'position_value': 0,    仓位价值
             'entry_price': 0,       仓位开仓价
             'leverage': 1,          用户杠杆
-            'auto_add_margin': 0,   自动追加保证金开关
+            'auto_add_margin': 0,   0表示逐仓 1表示全仓
             'position_margin': 0,   仓位保证金
             'liq_price': 999999,    强平价格
             'bust_price': 999999,   破产价格
@@ -861,7 +861,7 @@ https://api.bybit.com
             'deleverage_indicator': 1,
             'oc_calc_data': '{\'blq\':\'0\',\'bmp\':\'0\',\'slq\':\'0\',\'smp\':\'0\'}',
             'order_margin': 0,      委托预占用保证金
-            'wallet_balance': 0,    账户余额
+            'wallet_balance': 0,    账户余额.注意，在全仓模式下，该数字减去未结亏损才是真实可用余额
             'unrealised_pnl': 0,    以标记价格计算的未结盈亏
             'realised_pnl': 0,      今日已结盈亏
             'cum_realised_pnl': 0,  累计已结盈亏
@@ -884,6 +884,8 @@ https://api.bybit.com
 #### 接口功能
 
 > 更新保证金
+
+**如果当前为`全仓模式`则不能调整保证金**
 
 #### HTTP请求方式
 
@@ -949,7 +951,7 @@ https://api.bybit.com
             'position_value': 0,    仓位价值
             'entry_price': 0,       仓位开仓价
             'leverage': 1,          用户杠杆
-            'auto_add_margin': 0,   自动追加保证金开关
+            'auto_add_margin': 0,   0表示逐仓 1表示全仓
             'position_margin': 0,   仓位保证金
             'liq_price': 999999,    强平价格
             'bust_price': 999999,   破产价格
@@ -962,7 +964,7 @@ https://api.bybit.com
             'deleverage_indicator': 1,
             'oc_calc_data': '{\'blq\':\'0\',\'bmp\':\'0\',\'slq\':\'0\',\'smp\':\'0\'}',
             'order_margin': 0,      委托预占用保证金
-            'wallet_balance': 0,    账户余额
+            'wallet_balance': 0,    账户余额.注意，在全仓模式，该数字减去未结亏损才是真实可用余额
             'unrealised_pnl': 0,    以标记价格计算的未结盈亏
             'realised_pnl': 0,      今日已结盈亏
             'cum_realised_pnl': 0,  累计已结盈亏
@@ -1018,7 +1020,7 @@ https://api.bybit.com
       "amount": "1.18826225",                   //数量
       "tx_id": "",
       "address": "XRPUSD",                      //地址
-      "wallet_balance": "999.12908894",         //头寸
+      "wallet_balance": "999.12908894",         //可用余额
       "exec_time": "2019-09-25T00:00:15.000Z",
       "cross_seq": 0
     }]

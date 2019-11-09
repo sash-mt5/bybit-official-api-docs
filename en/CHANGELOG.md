@@ -1,5 +1,13 @@
 <hr>
 
+## 2019-11-07
+- [Change leverage](./rest_api.md#userleveragesavepost) [update]
+- [My position](./rest_api.md#positionlistget) [update]
+- [Change margin](./rest_api.md#positionchange-position-marginpost) [update]
+- [Set Trading-Stop](./rest_api.md#position-settradingstoppost) [update]
+
+<hr>
+
 ## 2019-11-04
 
 ### REST API

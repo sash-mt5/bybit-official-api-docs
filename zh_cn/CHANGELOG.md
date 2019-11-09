@@ -1,5 +1,15 @@
 <hr>
 
+## 2019-11-07
+
+### rest api
+- [修改用户杠杆](./rest_api.md#userleveragesavepost) [更新]
+- [我的仓位](./rest_api.md#positionlistget) [更新]
+- [更新保证金](./rest_api.md#positionchange-position-marginpost) [更新]
+- [设置止盈止损](./rest_api.md#position-settradingstoppost) [更新]
+
+<hr>
+
 ## 2019-11-04
 
 ### rest api

@@ -807,6 +807,7 @@ https://api.bybit.com
 #### API Function
 
 > Change user leverage
+> Note that `your position mod will be changed to Isolated Margin mod if you change your leverage from 0 to other values `
 
 #### HTTP Request
 
@@ -818,7 +819,7 @@ https://api.bybit.com
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
 |symbol |true |string |Contract type    |
-|leverage |true |string |leverage  |
+|leverage |true |string |leverage. `0 means Cross Margin mod and other values means Isolated Margin mod` |
 
 
 ####  Response example
@@ -871,7 +872,7 @@ https://api.bybit.com
            'position_value': 0,    //position value
            'entry_price': 0,       //entry price
            'leverage': 1,          //user leverage
-           'auto_add_margin': 0,   //auto margin replenishment switch
+           'auto_add_margin': 0,   //1 means Cross Margin mod and 0 means Isolated Margin
            'position_margin': 0,   //position margin
            'liq_price': 999999,    //liquidation price
            'bust_price': 999999,   //bankruptcy price
@@ -884,7 +885,7 @@ https://api.bybit.com
            'deleverage_indicator': 1,
            'oc_calc_data': '{\'blq\':\'0\',\'bmp\':\'0\',\'slq\':\'0\',\'smp\':\'0\'}',
            'order_margin': 0,      //Used margin by order
-           'wallet_balance': 0,    //wallet balance
+           'wallet_balance': 0,    //wallet balance.When in Cross Margin mod, the number minus your unclosed loss is your real wallet balance.
            'unrealised_pnl': 0,    //unrealised profit and loss
            'realised_pnl': 0,      //daily realized profit and loss
            'cum_realised_pnl': 0,  //Total realized profit and loss
@@ -905,6 +906,8 @@ https://api.bybit.com
 #### API Function
 
 > Update margin
+
+***Note that you can't change margin when your position is in Cross Margin mod***
 
 #### HTTP Request
 
@@ -972,7 +975,7 @@ https://api.bybit.com
            'position_value': 0,    //position value
            'entry_price': 0,       //entry price
            'leverage': 1,          //user leverage
-           'auto_add_margin': 0,   //auto margin replenishment switch
+           'auto_add_margin': 0,   //1 means Cross Margin mod and 0 means Isolated Margin
            'position_margin': 0,   //position margin
            'liq_price': 999999,    //liquidation price
            'bust_price': 999999,   //bankruptcy price
@@ -985,7 +988,7 @@ https://api.bybit.com
            'deleverage_indicator': 1,
            'oc_calc_data': '{\'blq\':\'0\',\'bmp\':\'0\',\'slq\':\'0\',\'smp\':\'0\'}',
            'order_margin': 0,      //Used margin by order
-           'wallet_balance': 0,    //wallet balance
+           'wallet_balance': 0,    //wallet balance.When in Cross Margin mod, the number minus your unclosed loss is your real wallet balance.
            'unrealised_pnl': 0,    //unrealised profit and loss
            'realised_pnl': 0,      //daily realized profit and loss
            'cum_realised_pnl': 0,  //Total realized profit and loss
