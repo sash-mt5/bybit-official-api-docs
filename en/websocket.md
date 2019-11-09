@@ -58,6 +58,9 @@ ws.send('{"op":"auth","args":["{api_key}","{expires}","{signature}"]}');
 * [PHP](/en/example/Encryption.php)
 
 ### How to Send The Heartbeat Packet
+
+**Due to unstable network or program error, we strongly recommend that you should use Ping to maintain a websocket connection and do reconnect.**
+
 After establishing the connection, one can send a heartbeat packet to confirm the connection is normal by sending a json request. The specific formats are as follows:
 ```js
 ws.send('{"op":"ping"}');
