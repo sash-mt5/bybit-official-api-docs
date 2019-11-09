@@ -398,7 +398,7 @@ ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
 ```
 <hr>
 
-### <span id="kline_v2">kline_v2</span>
+### <span id="kline_v2">Kline V2</span>
 
 * Currently supported intervals
 * 1 3 5 15 30
