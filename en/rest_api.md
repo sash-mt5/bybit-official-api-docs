@@ -214,6 +214,7 @@ https://api.bybit.com
         "Position"
       ],
       "created_at": "2019-08-13T10:07:17.000Z", //create time
+      "expired_at": null,                       // expire time: nill is forever
       "read_only": true                         //read only flag
     }
   ],
