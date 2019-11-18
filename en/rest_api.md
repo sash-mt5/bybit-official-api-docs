@@ -96,13 +96,6 @@ https://api.bybit.com
 ##### Method
 > GET ```/v2/public/time```
 
-##### URL
-> For Testnet:
-> [https://api-testnet.bybit.com/v2/public/time](https://api-testnet.bybit.com/v2/public/time)
-
-> For Mainnet:
-> [https://api.bybit.com/v2/public/time](https://api.bybit.com/v2/public/time)
-
 #### Request Parameters
 
 |parameter|required|type|comments|
@@ -134,13 +127,6 @@ https://api.bybit.com
 
 ##### Method
 > GET ```/v2/public/announcement```
-
-##### URL
-> For Testnet:
-> [https://api-testnet.bybit.com/v2/public/announcement](https://api-testnet.bybit.com/v2/public/announcement)
-
-> For Mainnet:
-> [https://api.bybit.com/v2/public/announcement](https://api.bybit.com/v2/public/announcement)
 
 #### Request Parameters
 
