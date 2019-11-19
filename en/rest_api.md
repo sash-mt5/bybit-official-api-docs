@@ -73,7 +73,7 @@ https://api.bybit.com
 
 * [Get latest information for symbol](#latest-information-for-symbol)
 
-* [Get trading records of bybit](#trading-records)
+* [Get public trading records](#trading-records)
 
 ### Kline data
 
@@ -1379,26 +1379,28 @@ https://api.bybit.com
 ```
 
 -----------
-## <span id="trading-records">Get trading records of bybit</span>
-#### 接口功能
+## <span id="trading-records">Get public trading records</span>
+#### API Function
 
-> 获取历史成交数据
+> Get recent trades
 
-#### HTTP请求方式
+#### HTTP Request
 
-> GET   /v2/public/trading-records
+##### Method
 
-#### 请求参数
+> GET `/v2/public/trading-records`
 
-|参数|必选|类型|说明|
+#### Request parameters
+
+|parameters|required|type|comments|
 |:----- |:-------|:-----|----- |
-|symbol |true |string |contract type |
-|from |false |int |from id. Default return latest data|
-|limit |false |int |Number of result.default 500,max 1000|
+|symbol |true |string |Contract type |
+|from |false |int |From id. Default returns latest data|
+|limit |false |int |Number of result. Default 500; max 1000|
 
 
 
-#### 返回示例
+#### Response example
 
 ```js
 
