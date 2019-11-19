@@ -1,5 +1,12 @@
 <hr>
 
+## 2019-11-19
+
+### rest api
+- [获取平台历史成交数据](./rest_api.md#trading-records) [新增]
+
+<hr>
+
 ## 2019-11-07
 
 ### rest api
