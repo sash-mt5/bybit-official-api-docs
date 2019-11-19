@@ -1,5 +1,11 @@
 <hr>
 
+### REST API
+
+## 2019-11-19
+- [Get trading records of bybit](./rest_api.md#trading-records) [new]
+
+<hr>
 
 ### REST API
 
