@@ -156,6 +156,7 @@ result | 不同业务接口返回与其对应的数据 |
 * [Python](example/Encryption.py)
 * [C++](example/Encryption.cpp)
 * [Go](example/Encryption.go)
+* [PHP](example/Encryption.php)
 
 
 ### Errors
