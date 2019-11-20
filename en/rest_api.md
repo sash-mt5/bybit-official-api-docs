@@ -73,6 +73,8 @@ https://api.bybit.com
 
 * [Get latest information for symbol](#latest-information-for-symbol)
 
+* [Get public trading records](#trading-records)
+
 ### Kline data
 
 * [Query historical kline](https://bybit-exchange.github.io/bybit-official-api-docs/en/index.html#operation/query_kline)
@@ -1369,6 +1371,52 @@ https://api.bybit.com
             "predicted_funding_rate": "-0.00",              // predicted funding rate
             "next_funding_time": "2019-08-30T00:00:00Z",    // next funding time
             "countdown_hour": 4                             // the rest time to settle funding fee
+        }
+    ],
+    "time_now": "1567109419.049271"
+}
+
+```
+
+-----------
+## <span id="trading-records">Get public trading records</span>
+#### API Function
+
+> Get recent trades
+
+#### HTTP Request
+
+##### Method
+
+> GET `/v2/public/trading-records`
+
+#### Request parameters
+
+|parameters|required|type|comments|
+|:----- |:-------|:-----|----- |
+|symbol |true |string |Contract type |
+|from |false |int |From id. Default returns latest data|
+|limit |false |int |Number of result. Default 500; max 1000|
+
+
+
+#### Response example
+
+```js
+
+{
+    "ret_code": 0,                                   // error code 0 means success
+    "ret_msg": "OK",                                 // error message
+    "ext_code": "",                                  
+    "ext_info": "",                                  
+    "result": [
+        {
+            "id":7724919,                                   // ID
+            "symbol": "BTCUSD",                             // contract type
+            "price": 9499.5,                                // execution price
+            "qty": 9500,                                    // execution quantity
+            "side": "Buy",                                  // side
+            "time": "2019-11-19T08:03:04.077Z",             // UTC time
         }
     ],
     "time_now": "1567109419.049271"

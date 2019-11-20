@@ -74,6 +74,8 @@ https://api.bybit.com
 
 * [获取合约最新信息](#latest-information-for-symbol)
 
+* [获取平台历史成交数据](#trading-records)
+
 ### K线图历史数据
 
 * [查询K线图历史数据](https://bybit-exchange.github.io/bybit-official-api-docs/en/index.html#operation/query_kline)
@@ -1129,7 +1131,49 @@ https://api.bybit.com
 
 ```
 
+-----------
+## <span id="trading-records">获取平台历史成交数据</span>
+#### 接口功能
 
+> 获取历史成交数据
+
+#### HTTP请求方式
+
+> GET   /v2/public/trading-records
+
+#### 请求参数
+
+|参数|必选|类型|说明|
+|:----- |:-------|:-----|----- |
+|symbol |true |string |合约类型 |
+|from |false |int |查询起始ID.如果不填则返回最新数据 |
+|limit |false |int |结果条数.单次默认500，最高1000 |
+
+
+
+#### 返回示例
+
+```js
+
+{
+    "ret_code": 0,                                   // 错误码 0为成功
+    "ret_msg": "OK",                                 // 错误信息
+    "ext_code": "",                                  
+    "ext_info": "",                                  
+    "result": [
+        {
+            "id":7724919,                                   // ID
+            "symbol": "BTCUSD",                             // 合约类型
+            "price": 9499.5,                                // 成交价格
+            "qty": 9500,                                    // 成交数量
+            "side": "Buy",                                  // 成交方向
+            "time": "2019-11-19T08:03:04.077Z",             // UTC时间
+        }
+    ],
+    "time_now": "1567109419.049271"
+}
+
+```
 
 -----------
 ## <span id="wallet-withdrawrecordget">获取出金记录 </span>

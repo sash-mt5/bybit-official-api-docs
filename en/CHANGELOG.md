@@ -1,5 +1,12 @@
 <hr>
 
+## 2019-11-19
+
+### REST API
+
+- [Get public trading records](./rest_api.md#trading-records) [new]
+
+<hr>
 
 ### REST API
 
