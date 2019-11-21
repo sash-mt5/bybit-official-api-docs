@@ -119,11 +119,11 @@ var sign = hex(HMAC_SHA256($secret, $param_str));
 3.附加上sign参数，发送http请求,目前支持以下两种形式提交参数
 
 ```http
-POST /user/leverage/save HTTP/1.1
+GET /user/leverage HTTP/1.1
 Host: api-testnet.bybit.com
 Content-Type: application/x-www-form-urlencoded
 
-api_key=B2Rou0PLPpGqcU0Vu2&leverage=100&symbol=BTCUSD&timestamp=1542434791000&sign=670e3e4aa32b243f2dedf1dafcec2fd17a440e71b05681550416507de591d908
+api_key=B2Rou0PLPpGqcU0Vu2&timestamp=1542434791000&sign=670e3e4aa32b243f2dedf1dafcec2fd17a440e71b05681550416507de591d908
 
 ```
 
