@@ -85,7 +85,7 @@ Every request to the API returns the following fields:
   * Each account can hold up to 10 conditional orders yet to be filled entirely simultaneously
 
 #### How To Raise API Limit Threshold
-  * Please read [`How To Raise API Limit Threshold`](./API_Limit_v2.3_ch.md)
+  * Please read [`How To Raise API Limit Threshold`](./API_Limit_v2.3_en.md)
   * Please send your application email to api@bybit.com. We will reply in 3-5 working days.
 
 ### Authentication
