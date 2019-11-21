@@ -95,7 +95,7 @@
 
 #### 公共参数
 字段名 | 字段释义 |  字段类型 | 是否必填 | 默认值 | 说明
-:- | :- | :- | :- | :- | :-signature-algorithm
+:- | :- | :- | :- | :- | :-
 api_key | 在平台申请的API_KEY |  string | 是 | 无 |用于身份识别
 timestamp | 请求发起时的时间戳,单位:毫秒 | int64 | 是 | 无 | UTC时间戳,服务端收到请求时会校验此参数，校验规则: timestamp < server_time + 1000,其中server_time是服务器时间
 recv_window| 配置请求的有效时间,单位:毫秒| int | 否 | 5000 | http请求将会在timestamp+recv_window这个时间点后失效，用于防重放攻击
@@ -119,15 +119,31 @@ var sign = hex(HMAC_SHA256($secret, $param_str));
 
 3.附加上sign参数，发送http请求,目前支持以下两种形式提交参数
 
-```http
-GET /user/leverage HTTP/1.1
-Host: api-testnet.bybit.com
-Content-Type: application/x-www-form-urlencoded
+GET请求
 
-api_key=B2Rou0PLPpGqcU0Vu2&timestamp=1542434791000&sign=670e3e4aa32b243f2dedf1dafcec2fd17a440e71b05681550416507de591d908
+```http
+GET /user/leverage?api_key=B2Rou0PLPpGqcU0Vu2&timestamp=1542434791000&sign=670e3e4aa32b243f2dedf1dafcec2fd17a440e71b05681550416507de591d908 HTTP/1.1
+Host: api-testnet.bybit.com
 
 ```
 
+或
+
+```http
+GET /user/leverage/save HTTP/1.1
+Host: api-testnet.bybit.com
+content-type: application/json
+
+{
+    "api_key":"B2Rou0PLPpGqcU0Vu2",
+    "leverage":100,
+    "symbol":"BTCUSD",
+    "timestamp":1542434791000,
+    "sign":"670e3e4aa32b243f2dedf1dafcec2fd17a440e71b05681550416507de591d908"
+}
+```
+
+POST请求
 ```http
 POST /user/leverage/save HTTP/1.1
 Host: api-testnet.bybit.com
