@@ -129,7 +129,7 @@ or
 ```http
 GET /user/leverage HTTP/1.1
 Host: api-testnet.bybit.com
-content-type: application/json
+Content-Type: application/json
 
 {
     "api_key":"B2Rou0PLPpGqcU0Vu2",
@@ -143,7 +143,7 @@ POST requests:
 ```http
 POST /user/leverage/save HTTP/1.1
 Host: api-testnet.bybit.com
-content-type: application/json
+Content-Type: application/json
 
 {
     "api_key":"B2Rou0PLPpGqcU0Vu2",
