@@ -10,6 +10,8 @@ Official Documentation for the Bybit APIs and Web Socket
 
 [Official Telegram API Group](https://t.me/Bybitapi)
 
+[Official Telegram API Announcements Channel](https://t.me/Bybit_API_Announcements)
+
 --------
 
 Bybit APIs 和 Web Socket的官方文档
