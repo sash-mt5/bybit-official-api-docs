@@ -9,17 +9,84 @@
 
 <a href="https://www.bybit.com/app/user/api-management">https://www.bybit.com/app/user/api-management</a>
 
-### 频率限制
+### <span id="rest-rate-limit">频率限制</span>
 
-* 接口访问类限制
-  * 对于订单类接口，如创建委托单、查询委托单等，每个账户每分钟可调用80次
-  * 对于持仓类接口，如修改杠杆、查询仓位信息等，每个账户每分钟可调用60次
+#### 接口访问类限制
+> 频率限制精确到毫秒
+##### 如何查看你的频率限制
+每个接口，都会返回如下字段：
+```
+"rate_limit_status":119,
+"rate_limit_reset_ms":1572114055663815,
+"rate_limit":120
+```
+* rate_limit 你当前的频率限制；
+* rate_limit_status 剩余请求次数；
+* rate_limit_reset_ms 重置你请求限制的时间戳，如果未超过频率限制返回当前时间戳，单位是毫秒。
 
-* 业务类限制
+##### 接口频率限制详细
+
+  <escape>
+    <table>
+      <tr>
+        <th>limit</th>
+        <th>path</th>
+      </tr>
+      <tr>
+        <td rowspan="6">100/min</td>
+        <td>open-api/order/create </td>
+      </tr>
+      <tr><td>open-api/order/cancel       </td></tr>
+      <tr><td>open-api/stop-order/create  </td></tr>
+      <tr><td>open-api/stop-order/cancel  </td></tr>
+      <tr><td>open-api/order/replace      </td></tr>
+      <tr><td>open-api/stop-order/replace </td></tr>
+      <tr>
+        <td rowspan="3">600/min</td>
+        <td>open-api/order/list </td>
+      </tr>
+	    <tr><td>open-api/stop-order/list </td></tr>
+      <tr><td>v2/private/order </td></tr>
+      <tr>
+        <td>120/min</td>
+        <td>v2/private/execution/list</td>
+      </tr>
+      <tr>
+        <td rowspan="3">75/min</td>
+        <td>user/leverage/save  </td>
+      </tr>
+      <tr><td>position/change-position-margin </td></tr>
+      <tr><td>position/trading-stop           </td></tr>
+      <tr>
+        <td rowspan="2">120/min</td>
+        <td>position/list  </td>
+      </tr>
+      <tr><td>user/leverage</td></tr>
+      <tr>
+        <td rowspan="3">120/min</td>
+        <td>open-api/funding/prev-funding-rate  </td>
+      </tr>
+      <tr><td>open-api/funding/prev-funding      </td></tr>
+      <tr><td>open-api/funding/predicted-funding </td></tr>
+      <tr>
+        <td rowspan="2">120/min</td>
+        <td>open-api/wallet/fund/records  </td>
+      </tr>
+	  <tr><td>open-api/wallet/withdraw/list </td></tr>
+    <tr>
+        <td rowspan="1">600/min</td>
+        <td>open-api/api-key  </td>
+      </tr>
+    </table>
+  </escape>
+
+
+#### 业务类限制
   * 未完全成交的活动委托单最多可同时有200个
   * 条件单同一方向最多可同时有5个
 
-* 如何提高频率限制
+#### 如何提高频率限制
+  * 请先阅读[`如何提高频率限制`](./API_Limit_v2.3_ch.md)
   * 请发申请邮件到 api@bybit.com, 我们会在3-5个工作日内给您答复
 
 ### 认证
@@ -52,15 +119,31 @@ var sign = hex(HMAC_SHA256($secret, $param_str));
 
 3.附加上sign参数，发送http请求,目前支持以下两种形式提交参数
 
-```http
-POST /user/leverage/save HTTP/1.1
-Host: api-testnet.bybit.com
-Content-Type: application/x-www-form-urlencoded
+GET请求
 
-api_key=B2Rou0PLPpGqcU0Vu2&leverage=100&symbol=BTCUSD&timestamp=1542434791000&sign=670e3e4aa32b243f2dedf1dafcec2fd17a440e71b05681550416507de591d908
+```http
+GET /user/leverage?api_key=B2Rou0PLPpGqcU0Vu2&timestamp=1542434791000&sign=670e3e4aa32b243f2dedf1dafcec2fd17a440e71b05681550416507de591d908 HTTP/1.1
+Host: api-testnet.bybit.com
 
 ```
 
+或
+
+```http
+GET /user/leverage/save HTTP/1.1
+Host: api-testnet.bybit.com
+content-type: application/json
+
+{
+    "api_key":"B2Rou0PLPpGqcU0Vu2",
+    "leverage":100,
+    "symbol":"BTCUSD",
+    "timestamp":1542434791000,
+    "sign":"670e3e4aa32b243f2dedf1dafcec2fd17a440e71b05681550416507de591d908"
+}
+```
+
+POST请求
 ```http
 POST /user/leverage/save HTTP/1.1
 Host: api-testnet.bybit.com
@@ -84,13 +167,13 @@ ret_msg | 返回消息 | ok
 ext_code | 补充错误码 | null 
 result | 不同业务接口返回与其对应的数据 | 
 
-
 ### <span id="signature-algorithm">签名算法示例</span>
 
 * [C#](example/Encryption.cs)
 * [Python](example/Encryption.py)
 * [C++](example/Encryption.cpp)
 * [Go](example/Encryption.go)
+* [PHP](example/Encryption.php)
 
 
 ### Errors

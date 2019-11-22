@@ -57,6 +57,9 @@ ws.send('{"op":"auth","args":["{api_key}","{expires}","{signature}"]}');
 
 
 ### 如何发送业务心跳包
+
+**网络不稳定或者程序异常等因素会导致websocket连接异常断开，所以我们强烈建议您使用Ping来维持连接，且对锻炼的情况进行处理**
+
 连接建立后，通过发送json格式的心跳包来进行心跳探测,具体格式如下
 ```js
 ws.send('{"op":"ping"}');
@@ -106,7 +109,7 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 
 ### 公共类topic
 * ~~[orderBook25](#orderBook25) `// 25档orderBook`~~ -----这是过时的，推荐使用V2版本的[orderBookL2_25](#orderBook25_v2)
-* [kline](#kline) `// K线`
+* ~~[kline](#kline) `// K线`~~  -----已过期，推荐使用最新v2版本的[klineV2](#kline_v2)
 * [trade](#trade) `// 实时交易`
 * [insurance](#insurance) `// 每日保险基金更新`
 * ~~[instrument](#instrument) `// 产品最新信息`~~ -----这是过时的，推荐使用V2版本的[instrument_info](#instrument_info)
@@ -114,11 +117,14 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 ### 新版行情topic
 * [orderBookL2_25](#orderBook25_v2) `// 25档orderBook`
 * [instrument_info](#instrument_info) `//合约信息`
+* [klineV2](#kline_v2) `// 新K线topic`
 
 ### 个人类topic
 * [position](#position) `// 仓位变化`
 * [execution](#execution) `// 委托单成交信息`
 * [order](#order) `// 委托单的更新`
+* [stop_order](#stop-order) `// 条件委托更新`
+
 
 <hr>
 
@@ -392,6 +398,45 @@ ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
 	"timestamp_e6": 1564456372227451
 }
 ```
+
+<hr>
+
+### <span id="kline_v2">kline_v2 topic</span>
+
+* 目前支持的K线周期
+* 1 3 5 15 30
+* 60 120 240 360 720
+* D
+* W
+* M
+* Y
+
+**如果`confirm`字段为`true`，意味着这是这根K线的最后一个tick.否则，这只是一个快照数据，即中间价格**
+
+```js
+
+ws.send('{"op":"subscribe","args":["klineV2.1.BTCUSD"]}')
+
+// Response content format
+{
+    'topic': 'klineV2.1.BTCUSD',                //topic名
+    'data': [{
+        'start': 1572425640,                    //K线的起始时间
+        'end': 1572425700,                      //K线的结束时间
+        'open': 9200,                           //开盘价
+        'close': 9202.5,                        //收盘价
+        'high': 9202.5,                         //最高价
+        'low': 9196,                            //最低价
+        'volume': 81790,                        //成交量
+        'turnover': 8.889247899999999,          //成交额
+        'confirm': False,                       //是否为快照数据标志
+        'cross_seq': 297503466,                 
+        'timestamp': 1572425676958323           //撮合时间
+    }],
+    'timestamp_e6': 1572425677047994            //服务器推送时间
+}
+```
+
 <hr>
 
 ### <span id="position">仓位变化消息</position>
@@ -494,4 +539,34 @@ ws.send('{"op":"subscribe","args":["position"]}')
         }
     ]
 }
+```
+
+
+<hr>
+
+### <span id="stop-order">条件委托更新</span>
+
+```js
+ws.send('{"op":"subscribe","args":["stop_order"]}')
+
+// 推送的消息格式
+{
+  "topic": "stop_order",
+  "data": [{
+    "order_id": "795d87a1-db49-4fd5-acd9-062cc45bfad9",
+    "order_status": "Untriggered",
+    "stop_order_type": "StopLoss",
+    "symbol": "BTCUSD",
+    "side": "Buy",
+    "qty": 1000,
+    "user_id": 529950,
+    "price": 0,
+    "order_type": "Market",
+    "time_in_force": "ImmediateOrCancel",
+    "trigger_price": 9270,
+    "trigger_by": "LastPrice"
+  }],
+  "user_id": 529950
+}
+
 ```

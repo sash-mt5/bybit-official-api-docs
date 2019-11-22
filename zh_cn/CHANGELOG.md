@@ -1,5 +1,43 @@
 <hr>
 
+## 2019-11-19
+
+### rest api
+- [获取平台历史成交数据](./rest_api.md#trading-records) [新增]
+
+<hr>
+
+## 2019-11-07
+
+### rest api
+- [修改用户杠杆](./rest_api.md#userleveragesavepost) [更新]
+- [我的仓位](./rest_api.md#positionlistget) [更新]
+- [更新保证金](./rest_api.md#positionchange-position-marginpost) [更新]
+- [设置止盈止损](./rest_api.md#position-settradingstoppost) [更新]
+
+<hr>
+
+## 2019-11-04
+
+### rest api
+- [获取公告](./rest_api.md#open-apiannouncement) [新增]
+- [撤销活动委托单](./rest_api.md#open-apiordercancelpost) [更新]
+    - 支持通过`order_link_id`撤单
+- [撤消条件委托单](./rest_api.md#open-apiordercancelpost) [更新]
+    - 支持通过`order_link_id`撤单
+- [密钥信息](./rest_api.md#open-apikeyget) [更新]
+    - 新增额外字段
+    - 更新ips字段返回内容
+- [更新频率限制](./rest_api_sign.md#rest-rate-limit)[更新]
+	- 频率限制精确到毫秒
+	- 细化接口的频率限制
+	- 新增字段rate_limit_reset_ms、rate_limit
+### Websocket
+- [klineV2](./websocket.md#kline_v2) [新增]
+- [stop_order](websocket.md#stop-order) [新增]
+
+<hr>
+
 ## 2019-10-22
 
 ### rest api
@@ -11,6 +49,7 @@
 - [Topic trade](./websocket.md#trade) [更新]
 	- 修复重复推送交易数据的问题
 	- 现在支持在一个消息中推送多条交易
+	
 <hr>
 
 ## 2018-11-09

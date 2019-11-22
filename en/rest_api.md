@@ -9,6 +9,7 @@ https://api.bybit.com
 ### Common
 
 * [Server time](#open-apiservertimeget)
+* [Announcement](#open-apiannouncement)
 
 ### API key
 
@@ -72,6 +73,8 @@ https://api.bybit.com
 
 * [Get latest information for symbol](#latest-information-for-symbol)
 
+* [Get public trading records](#trading-records)
+
 ### Kline data
 
 * [Query historical kline](https://bybit-exchange.github.io/bybit-official-api-docs/en/index.html#operation/query_kline)
@@ -95,13 +98,6 @@ https://api.bybit.com
 ##### Method
 > GET ```/v2/public/time```
 
-##### URL
-> For Testnet:
-> [https://api-testnet.bybit.com/v2/public/time](https://api-testnet.bybit.com/v2/public/time)
-
-> For Mainnet:
-> [https://api.bybit.com/v2/public/time](https://api.bybit.com/v2/public/time)
-
 #### Request Parameters
 
 |parameter|required|type|comments|
@@ -120,6 +116,50 @@ https://api.bybit.com
        },
        'time_now':'1539778407.210858',    //UTC timestamp, used for time calibration
    }
+
+```
+
+-----------
+## <span id="open-apiannouncement">Announcement</span>
+#### API Function
+
+> Get bybit OpenAPI announcements in the last 30 days。
+
+#### HTTP Request
+
+##### Method
+> GET ```/v2/public/announcement```
+
+#### Request Parameters
+
+|parameter|required|type|comments|
+|:----- |:-------|:-----|----- |
+
+
+#### Response example
+
+```js
+
+{
+  "ret_code": 0,
+  "ret_msg": "OK",
+  "ext_code": "",
+  "ext_info": "",
+  "result": [{
+    "id": 1,
+    "title": "New API",
+    "link": "https://github.com/bybit-exchange/bybit-official-api-docs/blob/master/en/CHANGELOG.md",
+    "summary": "Add announcement api",
+    "created_at": "2019-10-29T11:24:01Z"//publish time
+  }, {
+    "id": 3,
+    "title": "Update API",
+    "link": "https://github.com/bybit-exchange/bybit-official-api-docs/blob/master/en/CHANGELOG.md",
+    "summary": "Update get stop order list",
+    "created_at": "2019-10-29T12:26:43Z"
+  }],
+  "time_now": "1572580751.222836"
+}
 
 ```
 
@@ -152,7 +192,8 @@ https://api.bybit.com
     {
       "api_key": "zh2PIPKrIH1ewaRZ1l",          //API key
       "user_id": 160249,                        //user id
-      "ips": [                                  //available IP
+      "type": "personal",                       //personal or third-party application name such as aicoin
+      "ips": [                                  //bind ip type to a third-party application to return a request whitelist
         "173.194.72.139"
       ],
       "note": "stephen",
@@ -161,6 +202,7 @@ https://api.bybit.com
         "Position"
       ],
       "created_at": "2019-08-13T10:07:17.000Z", //create time
+      "expired_at": null,                       // expire time: null is forever
       "read_only": true                         //read only flag
     }
   ],
@@ -337,7 +379,8 @@ https://api.bybit.com
 
 |parameters|required|type|comments|
 |:----- |:-------|:-----|----- |
-|order_id |true |string |Your active order ID. The unique order ID returned to you when the corresponding active order was created |
+|order_id |false |string |Your active order ID. The unique order ID returned to you when the corresponding active order was created. `Required` if not pass order_link_id|
+|order_link_id |false |string |Agency customized order ID. `Required` if not pass order_id |
 |symbol |false |string |Contract type. |
 
 
@@ -432,8 +475,9 @@ https://api.bybit.com
 
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
-|order_id |true |string | Your active order ID. The unique order ID returned to you when the corresponding active order was created|
-|symbol |true |string | 	Contract type |
+|order_id |true |string | Your active order ID. The unique order ID returned to you when the corresponding active order was created. `Required` if not pass order_link_id. |
+|order_link_id |true |string | Agency customized order ID. `Required` if not pass order_id .|
+|symbol |true |string |Contract type |
 
 
 #### Response example
@@ -509,7 +553,7 @@ https://api.bybit.com
 |symbol |true |string |Contract type.    |
 |order_type |true |string |Conditional order type. |
 |qty |true |integer |Order quantity. |
-|price|true | number | Execution price for conditional order. Required if you make limit price order|
+|price|false | number | Execution price for conditional order. Required if you make limit price order|
 |base_price |true |number | It will be used to compare with the value of 'stop_px', to decide whether your conditional order will be triggered by crossing trigger price from upper side or lower side. Mainly used to identify the expected direction of the current conditional order. |
 |stop_px | true | number | Trigger price |
 |time_in_force |true |string |Time in force |
@@ -624,8 +668,8 @@ https://api.bybit.com
 
 |parameter|required|type | comments|
 |:----- |:-------|:-----|----- |
-|stop_order_id |true |string | Order ID. The unique order ID returned to you when the corresponding order was created. |
-
+|stop_order_id |false |string | Order ID. The unique order ID returned to you when the corresponding order was created. `Required` if not pass order_link_id|
+|order_link_id |false |string | Agency customized order ID. `Required` if not pass stop_order_id|
 
 #### Response example
 
@@ -752,6 +796,7 @@ https://api.bybit.com
 #### API Function
 
 > Change user leverage
+> Note that your position mode will be changed to Isolated Margin mode if you change your leverage from 0 to any other value
 
 #### HTTP Request
 
@@ -763,7 +808,7 @@ https://api.bybit.com
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
 |symbol |true |string |Contract type    |
-|leverage |true |string |leverage  |
+|leverage |true |string |Leverage. `0` means Cross Margin mode - any other value means Isolated Margin mode` |
 
 
 ####  Response example
@@ -816,7 +861,7 @@ https://api.bybit.com
            'position_value': 0,    //position value
            'entry_price': 0,       //entry price
            'leverage': 1,          //user leverage
-           'auto_add_margin': 0,   //auto margin replenishment switch
+           'auto_add_margin': 0,   //1 means Cross Margin mode, 0 means Isolated Margin mode
            'position_margin': 0,   //position margin
            'liq_price': 999999,    //liquidation price
            'bust_price': 999999,   //bankruptcy price
@@ -829,7 +874,7 @@ https://api.bybit.com
            'deleverage_indicator': 1,
            'oc_calc_data': '{\'blq\':\'0\',\'bmp\':\'0\',\'slq\':\'0\',\'smp\':\'0\'}',
            'order_margin': 0,      //Used margin by order
-           'wallet_balance': 0,    //wallet balance
+           'wallet_balance': 0,    //wallet balance .When in Cross Margin mode, the number minus your unclosed loss is your real wallet balance.
            'unrealised_pnl': 0,    //unrealised profit and loss
            'realised_pnl': 0,      //daily realized profit and loss
            'cum_realised_pnl': 0,  //Total realized profit and loss
@@ -850,6 +895,8 @@ https://api.bybit.com
 #### API Function
 
 > Update margin
+
+***Note that you can't change margin when your position is in Cross Margin mode***
 
 #### HTTP Request
 
@@ -917,7 +964,7 @@ https://api.bybit.com
            'position_value': 0,    //position value
            'entry_price': 0,       //entry price
            'leverage': 1,          //user leverage
-           'auto_add_margin': 0,   //auto margin replenishment switch
+           'auto_add_margin': 0,   //1 means Cross Margin mode, 0 means Isolated Margin mode
            'position_margin': 0,   //position margin
            'liq_price': 999999,    //liquidation price
            'bust_price': 999999,   //bankruptcy price
@@ -930,7 +977,7 @@ https://api.bybit.com
            'deleverage_indicator': 1,
            'oc_calc_data': '{\'blq\':\'0\',\'bmp\':\'0\',\'slq\':\'0\',\'smp\':\'0\'}',
            'order_margin': 0,      //Used margin by order
-           'wallet_balance': 0,    //wallet balance
+           'wallet_balance': 0,    //wallet balance. When in Cross Margin mod, the number minus your unclosed loss is your real wallet balance.
            'unrealised_pnl': 0,    //unrealised profit and loss
            'realised_pnl': 0,      //daily realized profit and loss
            'cum_realised_pnl': 0,  //Total realized profit and loss
@@ -1324,6 +1371,52 @@ https://api.bybit.com
             "predicted_funding_rate": "-0.00",              // predicted funding rate
             "next_funding_time": "2019-08-30T00:00:00Z",    // next funding time
             "countdown_hour": 4                             // the rest time to settle funding fee
+        }
+    ],
+    "time_now": "1567109419.049271"
+}
+
+```
+
+-----------
+## <span id="trading-records">Get public trading records</span>
+#### API Function
+
+> Get recent trades
+
+#### HTTP Request
+
+##### Method
+
+> GET `/v2/public/trading-records`
+
+#### Request parameters
+
+|parameters|required|type|comments|
+|:----- |:-------|:-----|----- |
+|symbol |true |string |Contract type |
+|from |false |int |From id. Default returns latest data|
+|limit |false |int |Number of result. Default 500; max 1000|
+
+
+
+#### Response example
+
+```js
+
+{
+    "ret_code": 0,                                   // error code 0 means success
+    "ret_msg": "OK",                                 // error message
+    "ext_code": "",                                  
+    "ext_info": "",                                  
+    "result": [
+        {
+            "id":7724919,                                   // ID
+            "symbol": "BTCUSD",                             // contract type
+            "price": 9499.5,                                // execution price
+            "qty": 9500,                                    // execution quantity
+            "side": "Buy",                                  // side
+            "time": "2019-11-19T08:03:04.077Z",             // UTC time
         }
     ],
     "time_now": "1567109419.049271"

@@ -10,6 +10,7 @@ https://api.bybit.com
 ### 通用请求
 
 * [获取服务器时间](#open-apiservertimeget)
+* [获取公告](#open-apiannouncement)
 
 ### API 密钥
 
@@ -73,6 +74,8 @@ https://api.bybit.com
 
 * [获取合约最新信息](#latest-information-for-symbol)
 
+* [获取平台历史成交数据](#trading-records)
+
 ### K线图历史数据
 
 * [查询K线图历史数据](https://bybit-exchange.github.io/bybit-official-api-docs/en/index.html#operation/query_kline)
@@ -116,6 +119,51 @@ https://api.bybit.com
    }
 
 ```
+
+-----------
+## <span id="open-apiannouncement">Announcement</span>
+#### API Function
+
+> Get bybit OpenAPI announcements in the last 30 days。
+
+#### HTTP Request
+
+##### Method
+> GET ```/v2/public/announcement```
+
+#### Request Parameters
+
+|parameter|required|type|comments|
+|:----- |:-------|:-----|----- |
+
+
+#### Response example
+
+```js
+
+{
+  "ret_code": 0,
+  "ret_msg": "OK",
+  "ext_code": "",
+  "ext_info": "",
+  "result": [{
+    "id": 1,
+    "title": "New API",
+    "link": "https://github.com/bybit-exchange/bybit-official-api-docs/blob/master/en/CHANGELOG.md",
+    "summary": "Add announcement api",
+    "created_at": "2019-10-29T11:24:01Z"//publish time
+  }, {
+    "id": 3,
+    "title": "Update API",
+    "link": "https://github.com/bybit-exchange/bybit-official-api-docs/blob/master/en/CHANGELOG.md",
+    "summary": "Update get stop order list",
+    "created_at": "2019-10-29T12:26:43Z"
+  }],
+  "time_now": "1572580751.222836"
+}
+
+```
+
 -----------
 ## <span id="open-apikeyget">密钥信息</span>
 #### 接口功能
@@ -145,7 +193,8 @@ https://api.bybit.com
             {
             "api_key": "zh2PIPKrIH1ewaRZ1l",            //API key
             "user_id": 160249,                          //用户ID
-            "ips": [                                    //可用IP
+            "type": "personal",                         //个人或第三方应用名称 如aicoin
+            "ips": [                                    //绑定ip type为第三方应用则返回请求白名单列表
                 "173.194.72.139"
             ],
             "note": "stephen",
@@ -154,6 +203,7 @@ https://api.bybit.com
                 "Position"
             ],          
             "created_at": "2019-08-13T10:07:17.000Z",   //创建时间
+            "expired_at": null,                         //过期时间：null永久有效  
             "read_only": true                           //只读标志
             }
         ],
@@ -328,7 +378,8 @@ https://api.bybit.com
 
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
-|order_id |true |string |活动委托单ID, 数据来自创建活动委托单返回的订单唯一ID |
+|order_id |false |string |活动委托单ID, 数据来自创建活动委托单返回的订单唯一ID。如果不填order_link_id则为必输 |
+|order_link_id |false |string |机构用户ID.如果不填order_id则为必输|
 |symbol |false |string | 合约 |
 
 
@@ -420,7 +471,8 @@ https://api.bybit.com
 
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
-|order_id |true |string |订单id |
+|order_id |false |string |订单id。如果不填order_link_id则为必输 |
+|order_link_id |false |string | 机构用户ID.如果不填order_id则为必输|
 |symbol |true |string | 合约种类 |
 
 
@@ -609,7 +661,8 @@ https://api.bybit.com
 
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
-|stop_order_id |true |string |委托单ID, 数据来自创建活动委托单返回的订单唯一ID |
+|stop_order_id |false |string |委托单ID, 数据来自创建活动委托单返回的订单唯一ID。如果不填order_link_id则为必输 |
+|order_link_id |false |string | 机构用户ID.如果不填stop_order_id则为必输|
 
 
 #### 返回示例
@@ -737,7 +790,7 @@ https://api.bybit.com
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
 |symbol |true |string |产品类型 (BTCUSD ETHUSD )    |
-|leverage |true |string |杠杆 |
+|leverage |true |string |杠杆. `杠杆为0 意味着全仓模式.全场模式下修改杠杆会变成逐仓模式`|
 
 
 #### 返回示例
@@ -791,7 +844,7 @@ https://api.bybit.com
             'position_value': 0,    仓位价值
             'entry_price': 0,       仓位开仓价
             'leverage': 1,          用户杠杆
-            'auto_add_margin': 0,   自动追加保证金开关
+            'auto_add_margin': 0,   0表示逐仓 1表示全仓
             'position_margin': 0,   仓位保证金
             'liq_price': 999999,    强平价格
             'bust_price': 999999,   破产价格
@@ -804,7 +857,7 @@ https://api.bybit.com
             'deleverage_indicator': 1,
             'oc_calc_data': '{\'blq\':\'0\',\'bmp\':\'0\',\'slq\':\'0\',\'smp\':\'0\'}',
             'order_margin': 0,      委托预占用保证金
-            'wallet_balance': 0,    账户余额
+            'wallet_balance': 0,    账户余额.注意，在全仓模式下，该数字减去未结亏损才是真实可用余额
             'unrealised_pnl': 0,    以标记价格计算的未结盈亏
             'realised_pnl': 0,      今日已结盈亏
             'cum_realised_pnl': 0,  累计已结盈亏
@@ -827,6 +880,8 @@ https://api.bybit.com
 #### 接口功能
 
 > 更新保证金
+
+**如果当前为`全仓模式`则不能调整保证金**
 
 #### HTTP请求方式
 
@@ -892,7 +947,7 @@ https://api.bybit.com
             'position_value': 0,    仓位价值
             'entry_price': 0,       仓位开仓价
             'leverage': 1,          用户杠杆
-            'auto_add_margin': 0,   自动追加保证金开关
+            'auto_add_margin': 0,   0表示逐仓 1表示全仓
             'position_margin': 0,   仓位保证金
             'liq_price': 999999,    强平价格
             'bust_price': 999999,   破产价格
@@ -905,7 +960,7 @@ https://api.bybit.com
             'deleverage_indicator': 1,
             'oc_calc_data': '{\'blq\':\'0\',\'bmp\':\'0\',\'slq\':\'0\',\'smp\':\'0\'}',
             'order_margin': 0,      委托预占用保证金
-            'wallet_balance': 0,    账户余额
+            'wallet_balance': 0,    账户余额.注意，在全仓模式，该数字减去未结亏损才是真实可用余额
             'unrealised_pnl': 0,    以标记价格计算的未结盈亏
             'realised_pnl': 0,      今日已结盈亏
             'cum_realised_pnl': 0,  累计已结盈亏
@@ -961,7 +1016,7 @@ https://api.bybit.com
       "amount": "1.18826225",                   //数量
       "tx_id": "",
       "address": "XRPUSD",                      //地址
-      "wallet_balance": "999.12908894",         //头寸
+      "wallet_balance": "999.12908894",         //可用余额
       "exec_time": "2019-09-25T00:00:15.000Z",
       "cross_seq": 0
     }]
@@ -1076,7 +1131,49 @@ https://api.bybit.com
 
 ```
 
+-----------
+## <span id="trading-records">获取平台历史成交数据</span>
+#### 接口功能
 
+> 获取历史成交数据
+
+#### HTTP请求方式
+
+> GET   /v2/public/trading-records
+
+#### 请求参数
+
+|参数|必选|类型|说明|
+|:----- |:-------|:-----|----- |
+|symbol |true |string |合约类型 |
+|from |false |int |查询起始ID.如果不填则返回最新数据 |
+|limit |false |int |结果条数.单次默认500，最高1000 |
+
+
+
+#### 返回示例
+
+```js
+
+{
+    "ret_code": 0,                                   // 错误码 0为成功
+    "ret_msg": "OK",                                 // 错误信息
+    "ext_code": "",                                  
+    "ext_info": "",                                  
+    "result": [
+        {
+            "id":7724919,                                   // ID
+            "symbol": "BTCUSD",                             // 合约类型
+            "price": 9499.5,                                // 成交价格
+            "qty": 9500,                                    // 成交数量
+            "side": "Buy",                                  // 成交方向
+            "time": "2019-11-19T08:03:04.077Z",             // UTC时间
+        }
+    ],
+    "time_now": "1567109419.049271"
+}
+
+```
 
 -----------
 ## <span id="wallet-withdrawrecordget">获取出金记录 </span>
