@@ -58,6 +58,9 @@ ws.send('{"op":"auth","args":["{api_key}","{expires}","{signature}"]}');
 * [PHP](/en/example/Encryption.php)
 
 ### How to Send The Heartbeat Packet
+
+**Due to unstable network or program error, we strongly recommend that you should use Ping to maintain a websocket connection and do reconnect.**
+
 After establishing the connection, one can send a heartbeat packet to confirm the connection is normal by sending a json request. The specific formats are as follows:
 ```js
 ws.send('{"op":"ping"}');
@@ -106,8 +109,8 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 ## Currently Supported Topics
 
 ### Public Topic
-* ~~[orderBook25](#orderBook25) `// OrderBook of 25 depth per side`~~  -----It's deprecated. The following V2 version [orderBookL2_25](#orderBook25_v2) is recommended to use
-* ~~[kline](#kline) `// Candlestick chart`~~  -----It's deprecated. The following V2 version [klineV2](#kline_v2)  is recommended to use
+* ~~[orderBook25](#orderBook25) `// OrderBook of 25 depth per side`~~  -----It's deprecated.The following V2 version [orderBookL2_25](#orderBook25_v2) is recommended to use
+* ~~[kline](#kline) `// Candlestick chart`~~  -----It's deprecated.The following V2 version [klineV2](#kline_v2)  is recommended to use
 * [trade](#trade) `// Real-time trading information`
 * [insurance](#insurance) `// Daily insurance fund update`
 * ~~[instrument](#instrument) `// Latest information for symbol`~~  -----It's deprecated. The following V2 version [instrument_info](#instrument_info) is recommended to use
@@ -121,6 +124,7 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 * [position](#position) `// Positions of your account`
 * [execution](#execution) `// Execution message`
 * [order](#order) `// Update for your orders`
+* [stop_order](#stop-order) `// Update for your stop orders`
 
 <hr>
 

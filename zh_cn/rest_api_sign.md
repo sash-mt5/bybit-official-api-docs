@@ -86,7 +86,8 @@
   * 条件单同一方向最多可同时有5个
 
 #### 如何提高频率限制
-  * 请发申请邮件到 api@bybit.com, 我们会在3-5个工作日内给您答复
+  * 请先阅读[`如何提高频率限制`](./API_Limit_v2.3_ch.md)
+  * 请发申请邮件到 api@bybit.com, 我们会在1-4个工作日内给您答复
 
 ### 认证
 
@@ -118,15 +119,29 @@ var sign = hex(HMAC_SHA256($secret, $param_str));
 
 3.附加上sign参数，发送http请求,目前支持以下两种形式提交参数
 
-```http
-POST /user/leverage/save HTTP/1.1
-Host: api-testnet.bybit.com
-Content-Type: application/x-www-form-urlencoded
+GET请求
 
-api_key=B2Rou0PLPpGqcU0Vu2&leverage=100&symbol=BTCUSD&timestamp=1542434791000&sign=670e3e4aa32b243f2dedf1dafcec2fd17a440e71b05681550416507de591d908
+```http
+GET /user/leverage?api_key=B2Rou0PLPpGqcU0Vu2&timestamp=1542434791000&sign=670e3e4aa32b243f2dedf1dafcec2fd17a440e71b05681550416507de591d908 HTTP/1.1
+Host: api-testnet.bybit.com
 
 ```
 
+或
+
+```http
+GET /user/leverage HTTP/1.1
+Host: api-testnet.bybit.com
+content-type: application/json
+
+{
+    "api_key":"B2Rou0PLPpGqcU0Vu2",
+    "timestamp":1542434791000,
+    "sign":"670e3e4aa32b243f2dedf1dafcec2fd17a440e71b05681550416507de591d908"
+}
+```
+
+POST请求
 ```http
 POST /user/leverage/save HTTP/1.1
 Host: api-testnet.bybit.com
@@ -156,6 +171,7 @@ result | 不同业务接口返回与其对应的数据 |
 * [Python](example/Encryption.py)
 * [C++](example/Encryption.cpp)
 * [Go](example/Encryption.go)
+* [PHP](example/Encryption.php)
 
 
 ### Errors

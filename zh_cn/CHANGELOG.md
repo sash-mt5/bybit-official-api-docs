@@ -1,11 +1,29 @@
 <hr>
 
+## 2019-11-19
+
+### rest api
+- [获取平台历史成交数据](./rest_api.md#trading-records) [新增]
+
+<hr>
+
+## 2019-11-07
+
+### rest api
+- [修改用户杠杆](./rest_api.md#userleveragesavepost) [更新]
+- [我的仓位](./rest_api.md#positionlistget) [更新]
+- [更新保证金](./rest_api.md#positionchange-position-marginpost) [更新]
+- [设置止盈止损](./rest_api.md#position-settradingstoppost) [更新]
+
+<hr>
+
 ## 2019-11-04
 
 ### rest api
-- [撤销活动委托单](./rest_api.md##open-apiordercancelpost) [更新]
+- [获取公告](./rest_api.md#open-apiannouncement) [新增]
+- [撤销活动委托单](./rest_api.md#open-apiordercancelpost) [更新]
     - 支持通过`order_link_id`撤单
-- [撤消条件委托单](./rest_api.md##open-apiordercancelpost) [更新]
+- [撤消条件委托单](./rest_api.md#open-apiordercancelpost) [更新]
     - 支持通过`order_link_id`撤单
 - [密钥信息](./rest_api.md#open-apikeyget) [更新]
     - 新增额外字段
@@ -15,7 +33,8 @@
 	- 细化接口的频率限制
 	- 新增字段rate_limit_reset_ms、rate_limit
 ### Websocket
-- [klineV2](./websocket.md#klineV2) [新增]
+- [klineV2](./websocket.md#kline_v2) [新增]
+- [stop_order](websocket.md#stop-order) [新增]
 
 <hr>
 

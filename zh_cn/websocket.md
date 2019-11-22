@@ -57,6 +57,9 @@ ws.send('{"op":"auth","args":["{api_key}","{expires}","{signature}"]}');
 
 
 ### 如何发送业务心跳包
+
+**网络不稳定或者程序异常等因素会导致websocket连接异常断开，所以我们强烈建议您使用Ping来维持连接，且对锻炼的情况进行处理**
+
 连接建立后，通过发送json格式的心跳包来进行心跳探测,具体格式如下
 ```js
 ws.send('{"op":"ping"}');
@@ -106,7 +109,7 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 
 ### 公共类topic
 * ~~[orderBook25](#orderBook25) `// 25档orderBook`~~ -----这是过时的，推荐使用V2版本的[orderBookL2_25](#orderBook25_v2)
-* ~~[kline](#kline) `// K线` ~~  -----It's deprecated.The following V2 version [klineV2](#kline_v2)  is recommended to use
+* ~~[kline](#kline) `// K线`~~  -----已过期，推荐使用最新v2版本的[klineV2](#kline_v2)
 * [trade](#trade) `// 实时交易`
 * [insurance](#insurance) `// 每日保险基金更新`
 * ~~[instrument](#instrument) `// 产品最新信息`~~ -----这是过时的，推荐使用V2版本的[instrument_info](#instrument_info)
@@ -120,6 +123,8 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 * [position](#position) `// 仓位变化`
 * [execution](#execution) `// 委托单成交信息`
 * [order](#order) `// 委托单的更新`
+* [stop_order](#stop-order) `// 条件委托更新`
+
 
 <hr>
 
@@ -534,4 +539,34 @@ ws.send('{"op":"subscribe","args":["position"]}')
         }
     ]
 }
+```
+
+
+<hr>
+
+### <span id="stop-order">条件委托更新</span>
+
+```js
+ws.send('{"op":"subscribe","args":["stop_order"]}')
+
+// 推送的消息格式
+{
+  "topic": "stop_order",
+  "data": [{
+    "order_id": "795d87a1-db49-4fd5-acd9-062cc45bfad9",
+    "order_status": "Untriggered",
+    "stop_order_type": "StopLoss",
+    "symbol": "BTCUSD",
+    "side": "Buy",
+    "qty": 1000,
+    "user_id": 529950,
+    "price": 0,
+    "order_type": "Market",
+    "time_in_force": "ImmediateOrCancel",
+    "trigger_price": 9270,
+    "trigger_by": "LastPrice"
+  }],
+  "user_id": 529950
+}
+
 ```
