@@ -127,14 +127,12 @@ Host: api-testnet.bybit.com
 or
 
 ```http
-GET /user/leverage/save HTTP/1.1
+GET /user/leverage HTTP/1.1
 Host: api-testnet.bybit.com
 content-type: application/json
 
 {
     "api_key":"B2Rou0PLPpGqcU0Vu2",
-    "leverage":100,
-    "symbol":"BTCUSD",
     "timestamp":1542434791000,
     "sign":"670e3e4aa32b243f2dedf1dafcec2fd17a440e71b05681550416507de591d908"
 }
