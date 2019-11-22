@@ -86,7 +86,7 @@ Every request to the API returns the following fields:
 
 #### How To Raise API Limit Threshold
   * Please read [`How To Raise API Limit Threshold`](./API_Limit_v2.3_en.md)
-  * Please send your application email to api@bybit.com. We will reply in 3-5 working days.
+  * Please send your application email to api@bybit.com. We will reply in 1-4 working days.
 
 ### Authentication
 When calling the API, you need to provide your API key as identification for every request. In addition, a signature of the request you are making is required, which should be signed using the corresponding API secret.
