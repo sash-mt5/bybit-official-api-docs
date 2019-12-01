@@ -27,7 +27,7 @@ https://api.bybit.com
 
 * [Cancel active order-V2](#open-apiordercancelv2post)
 
-* [Cancel all avtive orders](#open-apiordercancelallpost)
+* [Cancel all active orders](#open-apiordercancelallpost)
 
 * [Replace order](#open-apiorderreplacepost)
 
@@ -329,7 +329,7 @@ https://api.bybit.com
 
 #### HTTP Request
 
-> POST  /v2/private/order/create
+> POST  `/v2/private/order/create`
 
 #### Request Parameters
 
@@ -510,7 +510,7 @@ https://api.bybit.com
 ```
 
 -----------
-## <span id="open-apiordercancelv2post">Cancel avtive order-V2</span>
+## <span id="open-apiordercancelv2post">Cancel Active Order-V2</span>
 #### API Function
 
 > 'order_id' is required for cancelling active order. The unique 36 characters order ID was returned to you when the active order was created successfully.
@@ -520,9 +520,7 @@ https://api.bybit.com
 
 #### HTTP Request
 
-##### Method
-
-> POST  /v2/private/order/cancel
+> POST  `/v2/private/order/cancel`
 
 ####  Request Parameters
 
@@ -532,7 +530,7 @@ https://api.bybit.com
 |symbol |false |string | Contract type |
 
 
-#### 返回示例
+#### Response example
 
 ```js
 
@@ -571,28 +569,28 @@ https://api.bybit.com
 ```
 
 -----------
-## <span id="open-apiordercancelallpost">Cancel all active orders</span>
-#### 接口功能
+## <span id="open-apiordercancelallpost">Cancel All Active Orders</span>
+#### API Function
 
-> Cancel all active orders that are unfilled and partially filled. Fully filled order cannot be cancelled.
+> Cancel all active orders that are unfilled or partially filled. Fully filled orders cannot be cancelled.
 
 
-#### HTTP请求方式
+#### HTTP Request
 
-> POST  /v2/private/order/cancelAll
+> POST  `/v2/private/order/cancelAll`
 
-#### 请求参数
+#### Request Parameters
 
-|参数|必选|类型|说明|
+|parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
 |symbol |true |string | Contract type |
 
 
-#### 返回示例
+#### Response example
 
 ```js
 
-    
+
     {
         "ret_code": 0,      
         "ret_msg": "OK",    
@@ -615,64 +613,7 @@ https://api.bybit.com
                 "leaves_value": "0",                                
                 "created_at": "2019-11-30T10:38:53.564428Z",        
                 "updated_at": "2019-11-30T10:38:59.102589Z",        
-                "cross_status": "PendingCancel",                     `PendingCancel` means that the matching engine receive the the cancellation, but there is no guarantee that the cancellation will be successful.
-                "cross_seq": 387734027                              
-            }
-        ],
-        "time_now": "1575110339.105675",
-        "rate_limit_status": 98,
-        "rate_limit_reset_ms": 1575110339100545,
-        "rate_limit": 100
-    }
-
-```
-
-
------------
-## <span id="open-apiordercancelallpost">撤销活动委托单 </span>
-#### 接口功能
-
-> You may cancel active order that are unfilled and partially filled. Fully filled order cannot be cancelled.
-
-#### HTTP请求方式
-
-> POST  /v2/private/order/cancelAll
-
-#### 请求参数
-
-|参数|必选|类型|说明|
-|:----- |:-------|:-----|----- |
-|symbol |true |string | 合约 |
-
-
-#### 返回示例
-
-```js
-
-    
-    {
-        "ret_code": 0,      
-        "ret_msg": "OK",    
-        "ext_code": "",     
-        "ext_info": "",
-        "result": [
-            {
-                "clOrdID": "89a38056-80f1-45b2-89d3-4d8e3a203a79",  
-                "user_id": 105008,                                  
-                "symbol": "BTCUSD",                                 
-                "side": "Buy",                                      
-                "order_type": "Limit",                              
-                "price": "7693.5",                                  
-                "qty": 1,                                           
-                "time_in_force": "GoodTillCancel",                  
-                "create_type": "CreateByUser",                      
-                "cancel_type": "CancelByUser",                      
-                "order_status": "",                                 
-                "leaves_qty": 1,                                    
-                "leaves_value": "0",                                
-                "created_at": "2019-11-30T10:38:53.564428Z",        
-                "updated_at": "2019-11-30T10:38:59.102589Z",        
-                "cross_status": "PendingCancel",                    `PendingCancel` means that the matching engine receive the the cancellation, but there is no guarantee that the cancellation will be successful.
+                "cross_status": "PendingCancel",  // `PendingCancel` means the matching engine received the cancellation but there is no guarantee that the cancellation will be successful.
                 "cross_seq": 387734027                              
             }
         ],
@@ -967,7 +908,7 @@ https://api.bybit.com
 
 ```
 -----------
-## <span id="open-apistop-ordercancelallpost">Cancel all conditional orders</span>
+## <span id="open-apistop-ordercancelallpost">Cancel All Conditional Orders</span>
 #### API Function
 
 > Cancel all untriggered conditional orders.
@@ -975,9 +916,7 @@ https://api.bybit.com
 
 #### HTTP Request
 
-##### Method
-
-> POST  /v2/private/stop-order/cancelAll
+> POST  `/v2/private/stop-order/cancelAll`
 
 #### Request Parameters
 
@@ -1012,7 +951,7 @@ https://api.bybit.com
                 "leaves_value": "0",
                 "created_at": "2019-11-30T10:49:48.139157Z",        
                 "updated_at": "2019-11-30T10:49:57.646802Z",       
-                "cross_status": "Deactivated",                      `Deactivated` measn conditional order was canceled before triggering
+                "cross_status": "Deactivated",  // `Deactivated` means the conditional order was cancelled before triggering
                 "cross_seq": -1,                                    
                 "stop_order_type": "Stop",                          
                 "trigger_by": "LastPrice",                          
@@ -1864,5 +1803,5 @@ https://api.bybit.com
 * `PartiallyFilled`
 * `Filled`
 * `Cancelled`
-* `PendingCancel` `means that the matching receive the the cancellation, but there is no guarantee that the cancellation will be successful.`
-* `Deactivated`   `measn conditional order was canceled before triggering`
+* `PendingCancel` - The matching engine has received the cancellation but there is no guarantee that it will be successful
+* `Deactivated` - The conditional order was cancelled before triggering
