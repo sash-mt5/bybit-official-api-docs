@@ -18,13 +18,13 @@ https://api.bybit.com
 
 ### 活动委托单
 
-* ~~[创建活动委托单](#open-apiordercreatepost)~~
+* ~~[创建活动委托单](#open-apiordercreatepost)~~  ----推荐使用V2版本
 
 * [创建活动委托单-v2](#open-apiordercreatev2post)
 
 * [查询活动委托](#open-apiorderlistget)
 
-* ~~[撤销活动委托单](#open-apiordercancelpost)~~
+* ~~[撤销活动委托单](#open-apiordercancelpost)~~  ----推荐使用V2版本
 
 * [撤销活动委托单-v2](#open-apiordercancelv2post)
 
