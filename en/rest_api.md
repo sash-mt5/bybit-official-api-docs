@@ -17,11 +17,17 @@ https://api.bybit.com
 
 ### Active Order
 
-* [Place active order](#open-apiordercreatepost)
+* ~~[Place active order](#open-apiordercreatepost)~~ ----The V2 version is recommended to use.
+
+* [Place active order-V2](#open-apiordercreatev2post)
 
 * [Get active order](#open-apiorderlistget)
 
-* [Cancel active order](#open-apiordercancelpost)
+* ~~[Cancel active order](#open-apiordercancelpost)~~ ----The V2 version is recommended to use.
+
+* [Cancel active order-V2](#open-apiordercancelv2post)
+
+* [Cancel all avtive orders](#open-apiordercancelallpost)
 
 * [Replace order](#open-apiorderreplacepost)
 
@@ -34,6 +40,8 @@ https://api.bybit.com
 * [Get conditional order](#open-apistop-orderlistget)
 
 * [Cancel conditional order](#open-apistop-ordercancelpost)
+
+* [Cancel all conditional orders](#open-apistop-ordercancelallpost)
 
 * [Replace conditional order](#open-apistop-orderreplacepost)
 
@@ -296,6 +304,89 @@ https://api.bybit.com
 ```
 
 -----------
+## <span id="open-apiordercreatev2post">Place Active Order-V2</span>
+#### API Function
+
+>Parameters of 'side', 'symbol', 'order_type', 'qty', 'price', 'time_in_force' are required for all active orders. Other parameters are optional unless specified.
+
+>Market price active order: A traditional market price order, will be filled at the best available price. 'price' and 'time_in_force' can set to be "" if and only if you are placing market price order.
+
+>Limit price active order: You can set an execution price for your order. Only when last traded price reaches the order price, the system will fill your order.
+
+>Take profit/Stop loss: You may only set a take-profit/stop-loss conditional order upon opening the position. Once you hold a position, the take profit and stop loss information u sent when placing an order will no longer be valid.
+
+>Order quantity: This parameter indicates the quantity of perpetual contracts you want to buy or sell, currently Bybit only support order quantity in an integer.
+
+>Order price: This parameter indicates the price of perpetual contracts you want to buy or sell, currently Bybit only support price increment of every 0.5.
+
+>Customize conditional order ID: You may customize order IDs for active orders. We will link it to the system order ID , and return the unique system order ID to you after the active order is created successfully. You may use this order ID to cancel your active order. The customized order ID is asked to be unique, with a maximum length of 36 characters.
+
+>Notes:
+>* Each account can hold up to 200 active orders yet to be filled entirely simultaneously.
+>* 'order_status' values explained:
+>    * 'Created' indicates the order has been accepted by the system but not yet entered into the orderbook
+>    * 'New' indicates the order has entered into the orderbook.
+
+#### HTTP Request
+
+> POST  /v2/private/order/create
+
+#### Request Parameters
+
+|parameter|required|type|comments|
+|:----- |:-------|:-----|----- |
+|side |true |string |Side    |
+|symbol |true |string |Contract type.    |
+|order_type |true |string |Active order type   |
+|qty |true |integer |Order quantity. |
+|price |false |number |Order price. Required if you make limit price order |
+|time_in_force |true |string |Time in force |
+|take_profit |false |number |take profit price|
+|stop_loss |false |number |stop loss price|
+|reduce_only |false |bool |reduce only
+|close_on_trigger |false |bool |close on trigger
+|order_link_id |false |string |Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.|
+|trailing_stop|false |number |trailing stop |
+
+#### Response example
+
+```js
+
+    {
+        "ret_code": 0,
+        "ret_msg": "OK",
+        "ext_code": "",
+        "ext_info": "",
+        "result": {
+            "user_id": 105008,
+            "order_id": "335fd977-e5a5-4781-b6d0-c772d5bfb95b",
+            "symbol": 1,
+            "side": 2,
+            "order_type": 1,
+            "price": 8800,
+            "qty": 1,
+            "time_in_force": 3,
+            "order_status": 0,
+            "last_exec_time": 0,
+            "last_exec_price": 0,
+            "leaves_qty": 1,
+            "cum_exec_qty": 0,
+            "cum_exec_value": 0,
+            "cum_exec_fee": 0,
+            "reject_reason": "",
+            "order_link_id": "",
+            "created_at": "2019-11-30T11:03:43.452Z",
+            "updated_at": "2019-11-30T11:03:43.455Z"
+        },
+        "time_now": "1575111823.458705",
+        "rate_limit_status": 99,
+        "rate_limit_reset_ms": 1575111823448987,
+        "rate_limit": 100
+    }
+
+```
+
+-----------
 ## <span id="open-apiorderlistget">Get Active Order</span>
 #### API Function
 
@@ -415,6 +506,181 @@ https://api.bybit.com
        },
        'time_now':'1539778407.210858',    //UTC timestamp
    }
+
+```
+
+-----------
+## <span id="open-apiordercancelv2post">Cancel avtive order-V2</span>
+#### API Function
+
+> 'order_id' is required for cancelling active order. The unique 36 characters order ID was returned to you when the active order was created successfully.
+> 'symbol' is recommend filled, Otherwise, there will be a small probability of failure.
+
+>You may cancel active order that are unfilled and partially filled. Fully filled order cannot be cancelled.
+
+#### HTTP Request
+
+##### Method
+
+> POST  /v2/private/order/cancel
+
+####  Request Parameters
+
+|parameters|required|type|comments|
+|:----- |:-------|:-----|----- |
+|order_id |true |string |Order Id|
+|symbol |false |string | Contract type |
+
+
+#### 返回示例
+
+```js
+
+    {
+        "ret_code": 0,
+        "ret_msg": "OK",
+        "ext_code": "",
+        "ext_info": "",
+        "result": {
+            "user_id": 105008,
+            "order_id": "3bd1844f-f3c0-4e10-8c25-10fea03763f6",
+            "symbol": 1,
+            "side": 2,
+            "order_type": 2,
+            "price": 8800,
+            "qty": 1,
+            "time_in_force": 1,
+            "order_status": 6,
+            "last_exec_time": 0,
+            "last_exec_price": 0,
+            "leaves_qty": 1,
+            "cum_exec_qty": 0,
+            "cum_exec_value": 0,
+            "cum_exec_fee": 0,
+            "reject_reason": "",
+            "order_link_id": "",
+            "created_at": "2019-11-30T11:17:18.396Z",
+            "updated_at": "2019-11-30T11:18:01.811Z"
+        },
+        "time_now": "1575112681.814760",
+        "rate_limit_status": 99,
+        "rate_limit_reset_ms": 1575112681807671,
+        "rate_limit": 100
+    }
+
+```
+
+-----------
+## <span id="open-apiordercancelallpost">Cancel all active orders</span>
+#### 接口功能
+
+> Cancel all active orders that are unfilled and partially filled. Fully filled order cannot be cancelled.
+
+
+#### HTTP请求方式
+
+> POST  /v2/private/order/cancelAll
+
+#### 请求参数
+
+|参数|必选|类型|说明|
+|:----- |:-------|:-----|----- |
+|symbol |true |string | Contract type |
+
+
+#### 返回示例
+
+```js
+
+    
+    {
+        "ret_code": 0,      
+        "ret_msg": "OK",    
+        "ext_code": "",     
+        "ext_info": "",
+        "result": [
+            {
+                "clOrdID": "89a38056-80f1-45b2-89d3-4d8e3a203a79",  
+                "user_id": 105008,                                  
+                "symbol": "BTCUSD",                                
+                "side": "Buy",                                      
+                "order_type": "Limit",                              
+                "price": "7693.5",                                  
+                "qty": 1,                                           
+                "time_in_force": "GoodTillCancel",                  
+                "create_type": "CreateByUser",                     
+                "cancel_type": "CancelByUser",                      
+                "order_status": "",                                 
+                "leaves_qty": 1,                                    
+                "leaves_value": "0",                                
+                "created_at": "2019-11-30T10:38:53.564428Z",        
+                "updated_at": "2019-11-30T10:38:59.102589Z",        
+                "cross_status": "PendingCancel",                     `PendingCancel` means that the matching engine receive the the cancellation, but there is no guarantee that the cancellation will be successful.
+                "cross_seq": 387734027                              
+            }
+        ],
+        "time_now": "1575110339.105675",
+        "rate_limit_status": 98,
+        "rate_limit_reset_ms": 1575110339100545,
+        "rate_limit": 100
+    }
+
+```
+
+
+-----------
+## <span id="open-apiordercancelallpost">撤销活动委托单 </span>
+#### 接口功能
+
+> You may cancel active order that are unfilled and partially filled. Fully filled order cannot be cancelled.
+
+#### HTTP请求方式
+
+> POST  /v2/private/order/cancelAll
+
+#### 请求参数
+
+|参数|必选|类型|说明|
+|:----- |:-------|:-----|----- |
+|symbol |true |string | 合约 |
+
+
+#### 返回示例
+
+```js
+
+    
+    {
+        "ret_code": 0,      
+        "ret_msg": "OK",    
+        "ext_code": "",     
+        "ext_info": "",
+        "result": [
+            {
+                "clOrdID": "89a38056-80f1-45b2-89d3-4d8e3a203a79",  
+                "user_id": 105008,                                  
+                "symbol": "BTCUSD",                                 
+                "side": "Buy",                                      
+                "order_type": "Limit",                              
+                "price": "7693.5",                                  
+                "qty": 1,                                           
+                "time_in_force": "GoodTillCancel",                  
+                "create_type": "CreateByUser",                      
+                "cancel_type": "CancelByUser",                      
+                "order_status": "",                                 
+                "leaves_qty": 1,                                    
+                "leaves_value": "0",                                
+                "created_at": "2019-11-30T10:38:53.564428Z",        
+                "updated_at": "2019-11-30T10:38:59.102589Z",        
+                "cross_status": "PendingCancel",                    `PendingCancel` means that the matching engine receive the the cancellation, but there is no guarantee that the cancellation will be successful.
+                "cross_seq": 387734027                              
+            }
+        ],
+        "time_now": "1575110339.105675",
+        "rate_limit_status": 98,
+        "rate_limit_reset_ms": 1575110339100545,
+        "rate_limit": 100
+    }
 
 ```
 
@@ -700,6 +966,68 @@ https://api.bybit.com
    }
 
 ```
+-----------
+## <span id="open-apistop-ordercancelallpost">Cancel all conditional orders</span>
+#### API Function
+
+> Cancel all untriggered conditional orders.
+
+
+#### HTTP Request
+
+##### Method
+
+> POST  /v2/private/stop-order/cancelAll
+
+#### Request Parameters
+
+|parameter|required|type | comments|
+|:----- |:-------|:-----|----- |
+|symbol |true |string |Contract type|
+
+
+#### Response example
+
+```js
+
+    {
+        "ret_code": 0,
+        "ret_msg": "OK",
+        "ext_code": "",
+        "ext_info": "",
+        "result": [
+            {
+                "clOrdID": "041e523d-2376-42c7-9998-252a5fff9e75",  
+                "user_id": 105008,                                  
+                "symbol": "BTCUSD",                                 
+                "side": "Buy",                                     
+                "order_type": "Limit",                            
+                "price": "7694.5",                                 
+                "qty": 1,                                           
+                "time_in_force": "GoodTillCancel",                  
+                "create_type": "CreateByUser",                      
+                "cancel_type": "CancelByUser",                      
+                "order_status": "",                                 
+                "leaves_qty": 1,                                    
+                "leaves_value": "0",
+                "created_at": "2019-11-30T10:49:48.139157Z",        
+                "updated_at": "2019-11-30T10:49:57.646802Z",       
+                "cross_status": "Deactivated",                      `Deactivated` measn conditional order was canceled before triggering
+                "cross_seq": -1,                                    
+                "stop_order_type": "Stop",                          
+                "trigger_by": "LastPrice",                          
+                "base_price": "7689.5",                             
+                "expected_direction": "Rising"                      
+            }
+        ],
+        "time_now": "1575110997.668109",
+        "rate_limit_status": 99,
+        "rate_limit_reset_ms": 1575110997643683,
+        "rate_limit": 100
+    }
+
+```
+
 -----------
 
 
@@ -1536,3 +1864,5 @@ https://api.bybit.com
 * `PartiallyFilled`
 * `Filled`
 * `Cancelled`
+* `PendingCancel` `means that the matching receive the the cancellation, but there is no guarantee that the cancellation will be successful.`
+* `Deactivated`   `measn conditional order was canceled before triggering`

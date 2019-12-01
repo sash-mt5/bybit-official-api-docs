@@ -20,13 +20,13 @@ https://api.bybit.com
 
 * ~~[创建活动委托单](#open-apiordercreatepost)~~
 
-* [创建活动委托单-新版](#open-apiordercreatenewpost)
+* [创建活动委托单-v2](#open-apiordercreatev2post)
 
 * [查询活动委托](#open-apiorderlistget)
 
 * ~~[撤销活动委托单](#open-apiordercancelpost)~~
 
-* [撤销活动委托单-新版](#open-apiordercancelpostnew)
+* [撤销活动委托单-v2](#open-apiordercancelv2post)
 
 * [撤销全部活动委托单](#open-apiordercancelallpost)
 
@@ -302,7 +302,7 @@ https://api.bybit.com
 ```
 
 -----------
-## <span id="open-apiordercreatepost">创建活动委托单 </span>
+## <span id="open-apiordercreatev2post">创建活动委托单 </span>
 #### 接口功能
 
 > 所有活动委托都必须填写 &#39;side&#39;, &#39;symbol&#39;, &#39;order_type&#39;, &#39;qty&#39;, &#39;price&#39;, &#39;time_in_force&#39;参数，其它参数除非有特殊说明，否则都是可选的。
@@ -509,7 +509,7 @@ https://api.bybit.com
 ```
 
 -----------
-## <span id="open-apiordercancelpostnew">撤销活动委托单 </span>
+## <span id="open-apiordercancelv2post">撤销活动委托单 </span>
 #### 接口功能
 
 > 所有撤销活动委托都必须填写 &#39;order_id&#39;，在您创建活动委托成功时会为您返回36位唯一的订单ID。
@@ -569,13 +569,10 @@ https://api.bybit.com
 ```
 
 -----------
-## <span id="open-apiordercancelallpost">撤销活动委托单 </span>
+## <span id="open-apiordercancelallpost">撤销所有活动委托单 </span>
 #### 接口功能
 
-> 所有撤销活动委托都必须填写 &#39;order_id&#39;，在您创建活动委托成功时会为您返回36位唯一的订单ID。
-> 建议传symbol参数，否则可能会有很小的概率导致撤单失败，返回'Order not exists'错误.
-
-> 您可以撤销未成交、部分成交的活动委托单。但全部成交的活动委托不可取消。
+> 撤销所有未成交、部分成交的活动委托单。但全部成交的活动委托不可取消。
 
 
 #### HTTP请求方式
@@ -1767,6 +1764,8 @@ https://api.bybit.com
 * `Filled`          `全部成交`
 * `Cancelled`       `已取消`
 * `Rejected`        `订单被拒绝`
+* `PendingCancel`   `撮合引擎收到取消指令但不一定会被成功取消`
+* `Deactivated`     `条件单触发前被取消`
 
 #### Order (`order`)
 * __NOTE: currently broken for both get conditional order and get active order__
