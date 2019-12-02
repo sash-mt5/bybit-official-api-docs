@@ -1,5 +1,16 @@
 <hr>
 
+## 2019-12-2
+
+### REST API
+
+- [Place active order-V2](./rest_api.md#open-apiordercreatev2post) [new]
+- [Cancel active order-V2](./rest_api.md#open-apiordercancelv2post) [new]
+- [Cancel all active orders](./rest_api.md#open-apiordercancelallpost) [new]
+- [Cancel all conditional orders](./rest_api.md#open-apistop-ordercancelallpost) [new]
+
+<hr>
+
 ## 2019-11-19
 
 ### REST API
