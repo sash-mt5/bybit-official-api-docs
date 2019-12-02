@@ -86,7 +86,7 @@ Every request to the API returns the following fields:
 
 #### How To Raise API Limit Threshold
   * Please read [`How To Raise API Limit Threshold`](./API_Limit_v2.3_en.md)
-  * Please send your application email to api@bybit.com. We will reply in 3-5 working days.
+  * Please send your application email to api@bybit.com. We will reply in 1-4 working days.
 
 ### Authentication
 When calling the API, you need to provide your API key as identification for every request. In addition, a signature of the request you are making is required, which should be signed using the corresponding API secret.
@@ -119,12 +119,23 @@ Please note that the format for messages is different depending on whether you a
 GET requests:
 
 ```http
+GET /user/leverage?api_key=B2Rou0PLPpGqcU0Vu2&timestamp=1542434791000&sign=670e3e4aa32b243f2dedf1dafcec2fd17a440e71b05681550416507de591d908 HTTP/1.1
+Host: api-testnet.bybit.com
+
+```
+
+or
+
+```http
 GET /user/leverage HTTP/1.1
 Host: api-testnet.bybit.com
-Content-Type: application/x-www-form-urlencoded
+content-type: application/json
 
-api_key=B2Rou0PLPpGqcU0Vu2&timestamp=1542434791000&sign=670e3e4aa32b243f2dedf1dafcec2fd17a440e71b05681550416507de591d908
-
+{
+    "api_key":"B2Rou0PLPpGqcU0Vu2",
+    "timestamp":1542434791000,
+    "sign":"670e3e4aa32b243f2dedf1dafcec2fd17a440e71b05681550416507de591d908"
+}
 ```
 
 POST requests:

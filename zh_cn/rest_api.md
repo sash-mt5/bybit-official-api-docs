@@ -1383,7 +1383,7 @@ https://api.bybit.com
             'exec_price': '4202',                                 // 成交价格
             'exec_qty': 1,                                         // 成交数量
             'exec_time': '1545203567',                             // 成交时间
-            'exec_type': 'Trade',                                  // 交易记录类别
+            'exec_type': 'Trade',                                  // 交易记录类别 -- Trade: 普通交易  Funding: 资金费率  AdlTrade：自动减仓  BustTrade: 强制平仓
             'exec_value': '0.00023798',                            // 价值
             'fee_rate': '-0.00025',                                // 资金/手续费 费率
             'last_liquidity_ind': 'AddedLiquidity',                // AddedLiquidity/RemovedLiquidity

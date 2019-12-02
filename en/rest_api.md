@@ -1251,7 +1251,7 @@ https://api.bybit.com
             'exec_price': '4202',                              // Exec Price
             'exec_qty': 1,                                   // Exec Qty
             'exec_time': '1545203567',                       // Exec time
-            'exec_type': 'Trade',                            // Exec type
+            'exec_type': 'Trade',                            // Exec type -- Trade: normal  Funding: funding  AdlTrade：ADL  BustTrade:  liquidation trade
             'exec_value': '0.00023798',                      // Exec value
             'fee_rate': '-0.00025',                          // Fee rate
             'last_liquidity_ind': 'AddedLiquidity',          // AddedLiquidity/RemovedLiquidity
