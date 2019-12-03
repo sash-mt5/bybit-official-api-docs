@@ -33,7 +33,7 @@
         <th>path</th>
       </tr>
       <tr>
-        <td rowspan="6">100/min</td>
+        <td rowspan="10">100/min</td>
         <td>open-api/order/create </td>
       </tr>
       <tr><td>open-api/order/cancel       </td></tr>
@@ -41,6 +41,10 @@
       <tr><td>open-api/stop-order/cancel  </td></tr>
       <tr><td>open-api/order/replace      </td></tr>
       <tr><td>open-api/stop-order/replace </td></tr>
+      <tr><td>v2/private/order/create     </td></tr>
+      <tr><td>v2/private/order/cancel     </td></tr>
+      <tr><td>v2/private/order/cancelAll  </td></tr>
+      <tr><td>v2/private/stop-order/cancelAll </td></tr>
       <tr>
         <td rowspan="3">600/min</td>
         <td>open-api/order/list </td>
