@@ -526,9 +526,9 @@ https://api.bybit.com
 
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
-|order_id |true |string |订单ID|
+|order_id |false |string |订单ID.如果未填order_link_id则为必填字段。|
 |symbol |false |string | 合约 |
-
+|order_link_id |false |string |机构ID。如果未填order_id则为必填字段。|
 
 #### 返回示例
 
