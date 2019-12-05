@@ -357,13 +357,13 @@ https://api.bybit.com
         "result": {
             "user_id": 105008,
             "order_id": "335fd977-e5a5-4781-b6d0-c772d5bfb95b",
-            "symbol": 1,
-            "side": 2,
-            "order_type": 1,
+            "symbol": 1,                                        1:BTCUSD 2:ETHUSD 3:EOSUSD 4:XRPUSD
+            "side": 2,                                          1:Buy 2:Sell     
+            "order_type": 1,                                    1:Market 2:Limit
             "price": 8800,
             "qty": 1,
-            "time_in_force": 3,
-            "order_status": 0,
+            "time_in_force": 3,                                 1:GoodTillCancel 2:PostOnly 3:ImmediateOrCancel 4:FillOrKill   
+            "order_status": 0,                                  0:Created 1:NotActive 2:Untriggered 3:Triggered 4:Active 5:Rejected 6:New 7:Cancelled 8:PartiallyFilled 9:Filled 
             "last_exec_time": 0,
             "last_exec_price": 0,
             "leaves_qty": 1,
@@ -542,13 +542,13 @@ https://api.bybit.com
         "result": {
             "user_id": 105008,
             "order_id": "3bd1844f-f3c0-4e10-8c25-10fea03763f6",
-            "symbol": 1,
-            "side": 2,
-            "order_type": 2,
+            "symbol": 1,                                        1:BTCUSD 2:ETHUSD 3:EOSUSD 4:XRPUSD
+            "side": 2,                                          1:Buy 2:Sell     
+            "order_type": 1,                                    1:Market 2:Limit
             "price": 8800,
             "qty": 1,
-            "time_in_force": 1,
-            "order_status": 6,
+            "time_in_force": 3,                                 1:GoodTillCancel 2:PostOnly 3:ImmediateOrCancel 4:FillOrKill   
+            "order_status": 0,                                  0:Created 1:NotActive 2:Untriggered 3:Triggered 4:Active 5:Rejected 6:New 7:Cancelled 8:PartiallyFilled 9:Filled 
             "last_exec_time": 0,
             "last_exec_price": 0,
             "leaves_qty": 1,
