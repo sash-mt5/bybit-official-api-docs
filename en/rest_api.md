@@ -526,8 +526,9 @@ https://api.bybit.com
 
 |parameters|required|type|comments|
 |:----- |:-------|:-----|----- |
-|order_id |true |string |Order Id|
+|order_id |true |string |Order Id。Required if without order_link_id|
 |symbol |false |string | Contract type |
+|order_link_id |false |string |Order link id. Required if without order_id|
 
 
 #### Response example
