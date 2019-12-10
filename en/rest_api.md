@@ -457,7 +457,7 @@ https://api.bybit.com
 #### API Function
 
 > 'order_id' is required for cancelling active order. The unique 36 characters order ID was returned to you when the active order was created successfully.
-> 'symbol' is recommend filled, Otherwise, there will be a small probability of failure.
+> 'symbol' is highly recommend filled, Otherwise, there will be a small probability of failure.
 
 >You may cancel active order that are unfilled and partially filled. Fully filled order cannot be cancelled.
 
@@ -470,9 +470,9 @@ https://api.bybit.com
 
 |parameters|required|type|comments|
 |:----- |:-------|:-----|----- |
+|symbol |true |string |Contract type. |
 |order_id |false |string |Your active order ID. The unique order ID returned to you when the corresponding active order was created. `Required` if not pass order_link_id|
 |order_link_id |false |string |Agency customized order ID. `Required` if not pass order_id |
-|symbol |false |string |Contract type. |
 
 
 #### Response example
@@ -514,7 +514,7 @@ https://api.bybit.com
 #### API Function
 
 > 'order_id' is required for cancelling active order. The unique 36 characters order ID was returned to you when the active order was created successfully.
-> 'symbol' is recommend filled, Otherwise, there will be a small probability of failure.
+> 'symbol' is highly recommend filled, Otherwise, there will be a small probability of failure.
 
 >You may cancel active order that are unfilled and partially filled. Fully filled order cannot be cancelled.
 
@@ -526,8 +526,8 @@ https://api.bybit.com
 
 |parameters|required|type|comments|
 |:----- |:-------|:-----|----- |
+|symbol |true |string | Contract type |
 |order_id |false |string |Order Id。Required if without order_link_id|
-|symbol |false |string | Contract type |
 |order_link_id |false |string |Order link id. Required if without order_id|
 
 
