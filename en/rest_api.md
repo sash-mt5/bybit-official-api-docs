@@ -651,8 +651,8 @@ https://api.bybit.com
 |:----- |:-------|:-----|----- |
 |order_id |true |string |Your active order ID. The unique order ID returned to you when the corresponding active order was created |
 |symbol |true |string |Contract type. |
-|p_r_qty |false |int |New order quantity |
-|p_r_price |false |number |New order price |
+|p_r_qty |false |int |New order quantity.Do not pass this field if you don't want modify it. |
+|p_r_price |false |number |New order price.Do not pass this field if you don't want modify it. |
 
 #### Response example
 
