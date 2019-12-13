@@ -23,3 +23,5 @@ Bybit APIs 和 Web Socket的官方文档
 [官方CCXT维护分支](https://github.com/bybit-exchange/ccxt/tree/bybit)
 
 [官方Telegram API讨论群](https://t.me/Bybitapi)
+
+[官方Telegram通知群](https://t.me/Bybit_API_Announcements)
