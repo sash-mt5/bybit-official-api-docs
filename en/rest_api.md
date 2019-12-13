@@ -45,6 +45,8 @@ https://api.bybit.com
 
 * [Replace conditional order](#open-apistop-orderreplacepost)
 
+* [Query stop order (real-time)](#v2-private-stop-order)
+
 ### Positions
 
 * [User leverage](#userleverageget)
@@ -683,8 +685,8 @@ https://api.bybit.com
 
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
-|order_id |true |string | Your active order ID. The unique order ID returned to you when the corresponding active order was created. `Required` if not pass order_link_id. |
-|order_link_id |true |string | Agency customized order ID. `Required` if not pass order_id .|
+|order_id |false |string | Your active order ID. The unique order ID returned to you when the corresponding active order was created. `Required` if not pass order_link_id. |
+|order_link_id |false |string | Agency customized order ID. `Required` if not pass order_id .|
 |symbol |true |string |Contract type |
 
 
@@ -1011,7 +1013,64 @@ https://api.bybit.com
 
 ```
 
+-----------
 
+## <span id="v2-private-stop-order">Query stop order (real-time)</span>
+#### API Function
+
+> Query real-time stop order information
+
+#### HTTP Request
+
+##### Method
+> GET /v2/private/stop-order
+
+
+#### Request Parameters
+
+|parameter|required|type|comments|
+|:----- |:-------|:-----|----- |
+|stop_order_id |false |string | Your stop order ID. The unique order ID returned to you when the corresponding active order was created. `Required` if not pass order_link_id. |
+|order_link_id |false |string | Agency customized order ID. `Required` if not pass order_id .|
+|symbol |true |string |Contract type |
+
+
+#### Response example
+
+```js
+
+	{
+	  "ret_code": 0,
+	  "ret_msg": "OK",
+	  "ext_code": "",
+	  "ext_info": "",
+	  "result": {
+	    "user_id": 160744,
+	    "symbol": "BTCUSD",
+	    "side": "Sell",
+	    "order_type": "Limit",
+	    "price": "8083",
+	    "qty": 10,
+	    "time_in_force": "GoodTillCancel",
+	    "order_status": "New",
+	    "ext_fields": {
+	      "o_req_num": -308787,
+	      "xreq_type": "x_create",
+	      "xreq_offset": 4154640
+	    },
+	    "leaves_qty": 10,
+	    "leaves_value": "0.00123716",
+	    "cum_exec_qty": 0,
+	    "reject_reason": "",
+	    "order_link_id": "",
+	    "created_at": "2019-10-21T07:28:19.396246Z",
+	    "updated_at": "2019-10-21T07:28:19.396246Z",
+	    "order_id": "efa44157-c355-4a98-b6d6-1d846a936b93"
+	  },
+	  "time_now": "1571651135.291930"
+	}
+
+```
 
 -----------
 ## <span id="userleverageget">User Leverage</span>

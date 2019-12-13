@@ -2,6 +2,13 @@
 
 ## 2019-12-2
 
+### rest api
+- [Query stop order (real-time)](./rest_api.md#v2-private-stop-order) [new]
+
+<hr>
+
+## 2019-12-2
+
 ### REST API
 
 - [Place active order-V2](./rest_api.md#open-apiordercreatev2post) [new]
