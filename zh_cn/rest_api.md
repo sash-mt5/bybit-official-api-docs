@@ -1176,6 +1176,7 @@ https://api.bybit.com
 }
 
 ```
+
 -----------
 ## <span id="position-settradingstoppost">设置止盈止损 </span>
 #### 接口功能
@@ -1191,9 +1192,9 @@ https://api.bybit.com
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
 |symbol |true |string |合约类型 |
-|take_profit |false |string |不小于0,如果等于0则是TP类型|
-|stop_loss |false |string |不小于0,如果等于0则是SL类型 |
-|trailing_stop |false |string |不小于0,如果等于0则是TS类型|
+|take_profit |false |string |不小于0,如果等于0则是取消止盈(TP)|
+|stop_loss |false |string |不小于0,如果等于0则是取消止损(SL) |
+|trailing_stop |false |string |不小于0,如果等于0则是取消追踪止损(TS)|
 
 
 #### 返回示例
@@ -1241,6 +1242,7 @@ https://api.bybit.com
 }
 
 ```
+
 -----------
 ## <span id="wallet-fundrecordget">获取入金记录 </span>
 #### 接口功能
