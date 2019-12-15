@@ -876,6 +876,7 @@ https://api.bybit.com
 
 |parameter|required|type | comments|
 |:----- |:-------|:-----|----- |
+|symbol |true |string |Contract type|
 |stop_order_id |false |string | Order ID. The unique order ID returned to you when the corresponding order was created. `Required` if not pass order_link_id|
 |order_link_id |false |string | Agency customized order ID. `Required` if not pass stop_order_id|
 
