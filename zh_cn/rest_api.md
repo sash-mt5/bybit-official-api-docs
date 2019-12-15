@@ -455,7 +455,7 @@ https://api.bybit.com
 #### 接口功能
 
 > 所有撤销活动委托都必须填写 &#39;order_id&#39;，在您创建活动委托成功时会为您返回36位唯一的订单ID。
-> 建议传symbol参数，否则可能会有很小的概率导致撤单失败，返回'Order not exists'错误.
+> 强烈建议传symbol参数，否则可能会有很小的概率导致撤单失败，返回'Order not exists'错误.
 
 > 您可以撤销未成交、部分成交的活动委托单。但全部成交的活动委托不可取消。
 
@@ -468,9 +468,9 @@ https://api.bybit.com
 
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
+|symbol |true |string | 合约 |
 |order_id |false |string |活动委托单ID, 数据来自创建活动委托单返回的订单唯一ID。如果不填order_link_id则为必输 |
 |order_link_id |false |string |机构用户ID.如果不填order_id则为必输|
-|symbol |false |string | 合约 |
 
 
 #### 返回示例
@@ -513,7 +513,7 @@ https://api.bybit.com
 #### 接口功能
 
 > 所有撤销活动委托都必须填写 &#39;order_id&#39;，在您创建活动委托成功时会为您返回36位唯一的订单ID。
-> 建议传symbol参数，否则可能会有很小的概率导致撤单失败，返回'Order not exists'错误.
+> 强烈建议传symbol参数，否则可能会有很小的概率导致撤单失败，返回'Order not exists'错误.
 
 > 您可以撤销未成交、部分成交的活动委托单。但全部成交的活动委托不可取消。
 
@@ -526,8 +526,8 @@ https://api.bybit.com
 
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
+|symbol |true |string | 合约 |
 |order_id |false |string |订单ID.如果未填order_link_id则为必填字段。|
-|symbol |false |string | 合约 |
 |order_link_id |false |string |机构ID。如果未填order_id则为必填字段。|
 
 #### 返回示例
@@ -868,6 +868,7 @@ https://api.bybit.com
 
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
+|symbol |true |string |合约类型|
 |stop_order_id |false |string |委托单ID, 数据来自创建活动委托单返回的订单唯一ID。如果不填order_link_id则为必输 |
 |order_link_id |false |string | 机构用户ID.如果不填stop_order_id则为必输|
 
