@@ -46,6 +46,8 @@ https://api.bybit.com
 
 * [修改条件委托单](#open-apistop-orderreplacepost)
 
+* [实时查询条件委托单](#v2-private-stop-order)
+
 ### 持仓
 
 * [用户杠杆](#userleverageget)
@@ -644,8 +646,8 @@ https://api.bybit.com
 |:----- |:-------|:-----|----- |
 |order_id |true |string |订单id |
 |symbol |true |string | 合约种类. |
-|p_r_qty |false |int |修改后的订单数量 |
-|p_r_price |false |number |修改后的订单价格|
+|p_r_qty |false |int |修改后的订单数量。如果不修改这个字段，请不要传这个参数。 |
+|p_r_price |false |number |修改后的订单价格。如果不修改这个字段，请不要传这个参数。 |
 
 
 #### Response example
@@ -1005,6 +1007,63 @@ https://api.bybit.com
     }
 
 ```
+
+-----------
+
+## <span id="v2-private-stop-order">实时查询活动委托</span>
+#### API Function
+
+> 实时查询活动委托
+
+#### HTTP请求方式
+
+> GET   /v2/private/stop-order
+
+
+#### Request Parameters
+
+|参数|必选|类型|说明|
+|:----- |:-------|:-----|----- |
+|stop_order_id |false |string |订单id。如果不填order_link_id则为必输 |
+|order_link_id |false |string | 机构用户ID.如果不填order_id则为必输|
+|symbol |true |string | 合约种类 |
+
+
+#### Response example
+
+```js
+
+{
+    "ret_code": 0,
+    "ret_msg": "OK",
+    "ext_code": "",
+    "ext_info": "",
+    "result": {
+        "user_id": 611980,
+        "symbol": "BTCUSD",
+        "side": "Sell",
+        "order_type": "Limit",
+        "price": "7700.5",
+        "qty": 2,
+        "time_in_force": "GoodTillCancel",
+        "order_status": "Untriggered",
+        "ext_fields": {},
+        "leaves_qty": 2,
+        "leaves_value": "0.00028985",
+        "order_link_id": "",
+        "created_at": "2019-12-13T02:31:59.312314Z",
+        "updated_at": "2019-12-13T02:31:59.312314Z",
+        "order_id": "a2024127-6ef1-482e-bd9a-ed64a13c565d"
+    },
+    "time_now": "1576204515.018290",
+    "rate_limit_status": 599,
+    "rate_limit_reset_ms": 1576204515014913,
+    "rate_limit": 600
+}
+
+```
+
+
 -----------
 ## <span id="userleverageget">用户杠杆 </span>
 #### 接口功能

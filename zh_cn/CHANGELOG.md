@@ -1,5 +1,12 @@
 <hr>
 
+## 2019-12-13
+
+### rest api
+- [实时查询条件单单信息](./rest_api.md#v2-private-stop-order) [新增]
+
+<hr>
+
 ## 2019-12-2
 
 ### rest api
