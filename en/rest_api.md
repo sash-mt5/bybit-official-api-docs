@@ -651,8 +651,8 @@ https://api.bybit.com
 |:----- |:-------|:-----|----- |
 |order_id |true |string |Your active order ID. The unique order ID returned to you when the corresponding active order was created |
 |symbol |true |string |Contract type. |
-|p_r_qty |false |int |New order quantity.Do not pass this field if you don't want modify it. |
-|p_r_price |false |number |New order price.Do not pass this field if you don't want modify it. |
+|p_r_qty |false |int |New order quantity. Do not pass this field if you don't want modify it. |
+|p_r_price |false |number |New order price. Do not pass this field if you don't want modify it. |
 
 #### Response example
 
@@ -1023,7 +1023,7 @@ https://api.bybit.com
 #### HTTP Request
 
 ##### Method
-> GET /v2/private/stop-order
+> GET `/v2/private/stop-order`
 
 
 #### Request Parameters
@@ -1031,7 +1031,7 @@ https://api.bybit.com
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
 |stop_order_id |false |string | Your stop order ID. The unique order ID returned to you when the corresponding active order was created. `Required` if not pass order_link_id. |
-|order_link_id |false |string | Agency customized order ID. `Required` if not pass order_id .|
+|order_link_id |false |string | Agency customized order ID. `Required` if not pass order_id.|
 |symbol |true |string |Contract type |
 
 
