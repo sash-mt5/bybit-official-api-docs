@@ -4,7 +4,7 @@
 
 ### REST API
 - [My position-V2](./rest_api.md#positionlistv2get) [new]
-### Websocket
+### Websocket API
 - [orderBookL2_200](./websocket.md#orderBook200_v2) [new]
 
 <hr>
@@ -16,7 +16,7 @@
 
 <hr>
 
-## 2019-12-2
+## 2019-12-02
 
 ### REST API
 
@@ -35,9 +35,10 @@
 
 <hr>
 
+## 2019-11-07
+
 ### REST API
 
-## 2019-11-07
 - [Change leverage](./rest_api.md#userleveragesavepost) [update]
 - [My position](./rest_api.md#positionlistget) [update]
 - [Change margin](./rest_api.md#positionchange-position-marginpost) [update]
