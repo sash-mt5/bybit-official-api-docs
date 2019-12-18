@@ -230,7 +230,7 @@ https://api.bybit.com
 
 >Parameters of 'side', 'symbol', 'order_type', 'qty', 'price', 'time_in_force' are required for all active orders. Other parameters are optional unless specified.
 
->Market price active order: A traditional market price order, will be filled at the best available price. 'price' and 'time_in_force' can set to be "" if and only if you are placing market price order.
+>Market price active order: A traditional market price order, will be filled at the best available price. 'price'  can set to be "" if and only if you are placing market price order.
 
 >Limit price active order: You can set an execution price for your order. Only when last traded price reaches the order price, the system will fill your order.
 
@@ -313,7 +313,7 @@ https://api.bybit.com
 
 >Parameters of 'side', 'symbol', 'order_type', 'qty', 'price', 'time_in_force' are required for all active orders. Other parameters are optional unless specified.
 
->Market price active order: A traditional market price order, will be filled at the best available price. 'price' and 'time_in_force' can set to be "" if and only if you are placing market price order.
+>Market price active order: A traditional market price order, will be filled at the best available price. 'price' can set to be "" if and only if you are placing market price order.
 
 >Limit price active order: You can set an execution price for your order. Only when last traded price reaches the order price, the system will fill your order.
 
@@ -735,7 +735,7 @@ https://api.bybit.com
 
 >Parameters of 'side', 'symbol', 'order_type', 'qty', 'price', 'base_price', 'stop_px', 'time_in_force' are required for all active orders. Other parameters are optional unless specified.
 
->Market price conditional order: A traditional market price order, will be filled at the best available price. 'price' and 'time_in_force' can set to be "" if and only if you are placing market price order.
+>Market price conditional order: A traditional market price order, will be filled at the best available price. 'price' can set to be "" if and only if you are placing market price order.
 
 >Limit price conditional order: You can set an execution price for your order. Only when last traded price reaches the order price, the system will fill your order.
 
