@@ -4,6 +4,8 @@
 
 ### rest api
 - [我的仓位V2](./rest_api.md#positionlistv2get) [新增]
+### Websocket
+- [orderBookL2_200](./websocket.md#orderBook200_v2) [新增]
 
 <hr>
 
