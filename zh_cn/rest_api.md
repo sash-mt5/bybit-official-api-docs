@@ -18,11 +18,17 @@ https://api.bybit.com
 
 ### 活动委托单
 
-* [创建活动委托单](#open-apiordercreatepost)
+* ~~[创建活动委托单](#open-apiordercreatepost)~~  ----推荐使用V2版本
+
+* [创建活动委托单-v2](#open-apiordercreatev2post)
 
 * [查询活动委托](#open-apiorderlistget)
 
-* [撤销活动委托单](#open-apiordercancelpost)
+* ~~[撤销活动委托单](#open-apiordercancelpost)~~  ----推荐使用V2版本
+
+* [撤销活动委托单-v2](#open-apiordercancelv2post)
+
+* [撤销全部活动委托单](#open-apiordercancelallpost)
 
 * [活动单修改](#open-apiorderreplacepost)
 
@@ -36,7 +42,11 @@ https://api.bybit.com
 
 * [撤消条件委托单](#open-apistop-ordercancelpost)
 
+* [撤消全部条件委托单](#open-apistop-ordercancelallpost)
+
 * [修改条件委托单](#open-apistop-orderreplacepost)
+
+* [实时查询条件委托单](#v2-private-stop-order)
 
 ### 持仓
 
@@ -294,6 +304,88 @@ https://api.bybit.com
 ```
 
 -----------
+## <span id="open-apiordercreatev2post">创建活动委托单 </span>
+#### 接口功能
+
+> 所有活动委托都必须填写 &#39;side&#39;, &#39;symbol&#39;, &#39;order_type&#39;, &#39;qty&#39;, &#39;price&#39;, &#39;time_in_force&#39;参数，其它参数除非有特殊说明，否则都是可选的。
+市价活动委托: 一个传统的市场价格订单,会以当前的最优价格为您成交订单。当且仅当选择市价单时，&#39;price&#39;, &#39;time_in_force&#39;可为空！
+
+> 限价活动委托: 您可以为您的订单设置一个执行价格，当市场价格达到您的设置价格时，系统会为您成交订单。
+
+> 止盈止损: 您仅能在开仓时设置止盈止损条件单，一旦持有仓位后提交活动委托时关联的止盈止损则不再有效。
+
+> 委托数量: 表示您要购买/卖出的永续合约数，对于委托数量目前Bybit只允许提交正整数。
+
+> 委托价格: 表示您期望购买/卖出永续合约的价格，对于委托价格目前Bybit只允许提交以0.5为增幅的正数。
+
+> 自定义条件单ID: 您可以自定义活动委托订单ID，我们会为您关联到系统的订单ID，并把系统的唯一订单ID在活动委托创建成功后一并返回给您，您可以使用该订单ID去取消活动委托，同时要求您传递的自定义订单ID最大长度不超过36个字段且唯一。
+
+> 请注意: 
+>* 创建活动委托单上限为200个。
+>* 'order_status' 字段含义:
+>    * 'Created' 意味着Order以及被服务器接受，但还没有进入Order book
+>    * 'New' 意味着Order以及进入Order book
+
+#### HTTP请求方式
+
+> POST  /v2/private/order/create
+
+#### 请求参数
+
+|参数|必选|类型|说明|
+|:----- |:-------|:-----|----- |
+|side |true |string |方向, 有效选项:Buy, Sell (Buy Sell )    |
+|symbol |true |string |产品类型, 有效选项:BTCUSD, ETHUSD (BTCUSD ETHUSD )    |
+|order_type |true |string |委托单价格类型, 有效选项:Limit, Market (Limit Market )    |
+|qty |true |integer |委托数量, 单比最大1百万 |
+|price |false |number |委托价格, 在没有仓位时，做多的委托价格需高于市价的10%、低于1百万。如有仓位时则需优于强平价。单笔价格增减最小单位为0.5。如果下限价单，则price为必输字段 |
+|time_in_force |true |string |执行策略, 有效选项:GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly    |
+|take_profit |false |number |止盈价格 |
+|stop_loss |false |number |止损价格 |
+|reduce_only |false |bool |只减仓
+|close_on_trigger |false |bool |触发后平仓
+|order_link_id |false |string |机构自定义订单ID, 最大长度36位，且同一机构下自定义ID不可重复 |
+|trailing_stop|false |number |追踪止损 |
+
+#### 返回示例
+
+```js
+
+    {
+        "ret_code": 0,
+        "ret_msg": "OK",
+        "ext_code": "",
+        "ext_info": "",
+        "result": {
+            "user_id": 105008,
+            "order_id": "335fd977-e5a5-4781-b6d0-c772d5bfb95b",
+            "symbol": "BTCUSD",
+            "side": "Buy",
+            "order_type": "Limit",
+            "price": 8800,
+            "qty": 1,
+            "time_in_force": "GoodTillCancel",
+            "order_status": "Created",
+            "last_exec_time": 0,
+            "last_exec_price": 0,
+            "leaves_qty": 1,
+            "cum_exec_qty": 0,
+            "cum_exec_value": 0,
+            "cum_exec_fee": 0,
+            "reject_reason": "",
+            "order_link_id": "",
+            "created_at": "2019-11-30T11:03:43.452Z",
+            "updated_at": "2019-11-30T11:03:43.455Z"
+        },
+        "time_now": "1575111823.458705",
+        "rate_limit_status": 99,
+        "rate_limit_reset_ms": 1575111823448987,
+        "rate_limit": 100
+    }
+
+```
+
+-----------
 ## <span id="open-apiorderlistget">查询活动委托 </span>
 #### 接口功能
 
@@ -365,7 +457,7 @@ https://api.bybit.com
 #### 接口功能
 
 > 所有撤销活动委托都必须填写 &#39;order_id&#39;，在您创建活动委托成功时会为您返回36位唯一的订单ID。
-> 建议传symbol参数，否则可能会有很小的概率导致撤单失败，返回'Order not exists'错误.
+> 强烈建议传symbol参数，否则可能会有很小的概率导致撤单失败，返回'Order not exists'错误.
 
 > 您可以撤销未成交、部分成交的活动委托单。但全部成交的活动委托不可取消。
 
@@ -378,9 +470,9 @@ https://api.bybit.com
 
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
+|symbol |true |string | 合约 |
 |order_id |false |string |活动委托单ID, 数据来自创建活动委托单返回的订单唯一ID。如果不填order_link_id则为必输 |
 |order_link_id |false |string |机构用户ID.如果不填order_id则为必输|
-|symbol |false |string | 合约 |
 
 
 #### 返回示例
@@ -419,6 +511,123 @@ https://api.bybit.com
 ```
 
 -----------
+## <span id="open-apiordercancelv2post">撤销活动委托单 </span>
+#### 接口功能
+
+> 所有撤销活动委托都必须填写 &#39;order_id&#39;，在您创建活动委托成功时会为您返回36位唯一的订单ID。
+> 强烈建议传symbol参数，否则可能会有很小的概率导致撤单失败，返回'Order not exists'错误.
+
+> 您可以撤销未成交、部分成交的活动委托单。但全部成交的活动委托不可取消。
+
+
+#### HTTP请求方式
+
+> POST  /v2/private/order/cancel
+
+#### 请求参数
+
+|参数|必选|类型|说明|
+|:----- |:-------|:-----|----- |
+|symbol |true |string | 合约 |
+|order_id |false |string |订单ID.如果未填order_link_id则为必填字段。|
+|order_link_id |false |string |机构ID。如果未填order_id则为必填字段。|
+
+#### 返回示例
+
+```js
+
+    {
+        "ret_code": 0,
+        "ret_msg": "OK",
+        "ext_code": "",
+        "ext_info": "",
+        "result": {
+            "user_id": 105008,
+            "order_id": "3bd1844f-f3c0-4e10-8c25-10fea03763f6",
+            "symbol": "BTCUSD",
+            "side": "Buy",
+            "order_type": "Limit",
+            "price": 8800,
+            "qty": 1,
+            "time_in_force": "GoodTillCancel",
+            "order_status": "New",
+            "last_exec_time": 0,
+            "last_exec_price": 0,
+            "leaves_qty": 1,
+            "cum_exec_qty": 0,
+            "cum_exec_value": 0,
+            "cum_exec_fee": 0,
+            "reject_reason": "",
+            "order_link_id": "",
+            "created_at": "2019-11-30T11:17:18.396Z",
+            "updated_at": "2019-11-30T11:18:01.811Z"
+        },
+        "time_now": "1575112681.814760",
+        "rate_limit_status": 99,
+        "rate_limit_reset_ms": 1575112681807671,
+        "rate_limit": 100
+    }
+
+```
+
+-----------
+## <span id="open-apiordercancelallpost">撤销所有活动委托单 </span>
+#### 接口功能
+
+> 撤销所有未成交、部分成交的活动委托单。但全部成交的活动委托不可取消。
+
+
+#### HTTP请求方式
+
+> POST  /v2/private/order/cancelAll
+
+#### 请求参数
+
+|参数|必选|类型|说明|
+|:----- |:-------|:-----|----- |
+|symbol |true |string | 合约 |
+
+
+#### 返回示例
+
+```js
+
+    
+    {
+        "ret_code": 0,      //错误码
+        "ret_msg": "OK",    //错误信息
+        "ext_code": "",     
+        "ext_info": "",
+        "result": [
+            {
+                "clOrdID": "89a38056-80f1-45b2-89d3-4d8e3a203a79",  //订单ID
+                "user_id": 105008,                                  //user id
+                "symbol": "BTCUSD",                                 //合约类型
+                "side": "Buy",                                      //方向
+                "order_type": "Limit",                              //订单类型
+                "price": "7693.5",                                  //价格
+                "qty": 1,                                           //数量
+                "time_in_force": "GoodTillCancel",                  //成交类型
+                "create_type": "CreateByUser",                      //订单创建状态
+                "cancel_type": "CancelByUser",                      //订单取消状态
+                "order_status": "",                                 //订单状态
+                "leaves_qty": 1,                                    //剩余未成交数量
+                "leaves_value": "0",                                
+                "created_at": "2019-11-30T10:38:53.564428Z",        //创建时间
+                "updated_at": "2019-11-30T10:38:59.102589Z",        //更新时间
+                "cross_status": "PendingCancel",                    //订单状态 PendingCancel指已经向撮合发送取消订单请求，但不一定成功取消。
+                "cross_seq": 387734027                              //撮合序列号
+            }
+        ],
+        "time_now": "1575110339.105675",
+        "rate_limit_status": 98,
+        "rate_limit_reset_ms": 1575110339100545,
+        "rate_limit": 100
+    }
+
+```
+
+-----------
 
 ## <span id="open-apiorderreplacepost">修改订单信息</span>
 #### API Function
@@ -437,8 +646,8 @@ https://api.bybit.com
 |:----- |:-------|:-----|----- |
 |order_id |true |string |订单id |
 |symbol |true |string | 合约种类. |
-|p_r_qty |false |int |修改后的订单数量 |
-|p_r_price |false |number |修改后的订单价格|
+|p_r_qty |false |int |修改后的订单数量。如果不修改这个字段，请不要传这个参数。 |
+|p_r_price |false |number |修改后的订单价格。如果不修改这个字段，请不要传这个参数。 |
 
 
 #### Response example
@@ -661,6 +870,7 @@ https://api.bybit.com
 
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
+|symbol |true |string |合约类型|
 |stop_order_id |false |string |委托单ID, 数据来自创建活动委托单返回的订单唯一ID。如果不填order_link_id则为必输 |
 |order_link_id |false |string | 机构用户ID.如果不填stop_order_id则为必输|
 
@@ -692,6 +902,66 @@ https://api.bybit.com
         }
         'time_now':'1539778407.210858',    UTC时间戳
         'rate_limit_status': 0,            当前时间区间内(1分钟)该类型接口剩余访问次数
+    }
+
+```
+
+-----------
+## <span id="open-apistop-ordercancelallpost">撤消全部条件委托单 </span>
+#### 接口功能
+
+> 撤销所有未被激活的条件委托。本质上所有条件委托在被激活后都是属于活动委托，所以条件委托一旦被激活，您需要通过调用取消活动委托接口来取消所有未成交、部分成交的活动委托单。同样全部成交的活动委托不可取消。
+
+
+#### HTTP请求方式
+
+> POST  /v2/private/stop-order/cancelAll
+
+#### 请求参数
+
+|参数|必选|类型|说明|
+|:----- |:-------|:-----|----- |
+|symbol |true |string |合约类型|
+
+
+#### 返回示例
+
+```js
+
+    {
+        "ret_code": 0,
+        "ret_msg": "OK",
+        "ext_code": "",
+        "ext_info": "",
+        "result": [
+            {
+                "clOrdID": "041e523d-2376-42c7-9998-252a5fff9e75",  //订单ID
+                "user_id": 105008,                                  //user id
+                "symbol": "BTCUSD",                                 //合约类型
+                "side": "Buy",                                      //方向
+                "order_type": "Limit",                              //订单类型
+                "price": "7694.5",                                  //价格
+                "qty": 1,                                           //数量
+                "time_in_force": "GoodTillCancel",                  //执行策略
+                "create_type": "CreateByUser",                      //创建方式
+                "cancel_type": "CancelByUser",                      //取消方式
+                "order_status": "",                                 //订单状态
+                "leaves_qty": 1,                                    //未成交数量
+                "leaves_value": "0",
+                "created_at": "2019-11-30T10:49:48.139157Z",        //创建时间
+                "updated_at": "2019-11-30T10:49:57.646802Z",        //更新时间
+                "cross_status": "Deactivated",                      //Deactivated：条件单触发前被撤单
+                "cross_seq": -1,                                    //未进入撮合
+                "stop_order_type": "Stop",                          //条件订单
+                "trigger_by": "LastPrice",                          //触发价格类型
+                "base_price": "7689.5",                             //基准价格
+                "expected_direction": "Rising"                      //触发方向
+            }
+        ],
+        "time_now": "1575110997.668109",
+        "rate_limit_status": 99,
+        "rate_limit_reset_ms": 1575110997643683,
+        "rate_limit": 100
     }
 
 ```
@@ -737,6 +1007,63 @@ https://api.bybit.com
     }
 
 ```
+
+-----------
+
+## <span id="v2-private-stop-order">实时查询活动委托</span>
+#### API Function
+
+> 实时查询活动委托
+
+#### HTTP请求方式
+
+> GET   /v2/private/stop-order
+
+
+#### Request Parameters
+
+|参数|必选|类型|说明|
+|:----- |:-------|:-----|----- |
+|stop_order_id |false |string |订单id。如果不填order_link_id则为必输 |
+|order_link_id |false |string | 机构用户ID.如果不填order_id则为必输|
+|symbol |true |string | 合约种类 |
+
+
+#### Response example
+
+```js
+
+{
+    "ret_code": 0,
+    "ret_msg": "OK",
+    "ext_code": "",
+    "ext_info": "",
+    "result": {
+        "user_id": 611980,
+        "symbol": "BTCUSD",
+        "side": "Sell",
+        "order_type": "Limit",
+        "price": "7700.5",
+        "qty": 2,
+        "time_in_force": "GoodTillCancel",
+        "order_status": "Untriggered",
+        "ext_fields": {},
+        "leaves_qty": 2,
+        "leaves_value": "0.00028985",
+        "order_link_id": "",
+        "created_at": "2019-12-13T02:31:59.312314Z",
+        "updated_at": "2019-12-13T02:31:59.312314Z",
+        "order_id": "a2024127-6ef1-482e-bd9a-ed64a13c565d"
+    },
+    "time_now": "1576204515.018290",
+    "rate_limit_status": 599,
+    "rate_limit_reset_ms": 1576204515014913,
+    "rate_limit": 600
+}
+
+```
+
+
 -----------
 ## <span id="userleverageget">用户杠杆 </span>
 #### 接口功能
@@ -909,6 +1236,7 @@ https://api.bybit.com
 }
 
 ```
+
 -----------
 ## <span id="position-settradingstoppost">设置止盈止损 </span>
 #### 接口功能
@@ -924,9 +1252,9 @@ https://api.bybit.com
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
 |symbol |true |string |合约类型 |
-|take_profit |false |string |不小于0,如果等于0则是TP类型|
-|stop_loss |false |string |不小于0,如果等于0则是SL类型 |
-|trailing_stop |false |string |不小于0,如果等于0则是TS类型|
+|take_profit |false |string |不小于0,如果等于0则是取消止盈(TP)|
+|stop_loss |false |string |不小于0,如果等于0则是取消止损(SL) |
+|trailing_stop |false |string |不小于0,如果等于0则是取消追踪止损(TS)|
 
 
 #### 返回示例
@@ -974,6 +1302,7 @@ https://api.bybit.com
 }
 
 ```
+
 -----------
 ## <span id="wallet-fundrecordget">获取入金记录 </span>
 #### 接口功能
@@ -1383,7 +1712,7 @@ https://api.bybit.com
             'exec_price': '4202',                                 // 成交价格
             'exec_qty': 1,                                         // 成交数量
             'exec_time': '1545203567',                             // 成交时间
-            'exec_type': 'Trade',                                  // 交易记录类别
+            'exec_type': 'Trade',                                  // 交易记录类别 -- Trade: 普通交易  Funding: 资金费率  AdlTrade：自动减仓  BustTrade: 强制平仓
             'exec_value': '0.00023798',                            // 价值
             'fee_rate': '-0.00025',                                // 资金/手续费 费率
             'last_liquidity_ind': 'AddedLiquidity',                // AddedLiquidity/RemovedLiquidity
@@ -1497,6 +1826,8 @@ https://api.bybit.com
 * `Filled`          `全部成交`
 * `Cancelled`       `已取消`
 * `Rejected`        `订单被拒绝`
+* `PendingCancel`   `撮合引擎收到取消指令但不一定会被成功取消`
+* `Deactivated`     `条件单触发前被取消`
 
 #### Order (`order`)
 * __NOTE: currently broken for both get conditional order and get active order__

@@ -33,7 +33,7 @@ Every request to the API returns the following fields:
         <th>path</th>
       </tr>
       <tr>
-        <td rowspan="6">100/min</td>
+        <td rowspan="10">100/min</td>
         <td>open-api/order/create </td>
       </tr>
       <tr><td>open-api/order/cancel       </td></tr>
@@ -41,6 +41,10 @@ Every request to the API returns the following fields:
       <tr><td>open-api/stop-order/cancel  </td></tr>
       <tr><td>open-api/order/replace      </td></tr>
       <tr><td>open-api/stop-order/replace </td></tr>
+      <tr><td>v2/private/order/create     </td></tr>
+      <tr><td>v2/private/order/cancel     </td></tr>
+      <tr><td>v2/private/order/cancelAll  </td></tr>
+      <tr><td>v2/private/stop-order/cancelAll </td></tr>
       <tr>
         <td rowspan="3">600/min</td>
         <td>open-api/order/list </td>
@@ -121,6 +125,7 @@ GET requests:
 ```http
 GET /user/leverage?api_key=B2Rou0PLPpGqcU0Vu2&timestamp=1542434791000&sign=670e3e4aa32b243f2dedf1dafcec2fd17a440e71b05681550416507de591d908 HTTP/1.1
 Host: api-testnet.bybit.com
+<<<<<<< HEAD
 
 ```
 
@@ -131,6 +136,17 @@ GET /user/leverage HTTP/1.1
 Host: api-testnet.bybit.com
 content-type: application/json
 
+=======
+```
+
+or
+
+```http
+GET /user/leverage HTTP/1.1
+Host: api-testnet.bybit.com
+Content-Type: application/json
+
+>>>>>>> upstream/master
 {
     "api_key":"B2Rou0PLPpGqcU0Vu2",
     "timestamp":1542434791000,
@@ -143,7 +159,7 @@ POST requests:
 ```http
 POST /user/leverage/save HTTP/1.1
 Host: api-testnet.bybit.com
-content-type: application/json
+Content-Type: application/json
 
 {
     "api_key":"B2Rou0PLPpGqcU0Vu2",

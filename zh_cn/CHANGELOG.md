@@ -1,5 +1,22 @@
 <hr>
 
+## 2019-12-13
+
+### rest api
+- [实时查询条件单单信息](./rest_api.md#v2-private-stop-order) [新增]
+
+<hr>
+
+## 2019-12-2
+
+### rest api
+- [创建活动委托单-v2](./rest_api.md#open-apiordercreatev2post) [新增]
+- [撤销活动委托单-v2](./rest_api.md#open-apiordercancelv2post) [新增]
+- [撤销全部活动委托单](./rest_api.md#open-apiordercancelallpost) [新增]
+- [撤消全部条件委托单](./rest_api.md#open-apistop-ordercancelallpost)  [新增]
+
+<hr>
+
 ## 2019-11-19
 
 ### rest api
