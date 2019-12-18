@@ -55,7 +55,7 @@ https://api.bybit.com
 
 * ~~[My position](#positionlistget)~~ ----The V2 version is recommended to use.
 
-* [My position](#positionlistv2get)
+* [My position-V2](#positionlistv2get)
 
 * [Change margin](#positionchange-position-marginpost)
 
