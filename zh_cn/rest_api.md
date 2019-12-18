@@ -54,7 +54,9 @@ https://api.bybit.com
 
 * [修改用户杠杆](#userleveragesavepost)
 
-* [我的仓位](#positionlistget)
+* ~~[我的仓位](#positionlistget)~~  ----推荐使用V2版本
+
+* [我的仓位V2](#positionlistv2get)
 
 * [更新保证金](#positionchange-position-marginpost)
 
@@ -227,7 +229,7 @@ https://api.bybit.com
 #### 接口功能
 
 > 所有活动委托都必须填写 &#39;side&#39;, &#39;symbol&#39;, &#39;order_type&#39;, &#39;qty&#39;, &#39;price&#39;, &#39;time_in_force&#39;参数，其它参数除非有特殊说明，否则都是可选的。
-市价活动委托: 一个传统的市场价格订单,会以当前的最优价格为您成交订单。当且仅当选择市价单时，&#39;price&#39;, &#39;time_in_force&#39;可为空！
+市价活动委托: 一个传统的市场价格订单,会以当前的最优价格为您成交订单。当且仅当选择市价单时，&#39;price&#39;可为空！
 
 > 限价活动委托: 您可以为您的订单设置一个执行价格，当市场价格达到您的设置价格时，系统会为您成交订单。
 
@@ -308,7 +310,7 @@ https://api.bybit.com
 #### 接口功能
 
 > 所有活动委托都必须填写 &#39;side&#39;, &#39;symbol&#39;, &#39;order_type&#39;, &#39;qty&#39;, &#39;price&#39;, &#39;time_in_force&#39;参数，其它参数除非有特殊说明，否则都是可选的。
-市价活动委托: 一个传统的市场价格订单,会以当前的最优价格为您成交订单。当且仅当选择市价单时，&#39;price&#39;, &#39;time_in_force&#39;可为空！
+市价活动委托: 一个传统的市场价格订单,会以当前的最优价格为您成交订单。当且仅当选择市价单时，&#39;price&#39;可为空！
 
 > 限价活动委托: 您可以为您的订单设置一个执行价格，当市场价格达到您的设置价格时，系统会为您成交订单。
 
@@ -728,7 +730,7 @@ https://api.bybit.com
 
 > 所有条件委托都必须填写 &#39;side&#39;, &#39;symbol&#39;, &#39;order_type&#39;, &#39;qty&#39;, &#39;price&#39;, &#39;base_price&#39;, &#39;stop_px&#39;, &#39;time_in_force&#39;参数，其它参数除非有特殊说明，否则都是可选的。
 
-市价条件委托: 一个传统的市场价格订单,会以当前的最优价格为您成交订单。当且仅当选择市价单时，&#39;price&#39;, &#39;time_in_force&#39;可为空！
+市价条件委托: 一个传统的市场价格订单,会以当前的最优价格为您成交订单。当且仅当选择市价单时，&#39;price&#39;, &#39;可为空！
 
 限价条件委托: 您可以为您的订单设置一个执行价格，当市场价格达到您的设置价格时，系统会为您成交订单。
 
@@ -1151,7 +1153,6 @@ https://api.bybit.com
 |参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
 
-
 #### 返回示例
 
 ```js
@@ -1200,6 +1201,74 @@ https://api.bybit.com
 
 }
  *    
+```
+
+-----------
+
+## <span id="positionlistv2get">我的仓位V2 </span>
+#### 接口功能
+
+> 获取我的仓位列表。通过该接口可以获取当前用户的持仓信息，如持仓数量、账户余额等信息
+
+
+#### HTTP请求方式
+
+> GET   /v2/position/list
+
+#### 请求参数
+
+|参数|必选|类型|说明|
+|:----- |:-------|:-----|----- |
+|symbol |true |string |合约种类. |
+
+#### 返回示例
+
+```js
+
+{
+    "ret_code": 0,
+    "ret_msg": "OK",
+    "ext_code": "",
+    "ext_info": "",
+    "result": {
+        "id": 20113,
+        "user_id": 105008,
+        "risk_id": 1,
+        "symbol": "BTCUSD",
+        "side": "Buy",
+        "size": 11,
+        "position_value": "0.00156216",
+        "entry_price": "7041.53223741",
+        "auto_add_margin": 0,
+        "leverage": "1",
+        "position_margin": "0.00156216",
+        "liq_price": "3530",
+        "bust_price": "3521",
+        "occ_closing_fee": "0.00000235",
+        "occ_funding_fee": "0",
+        "take_profit": "0",
+        "stop_loss": "0",
+        "trailing_stop": "0",
+        "position_status": "Normal",
+        "deleverage_indicator": 3,
+        "oc_calc_data": "{\"blq\":0,\"slq\":2,\"slv\":\"0.00025508\",\"bmp\":0,\"smp\":7840.6774,\"fq\":-9,\"bv2c\":1.00225,\"sv2c\":1.0007575}",
+        "order_margin": "0",
+        "wallet_balance": "0.48987387",
+        "realised_pnl": "0",
+        "unrealised_pnl": 0,
+        "cum_realised_pnl": "-1.51626124",
+        "cross_seq": 426783677,
+        "position_seq": 269647204,
+        "created_at": "2019-09-08T03:10:27Z",
+        "updated_at": "2019-12-18T05:24:53.672158Z"
+    },
+    "time_now": "1576649493.869901",
+    "rate_limit_status": 119,
+    "rate_limit_reset_ms": 1576649493866093,
+    "rate_limit": 120
+}
+
+ 
 ```
 
 -----------

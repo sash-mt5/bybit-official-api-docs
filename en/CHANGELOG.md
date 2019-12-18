@@ -1,5 +1,13 @@
 <hr>
 
+## 2019-12-18
+
+### rest api
+- [My position-V2](./rest_api.md#positionlistv2get) [new]
+
+
+<hr>
+
 ## 2019-12-13
 
 ### rest api

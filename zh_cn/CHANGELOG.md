@@ -1,5 +1,12 @@
 <hr>
 
+## 2019-12-18
+
+### rest api
+- [我的仓位V2](./rest_api.md#positionlistv2get) [新增]
+
+<hr>
+
 ## 2019-12-13
 
 ### rest api

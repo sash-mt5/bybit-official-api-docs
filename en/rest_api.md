@@ -53,7 +53,9 @@ https://api.bybit.com
 
 * [Change leverage](#userleveragesavepost)
 
-* [My position](#positionlistget)
+* ~~[My position](#positionlistget)~~ ----The V2 version is recommended to use.
+
+* [My position](#positionlistv2get)
 
 * [Change margin](#positionchange-position-marginpost)
 
@@ -1216,6 +1218,71 @@ https://api.bybit.com
    'time_now': '1540043097.995523'      //UTC timestamp
 }
 *    
+```
+
+-----------
+## <span id="positionlistv2get"> My Position-V2</span>
+#### API Function
+
+> Get my position list
+
+#### HTTP Request
+
+##### Method
+> GET ```/v2/position/list```
+
+#### Request Parameters
+
+|parameter|required|type|comments|
+|:----- |:-------|:-----|----- |
+|symbol |true |string |Contract type    |
+
+#### Response example
+
+```js
+
+{
+    "ret_code": 0,
+    "ret_msg": "OK",
+    "ext_code": "",
+    "ext_info": "",
+    "result": {
+        "id": 20113,
+        "user_id": 105008,
+        "risk_id": 1,
+        "symbol": "BTCUSD",
+        "side": "Buy",
+        "size": 11,
+        "position_value": "0.00156216",
+        "entry_price": "7041.53223741",
+        "auto_add_margin": 0,
+        "leverage": "1",
+        "position_margin": "0.00156216",
+        "liq_price": "3530",
+        "bust_price": "3521",
+        "occ_closing_fee": "0.00000235",
+        "occ_funding_fee": "0",
+        "take_profit": "0",
+        "stop_loss": "0",
+        "trailing_stop": "0",
+        "position_status": "Normal",
+        "deleverage_indicator": 3,
+        "oc_calc_data": "{\"blq\":0,\"slq\":2,\"slv\":\"0.00025508\",\"bmp\":0,\"smp\":7840.6774,\"fq\":-9,\"bv2c\":1.00225,\"sv2c\":1.0007575}",
+        "order_margin": "0",
+        "wallet_balance": "0.48987387",
+        "realised_pnl": "0",
+        "unrealised_pnl": 0,
+        "cum_realised_pnl": "-1.51626124",
+        "cross_seq": 426783677,
+        "position_seq": 269647204,
+        "created_at": "2019-09-08T03:10:27Z",
+        "updated_at": "2019-12-18T05:24:53.672158Z"
+    },
+    "time_now": "1576649493.869901",
+    "rate_limit_status": 119,
+    "rate_limit_reset_ms": 1576649493866093,
+    "rate_limit": 120
+}  
 ```
 
 -----------
