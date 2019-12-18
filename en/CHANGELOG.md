@@ -2,7 +2,7 @@
 
 ## 2019-12-13
 
-### rest api
+### REST API
 - [Query stop order (real-time)](./rest_api.md#v2-private-stop-order) [new]
 
 <hr>
