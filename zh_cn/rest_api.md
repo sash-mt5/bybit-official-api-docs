@@ -1213,7 +1213,7 @@ https://api.bybit.com
 
 #### HTTP请求方式
 
-> GET   /v2/position/list
+> GET   /v2/private/position/list
 
 #### 请求参数
 
