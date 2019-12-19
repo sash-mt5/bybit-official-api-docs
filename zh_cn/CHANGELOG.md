@@ -1,15 +1,24 @@
 <hr>
 
+## 2019-12-18
+
+### REST API
+- [我的仓位V2](./rest_api.md#positionlistv2get) [新增]
+### Websocket
+- [orderBookL2_200](./websocket.md#orderBook200_v2) [新增]
+
+<hr>
+
 ## 2019-12-13
 
-### rest api
+### REST API
 - [实时查询条件单单信息](./rest_api.md#v2-private-stop-order) [新增]
 
 <hr>
 
 ## 2019-12-2
 
-### rest api
+### REST API
 - [创建活动委托单-v2](./rest_api.md#open-apiordercreatev2post) [新增]
 - [撤销活动委托单-v2](./rest_api.md#open-apiordercancelv2post) [新增]
 - [撤销全部活动委托单](./rest_api.md#open-apiordercancelallpost) [新增]
@@ -19,14 +28,14 @@
 
 ## 2019-11-19
 
-### rest api
+### REST API
 - [获取平台历史成交数据](./rest_api.md#trading-records) [新增]
 
 <hr>
 
 ## 2019-11-07
 
-### rest api
+### REST API
 - [修改用户杠杆](./rest_api.md#userleveragesavepost) [更新]
 - [我的仓位](./rest_api.md#positionlistget) [更新]
 - [更新保证金](./rest_api.md#positionchange-position-marginpost) [更新]
@@ -36,7 +45,7 @@
 
 ## 2019-11-04
 
-### rest api
+### REST API
 - [获取公告](./rest_api.md#open-apiannouncement) [新增]
 - [撤销活动委托单](./rest_api.md#open-apiordercancelpost) [更新]
     - 支持通过`order_link_id`撤单
@@ -57,7 +66,7 @@
 
 ## 2019-10-22
 
-### rest api
+### REST API
 - [实时查询活动单信息](./rest_api.md#v2-private-order) [新增]
 
 ### Websocket API

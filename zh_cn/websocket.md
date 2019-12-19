@@ -116,6 +116,7 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 
 ### 新版行情topic
 * [orderBookL2_25](#orderBook25_v2) `// 25档orderBook`
+* [orderBookL2_200](#orderBook200_v2) `// 200档orderBook`
 * [instrument_info](#instrument_info) `//合约信息`
 * [klineV2](#kline_v2) `// 新K线topic`
 
@@ -332,6 +333,80 @@ orderbook由两个方向分别为buy和sell的列表组成，列表的键为价�
 当接收到snapshot类型包时，清空之前所维护的orderbook,并以此snapshot包为基础开始进行演算,开始构建新的orderbook。后续在连接不断开的情况下，只会收到delta类型的数据包，delta数据包包含三类数据（delete,update,insert），每类数据中都包含方向，根据此方向来指定修改的orderbook里的键值列表，先处理delete数据，再处理update与insert的数据。
 
 delete表示在相应方向的列表中此价格的挂单档位挂单数目变为0，update表示在相应方向的列表中此价格的挂单档位数量修改至最新的size，insert表示在相应方向的列表中增加此价格的挂单档位且数量为size的值。
+
+<hr>
+
+### <span id="orderBook200_v2">新版200档orderBook</span>
+```js
+// 发送订阅指令 以BTCUSD为例
+ws.send('{"op": "subscribe", "args": ["orderBook_200.100ms.BTCUSD"]}');
+//snapshot类型消息格式,data里的数据按价格排序，从buy到sell方向
+{
+     "topic":"orderBook_200.100ms.BTCUSD",
+     "type":"snapshot",
+     "data":[
+        {
+            "price":"2999.00",
+            "symbol":"BTCUSD",
+            "id":29990000,
+            "side":"Buy",
+            "size":9
+        },
+        {
+            "price":"3001.00",
+            "symbol":"BTCUSD",
+            "id":30010000,
+            "side":"Sell",
+            "size":10
+        }
+     ],
+     "cross_seq":11518,
+     "timestamp_e6":1555647164875373
+}
+
+//delta类型的消息包含delete update insert三类数据，
+//价格档根据price字段或id字段来作为唯一标示
+//delta类型的消息包含delete update insert三类数据，
+//delete表示某个或多个价格档挂单量变为0
+//update表示某个或多个价格档的size更新
+//insert表示新增某个或多个价格档的挂挡
+
+//delta类型消息格式
+{
+     "topic":"orderBook_200.100ms.BTCUSD",
+     "type":"delta",
+     "data":{
+          "delete":[
+			 {
+                   "price":"3001.00",
+                   "symbol":"BTCUSD",
+                   "id":30010000,
+                   "side":"Sell"
+             }
+          ],
+          "update":[
+             {
+                   "price":"2999.00",
+                   "symbol":"BTCUSD",
+                   "id":29990000,
+                   "side":"Buy",
+                   "size":8
+             }
+          ],
+          "insert":[
+             {
+                   "price":"2998.00",
+                   "symbol":"BTCUSD",
+                   "id":29980000,
+                   "side":"Buy",
+                   "size":8
+             }
+          ],
+          "transactTimeE6":0
+     },
+     "cross_seq":11519,
+     "timestamp_e6":1555647221331673
+}
 
 <hr>
 

@@ -117,6 +117,7 @@ ws.send('{"op":"subscribe","args":["kline.*.*"]}')
 
 ### V2 Version System topic
 * [orderBookL2_25](#orderBook25_v2) `// OrderBook of 25 depth per side`
+* [orderBookL2_200](#orderBook200_v2) `// OrderBook of 200 depth per side`
 * [instrument_info](#instrument_info) `// Instrument's information`
 * [klineV2](#kline_v2) `// New kline topic`
 
@@ -330,6 +331,79 @@ When the snapshot type package is received, the orderbook maintained before is c
 
 In the list of values, 'delete' data indicates that the number of pending orders of special price in the corresponding direction list is 0, 'update' data indicates that the number of pending orders of special price in the corresponding direction list is changed to the latest size, and 'insert' data indicates the list in the corresponding direction and the pending order of special price and the quantity is the value of size.
 
+<hr>
+
+### <span id="orderBook200_v2">OrderBook of 200 depth per side in V2 version</span>
+```js
+// orderBookL2_200.BTCUSD
+ws.send('{"op": "subscribe", "args": ["orderBook_200.100ms.BTCUSD"]}');
+
+// Response content format
+// NOTE: After a successful subscribe response, the first response's type is snapshot, while the following responses' type are all delta
+
+//snapshot type format. The data is ordered by price, from buy to sell
+{
+     "topic":"orderBook_200.100ms.BTCUSD",
+     "type":"snapshot",
+     "data":[
+        {
+            "price":"2999.00",
+            "symbol":"BTCUSD",
+            "id":29990000,
+            "side":"Buy",
+            "size":9
+        },
+        {
+            "price":"3001.00",
+            "symbol":"BTCUSD",
+            "id":30010000,
+            "side":"Sell",
+            "size":10
+        }
+     ],
+     "cross_seq":11518,
+     "timestamp_e6":1555647164875373
+}
+
+
+//delta type format
+{
+     "topic":"orderBook_200.100ms.BTCUSD",
+     "type":"delta",
+     "data":{
+          "delete":[
+             {
+                   "price":"3001.00",
+                   "symbol":"BTCUSD",
+                   "id":30010000,
+                   "side":"Sell"
+             }
+          ],
+          "update":[
+             {
+                   "price":"2999.00",
+                   "symbol":"BTCUSD",
+                   "id":29990000,
+                   "side":"Buy",
+                   "size":8
+             }
+          ],
+          "insert":[
+             {
+                   "price":"2998.00",
+                   "symbol":"BTCUSD",
+                   "id":29980000,
+                   "side":"Buy",
+                   "size":8
+             }
+          ],
+          "transactTimeE6":0
+     },
+     "cross_seq":11519,
+     "timestamp_e6":1555647221331673
+}
+
+```
 
 <hr>
 

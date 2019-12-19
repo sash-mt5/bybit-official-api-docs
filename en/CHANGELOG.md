@@ -1,8 +1,17 @@
 <hr>
 
+## 2019-12-18
+
+### REST API
+- [My position-V2](./rest_api.md#positionlistv2get) [new]
+### Websocket
+- [orderBookL2_200](./websocket.md#orderBook200_v2) [new]
+
+<hr>
+
 ## 2019-12-13
 
-### rest api
+### REST API
 - [Query stop order (real-time)](./rest_api.md#v2-private-stop-order) [new]
 
 <hr>
