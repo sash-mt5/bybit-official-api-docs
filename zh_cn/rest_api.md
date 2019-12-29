@@ -133,23 +133,22 @@ https://api.bybit.com
 ```
 
 -----------
-## <span id="open-apiannouncement">Announcement</span>
-#### API Function
+## <span id="open-apiannouncement">获取公告</span>
+#### 接口功能
 
-> Get bybit OpenAPI announcements in the last 30 days。
+> 获取Bybit API 过去30日的公告信息。
 
-#### HTTP Request
+#### HTTP请求方式
 
-##### Method
-> GET ```/v2/public/announcement```
+> GET /v2/public/announcement
 
-#### Request Parameters
+#### 请求参数
 
-|parameter|required|type|comments|
+|参数|必选|类型|说明|
 |:----- |:-------|:-----|----- |
 
 
-#### Response example
+#### 返回示例
 
 ```js
 
