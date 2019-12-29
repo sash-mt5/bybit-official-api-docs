@@ -1502,14 +1502,14 @@ https://api.bybit.com
 #### HTTP Request
 
 ##### Method
-> POST   /open-api/wallet/risk-limit
+> POST `/open-api/wallet/risk-limit`
 
 #### Request Parameters
 
 |parameter|required|type|comments|
 |:----- |:-------|:-----|----- |
 |symbol |true |string |symbol |
-|risk_id |true |integer |risk id  |
+|risk_id |true |integer |risk ID. Can be found with the <a href="#wallet-getrisklimit">Get risk limit list</a> endpoint  |
 
 
 
@@ -1575,7 +1575,6 @@ https://api.bybit.com
   "rate_limit_reset_ms": 1577589068546,
   "rate_limit": "75"
 }
-
 ```
 
 -----------
@@ -1587,7 +1586,7 @@ https://api.bybit.com
 #### HTTP Request
 
 ##### Method
-> GET   /open-api/wallet/risk-limit/list
+> GET `/open-api/wallet/risk-limit/list`
 
 #### Request Parameters
 
