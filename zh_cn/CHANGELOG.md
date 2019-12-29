@@ -1,5 +1,13 @@
 <hr>
 
+## 2019-12-27
+
+### REST API
+- [设置风险限额](./rest_api.md#wallet-setrisklimit) [新增]
+- [查询风险限额表](./rest_api.md#wallet-getrisklimit) [新增]
+
+<hr>
+
 ## 2019-12-18
 
 ### REST API
