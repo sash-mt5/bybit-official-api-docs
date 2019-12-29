@@ -283,3 +283,6 @@ Example error response:
 ### exitValue必须大于0
 * ```'ret_code': 30068,```
 * ```'ret_msg': 'exitValue must positive'```
+### 风险限额没有变化
+* ```'ret_code': 34026,```
+* ```'ret_msg': 'the draftPzVo limit is same to the old limit'```
