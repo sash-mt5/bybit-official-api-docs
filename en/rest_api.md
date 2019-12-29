@@ -67,6 +67,10 @@ https://api.bybit.com
 
 * [Get Withdraw records](#wallet-withdrawrecordget)
 
+* [Set risk limit](#wallet-setrisklimit)
+
+* [Get risk limit list](#wallet-getrisklimit)
+
 ### Funding
 
 * [Funding rate](#lastfundingrate)
@@ -1486,6 +1490,169 @@ https://api.bybit.com
   "ext_info": null,
   "time_now": "1570863984.536136"
 }
+
+```
+
+-----------
+## <span id="wallet-setrisklimit">Set risk limit </span>
+#### API Function
+
+> Set risk limit
+
+#### HTTP Request
+
+##### Method
+> POST   /open-api/wallet/risk-limit
+
+#### Request Parameters
+
+|parameter|required|type|comments|
+|:----- |:-------|:-----|----- |
+|symbol |true |string |symbol |
+|risk_id |true |integer |risk id  |
+
+
+
+#### Response example
+
+```js
+
+{
+  "ret_code": 0,
+  "ret_msg": "ok",
+  "ext_code": "",
+  "result": {
+    "position": {
+      "id": 1,
+      "user_id": 1,
+      "symbol": "BTCUSD",
+      "side": "None",
+      "size": 0,
+      "position_value": 0,
+      "entry_price": 0,
+      "risk_id": 2,
+      "auto_add_margin": 0,
+      "leverage": 1,
+      "position_margin": 0,
+      "liq_price": 0,
+      "bust_price": 0,
+      "occ_closing_fee": 0,
+      "occ_funding_fee": 0,
+      "take_profit": 0,
+      "stop_loss": 0,
+      "trailing_stop": 0,
+      "position_status": "Normal",
+      "deleverage_indicator": 0,
+      "oc_calc_data": "{\"blq\":1,\"blv\":\"0.000125\",\"slq\":0,\"bmp\":8000,\"smp\":0,\"fc\":-0.00012529,\"bv2c\":1.00225,\"sv2c\":1.0007575}",
+      "order_margin": 0.00012529,
+      "wallet_balance": 1000,
+      "realised_pnl": 0,
+      "cum_realised_pnl": 0,
+      "cum_commission": 0,
+      "cross_seq": 4376,
+      "position_seq": 13689,
+      "created_at": "2019-08-13T06:51:29.000Z",
+      "updated_at": "2019-12-29T03:11:08.000Z",
+      "ext_fields": {
+        "v": 4
+      }
+    },
+    "risk": {
+      "id": 2,
+      "coin": "BTC",
+      "limit": 300,
+      "maintain_margin": "1.00",
+      "starting_margin": "1.50",
+      "section": "[\"1\",\"2\",\"3\",\"5\",\"10\",\"25\",\"50\",\"66\"]",
+      "is_lowest_risk": 0,
+      "created_at": "2019-06-26T05:46:45.000Z",
+      "updated_at": "2019-06-26T05:46:55.000Z"
+    }
+  },
+  "ext_info": null,
+  "time_now": "1577589068.435439",
+  "rate_limit_status": 71,
+  "rate_limit_reset_ms": 1577589068546,
+  "rate_limit": "75"
+}
+
+```
+
+-----------
+## <span id="wallet-getrisklimit">Get risk limit list </span>
+#### API Function
+
+> Get risk limit list
+
+#### HTTP Request
+
+##### Method
+> GET   /open-api/wallet/risk-limit/list
+
+#### Request Parameters
+
+|parameter|required|type|comments|
+|:----- |:-------|:-----|----- |
+
+
+
+#### Response example
+
+```js
+
+{
+  "ret_code": 0,
+  "ret_msg": "ok",
+  "ext_code": "",
+  "result": [
+    {
+      "id": 1,
+      "coin": "BTC",
+      "limit": 150,
+      "maintain_margin": "0.50",
+      "starting_margin": "1.00",
+      "section": [
+        "1",
+        "2",
+        "3",
+        "5",
+        "10",
+        "25",
+        "50",
+        "100"
+      ],
+      "is_lowest_risk": 1,
+      "created_at": "2018-11-09T13:53:04.000Z",
+      "updated_at": "2018-11-09T13:53:04.000Z"
+    },
+    {
+      "id": 11,
+      "coin": "ETH",
+      "limit": 3000,
+      "maintain_margin": "1.00",
+      "starting_margin": "2.00",
+      "section": [
+        "1",
+        "2",
+        "3",
+        "5",
+        "15",
+        "30",
+        "40",
+        "50"
+      ],
+      "is_lowest_risk": 1,
+      "created_at": "2019-01-25T08:31:54.000Z",
+      "updated_at": "2019-01-25T08:31:54.000Z"
+    }
+  ],
+  "ext_info": null,
+  "time_now": "1577587907.157396",
+  "rate_limit_status": 599,
+  "rate_limit_reset_ms": 1577587907162,
+  "rate_limit": 600
+}
+
 
 ```
 

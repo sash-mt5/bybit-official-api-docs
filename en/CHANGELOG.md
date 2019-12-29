@@ -1,5 +1,13 @@
 <hr>
 
+## 2019-12-27
+
+### REST API
+- [Set risk limit](./rest_api.md#wallet-setrisklimit) [new]
+- [Get risk limit list](./rest_api.md#wallet-getrisklimit) [new]
+
+<hr>
+
 ## 2019-12-18
 
 ### REST API
