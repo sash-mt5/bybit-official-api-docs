@@ -282,3 +282,6 @@ Note: `[%s]` acts as a placeholder, usually for invalid values which are sent to
 ### EXIT VALUE MUST BE POSITIVE
 * ```'ret_code': 30068,```
 * ```'ret_msg': 'exit value must be positive'```
+### RISK LIMIT NOT MODIFIED
+* ```'ret_code': 34026,```
+* ```'ret_msg': 'the draftPzVo limit is same to the old limit'```
