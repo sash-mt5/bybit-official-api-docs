@@ -56,11 +56,11 @@ Your API request frequency limit is based on your min `Liquidity Contribution Po
 
 |  LCP     | Frequency Limit |
 |  ----    | ----  |
-| 10 -100  | 800 times per minute |
-| 5-10    | 600 times per minute |
-| 2-5     | 400 times per minute |
-| 1-2      | 200 times per minute |
-| <1       | 100 times per minute |
+| 20-100  | 800 times per minute |
+| 10-20   | 600 times per minute |
+| 5-10    | 400 times per minute |
+| 2-5     | 200 times per minute |
+| <2      | 100 times per minute |
 
 ## Liquidity Contribution Points (LCP)
 
@@ -69,7 +69,7 @@ Your API request frequency limit is based on your min `Liquidity Contribution Po
 ## Explanation
 ### Effective Price Range
 
-> `effective price range`: 10 tick sizes range around middle of best bid price and best ask price. 
+> `effective price range`: 6 tick sizes range around middle of best bid price and best ask price. 
 
 Min `effective price` is  (Best bid price + Best ask price) / 2 - (3 * tick_size)
 
@@ -116,3 +116,4 @@ POA = 8000 / 200000 = 0.04
 
 
 Prior notice will be given via website if we update the mechanism.
+
