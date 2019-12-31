@@ -56,11 +56,11 @@ Your API request frequency limit is based on your min `Liquidity Contribution Po
 
 |  LCP     | Frequency Limit |
 |  ----    | ----  |
-| 10 -100  | 800 times per minute |
-| 5-10    | 600 times per minute |
-| 2-5     | 400 times per minute |
-| 1-2      | 200 times per minute |
-| <1       | 100 times per minute |
+| 20-100  | 800 times per minute |
+| 10-20   | 600 times per minute |
+| 5-10    | 400 times per minute |
+| 2-5     | 200 times per minute |
+| <2      | 100 times per minute |
 
 ## Liquidity Contribution Points (LCP)
 
@@ -69,11 +69,11 @@ Your API request frequency limit is based on your min `Liquidity Contribution Po
 ## Explanation
 ### Effective Price Range
 
-> `effective price range`: 10 tick sizes range around middle of best bid price and best ask price. 
+> `effective price range`: 6 tick sizes range around middle of best bid price and best ask price. 
 
-Min `effective price` is  (Best bid price + Best ask price) / 2 - (3 * tick_size)
+> Min `effective price` is  (Best bid price + Best ask price) / 2 - (3 * tick_size)
 
-max `effective price` is  (Best bid price + Best ask price) / 2 + (3 * tick_size)
+> max `effective price` is  (Best bid price + Best ask price) / 2 + (3 * tick_size)
 
 #### Effective Price Range example
 ```
@@ -92,9 +92,8 @@ Bybit calculates your amount of orders within `effective price range` / amount o
 User C bids 2000 contracts for $9995 and bids 8000 contracts for $9999, while effective price range is [9999,10002]
 
 ```
-User C only has 8000 contracts within 
-amount of orders within effective price range = 8000
-amount of all your orders = 2000 + 8000 = 10000
+amount of User C's orders within effective price range = 8000
+amount of all User C's orders = 2000 + 8000 = 10000
 POU = 8000 / 10000 = 0.8
 ```
 
@@ -109,10 +108,11 @@ Bybit calculates your amount of orders within `effective price range` / amount o
 User C only has 8000 contracts within effective price range, while bybit have 200000 contracts within effective price range in orderbook.
 
 ```
-amount of orders within effective price range = 80000
+amount of User C's orders within effective price range = 8000
 amount of all orders within effective price range = 200000
 POA = 8000 / 200000 = 0.04
 ```
 
 
 Prior notice will be given via website if we update the mechanism.
+
