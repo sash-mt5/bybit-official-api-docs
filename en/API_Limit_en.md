@@ -71,9 +71,9 @@ Your API request frequency limit is based on your min `Liquidity Contribution Po
 
 > `effective price range`: 6 tick sizes range around middle of best bid price and best ask price. 
 
-Min `effective price` is  (Best bid price + Best ask price) / 2 - (3 * tick_size)
+> Min `effective price` is  (Best bid price + Best ask price) / 2 - (3 * tick_size)
 
-max `effective price` is  (Best bid price + Best ask price) / 2 + (3 * tick_size)
+> max `effective price` is  (Best bid price + Best ask price) / 2 + (3 * tick_size)
 
 #### Effective Price Range example
 ```
