@@ -108,7 +108,7 @@ Bybit calculates your amount of orders within `effective price range` / amount o
 User C only has 8000 contracts within effective price range, while bybit have 200000 contracts within effective price range in orderbook.
 
 ```
-amount of orders within effective price range = 80000
+amount of User C's orders within effective price range = 8000
 amount of all orders within effective price range = 200000
 POA = 8000 / 200000 = 0.04
 ```
