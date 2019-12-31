@@ -92,9 +92,8 @@ Bybit calculates your amount of orders within `effective price range` / amount o
 User C bids 2000 contracts for $9995 and bids 8000 contracts for $9999, while effective price range is [9999,10002]
 
 ```
-User C only has 8000 contracts within 
-amount of orders within effective price range = 8000
-amount of all your orders = 2000 + 8000 = 10000
+amount of User C's orders within effective price range = 8000
+amount of all User C's orders = 2000 + 8000 = 10000
 POU = 8000 / 10000 = 0.8
 ```
 
