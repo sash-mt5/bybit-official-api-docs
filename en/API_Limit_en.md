@@ -71,15 +71,15 @@ Your API request frequency limit is based on your min `Liquidity Contribution Po
 
 > `effective price range`: 10 tick sizes range around middle of best bid price and best ask price. 
 
-Min `effective price` is  (Best bid price + Best ask price) / 2 - (5 * tick_size)
+Min `effective price` is  (Best bid price + Best ask price) / 2 - (3 * tick_size)
 
-max `effective price` is  (Best bid price + Best ask price) / 2 + (5 * tick_size)
+max `effective price` is  (Best bid price + Best ask price) / 2 + (3 * tick_size)
 
 #### Effective Price Range example
 ```
 BTC best bid = 10000
 BTC best ask = 10001
-Effective Price Range: [(10000 + 10001) / 2 - 5* 0.5, (10000 + 10001) / 2 + 5* 0.5] = [9998,10003]
+Effective Price Range: [(10000 + 10001) / 2 - 3* 0.5, (10000 + 10001) / 2 + 3* 0.5] = [9999,10002]
 ```
 
 
@@ -89,7 +89,7 @@ Effective Price Range: [(10000 + 10001) / 2 - 5* 0.5, (10000 + 10001) / 2 + 5* 0
 Bybit calculates your amount of orders within `effective price range` / amount of all your orders in orderbook, and then performs a 1-Day Time-Weighted-Average over the series of seconds rates.
 
 #### POU example
-User C bids 2000 contracts for $9995 and bids 8000 contracts for $9999, while effective price range is [9998,10003]
+User C bids 2000 contracts for $9995 and bids 8000 contracts for $9999, while effective price range is [9999,10002]
 
 ```
 User C only has 8000 contracts within 
