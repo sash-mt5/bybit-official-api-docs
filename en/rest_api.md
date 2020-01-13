@@ -826,6 +826,7 @@ https://api.bybit.com
 |stop_order_id |false |string |Order ID of conditional order|
 |order_link_id |false |string |Agency customized order ID|
 |symbol |false |string |Contract type. Default `BTCUSD`    |
+|stop_order_status |false |string |stop order status   |
 |order |false |string |Sort orders by creation date   |
 |page |false |integer |Page. Default getting first page data |
 |limit |false |integer |Limit for data size per page, max size is 50. Default as showing 20 pieces of data per page |
