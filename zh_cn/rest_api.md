@@ -816,6 +816,7 @@ https://api.bybit.com
 |stop_order_id |false |string |条件委托订单ID |
 |order_link_id |false |string |机构自定义订单ID |
 |symbol |false |string |产品类型,默认`BTCUSD`    |
+|stop_order_status |false |string |条件单状态   |
 |order |false |string |排序字段为`created_at`,升序降序，默认降序 (desc asc )    |
 |page |false |integer |页码，默认取第一页数据 |
 |limit |false |integer |一页数量，默认一页展示20条数据;最大支持50条每页 |
