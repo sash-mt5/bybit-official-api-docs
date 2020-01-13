@@ -2105,8 +2105,8 @@ https://api.bybit.com
 #### Cancel type (`cancel_type`)
 * `CancelByUser` 
 * `CancelByReduceOnly` 
-* `CancelByPrepareLiq` - Canceled force liquidation 
-* `CancelAllBeforeLiq` - Canceled force liquidation
-* `CancelByPrepareAdl` - Canceled by ADL
-* `CancelAllBeforeAdl` - Canceled by ADL
+* `CancelByPrepareLiq`,`CancelAllBeforeLiq` - Canceled by force liquidation
+* `CancelByPrepareAdl`,`CancelAllBeforeAdl` - Canceled by ADL
 * `CancelByAdmin`
+* `CancelByTpSlTsClear` - Means this is a cancelled TP/SL order
+* `CancelByPzSideCh` - Means this order is cancelled after TP/SL

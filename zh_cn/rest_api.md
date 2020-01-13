@@ -2077,3 +2077,5 @@ https://api.bybit.com
 * `CancelByPrepareAdl` - 自动减仓导致取消订单
 * `CancelAllBeforeAdl` - 自动减仓导致取消订单
 * `CancelByAdmin`
+* `CancelByTpSlTsClear` - 止盈止损单被取消
+* `CancelByPzSideCh` - 该订单在触发止盈止损后被取消
