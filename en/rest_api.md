@@ -721,7 +721,7 @@ https://api.bybit.com
 	      "xreq_offset": 4154640
 	    },
 	    "leaves_qty": 10,
-      "cancel_type": "CancelByUser", 
+	    "cancel_type": "CancelByUser", 
 	    "leaves_value": "0.00123716",
 	    "cum_exec_qty": 0,
 	    "reject_reason": "",

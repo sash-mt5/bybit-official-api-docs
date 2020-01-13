@@ -606,6 +606,8 @@ ws.send('{"op":"subscribe","args":["position"]}')
             "qty":850,
             "time_in_force":"GoodTillCancel",
             "order_status":"Cancelled",
+            "create_type":"CreateByUser",
+            "create_type":"CreateByUser",
             "leaves_qty":0,
             "cum_exec_qty":0,
             "cum_exec_value":0,
