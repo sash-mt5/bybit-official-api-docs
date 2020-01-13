@@ -714,6 +714,7 @@ https://api.bybit.com
 	      "xreq_offset": 4154640
 	    },
 	    "leaves_qty": 10,
+        "cancel_type": "CancelByUser", 
 	    "leaves_value": "0.00123716",
 	    "cum_exec_qty": 0,
 	    "reject_reason": "",
@@ -2067,3 +2068,12 @@ https://api.bybit.com
 * `订单排序选项`
 * `desc`    `降序排列`(default)
 * `asc`     `升序排列`
+
+#### Cancel type (`cancel_type`)
+* `CancelByUser` 
+* `CancelByReduceOnly` 
+* `CancelByPrepareLiq` - 仓位进入强平会取消订单 
+* `CancelAllBeforeLiq` - 仓位进入强平会取消订单 
+* `CancelByPrepareAdl` - 自动减仓导致取消订单
+* `CancelAllBeforeAdl` - 自动减仓导致取消订单
+* `CancelByAdmin`

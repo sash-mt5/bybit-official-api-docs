@@ -382,6 +382,7 @@ https://api.bybit.com
             "cum_exec_value": 0,
             "cum_exec_fee": 0,
             "reject_reason": "",
+            "cancel_type": "CancelByUser",
             "order_link_id": "",
             "created_at": "2019-11-30T11:03:43.452Z",
             "updated_at": "2019-11-30T11:03:43.455Z"
@@ -720,6 +721,7 @@ https://api.bybit.com
 	      "xreq_offset": 4154640
 	    },
 	    "leaves_qty": 10,
+      "cancel_type": "CancelByUser", 
 	    "leaves_value": "0.00123716",
 	    "cum_exec_qty": 0,
 	    "reject_reason": "",
@@ -955,8 +957,7 @@ https://api.bybit.com
                 "price": "7694.5",                                 
                 "qty": 1,                                           
                 "time_in_force": "GoodTillCancel",                  
-                "create_type": "CreateByUser",                      
-                "cancel_type": "CancelByUser",                      
+                "create_type": "CreateByUser",                                           
                 "order_status": "",                                 
                 "leaves_qty": 1,                                    
                 "leaves_value": "0",
@@ -2100,3 +2101,12 @@ https://api.bybit.com
 * `Cancelled`
 * `PendingCancel` - The matching engine has received the cancellation but there is no guarantee that it will be successful
 * `Deactivated` - The conditional order was cancelled before triggering
+
+#### Cancel type (`cancel_type`)
+* `CancelByUser` 
+* `CancelByReduceOnly` 
+* `CancelByPrepareLiq` - Canceled force liquidation 
+* `CancelAllBeforeLiq` - Canceled force liquidation
+* `CancelByPrepareAdl` - Canceled by ADL
+* `CancelAllBeforeAdl` - Canceled by ADL
+* `CancelByAdmin`
