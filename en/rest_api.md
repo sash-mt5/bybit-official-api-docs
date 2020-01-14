@@ -270,7 +270,7 @@ https://api.bybit.com
 |take_profit |false |number |take profit price|
 |stop_loss |false |number |stop loss price|
 |reduce_only |false |bool |reduce only
-|close_on_trigger |false |bool |close on trigger
+|close_on_trigger |false |bool |close on trigger. When creating closing order, highly recommend to set as `true` to avoid failing by insufficient avaliable margin|
 |order_link_id |false |string |Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.|
 
 
@@ -352,7 +352,7 @@ https://api.bybit.com
 |take_profit |false |number |take profit price|
 |stop_loss |false |number |stop loss price|
 |reduce_only |false |bool |reduce only
-|close_on_trigger |false |bool |close on trigger
+|close_on_trigger |false |bool |close on trigger. When creating closing order, highly recommend to set as `true` to avoid failing by insufficient avaliable margin|
 |order_link_id |false |string |Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.|
 |trailing_stop|false |number |trailing stop |
 
@@ -775,7 +775,7 @@ https://api.bybit.com
 |stop_px | true | number | Trigger price |
 |time_in_force |true |string |Time in force |
 |trigger_by | false | string | Trigger price type. Default `LastPrice` |
-|close_on_trigger |false |bool |close on trigger
+|close_on_trigger |false |bool |close on trigger. When creating closing order, highly recommend to set as `true` to avoid failing by insufficient avaliable margin|
 |order_link_id |false |string |Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.|
 
 
