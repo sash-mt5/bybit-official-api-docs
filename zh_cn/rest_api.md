@@ -266,8 +266,8 @@ https://api.bybit.com
 |time_in_force |true |string |执行策略, 有效选项:GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly    |
 |take_profit |false |number |止盈价格 |
 |stop_loss |false |number |止损价格 |
-|reduce_only |false |bool |只减仓
-|close_on_trigger |false |bool |触发后平仓
+|reduce_only |false |bool |只减仓|
+|close_on_trigger |false |bool |触发后平仓. 如果下平仓单，请设置为`true`，避免因为保证金不足而导致下单失败|
 |order_link_id |false |string |机构自定义订单ID, 最大长度36位，且同一机构下自定义ID不可重复 |
 
 
@@ -347,8 +347,8 @@ https://api.bybit.com
 |time_in_force |true |string |执行策略, 有效选项:GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly    |
 |take_profit |false |number |止盈价格 |
 |stop_loss |false |number |止损价格 |
-|reduce_only |false |bool |只减仓
-|close_on_trigger |false |bool |触发后平仓
+|reduce_only |false |bool |只减仓 |
+|close_on_trigger |false |bool |触发后平仓. 如果下平仓单，请设置为`true`，避免因为保证金不足而导致下单失败|
 |order_link_id |false |string |机构自定义订单ID, 最大长度36位，且同一机构下自定义ID不可重复 |
 |trailing_stop|false |number |追踪止损 |
 
@@ -765,7 +765,7 @@ https://api.bybit.com
 |stop_px |true |integer |条件委托下单时市价 |
 |time_in_force |true |string |执行策略, 有效选项:GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly |
 |trigger_by | false | string | 触发价格类型. 默认为上一笔成交价格 |
-|close_on_trigger |false |bool |触发后平仓
+|close_on_trigger |false |bool |触发后平仓. 如果下平仓单，请设置为`true`，避免因为保证金不足而导致下单失败|
 |order_link_id |false |string |机构自定义订单ID, 最大长度36位，且同一机构下自定义ID不可重复 |
 
 
