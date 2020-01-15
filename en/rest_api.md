@@ -2119,6 +2119,6 @@ https://api.bybit.com
 * `CreateByTakeProfit` 
 * `CreateByStopLoss` 
 * `CreateByTrailingStop` 
-* `CreateByLiq` - 部分平仓.用户触发强平时，可以通过调整风险限额，部分平仓，来避免强平
-* `CreateByAdl_PassThrough` - 强平减仓
-* `CreateByTakeOver_PassThrough` - 强平接管
+* `CreateByLiq` - Created by partial liquidation
+* `CreateByAdl_PassThrough` - Created by ADL
+* `CreateByTakeOver_PassThrough` - Created by liquidation takeover.
