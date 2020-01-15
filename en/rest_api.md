@@ -270,7 +270,7 @@ https://api.bybit.com
 |take_profit |false |number |take profit price|
 |stop_loss |false |number |stop loss price|
 |reduce_only |false |bool |reduce only
-|close_on_trigger |false |bool |close on trigger
+|close_on_trigger |false |bool |close on trigger. When creating closing order, highly recommend to set as `true` to avoid failing by insufficient avaliable margin|
 |order_link_id |false |string |Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.|
 
 
@@ -352,7 +352,7 @@ https://api.bybit.com
 |take_profit |false |number |take profit price|
 |stop_loss |false |number |stop loss price|
 |reduce_only |false |bool |reduce only
-|close_on_trigger |false |bool |close on trigger
+|close_on_trigger |false |bool |close on trigger. When creating closing order, highly recommend to set as `true` to avoid failing by insufficient avaliable margin|
 |order_link_id |false |string |Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.|
 |trailing_stop|false |number |trailing stop |
 
@@ -723,6 +723,7 @@ https://api.bybit.com
 	    "leaves_value": "0.00123716",
 	    "cum_exec_qty": 0,
 	    "reject_reason": "",
+	    "cancel_type": "CancelByUser", 
 	    "order_link_id": "",
 	    "created_at": "2019-10-21T07:28:19.396246Z",
 	    "updated_at": "2019-10-21T07:28:19.396246Z",
@@ -774,7 +775,7 @@ https://api.bybit.com
 |stop_px | true | number | Trigger price |
 |time_in_force |true |string |Time in force |
 |trigger_by | false | string | Trigger price type. Default `LastPrice` |
-|close_on_trigger |false |bool |close on trigger
+|close_on_trigger |false |bool |close on trigger. When creating closing order, highly recommend to set as `true` to avoid failing by insufficient avaliable margin|
 |order_link_id |false |string |Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.|
 
 
@@ -955,8 +956,8 @@ https://api.bybit.com
                 "price": "7694.5",                                 
                 "qty": 1,                                           
                 "time_in_force": "GoodTillCancel",                  
-                "create_type": "CreateByUser",                      
-                "cancel_type": "CancelByUser",                      
+                "create_type": "CreateByUser",
+                "cancel_type": "CancelByUser",                                           
                 "order_status": "",                                 
                 "leaves_qty": 1,                                    
                 "leaves_value": "0",
@@ -2100,3 +2101,24 @@ https://api.bybit.com
 * `Cancelled`
 * `PendingCancel` - The matching engine has received the cancellation but there is no guarantee that it will be successful
 * `Deactivated` - The conditional order was cancelled before triggering
+
+#### Cancel type (`cancel_type`)
+* `CancelByUser` 
+* `CancelByReduceOnly` 
+* `CancelByPrepareLiq`,`CancelAllBeforeLiq` - Canceled by force liquidation
+* `CancelByPrepareAdl`,`CancelAllBeforeAdl` - Canceled by ADL
+* `CancelByAdmin`
+* `CancelByTpSlTsClear` - Means this is a cancelled TP/SL order
+* `CancelByPzSideCh` - Means this order is cancelled after TP/SL
+
+#### Create type (`create_type`)
+* `CreateByUser` 
+* `CreateByClosing` 
+* `CreateByAdminClosing` 
+* `CreateByStopOrder` 
+* `CreateByTakeProfit` 
+* `CreateByStopLoss` 
+* `CreateByTrailingStop` 
+* `CreateByLiq` - Created by partial liquidation
+* `CreateByAdl_PassThrough` - Created by ADL
+* `CreateByTakeOver_PassThrough` - Created by liquidation takeover.

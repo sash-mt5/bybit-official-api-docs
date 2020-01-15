@@ -266,8 +266,8 @@ https://api.bybit.com
 |time_in_force |true |string |执行策略, 有效选项:GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly    |
 |take_profit |false |number |止盈价格 |
 |stop_loss |false |number |止损价格 |
-|reduce_only |false |bool |只减仓
-|close_on_trigger |false |bool |触发后平仓
+|reduce_only |false |bool |只减仓|
+|close_on_trigger |false |bool |触发后平仓. 如果下平仓单，请设置为`true`，避免因为保证金不足而导致下单失败|
 |order_link_id |false |string |机构自定义订单ID, 最大长度36位，且同一机构下自定义ID不可重复 |
 
 
@@ -347,8 +347,8 @@ https://api.bybit.com
 |time_in_force |true |string |执行策略, 有效选项:GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly    |
 |take_profit |false |number |止盈价格 |
 |stop_loss |false |number |止损价格 |
-|reduce_only |false |bool |只减仓
-|close_on_trigger |false |bool |触发后平仓
+|reduce_only |false |bool |只减仓 |
+|close_on_trigger |false |bool |触发后平仓. 如果下平仓单，请设置为`true`，避免因为保证金不足而导致下单失败|
 |order_link_id |false |string |机构自定义订单ID, 最大长度36位，且同一机构下自定义ID不可重复 |
 |trailing_stop|false |number |追踪止损 |
 
@@ -717,6 +717,7 @@ https://api.bybit.com
 	    "leaves_value": "0.00123716",
 	    "cum_exec_qty": 0,
 	    "reject_reason": "",
+	    "cancel_type": "CancelByUser",
 	    "order_link_id": "",
 	    "created_at": "2019-10-21T07:28:19.396246Z",
 	    "updated_at": "2019-10-21T07:28:19.396246Z",
@@ -764,7 +765,7 @@ https://api.bybit.com
 |stop_px |true |integer |条件委托下单时市价 |
 |time_in_force |true |string |执行策略, 有效选项:GoodTillCancel, ImmediateOrCancel, FillOrKill,PostOnly |
 |trigger_by | false | string | 触发价格类型. 默认为上一笔成交价格 |
-|close_on_trigger |false |bool |触发后平仓
+|close_on_trigger |false |bool |触发后平仓. 如果下平仓单，请设置为`true`，避免因为保证金不足而导致下单失败|
 |order_link_id |false |string |机构自定义订单ID, 最大长度36位，且同一机构下自定义ID不可重复 |
 
 
@@ -2067,3 +2068,24 @@ https://api.bybit.com
 * `订单排序选项`
 * `desc`    `降序排列`(default)
 * `asc`     `升序排列`
+
+#### Cancel type (`cancel_type`)
+* `CancelByUser` 
+* `CancelByReduceOnly` 
+* `CancelByPrepareLiq`,`CancelAllBeforeLiq` - 仓位进入强平会取消订单 
+* `CancelByPrepareAdl`,`CancelAllBeforeAdl` - 自动减仓导致取消订单
+* `CancelByAdmin`
+* `CancelByTpSlTsClear` - 止盈止损单被取消
+* `CancelByPzSideCh` - 该订单在触发止盈止损后被取消
+
+#### Create type (`create_type`)
+* `CreateByUser` 
+* `CreateByClosing` 
+* `CreateByAdminClosing` 
+* `CreateByStopOrder` 
+* `CreateByTakeProfit` 
+* `CreateByStopLoss` 
+* `CreateByTrailingStop` 
+* `CreateByLiq` - 部分平仓.用户触发强平时，可以通过调整风险限额，部分平仓，来避免强平
+* `CreateByAdl_PassThrough` - 强平减仓
+* `CreateByTakeOver_PassThrough` - 强平接管
