@@ -2110,3 +2110,15 @@ https://api.bybit.com
 * `CancelByAdmin`
 * `CancelByTpSlTsClear` - Means this is a cancelled TP/SL order
 * `CancelByPzSideCh` - Means this order is cancelled after TP/SL
+
+#### Create type (`create_type`)
+* `CreateByUser` 
+* `CreateByClosing` 
+* `CreateByAdminClosing` 
+* `CreateByStopOrder` 
+* `CreateByTakeProfit` 
+* `CreateByStopLoss` 
+* `CreateByTrailingStop` 
+* `CreateByLiq` - 部分平仓.用户触发强平时，可以通过调整风险限额，部分平仓，来避免强平
+* `CreateByAdl_PassThrough` - 强平减仓
+* `CreateByTakeOver_PassThrough` - 强平接管
