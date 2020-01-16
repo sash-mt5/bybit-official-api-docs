@@ -2067,8 +2067,6 @@ https://api.bybit.com
 * `ImmediateOrCancel`
 * `FillOrKill`
 * `PostOnly`
-* `""`
-  * If and only if the user is placing a market order
 
 #### Trigger price type (`trigger_by`)
 * `LastPrice`
