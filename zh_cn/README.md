@@ -2,7 +2,7 @@
 
 rest api身份验证及接口信息
 
-* [API 频率限制](./rest_api_sign.md#rate-limits)
+* [API 频率限制](./rest_api_sign.md#频率限制)
 
 * [REST API身份验证](./rest_api_sign.md)
 
