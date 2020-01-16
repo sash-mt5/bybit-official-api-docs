@@ -88,6 +88,16 @@ Every request to the API returns the following fields:
   * Each account can hold up to 200 active orders yet to be filled entirely simultaneously.
   * Each account can hold up to 10 conditional orders yet to be filled entirely simultaneously
 
+#### Rate Limits For IP 
+  * For `GET` method
+    * 35 requests per second
+    * 25 requests per second  in continuous 2 minutes
+  * For `POST` method
+    * 25 requests per second
+    * 10 requests per second  in continuous 2 minutes
+
+You will receive HTTP code `403` while exceed above IP limit, and your IP will be blocked 10 minutes at least.
+
 #### How To Raise API Limit Threshold
   * Please read [`How To Raise API Limit Threshold`](./API_Limit_en.md)
   * Please send your application email to api@bybit.com. We will reply in 1-4 working days.
