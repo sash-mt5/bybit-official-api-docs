@@ -88,15 +88,15 @@ Every request to the API returns the following fields:
   * Each account can hold up to 200 active orders yet to be filled entirely simultaneously.
   * Each account can hold up to 10 conditional orders yet to be filled entirely simultaneously
 
-#### Rate Limits For IP 
+#### Rate Limits For IP
   * For `GET` method
     * 35 requests per second
-    * 25 requests per second  in continuous 2 minutes
+    * 25 requests per second continuously for 2 minutes
   * For `POST` method
     * 25 requests per second
-    * 10 requests per second  in continuous 2 minutes
+    * 10 requests per second continuously for 2 minutes
 
-You will receive HTTP code `403` while exceed above IP limit, and your IP will be blocked 10 minutes at least.
+You will receive HTTP `403` if you exceed the IP limit, and your IP will be blocked for at least 10 minutes.
 
 #### How To Raise API Limit Threshold
   * Please read [`How To Raise API Limit Threshold`](./API_Limit_en.md)
