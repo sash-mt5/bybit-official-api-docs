@@ -2046,7 +2046,6 @@ https://api.bybit.com
 * `ImmediateOrCancel`   `下单后任何未完成部分立即被取消`
 * `FillOrKill`          `订单要么完全成交要么取消`
 * `PostOnly`            `只挂单`
-* `""`                  `当且仅当市价单时为空`
 
 #### Trigger price type (`trigger_by`)
 * `LastPrice`       `市场价格`
