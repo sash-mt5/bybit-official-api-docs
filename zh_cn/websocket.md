@@ -407,6 +407,7 @@ ws.send('{"op": "subscribe", "args": ["orderBook_200.100ms.BTCUSD"]}');
      "cross_seq":11519,
      "timestamp_e6":1555647221331673
 }
+```
 
 <hr>
 
