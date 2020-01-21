@@ -26,60 +26,93 @@
 
 ##### 接口频率限制详细
 
-  <escape>
+   <escape>
     <table>
       <tr>
-        <th>limit</th>
+        <th>频率限制</th>
         <th>path</th>
+        <th>消耗</th>
       </tr>
       <tr>
         <td rowspan="10">100/min</td>
         <td>open-api/order/create </td>
+        <td>1 / request</td>
       </tr>
-      <tr><td>open-api/order/cancel       </td></tr>
-      <tr><td>open-api/stop-order/create  </td></tr>
-      <tr><td>open-api/stop-order/cancel  </td></tr>
-      <tr><td>open-api/order/replace      </td></tr>
-      <tr><td>open-api/stop-order/replace </td></tr>
-      <tr><td>v2/private/order/create     </td></tr>
-      <tr><td>v2/private/order/cancel     </td></tr>
-      <tr><td>v2/private/order/cancelAll  </td></tr>
-      <tr><td>v2/private/stop-order/cancelAll </td></tr>
+      <tr><td>open-api/order/cancel       </td> <td>1 / request</td></tr>
+      <tr><td>open-api/stop-order/create  </td> <td>1 / request</td></tr>
+      <tr><td>open-api/stop-order/cancel  </td> <td>1 / request</td></tr>
+      <tr><td>open-api/order/replace      </td> <td>1 / request</td></tr>
+      <tr><td>open-api/stop-order/replace </td> <td>1 / request</td></tr>
+      <tr><td>v2/private/order/create     </td> <td>1 / request</td></tr>
+      <tr><td>v2/private/order/cancel     </td> <td>1 / request</td></tr>
+      <tr><td>v2/private/order/cancelAll  </td> <td>10 / request</td></tr>
+      <tr><td>v2/private/stop-order/cancelAll </td> <td>10 / request</td></tr>
       <tr>
         <td rowspan="3">600/min</td>
         <td>open-api/order/list </td>
+         <td>1 / request</td>
       </tr>
-	    <tr><td>open-api/stop-order/list </td></tr>
-      <tr><td>v2/private/order </td></tr>
+      <tr>
+        <td>open-api/stop-order/list </td> 
+        <td>1 / request</td>
+      </tr>
+      <tr>
+        <td>v2/private/order </td> 
+        <td>1 / request</td>
+      </tr>
       <tr>
         <td>120/min</td>
         <td>v2/private/execution/list</td>
+         <td>1 / request</td>
       </tr>
       <tr>
         <td rowspan="3">75/min</td>
         <td>user/leverage/save  </td>
+         <td>1 / request</td>
       </tr>
-      <tr><td>position/change-position-margin </td></tr>
-      <tr><td>position/trading-stop           </td></tr>
+      <tr>
+        <td>position/change-position-margin </td> 
+        <td>1 / request</td>
+      </tr>
+      <tr>
+        <td>position/trading-stop</td> 
+        <td>1 / request</td>
+      </tr>
       <tr>
         <td rowspan="2">120/min</td>
-        <td>position/list  </td>
+        <td>position/list</td>
+         <td>1 / request</td>
       </tr>
-      <tr><td>user/leverage</td></tr>
+      <tr>
+        <td>user/leverage</td> 
+        <td>1 / request</td>
+      </tr>
       <tr>
         <td rowspan="3">120/min</td>
-        <td>open-api/funding/prev-funding-rate  </td>
+        <td>open-api/funding/prev-funding-rate</td>
+        <td>1 / request</td>
       </tr>
-      <tr><td>open-api/funding/prev-funding      </td></tr>
-      <tr><td>open-api/funding/predicted-funding </td></tr>
+      <tr>
+        <td>open-api/funding/prev-funding</td>
+        <td>1 / request</td>
+      </tr>
+      <tr>
+        <td>open-api/funding/predicted-funding</td>
+        <td>1 / request</td>
+      </tr>
       <tr>
         <td rowspan="2">120/min</td>
-        <td>open-api/wallet/fund/records  </td>
+        <td>open-api/wallet/fund/records</td>
+        <td>1 / request</td>
       </tr>
-	  <tr><td>open-api/wallet/withdraw/list </td></tr>
+    <tr>
+      <td>open-api/wallet/withdraw/list</td>
+      <td>1 / request</td>
+    </tr>
     <tr>
         <td rowspan="1">600/min</td>
-        <td>open-api/api-key  </td>
+        <td>open-api/api-key</td>
+        <td>1 / request</td>
       </tr>
     </table>
   </escape>

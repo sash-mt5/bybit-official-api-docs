@@ -247,7 +247,7 @@ https://api.bybit.com
 >Customize conditional order ID: You may customize order IDs for active orders. We will link it to the system order ID , and return the unique system order ID to you after the active order is created successfully. You may use this order ID to cancel your active order. The customized order ID is asked to be unique, with a maximum length of 36 characters.
 
 >Notes:
->* Each account can hold up to 200 active orders yet to be filled entirely simultaneously.
+>* Each account can hold up to 500 active orders yet to be filled entirely simultaneously.
 >* 'order_status' values explained:
 >    * 'Created' indicates the order has been accepted by the system but not yet entered into the orderbook
 >    * 'New' indicates the order has entered into the orderbook.
@@ -582,6 +582,8 @@ https://api.bybit.com
 #### API Function
 
 > Cancel all active orders that are unfilled or partially filled. Fully filled orders cannot be cancelled.
+
+> This endpoint will decrease 10 for `rate_limit`  per request
 
 
 #### HTTP Request
@@ -924,6 +926,8 @@ https://api.bybit.com
 #### API Function
 
 > Cancel all untriggered conditional orders.
+
+> This endpoint will decrease 10 for `rate_limit`  per request
 
 
 #### HTTP Request
