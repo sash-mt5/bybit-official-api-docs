@@ -583,7 +583,7 @@ https://api.bybit.com
 
 > Cancel all active orders that are unfilled or partially filled. Fully filled orders cannot be cancelled.
 
-> This endpoint will decrease 10 for `rate_limit`  per request
+> This endpoint's `rate_limit` will decrease by 10 per request
 
 
 #### HTTP Request
@@ -725,7 +725,7 @@ https://api.bybit.com
 	    "leaves_value": "0.00123716",
 	    "cum_exec_qty": 0,
 	    "reject_reason": "",
-	    "cancel_type": "CancelByUser", 
+	    "cancel_type": "CancelByUser",
 	    "order_link_id": "",
 	    "created_at": "2019-10-21T07:28:19.396246Z",
 	    "updated_at": "2019-10-21T07:28:19.396246Z",
@@ -927,7 +927,7 @@ https://api.bybit.com
 
 > Cancel all untriggered conditional orders.
 
-> This endpoint will decrease 10 for `rate_limit`  per request
+> This endpoint's `rate_limit` will decrease by 10 per request
 
 
 #### HTTP Request
@@ -2105,8 +2105,8 @@ https://api.bybit.com
 * `Deactivated` - The conditional order was cancelled before triggering
 
 #### Cancel type (`cancel_type`)
-* `CancelByUser` 
-* `CancelByReduceOnly` 
+* `CancelByUser`
+* `CancelByReduceOnly`
 * `CancelByPrepareLiq`,`CancelAllBeforeLiq` - Canceled by force liquidation
 * `CancelByPrepareAdl`,`CancelAllBeforeAdl` - Canceled by ADL
 * `CancelByAdmin`
@@ -2114,13 +2114,13 @@ https://api.bybit.com
 * `CancelByPzSideCh` - Means this order is cancelled after TP/SL
 
 #### Create type (`create_type`)
-* `CreateByUser` 
-* `CreateByClosing` 
-* `CreateByAdminClosing` 
-* `CreateByStopOrder` 
-* `CreateByTakeProfit` 
-* `CreateByStopLoss` 
-* `CreateByTrailingStop` 
+* `CreateByUser`
+* `CreateByClosing`
+* `CreateByAdminClosing`
+* `CreateByStopOrder`
+* `CreateByTakeProfit`
+* `CreateByStopLoss`
+* `CreateByTrailingStop`
 * `CreateByLiq` - Created by partial liquidation
 * `CreateByAdl_PassThrough` - Created by ADL
 * `CreateByTakeOver_PassThrough` - Created by liquidation takeover.
