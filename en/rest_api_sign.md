@@ -147,7 +147,7 @@ recv_window| valid request timespan, unit: millisecond| int | no | 5000 | An htt
 sign | signature message |  string | yes | no | The signature message which is generated from a certain algorithm.
 
 #### How to Sign
-1. Concatenate all the public parameters except 'sign' in the query string format. The parameters must be ordered in **ascending** order. Here is an example of adjusting the leverage of an account (using the 'symbol' and 'leverage' parameters):
+1. Concatenate all the public parameters except 'sign' in the query string format. The parameters must be ordered in **alphabetical** order. Here is an example of adjusting the leverage of an account (using the 'symbol' and 'leverage' parameters):
 
 ``` js
 var param_str = 'api_key=B2Rou0PLPpGqcU0Vu2&leverage=100&symbol=BTCUSD&timestamp=1542434791000';
