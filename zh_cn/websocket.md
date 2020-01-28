@@ -481,11 +481,10 @@ ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
 
 * 目前支持的K线周期
 * 1 3 5 15 30
-* 60 120 240 360 720
+* 60 120 240 360
 * D
 * W
 * M
-* Y
 
 **如果`confirm`字段为`true`，意味着这是这根K线的最后一个tick.否则，这只是一个快照数据，即中间价格**
 

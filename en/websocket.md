@@ -479,11 +479,10 @@ ws.send('{"op":"subscribe","args":["instrument_info.100ms.BTCUSD"]}')
 
 * Currently supported intervals
 * 1 3 5 15 30
-* 60 120 240 360 720
+* 60 120 240 360
 * D
 * W
 * M
-* Y
 
 **Note that if `confirm` is `true`, it means that the data is the final tick for the interval. Otherwise, it is a snapshot.**
 
