@@ -350,7 +350,6 @@ https://api.bybit.com
 |reduce_only |false |bool |只减仓 |
 |close_on_trigger |false |bool |触发后平仓. 如果下平仓单，请设置为`true`，避免因为保证金不足而导致下单失败|
 |order_link_id |false |string |机构自定义订单ID, 最大长度36位，且同一机构下自定义ID不可重复 |
-|trailing_stop|false |number |追踪止损 |
 
 #### 返回示例
 

@@ -354,7 +354,6 @@ https://api.bybit.com
 |reduce_only |false |bool |reduce only
 |close_on_trigger |false |bool |close on trigger. When creating closing order, highly recommend to set as `true` to avoid failing by insufficient avaliable margin|
 |order_link_id |false |string |Customized order ID, maximum length at 36 characters, and order ID under the same agency has to be unique.|
-|trailing_stop|false |number |trailing stop |
 
 #### Response example
 
